@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cilicili.jz2.dao.TokenMapper">
+  <resultMap id="BaseResultMap" type="cilicili.jz2.domain.Token">
+      <id property="id" column="id"/>
+      <result property="userId" column="user_id"/>
+      <result property="token" column="token"/>
+      <result property="applytime" column="applytime"/>
+      <result property="expiretime" column="expiretime"/>
+      <result property="countAuth" column="count_auth"/>
+      <result property="maxCountAuth" column="max_count_auth"/>
+      <result property="ussage" column="ussage"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, token, applytime, expiretime, count_auth, max_count_auth, ussage
+  </sql>
+
+  <select id="getUserLoginToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tokens
+    WHERE token=#{token}
+  </select>
+
+  <delete id="deleteTokenByUserId" parameterType="java.lang.Integer">
+    delete from tokens
+    WHERE user_id = #{userId}
+  </delete>
+
+  <insert id="insert" parameterType="cilicili.jz2.domain.Token">
+    insert into tokens
+    (id, user_id, token, applytime, expiretime, count_auth, max_count_auth, ussage)
+    values
+    (#{id}, #{userId}, #{token}, #{applytime}, #{expiretime}, #{countAuth}, #{maxCountAuth}, #{ussage})
+  </insert>
+
+  <update id="updateToken" parameterType="cilicili.jz2.domain.Token">
+    update tokens
+    <set>
+      <if test="userId != null">
+        user_id = #{userId},
+      </if>
+      <if test="token != null">
+        token = #{token},
+      </if>
+      <if test="applytime != null">
+        applytime = #{applytime},
+      </if>
+      <if test="expiretime != null">
+        expiretime = #{expiretime},
+      </if>
+      <if test="countAuth != null">
+        count_auth = #{countAuth},
+      </if>
+      <if test="maxCountAuth != null">
+        max_count_auth = #{maxCountAuth},
+      </if>
+      <if test="ussage != null">
+        ussage = #{ussage},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>
