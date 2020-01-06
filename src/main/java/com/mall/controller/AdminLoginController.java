@@ -15,7 +15,6 @@ public class AdminLoginController {
 
     @RequestMapping(value = "/login")
     public String login() {
-        System.out.println("123");
         return "/admin/login";
     }
 

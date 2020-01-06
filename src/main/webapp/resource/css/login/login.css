@@ -1,0 +1,141 @@
+
+  html,body{
+      width: 100%;
+      height: 100%;
+  }
+  #t-beauty-v1 .login-wrapper {
+    width: 100%;
+    height: 100%;
+    background-image: url(/resource/images/login-bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter {
+    position: absolute;
+    width: 500px;
+    height: 614px;
+    top: 50%;
+    left: 69%;
+    margin-top: -307px;
+    margin-left: -500px;
+    background: url(/resource/images/login-enter-bg2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box {
+    position: absolute;
+    right: 80px;
+    width: 300px;
+    top: 230px;
+  }
+  .login-wrapper .login-title{
+    width: 100%;
+    top: -106px;
+    left: 0;
+    position: absolute;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+  }
+  .login-wrapper .login-title .login-icon{
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background: #78b7ff;
+    border-radius: 50%;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-top: 15px;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .login-name {
+    font-size: 24px;
+    color: #236cdc;
+    letter-spacing: 1px;
+    user-select: none;
+    text-align: left;
+    width: 80%;
+    display: inline-block;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box p {
+    margin-bottom: 20px;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box p input {
+    line-height: 30px;
+    font-size: 16px;
+    color: #236cdc;
+    outline: none;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #c9ccd6;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box p input:focus {
+    border-color: #236cdc;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box p:before {
+    content: '用户名';
+    color: #c9ccd6;
+    font-size: 16px;
+    display: block;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .password-input:before {
+    content: '密码';
+  }
+  #loginInfo{
+      color: red;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .btn-bar {
+    font-size: 12px;
+    margin-top: 50px;
+    position: relative;
+    color: #c9ccd6;
+    height: 30px;
+    line-height: 30px;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .btn-bar label.iv-checkbox {
+    cursor: pointer;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .btn-bar label.iv-checkbox .iv-checkbox-inner {
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: -2px;
+  }
+  #t-beauty-v1 .login-wrapper .login-enter .login-box .btn-bar .login-btn {
+    position: absolute;
+    right: 0;
+    top: -5px;
+    border: none;
+    color: white;
+    background: #236cdc;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 35px;
+    border-radius: 18px;
+    outline: none;
+    -webkit-box-shadow: 0 2px 28px rgba(35, 108, 220, 0.3);
+    box-shadow: 0 2px 28px rgba(35, 108, 220, 0.3);
+  }
+
+  .loginFooter{
+    color: #c5cada;
+    font-size: 16px;
+    text-align: right;
+    margin-top: 100px;
+    user-select: none;
+  }
+  .loginFooter .icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    margin-top: -3px;
+    vertical-align: middle;
+    background-image: url(/resource/images/login-footer-logo.png);/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
