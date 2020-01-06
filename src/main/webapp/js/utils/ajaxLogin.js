@@ -3,7 +3,7 @@ const ajaxLogin = {
   login({username, password}) {
     let json = {};
     $.post(
-      API_SERVER_padEnd("login"), {
+      API_SERVER_padEnd("api/login"), {
         username, password
       }, response => {
         json = response;
@@ -12,7 +12,7 @@ const ajaxLogin = {
   }, logout() {
     let json = {};
     $.post(
-      API_SERVER_padEnd("logout"), {
+      API_SERVER_padEnd("api/logout"), {
         token: utils.getCookie("token")
       }, response => {
         json = response;
@@ -21,7 +21,7 @@ const ajaxLogin = {
   }, now() {
     let json = {};
     $.post(
-      API_SERVER_padEnd("now"), {
+      API_SERVER_padEnd("api/now"), {
         token: utils.getCookie("token")
       }, response => {
         json = response;
@@ -30,7 +30,7 @@ const ajaxLogin = {
   }, apply(ussage) {
     let json = {};
     $.post(
-      API_SERVER_padEnd("apply"), {
+      API_SERVER_padEnd("api/apply"), {
         ussage, token: utils.getCookie("token")
       }, response => {
         json = response;

@@ -125,11 +125,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserBySessionId(String sessionId) {
+		if (StringUtils.isEmpty(sessionId)) {
+			return new User();
+		}
 		Session session = sessionService.getSessionBySessionId(sessionId);
 		if(session == null) {
 			return new User();
 		}
-		return findUserById(session.getUserId());
+		User user = findUserById(session.getUserId());
+		user.setPassword(null);
+		return user;
 	}
 
 	private Session proccessLoginSuccess(User user, Session session) {

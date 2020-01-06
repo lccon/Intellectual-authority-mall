@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@RequestMapping("/api")
 public class LoginController {
 	@Autowired
 	private UserServiceImpl userService;
@@ -58,9 +59,7 @@ public class LoginController {
 	@ResponseBody
 	public User now(String token) {
 		try {
-			User user = userService.findUserBySessionId(token);
-			user.setPassword(null);
-			return user;
+			return userService.findUserBySessionId(token);
 		} catch (BusinessValidationException e) {
 			throw new BusinessValidationException(e.getMessage());
 		} catch (Exception e) {

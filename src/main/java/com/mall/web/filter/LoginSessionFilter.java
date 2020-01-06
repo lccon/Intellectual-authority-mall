@@ -70,8 +70,9 @@ public class LoginSessionFilter implements Filter {
     }
 
     private boolean isNotLoginValidate(String uri) {
-        if("/".equals(uri) || "/api/video/show".equals(uri) || "/api/now".equals(uri)
-                || "/api/login".equals(uri) || "/api//user/add".equals(uri) || "/api/video/find".equals(uri)) {
+        if("/".equals(uri) || "/video/show".equals(uri) || "/api/now".equals(uri)
+                || "/api/login".equals(uri) || "/user/add".equals(uri) || "/video/find".equals(uri)
+                || "/admin/login".equals(uri) || "/loginPage".equals(uri)) {
             return true;
         }
         return false;
