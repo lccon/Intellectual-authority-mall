@@ -20,7 +20,7 @@
 	    <!--登陆框背景  -->
 		<div class="login-enter" id="loginEnterBg">
 			<div class="login-box">
-				<form action="/cms/doLogin" method="post" id="loginform-inner"
+				<form action="/api/login" method="post" id="loginform-inner"
 					novalidate="novalidate">
 					<div class="login-title">
 					
@@ -31,7 +31,7 @@
 						</span>
                     </div>
 					<p class="user-input">
-						<input id="username" type="text" placeholder="邮箱地址" name="userName">
+						<input id="username" type="text" placeholder="邮箱地址" name="username">
 					</p>
 					<p class="password-input">
 						<input id="password" type="password" placeholder="密码" name="password">
@@ -110,18 +110,15 @@
 					$("#loginButton").attr('disabled', true);
 					$("#password").val($("#password").val());
 					$(form).ajaxSubmit({
-						success : function(data) {							
-							if (data != null && data) {								
-								if (!data.success) {
-									$("#loginInfo").text(data.errDesc);
-									$("#password").val("");
-									$("#loginButton").attr('disabled', false);
-									return;
-								} 
-								if(data.success){
-									document.location.href = "/cms/index";
-									return;
-								}								
+						success : function(data) {
+							if (data != null && data) {
+                                if (data.errorCode) {
+                                    $("#loginInfo").text(data.message);
+                                    $("#password").val("");
+                                    $("#loginButton").attr('disabled', false);
+                                } else {
+                                    document.location.href = "/admin/index.jsp";
+                                }
 							}
 						},
 						error : function(xmlHttpRequest, textStatus, errorThrown) {

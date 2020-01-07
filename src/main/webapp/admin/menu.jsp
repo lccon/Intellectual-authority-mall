@@ -40,7 +40,7 @@ li {
 				<input type="hidden" id="site_id_menu" value="">
 				<input type="hidden" id="site_name_menu" value="">
 				<input type="hidden" id="site_templateType_menu" value="">
-				<a class="sys-index" href="#222">支撑服务控制台</a>
+				<a class="sys-index" href="#222">**后台管理</a>
 				<a class="quit" href="/login/logout">退出</a>
 				<span class="user-message">${userRealName}&nbsp;|<label id="time" style="font-size: 14px;"></label></span>
 			</div>
@@ -49,45 +49,34 @@ li {
 		<div class="left-menu">
 
 				<ul class="menu-list">
-
-					<%--<li class="system-item sys-mneu-name">
-						<div class="item-inner">
-							<span class="select-icon"></span>
-							<span class="menu-name">服务中心</span>
-						</div>
-						<ul class="child-menu system-child-menu">
-							<li class="link" data-url="">
-								<div class="item-inner">
-									<i class="iconfont serviceCentre"></i>
-									<span class="menu-name">服务中心</span>
-								</div>
-							</li>
-						</ul>
-					</li>
-
-						<li class="system-item sys-mneu-name">
-							<div class="item-inner">
-								<span class="select-icon"></span>
-								<span class="menu-name">用户管理</span>
-							</div>
-							<ul class="child-menu">
-								<li class="sys-menuChild-name load" data-url="/user/listPage">
-									<span class="menu-name">用户管理</span>
-								</li>
-								<li class="sys-menuChild-name load" data-url="/propertyDict/listPage">
-									<span class="menu-name">系统属性管理</span>
-								</li>
-							</ul>
-						</li>--%>
-
 					<li class="system-item sys-mneu-name load" data-url="/user/listPage">
 						<div class="item-inner">
-							<span class="menu-name"><h1>用户管理</h1></span>
+							<span class="menu-name">个人中心模块</span>
+						</div>
+					</li>
+					<li class="system-item sys-mneu-name load" data-url="/user/listPage">
+						<div class="item-inner">
+							<span class="menu-name">轮播图广告位</span>
 						</div>
 					</li>
 					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
 						<div class="item-inner sys-menuChild-name">
-							<span class="menu-name">任务管理</span>
+							<span class="menu-name">政策资讯模块</span>
+						</div>
+					</li>
+					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">手动置顶</span>
+						</div>
+					</li>
+					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">发布信息</span>
+						</div>
+					</li>
+					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">留言信息</span>
 						</div>
 					</li>
 				</ul>
