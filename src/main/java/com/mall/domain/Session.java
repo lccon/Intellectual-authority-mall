@@ -2,6 +2,7 @@ package com.mall.domain;
 
 import com.mall.base.BaseDomain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,9 +11,9 @@ import java.util.Date;
  * @Date:2019/12/16
  * @Author:lc
  */
-public class Session extends BaseDomain {
-    private Integer id;
-    private Integer userId;
+public class Session implements Serializable {
+    private Long id;
+    private Long userId;
     private String userName;
     private String sessionId;
     private Boolean isLogin;
@@ -22,19 +23,19 @@ public class Session extends BaseDomain {
     private Date loginDate;
     private String lastUrl;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

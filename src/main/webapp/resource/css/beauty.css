@@ -15,7 +15,7 @@
 #t-beauty-v1 button {
   font-size: 12px;
   height: 27px;
-  padding: 4px 15px;
+  padding: 1px 15px;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
@@ -639,7 +639,7 @@
   height:90%;
 }
 #t-beauty-v1 .wrapper-menu-expand .content-wrapper {
-  padding-left: 396px;
+  padding-left: 194px;
   height:90%;
 }
 #t-beauty-v1 .login-wrapper {

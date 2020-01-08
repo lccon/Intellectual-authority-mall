@@ -1,7 +1,7 @@
 package com.mall.service.impl;
 
 import com.mall.component.ThreadVariable;
-import com.mall.dao.UserMapper;
+import com.mall.mapper.UserMapper;
 import com.mall.domain.Session;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	private RedisTemplate redisTemplate;
 
 	@Override
-	public User findUserById(Integer id) {
+	public User findUserById(Long id) {
 		try {
 			return userMapper.selectByPrimaryKey(id);
 		} catch (Exception e) {

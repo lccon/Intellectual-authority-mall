@@ -1,14 +1,12 @@
 package com.mall.service.impl;
 
 import com.mall.constant.VideoConstants;
-import com.mall.dao.VideoMapper;
+import com.mall.mapper.VideoMapper;
 import com.mall.domain.User;
-import com.mall.domain.VideoCommentPraise;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.domain.Video;
 import com.mall.service.UserService;
-import com.mall.service.VideoCommentPraiseService;
 import com.mall.service.VideoService;
 import com.mall.vo.VideoVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +22,6 @@ public class VideoServiceImpl implements VideoService {
 	private VideoMapper videoMapper;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private VideoCommentPraiseService videoCommentPraiseService;
 
 	@Override
 	public VideoVO findVideoById(Integer id) {
@@ -52,7 +48,7 @@ public class VideoServiceImpl implements VideoService {
 	}
 	
 	@Override
-	public VideoVO addVideo(Video video, Integer userId) {
+	public VideoVO addVideo(Video video, Long userId) {
 		User user = userService.findUserById(userId);
 		if (user == null) {
 			throw new BusinessValidationException("用户不存在");
@@ -89,21 +85,11 @@ public class VideoServiceImpl implements VideoService {
 	}
 	
 	@Override
-	public VideoVO updateVideo(Integer id, Integer readCount, Integer userId) {
+	public VideoVO updateVideo(Integer id, Integer readCount, Long userId) {
 		VideoVO videoVo = findVideoById(id);
 		if(VideoConstants.PLAY_COUNT.equals(readCount)) {
 			videoVo.setCountPlay(videoVo.getCountPlay() + 1);
 		} else if (VideoConstants.LIKE_COUNT.equals(readCount)) {
-			VideoCommentPraise videoPraise = new VideoCommentPraise();
-			videoPraise.setVideoId(id);
-			videoPraise.setUserId(userId);
-			Integer count = videoCommentPraiseService.countVideoPraiseNum(videoPraise);
-			if(count > 0) {
-				throw new BusinessValidationException("赞过啦！");
-			} else {
-				videoCommentPraiseService.addVideoCommentPraise(videoPraise);
-				videoVo.setCountLike(videoVo.getCountLike() + 1);
-			}
 		}
 		try {
 			videoMapper.updateVideo(videoVo);

@@ -10,9 +10,9 @@ public interface VideoService {
 	
 	VideoVO findVideoByUrl(String url);
 
-	VideoVO addVideo(Video video, Integer userId);
+	VideoVO addVideo(Video video, Long userId);
 
-	VideoVO updateVideo(Integer id, Integer readCount, Integer userId);
+	VideoVO updateVideo(Integer id, Integer readCount, Long userId);
 	
 	List<VideoVO> showVideos();
 	

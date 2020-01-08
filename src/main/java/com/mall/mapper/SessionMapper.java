@@ -1,4 +1,4 @@
-package com.mall.dao;
+package com.mall.mapper;
 
 import com.mall.domain.Session;
 

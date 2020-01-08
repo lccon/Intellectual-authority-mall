@@ -6,6 +6,7 @@ CREATE TABLE `user` (
   `mobile` varchar(32) DEFAULT NULL COMMENT '手机号',
   `id_card` varchar(18) DEFAULT NULL COMMENT '身份证号',
   head_portrait bigint(20) NOT NULL COMMENT '头像',
+  identity tinyint(1) NOT NULL COMMENT '用户身份 1:管理员 2:普通用户',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
@@ -25,10 +26,6 @@ CREATE TABLE `user_session` (
   `login_date` datetime DEFAULT NULL,
   `last_url` varchar(240) DEFAULT NULL,
   `login_ip` varchar(32) DEFAULT NULL,
-  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
-  `create_date` datetime NOT NULL COMMENT '新增时间',
-  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
-  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -170,6 +167,7 @@ CREATE TABLE recharge_record (
 CREATE TABLE leave_message(
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
    message varchar(1000) DEFAULT NULL COMMENT '留言内容',
+   message_state bigint(1) DEFAULT 0 COMMENT '留言状态, 0:待查看 1:已处理',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

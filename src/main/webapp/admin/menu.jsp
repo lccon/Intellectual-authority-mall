@@ -74,7 +74,7 @@ li {
 							<span class="menu-name">发布信息</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/leaveMessage/listPage">
 						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">留言信息</span>
 						</div>

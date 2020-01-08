@@ -4,7 +4,7 @@ import com.mall.domain.Session;
 import com.mall.domain.User;
 
 public interface UserService {
-	User findUserById(Integer id);
+	User findUserById(Long id);
 	
 	User getUserByUsername(String username);
 	

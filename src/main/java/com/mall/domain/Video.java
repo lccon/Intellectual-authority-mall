@@ -11,7 +11,7 @@ public class Video extends BaseDomain {
 
     private String url;
 
-    private Integer uploadUserid;
+    private Long uploadUserid;
 
     private ZonedDateTime uploadTime;
 
@@ -23,7 +23,7 @@ public class Video extends BaseDomain {
 
     private String description;
 
-    public Video(Integer id, String title, String url, Integer uploadUserid, ZonedDateTime uploadTime, Integer countPlay, Integer countLike, String picUrl, String description) {
+    public Video(Integer id, String title, String url, Long uploadUserid, ZonedDateTime uploadTime, Integer countPlay, Integer countLike, String picUrl, String description) {
         this.id = id;
         this.title = title;
         this.url = url;
@@ -63,11 +63,11 @@ public class Video extends BaseDomain {
         this.url = url == null ? null : url.trim();
     }
 
-    public Integer getUploadUserid() {
+    public Long getUploadUserid() {
         return uploadUserid;
     }
 
-    public void setUploadUserid(Integer uploadUserid) {
+    public void setUploadUserid(Long uploadUserid) {
         this.uploadUserid = uploadUserid;
     }
 

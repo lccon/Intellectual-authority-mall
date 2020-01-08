@@ -491,7 +491,7 @@
 .errorInput{background:#fee; border:1px solid #DB0027 !important;}
 
 /* jqgrid */
-.ui-jqgrid{margin:0 20px;box-sizing:border-box;}
+.ui-jqgrid{margin:4px 0px;box-sizing:border-box;}
 .ui-jqgrid .ui-jqgrid-bdiv{background:#fff;}
 .ui-jqgrid .ui-jqgrid-htable th div{height:30px; font:bold 14px/28px 'Microsoft Yahei';  color: #454951;*vertical-align:middle; *height:auto;}
 .ui-jqgrid .ui-jqgrid-btable a,.ui-jqgrid .ui-state-hover a,.ui-jqgrid .ui-state-hover a:hover,.ui-jqgrid .ui-state-hover a:link{color:#2d62ac;text-decoration:underline;}

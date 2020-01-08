@@ -3,30 +3,26 @@ package com.mall.domain;
 import com.mall.base.BaseDomain;
 
 public class User extends BaseDomain {
-    private Integer id;
-
+    /** 主键id */
+    private Long id;
+    /** 用户名 */
     private String username;
-
+    /** 密码 */
     private String password;
-
+    /** 用户身份 */
     private String identity;
+    /** 手机号 */
+    private String mobile;
+    /** 身份证号 */
+    private String idCard;
+    /** 头像id */
+    private Long headPortrait;
 
-    public User(Integer id, String username, String password, String identity) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.identity = identity;
-    }
-
-    public User() {
-        super();
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,6 +47,30 @@ public class User extends BaseDomain {
     }
 
     public void setIdentity(String identity) {
-        this.identity = identity == null ? null : identity.trim();
+        this.identity = identity;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public Long getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(Long headPortrait) {
+        this.headPortrait = headPortrait;
     }
 }

@@ -10,7 +10,6 @@
     <param-value>
       classpath:applicationContext.xml
       classpath:applicationContext-cache.xml
-      classpath:applicationContext-mybatis.xml
     </param-value>
   </context-param>
 

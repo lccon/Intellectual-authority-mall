@@ -22,6 +22,29 @@
 
   <context:property-placeholder location="classpath:grid.properties"/>
 
+  <!--数据源-->
+  <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${db.driverClassName}"/>
+    <property name="url" value="${db.fullURL}"/>
+    <property name="username" value="${db.username}"/>
+    <property name="password" value="${db.password}"/>
+    <property name="testOnBorrow" value="true"/>
+    <property name="testOnReturn" value="true"/>
+    <property name="testWhileIdle" value="true"/>
+    <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
+  </bean>
+
+  <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+    <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+    <property name="typeAliasesPackage" value="com.mall.**.domain,com.mall.**.vo" />
+  </bean>
+
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.mall.mapper"/>
+  </bean>
+
   <!-- 基于注解方式使用异常处理框架 -->
   <bean class="com.mall.exception.processor.ExceptionalAnnotationBeanPostProcessor" />
   <bean id="captureExceptionHandler" class="com.mall.exception.view.CaptureExceptionHandler"></bean>
