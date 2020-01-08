@@ -278,7 +278,7 @@
 		}
 		function getAjax(url,docObj) {
 			docObj.empty();
-			docObj.html('<div style="margin-top:40px;margin-left:'+((dfop.width-100)/2)+'px"><img src="'+RESOURCE_PATH+'/resource/images/dialog/loading.gif" alt="加载中..." /></div>');
+			docObj.html('<div style="margin-top:40px;margin-left:'+((dfop.width-100)/2)+'px"></div>');
 			docObj.dialog(dfop);
 			docObj.width(docObj.width());
 			$.ajax( {

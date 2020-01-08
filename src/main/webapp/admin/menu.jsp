@@ -41,7 +41,7 @@ li {
 				<input type="hidden" id="site_name_menu" value="">
 				<input type="hidden" id="site_templateType_menu" value="">
 				<a class="sys-index" href="#222">**后台管理</a>
-				<a class="quit" href="/login/logout">退出</a>
+				<a class="quit" href="/admin/logout">退出</a>
 				<span class="user-message">${userRealName}&nbsp;|<label id="time" style="font-size: 14px;"></label></span>
 			</div>
 		</div>

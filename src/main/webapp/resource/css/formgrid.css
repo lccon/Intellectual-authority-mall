@@ -160,3 +160,10 @@ select.form-txt {
     background: #F2F2F2;
     cursor: pointer;
 }
+
+.form-red,.label-red {
+    color: #f00;
+    line-height: 30px;
+    padding:0 5px 0 3px;
+    font-style: normal;
+}

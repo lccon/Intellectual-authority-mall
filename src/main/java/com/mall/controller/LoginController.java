@@ -48,7 +48,6 @@ public class LoginController {
 	@RequestMapping (value = "/logout", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean logout(String token, HttpServletRequest request, HttpServletResponse response) {
-		//TokenUtil.destoryToken(token);
 		CookieUtil.clearSessionsFromCookies(request, response);
 		sessionService.deleteSessionBySessionId(token);
 		ThreadVariable.setSession(null);

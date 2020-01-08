@@ -3,6 +3,7 @@ package com.mall.service.impl;
 import com.mall.component.ThreadVariable;
 import com.mall.constant.PermissionConstant;
 import com.mall.domain.Session;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.redis.template.RedisTemplate;
 import com.mall.service.LoginService;
 import com.mall.service.SessionService;
@@ -44,6 +45,15 @@ public class LoginServiceImpl implements LoginService {
 
         ThreadVariable.setSession(session);
         return true;
+    }
+
+    @Override
+    public void loginOut(String sessionId) {
+        if (StringUtils.isEmpty(sessionId)) {
+            throw new BusinessValidationException("session不存在");
+        }
+        sessionService.deleteSessionBySessionId(sessionId);
+        ThreadVariable.setSession(null);
     }
 
     private Session getSession(String sid) {

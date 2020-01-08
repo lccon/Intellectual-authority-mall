@@ -19,16 +19,16 @@ public class MaintainHistoryAspect {
   @Before("execution(public * com.mall..*.*Mapper.add*(..)) &&  args(baseDomain,..)")
   public void appendCreateInfo(BaseDomain baseDomain) {
     Session session = ThreadVariable.getSession();
-    //baseDomain.setCreateUser(session.getUserName());
+    baseDomain.setCreateUser(session.getUserName());
     baseDomain.setCreateDate(new Date());
-    //baseDomain.setUpdateUser(session.getUserName());
+    baseDomain.setUpdateUser(session.getUserName());
     baseDomain.setUpdateDate(new Date());
   }
 
   @Before("execution(public * com.mall..*.*Mapper.update*(..)) &&  args(baseDomain,..)")
   public void appendUpdateInfo(BaseDomain baseDomain) {
-    /*Session session = ThreadVariable.getSession();
-    baseDomain.setUpdateUser(session.getUserName());*/
+    Session session = ThreadVariable.getSession();
+    baseDomain.setUpdateUser(session.getUserName());
     baseDomain.setUpdateDate(new Date());
   }
 

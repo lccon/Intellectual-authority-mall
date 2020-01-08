@@ -28,6 +28,11 @@ public class LeaveMessageController {
         return "/admin/leaveMessage/leaveMessageListPage";
     }
 
+    @RequestMapping("/gotoAddLeaveMessagePage")
+    public String gotoAddLeaveMessagePage() {
+        return "/admin/leaveMessage/addLeaveMessageDlg";
+    }
+
     @RequestMapping("/addLeaveMessage")
     @ResponseBody
     public LeaveMessage addLeaveMessage(LeaveMessage leaveMessage) {

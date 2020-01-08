@@ -2,9 +2,9 @@
 
 <div id="leaveMessage">
     <div class="toolbar">
-        <button id="addRollInfomation" type="button" class="tc-15-btn m">新增</button>
-        <button id="updateRollInfomation" type="button" class="tc-15-btn m">修改</button>
-        <button id="deleteRollInfomation" type="button" class="tc-15-btn m">删除</button>
+        <button id="addLeaveMessage" type="button" class="tc-15-btn m">新增</button>
+        <button id="updateLeaveMessage" type="button" class="tc-15-btn m">修改</button>
+        <button id="deleteLeaveMessage" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
     <div id="manage-area-inner">
@@ -21,7 +21,7 @@
             datatype : "local",
             colModel : [
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
-                {name : "message",index : "message", label:'留言内容', sortable : false, width:'200'},
+                {name : "message",index : "message", label:'留言内容', sortable : false, width:'400'},
                 {name : "messageState",index : "messageState", label:'留言状态', align:'center', sortable : false, width:'200', formatter:messageStateFormatter},
                 {name : "createUser", index:"createUser", label:"留言对象", align:'center', sortable:false, width:'200'},
                 {name : "messageDateStr", index:"messageDateStr", label:"留言时间", align:'center', sortable:false, width:'200'},
@@ -55,12 +55,12 @@
             $("#leaveMessageList").trigger("reloadGrid");
         }
 
-        /*$("#addRollInfomation").click(function(){
+        $("#addLeaveMessage").click(function(){
             $('#leaveMessageDialog').createDialog({
                 width: 500,
                 height: 400,
-                title:'新增滚动配置信息',
-                url:'${path}/rollInfomation/gotoAddRollInfomation',
+                title:'新增留言',
+                url:'${path}/leaveMessage/gotoAddLeaveMessagePage',
                 buttons: {
                     "保存" : function(){
                         $("#maintainForm").submit();
@@ -72,7 +72,7 @@
             });
         });
 
-        $("#updateRollInfomation").click(function(){
+        /*$("#updateRollInfomation").click(function(){
             var selectedIds = $("#leaveMessageList").jqGrid("getGridParam", "selarrrow");
             if (selectedIds.length !== 1) {
                 $.messageBox({

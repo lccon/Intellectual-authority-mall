@@ -17,4 +17,9 @@ public interface LoginService {
      */
     Boolean isLogin(String sessionId, String accessIp, String requestUrl);
 
+    /**
+     * 登出
+     * @param sessionId
+     */
+    void loginOut(String sessionId);
 }
