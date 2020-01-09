@@ -34,11 +34,11 @@
             <if test="messageState != null">
                 message_state = #{messageState},
             </if>
-            <if test="createUser != null">
-                create_user = #{createUser},
+            <if test="updateUser != null">
+                update_user = #{updateUser},
             </if>
-            <if test="createDate != null">
-                create_date = #{createDate}
+            <if test="updateDate != null">
+                update_date = #{updateDate}
             </if>
         </set>
         WHERE id = #{id}
@@ -52,5 +52,13 @@
         SELECT <include refid="columns"/> FROM leave_message
         WHERE id = #{id}
     </select>
+
+    <delete id="deleteLeaveMessage">
+        DELETE FROM leave_message
+        WHERE id IN
+        <foreach collection="array" item="id" index="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

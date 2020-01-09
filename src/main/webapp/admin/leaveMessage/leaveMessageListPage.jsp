@@ -72,7 +72,7 @@
             });
         });
 
-        /*$("#updateRollInfomation").click(function(){
+        $("#updateLeaveMessage").click(function(){
             var selectedIds = $("#leaveMessageList").jqGrid("getGridParam", "selarrrow");
             if (selectedIds.length !== 1) {
                 $.messageBox({
@@ -85,8 +85,8 @@
             $('#leaveMessageDialog').createDialog({
                 width: 500,
                 height: 400,
-                title:'修改滚动配置信息',
-                url:'${path}/rollInfomation/gotoUpdateRollInfomation?id='+selectedIds,
+                title:'修改留言',
+                url:'${path}/leaveMessage/gotoUpdateLeaveMessagePage?id='+selectedIds,
                 buttons: {
                     "保存" : function(){
                         $("#maintainForm").submit();
@@ -98,7 +98,7 @@
             });
         });
 
-        $("#deleteRollInfomation").click(function(){
+        $("#deleteLeaveMessage").click(function(){
             if(!hasRowSelected()){
                 $.messageBox({level:'warn',message:"请选择一条或多条记录再进行操作！"});
                 return;
@@ -109,7 +109,7 @@
                 width:400,
                 okFunc:function(){
                     $.ajax({
-                        url:'${path}/rollInfomation/deleteRollInfomation',
+                        url:'${path}/leaveMessage/deleteLeaveMessage',
                         data:{
                             "ids":$("#leaveMessageList").jqGrid("getGridParam", "selarrrow")
                         },
@@ -136,6 +136,6 @@
                 return true;
             }
             return false;
-        }*/
+        }
     });
 </script>

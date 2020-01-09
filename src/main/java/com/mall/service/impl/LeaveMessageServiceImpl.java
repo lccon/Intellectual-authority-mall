@@ -79,4 +79,17 @@ public class LeaveMessageServiceImpl implements LeaveMessageService {
             throw new ServiceValidationException("获取留言信息出错!", e);
         }
     }
+
+    @Override
+    public Boolean deleteLeaveMessage(Long[] ids) {
+        if(ids == null || ids.length <= 0) {
+            throw new BusinessValidationException("参数不能为空！");
+        }
+        try {
+            Integer count = leaveMessageMapper.deleteLeaveMessage(ids);
+            return count > 0;
+        } catch (Exception e) {
+            throw new ServiceValidationException("删除留言出错!", e);
+        }
+    }
 }

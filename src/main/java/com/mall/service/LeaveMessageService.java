@@ -38,4 +38,11 @@ public interface LeaveMessageService {
      * @return
      */
     LeaveMessage getLeaveMessageById(Long id);
+
+    /**
+     * 删除留言
+     * @param ids
+     * @return
+     */
+    Boolean deleteLeaveMessage(Long[] ids);
 }

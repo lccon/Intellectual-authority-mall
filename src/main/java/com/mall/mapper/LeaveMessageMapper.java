@@ -36,4 +36,11 @@ public interface LeaveMessageMapper {
      * @return
      */
     LeaveMessage getLeaveMessageById(Long id);
+
+    /**
+     * 删除留言
+     * @param ids
+     * @return
+     */
+    Integer deleteLeaveMessage(Long[] ids);
 }

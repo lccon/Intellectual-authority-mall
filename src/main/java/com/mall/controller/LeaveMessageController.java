@@ -7,7 +7,9 @@ import com.mall.service.LeaveMessageService;
 import com.mall.vo.LeaveMessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -33,6 +35,13 @@ public class LeaveMessageController {
         return "/admin/leaveMessage/addLeaveMessageDlg";
     }
 
+    @RequestMapping("/gotoUpdateLeaveMessagePage")
+    public String gotoUpdateLeaveMessagePage(Long id, ModelMap map) {
+        LeaveMessage leaveMessage = leaveMessageService.getLeaveMessageById(id);
+        map.put("leaveMessage", leaveMessage);
+        return "/admin/leaveMessage/updateLeaveMessageDlg";
+    }
+
     @RequestMapping("/addLeaveMessage")
     @ResponseBody
     public LeaveMessage addLeaveMessage(LeaveMessage leaveMessage) {
@@ -43,6 +52,12 @@ public class LeaveMessageController {
     @ResponseBody
     public LeaveMessage updateLeaveMessage(LeaveMessage leaveMessage) {
         return leaveMessageService.updateLeaveMessage(leaveMessage);
+    }
+
+    @RequestMapping("/deleteLeaveMessage")
+    @ResponseBody
+    public Boolean deleteLeaveMessage(@RequestParam(value = "ids[]", required = true) Long[] ids) {
+        return leaveMessageService.deleteLeaveMessage(ids);
     }
 
     @RequestMapping("/findLeaveMessageForList")
