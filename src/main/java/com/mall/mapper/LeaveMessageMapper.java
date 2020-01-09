@@ -43,4 +43,10 @@ public interface LeaveMessageMapper {
      * @return
      */
     Integer deleteLeaveMessage(Long[] ids);
+
+    /**
+     * 修改留言状态
+     * @return
+     */
+    Integer updateLeaveMessageState();
 }

@@ -503,7 +503,7 @@
 .ui-jqgrid .s-ico{position:relative; top:5px;}
 .ui-jqgrid .ui-icon-asc{margin-left:1px;}
 .ui-jqgrid .ui-jqgrid-pager{background:#E6E7E7;border:0;border-top:1px solid #d1d5de;border-right:1px solid #d1d5de !important;color:#5D5D5D;}
-.ui-jqgrid .ui-jqgrid-pager .ui-icon{background-image:url(../images/fixjqGridIcon.png);}
+.ui-jqgrid .ui-jqgrid-pager .ui-icon{background-image:url(/images/fixjqGridIcon.png);}
 .ui-jqgrid .ui-jqgrid-pager .ui-state-hover{border:1px solid #d1d5de;}
 .ui-jqgrid .ui-row-ltr{background:#f1f1f1;}
 .ui-jqgrid .ui-state-hover,

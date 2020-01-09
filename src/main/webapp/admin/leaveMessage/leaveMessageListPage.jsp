@@ -5,6 +5,7 @@
         <button id="addLeaveMessage" type="button" class="tc-15-btn m">新增</button>
         <button id="updateLeaveMessage" type="button" class="tc-15-btn m">修改</button>
         <button id="deleteLeaveMessage" type="button" class="tc-15-btn m">删除</button>
+        <button id="oneClickView" type="button" class="tc-15-btn m">一键查看</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
     <div id="manage-area-inner">
@@ -126,6 +127,28 @@
                 }
             });
         });
+
+        $("#oneClickView").click(function() {
+            $.confirm({
+                title:"更改状态",
+                message:"您确定想把所有'未处理'的信息改为'已查看'吗?",
+                width:400,
+                okFunc:function () {
+                    $.ajax({
+                        url:'${path}/leaveMessage/updateLeaveMessageState',
+                        type: 'GET',
+                        success:function(data){
+                            if(data != null && data){
+                                $.messageBox({message:"修改成功！"});
+                                onLoad();
+                            }else{
+                                $.messageBox({message:"修改失败！",level: "error"});
+                            }
+                        }
+                    })
+                }
+            })
+        })
 
         $("#reload").click(function(){
             onLoad();

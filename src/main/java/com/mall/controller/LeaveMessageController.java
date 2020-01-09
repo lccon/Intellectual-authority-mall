@@ -54,6 +54,12 @@ public class LeaveMessageController {
         return leaveMessageService.updateLeaveMessage(leaveMessage);
     }
 
+    @RequestMapping("/updateLeaveMessageState")
+    @ResponseBody
+    public Boolean updateLeaveMessageState() {
+        return leaveMessageService.updateLeaveMessageState();
+    }
+
     @RequestMapping("/deleteLeaveMessage")
     @ResponseBody
     public Boolean deleteLeaveMessage(@RequestParam(value = "ids[]", required = true) Long[] ids) {

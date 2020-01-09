@@ -45,4 +45,10 @@ public interface LeaveMessageService {
      * @return
      */
     Boolean deleteLeaveMessage(Long[] ids);
+
+    /**
+     * 修改所有的状态
+     * @return
+     */
+    Boolean updateLeaveMessageState();
 }

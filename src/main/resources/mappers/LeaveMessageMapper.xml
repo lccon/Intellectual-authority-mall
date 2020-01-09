@@ -61,4 +61,8 @@
         </foreach>
     </delete>
 
+    <update id="updateLeaveMessageState">
+        UPDATE leave_message SET message_state = 1 WHERE message_state = 0
+    </update>
+
 </mapper>

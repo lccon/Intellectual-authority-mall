@@ -92,4 +92,14 @@ public class LeaveMessageServiceImpl implements LeaveMessageService {
             throw new ServiceValidationException("删除留言出错!", e);
         }
     }
+
+    @Override
+    public Boolean updateLeaveMessageState() {
+        try {
+            Integer count = leaveMessageMapper.updateLeaveMessageState();
+            return count > 0;
+        } catch (Exception e) {
+            throw new ServiceValidationException("修改留言状态失败!", e);
+        }
+    }
 }
