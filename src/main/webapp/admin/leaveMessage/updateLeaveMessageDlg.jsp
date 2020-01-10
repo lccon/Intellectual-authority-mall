@@ -45,8 +45,8 @@
                 }
             },
             messages:{
-                "code":{
-                    required:"请输入编码",
+                "message":{
+                    required:"请输入留言内容",
                     minlength:$.format("留言至少需要输入{0}个字符"),
                     minlength:$.format("留言最多需要输入{0}个字符"),
                 }

@@ -14493,7 +14493,7 @@ UE.plugin.register('copy', function () {
                         initZeroClipboard();
                     } else {
                         utils.loadFile(document, {
-                            src: "/ueditor/third-party/zeroclipboard/ZeroClipboard.js",
+                            src: "third-party/zeroclipboard/ZeroClipboard.js",
                             tag: "script",
                             type: "text/javascript",
                             defer: "defer"
@@ -29145,7 +29145,7 @@ UE.ui = baidu.editor.ui = {};
         },
         _updateElementPath:function () {
             var bottom = this.getDom('elementpath'), list;
-            if (this.elementPathEnabled && (list = this.editor.queryCommandValue('elementpath'))) {
+            /*if (this.elementPathEnabled && (list = this.editor.queryCommandValue('elementpath'))) {
 
                 var buff = [];
                 for (var i = 0, ci; ci = list[i]; i++) {
@@ -29155,7 +29155,8 @@ UE.ui = baidu.editor.ui = {};
 
             } else {
                 bottom.style.display = 'none'
-            }
+            }*/
+            bottom.style.display = 'none'
         },
         disableElementPath:function () {
             var bottom = this.getDom('elementpath');

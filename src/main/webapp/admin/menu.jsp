@@ -69,7 +69,7 @@ li {
 							<span class="menu-name">手动置顶</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/freeMessage/listPage">
 						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">发布信息</span>
 						</div>

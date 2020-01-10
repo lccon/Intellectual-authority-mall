@@ -2,6 +2,8 @@ package com.mall.mapper;
 
 import com.mall.domain.FreeMessage;
 
+import java.util.List;
+
 /**
  * Description:
  *
@@ -24,7 +26,20 @@ public interface FreeMessageMapper {
     /**
      * 删除发布的信息
      * @param ids
-     * @return
+     * @returnl
      */
     Integer deleteFreeMessage(Long[] ids);
+
+    /**
+     * 查询列表
+     * @return
+     */
+    List<FreeMessage> findFreeMessageForList();
+
+    /**
+     * 查询单条信息
+     * @param id
+     * @return
+     */
+    FreeMessage getFreeMessageById(Long id);
 }
