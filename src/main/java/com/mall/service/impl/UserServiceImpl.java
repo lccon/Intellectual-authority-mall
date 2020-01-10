@@ -10,6 +10,8 @@ import com.mall.redis.template.RedisTemplate;
 import com.mall.service.SessionService;
 import com.mall.service.UserService;
 import com.mall.utils.PasswordUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,6 +21,9 @@ import java.util.UUID;
 
 @Service ("userService")
 public class UserServiceImpl implements UserService {
+
+	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
@@ -108,6 +113,7 @@ public class UserServiceImpl implements UserService {
 		}
 		password = PasswordUtil.getHashedPassword(password);
 		User user = userMapper.getUserByUsernamePassword(username, password);
+		logger.error("用户信息[{}]", user);
 		if (user == null) {
 			throw new BusinessValidationException("用户名或密码错误！");
 		}
@@ -115,8 +121,6 @@ public class UserServiceImpl implements UserService {
 			// 删除登录过的session
 			sessionService.deleteSessionBySessionId(session.getSessionId());
 			Session newSession = proccessLoginSuccess(user, session);
-			/*TokenUtil.destoryOldTokens(user.getId());
-			Token token = TokenUtil.createToken(user.getId(), TokenUtil.TokenUssage.DEFAULT, TokenUtil.DEFAULT_MAX_COUNT_AUTH, Period.of(0, 1, 0));*/
 			return newSession;
 		} catch (Exception e) {
 			throw new ServiceValidationException("获取令牌认证失败！", e);
@@ -148,6 +152,7 @@ public class UserServiceImpl implements UserService {
 		newSession.setLastUrl(session.getLastUrl());
 		newSession.setAccessIp(session.getSessionId());
 		newSession.setUserId(user.getId());
+		logger.error("session信息[{}]", newSession);
 		newSession = sessionService.addSession(newSession);
 		ThreadVariable.setSession(newSession);
 		redisTemplate.set(newSession.getSessionId(), newSession);

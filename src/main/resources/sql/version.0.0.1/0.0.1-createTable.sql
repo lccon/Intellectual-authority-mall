@@ -34,6 +34,8 @@ CREATE TABLE free_message(
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   message_content VARCHAR (5000) NOT NUll COMMENT '信息内容',
   identity tinyint(1) NOT NULL COMMENT '用户身份 1:买方 2:卖方',
+  message_state tinyint(1) NOT NULL COMMENT '信息状态 0:待审核 1:通过 2:驳回',
+  browse_volume bigint(20) DEFAULT 0 COMMENT '浏览量',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

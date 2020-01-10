@@ -32,7 +32,7 @@ public class LeaveMessageController {
 
     @RequestMapping("/gotoAddLeaveMessagePage")
     public String gotoAddLeaveMessagePage() {
-        return "/admin/leaveMessage/addLeaveMessageDlg";
+        return "admin/leaveMessage/addLeaveMessageDlg";
     }
 
     @RequestMapping("/gotoUpdateLeaveMessagePage")
