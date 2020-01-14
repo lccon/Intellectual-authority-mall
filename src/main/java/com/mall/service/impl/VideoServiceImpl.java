@@ -1,6 +1,6 @@
 package com.mall.service.impl;
 
-import com.mall.constant.VideoConstants;
+import com.mall.constant.AttachConstants;
 import com.mall.mapper.VideoMapper;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
@@ -87,9 +87,9 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public VideoVO updateVideo(Integer id, Integer readCount, Long userId) {
 		VideoVO videoVo = findVideoById(id);
-		if(VideoConstants.PLAY_COUNT.equals(readCount)) {
+		if(AttachConstants.PLAY_COUNT.equals(readCount)) {
 			videoVo.setCountPlay(videoVo.getCountPlay() + 1);
-		} else if (VideoConstants.LIKE_COUNT.equals(readCount)) {
+		} else if (AttachConstants.LIKE_COUNT.equals(readCount)) {
 		}
 		try {
 			videoMapper.updateVideo(videoVo);

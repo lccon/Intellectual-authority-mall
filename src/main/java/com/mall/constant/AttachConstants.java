@@ -6,12 +6,14 @@ package com.mall.constant;
  * @Date:2019/11/3
  * @Author:lc
  */
-public class VideoConstants {
+public class AttachConstants {
     public static final Integer PLAY_COUNT = 1;
     public static final Integer LIKE_COUNT = 2;
 
-    // 存储附件路径
-    public static final String STORAGE_DIR = "/upload/";
+    // 图片存储附件路径
+    public static final String IMAGE_DIR = "/upload/image";
+    // 视频存储附件路径
+    public static final String VIDEO_DIR = "/upload/video";
     // 存储附件路径
     public static final String CONVERT_UTIL_DIR = "/convertutil/";
     // 音频路径

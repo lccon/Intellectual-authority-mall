@@ -64,14 +64,19 @@ li {
 							<span class="menu-name">政策资讯模块</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/intellectualTask/listPage">
 						<div class="item-inner sys-menuChild-name">
-							<span class="menu-name">手动置顶</span>
+							<span class="menu-name">知识产权商城</span>
 						</div>
 					</li>
 					<li class="system-item sys-mneu-name load" data-url="/freeMessage/listPage">
 						<div class="item-inner sys-menuChild-name">
-							<span class="menu-name">发布信息</span>
+							<span class="menu-name">需求发布</span>
+						</div>
+					</li>
+					<li class="system-item sys-mneu-name load" data-url="/freeMessage/listPage">
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">代办公司</span>
 						</div>
 					</li>
 					<li class="system-item sys-mneu-name load" data-url="/leaveMessage/listPage">

@@ -75,16 +75,14 @@ CREATE TABLE authorize_site (
 -- 知识产权商城
 CREATE TABLE intellectual_task (
    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-   title varchar(500) NOT NULL COMMENT '标题',
    product_name VARCHAR (200) DEFAULT NULL COMMENT '商品名称',
+   product_brief VARCHAR (1000) NOT NULL COMMENT '商品简介',
    product_details VARCHAR(5000) NOT NULL COMMENT '商品详情',
    patent_number VARCHAR (200) DEFAULT NULL COMMENT '专利号',
    product_category tinyint(1) NOT NULL COMMENT '知识产权商城 1:发明，2:实用新型，3:外观，4:商标，5:版权',
-   product_picture bigint(20) DEFAULT NULL COMMENT '图片',
-   product_video bigint(20) DEFAULT NULL COMMENT '视频',
-   top_place tinyint(1) DEFAULT 0 COMMENT '是否置顶 0：否，1：是',
-   exist_recharge tinyint(1) DEFAULT 0 COMMENT '是否已经充值 0：否，1：是',
-   authorize_state tinyint(1) DEFAULT 0 COMMENT '认证状态 0:未认证，1：已认证',
+   industry_category tinyint(1) NOT NULL COMMENT '行业分类',
+   product_picture_url varchar(500) DEFAULT NULL COMMENT '图片地址',
+   product_video_url VARCHAR(500) DEFAULT NULL COMMENT '视频地址',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
@@ -127,6 +125,22 @@ CREATE TABLE authorize_company (
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 模块置顶表
+CREATE TABLE roof_place(
+   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   module_type tinyint(1) NOT NULL COMMENT '模块类型，1:知识产权，2:代办公司，3:需求任务',
+   module_type_id bigint(20) NOT NULL COMMENT '模块id',
+   authorize_state tinyint(1) DEFAULT 0 COMMENT '认证状态 0:待审核 1:置顶 2:驳回',
+   top_duration int(10) DEFAULT NULL COMMENT '置顶时长 数字1，2，3，4',
+   top_start_time datetime DEFAULT NULL COMMENT '置顶开始时间',
+   top_end_time datetime DEFAULT NULL COMMENT '置顶结束时间',
+   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
+   `create_date` datetime NOT NULL COMMENT '新增时间',
+   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
+   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
+   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 政策资讯
@@ -176,15 +190,3 @@ CREATE TABLE leave_message(
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 图片
-CREATE TABLE authorize_attach (
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  file_name VARCHAR(100) NOT NULL COMMENT '文件名称',
-  file_url VARCHAR(200) NOT NULL COMMENT '文件地址',
-  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
-  `create_date` datetime NOT NULL COMMENT '新增时间',
-  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
-  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
