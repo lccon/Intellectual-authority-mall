@@ -26,6 +26,7 @@ CREATE TABLE `user_session` (
   `login_date` datetime DEFAULT NULL,
   `last_url` varchar(240) DEFAULT NULL,
   `login_ip` varchar(32) DEFAULT NULL,
+  `mobile` VARCHAR (11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -112,14 +113,10 @@ CREATE TABLE task_release(
 
 -- 代办公司
 CREATE TABLE authorize_company (
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  company_name varchar(50) NOT NULL COMMENT '公司名称',
-  company_describe VARCHAR (1000) NOT NULL COMMENT '公司介绍',
-  business_category tinyint(1) NOT NULL COMMENT '业务分类 1:申请专利，2:证书买卖，3:技术成果转让，4:法律咨询',
-  top_place tinyint(1) DEFAULT 0 COMMENT '是否置顶 0：否，1：是',
-   exist_recharge tinyint(1) DEFAULT 0 COMMENT '是否已经充值 0：否，1：是',
-   authorize_state tinyint(1) DEFAULT 0 COMMENT '认证状态 0:未认证，1：已认证',
-   friendship_link VARCHAR (500) DEFAULT NULL COMMENT '友情链接',
+   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   company_name varchar(50) NOT NULL COMMENT '公司名称',
+   business_category tinyint(1) NOT NULL COMMENT '业务分类 1:申请专利，2:证书买卖，3:技术成果转让，4:法律咨询',
+   company_describe VARCHAR (1000) NOT NULL COMMENT '公司详情',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

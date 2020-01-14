@@ -12,11 +12,12 @@
         <result property="loginDate" column="login_date" />
         <result property="lastUrl" column="last_url" />
         <result property="loginIp" column="login_ip" />
+        <result property="mobile" column="mobile"/>
     </resultMap>
 
     <sql id="columns">
         id, session_id, user_id, user_name, access_ip, access_time, is_login, login_date,
-        last_url, login_ip
+        last_url, login_ip, mobile
     </sql>
 
     <select id="getSessionBySessionId" parameterType="java.lang.String" resultMap="sessionResultMap">
@@ -49,8 +50,8 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO user_session
-        (id, session_id, user_id, user_name, access_ip, access_time, is_login, login_date, last_url, login_ip)
+        (id, session_id, user_id, user_name, access_ip, access_time, is_login, login_date, last_url, login_ip, mobile)
         VALUES
-        (#{id}, #{sessionId}, #{userId}, #{userName}, #{accessIp}, #{accessTime}, #{isLogin}, #{loginDate}, #{lastUrl}, #{loginIp})
+        (#{id}, #{sessionId}, #{userId}, #{userName}, #{accessIp}, #{accessTime}, #{isLogin}, #{loginDate}, #{lastUrl}, #{loginIp}, #{mobile})
     </insert>
 </mapper>

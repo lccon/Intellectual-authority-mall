@@ -22,6 +22,7 @@ public class Session implements Serializable {
     private String loginIp;
     private Date loginDate;
     private String lastUrl;
+    private String mobile;
 
     public Long getId() {
         return id;
@@ -103,19 +104,11 @@ public class Session implements Serializable {
         this.lastUrl = lastUrl;
     }
 
-    @Override
-    public String toString() {
-        return "Session{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", sessionId='" + sessionId + '\'' +
-                ", isLogin=" + isLogin +
-                ", accessIp='" + accessIp + '\'' +
-                ", accessTime=" + accessTime +
-                ", loginIp='" + loginIp + '\'' +
-                ", loginDate=" + loginDate +
-                ", lastUrl='" + lastUrl + '\'' +
-                '}';
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

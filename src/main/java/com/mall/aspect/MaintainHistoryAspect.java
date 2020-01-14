@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -23,6 +24,9 @@ public class MaintainHistoryAspect {
     baseDomain.setCreateDate(new Date());
     baseDomain.setUpdateUser(session.getUserName());
     baseDomain.setUpdateDate(new Date());
+    if (!StringUtils.isEmpty(session.getMobile())) {
+      baseDomain.setMobile(session.getMobile());
+    }
   }
 
   @Before("execution(public * com.mall..*.*Mapper.update*(..)) &&  args(baseDomain,..)")
