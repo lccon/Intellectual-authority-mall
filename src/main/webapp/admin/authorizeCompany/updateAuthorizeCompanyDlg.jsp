@@ -142,6 +142,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
+                    $.messageBox({message:"上传成功"});
                     $("#companyPictureUrl").val(result.resultStr);
                 } else {
                     $.messageBox({message:result.resultStr});

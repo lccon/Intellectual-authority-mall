@@ -221,6 +221,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
+                    $.messageBox({message:"上传成功"});
                     $("#productPictureUrl").val(result.resultStr);
                 } else {
                     $.messageBox({message:result.resultStr});
@@ -257,6 +258,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
+                    $.messageBox({message:"上传成功"});
                     $("#productVideoUrl").val(result.resultStr);
                 } else {
                     $.messageBox({message:result.resultStr});

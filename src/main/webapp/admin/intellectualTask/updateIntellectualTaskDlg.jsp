@@ -217,7 +217,6 @@
         }
         var data = new FormData();
         $.each($(obj)[0].files, function(i, file) {
-            debugger
             data.append('img', file);
         })
         $.ajax({
@@ -230,6 +229,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
+                    $.messageBox({message:"上传成功"});
                     $("#productPictureUrl").val(result.resultStr);
                 } else {
                     $.messageBox({message:result.resultStr});
@@ -266,6 +266,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
+                    $.messageBox({message:"上传成功"});
                     $("#productVideoUrl").val(result.resultStr);
                 } else {
                     $.messageBox({message:result.resultStr});
