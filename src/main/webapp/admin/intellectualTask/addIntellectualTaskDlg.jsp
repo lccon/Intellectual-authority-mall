@@ -209,7 +209,6 @@
         }
         var data = new FormData();
         $.each($(obj)[0].files, function(i, file) {
-            debugger
             data.append('img', file);
         })
         $.ajax({

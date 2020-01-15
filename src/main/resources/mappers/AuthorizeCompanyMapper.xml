@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.AuthorizeCompanyMapper">
+    <resultMap id="authorizeCompanyMap" type="com.mall.domain.AuthorizeCompany">
+        <id property="id" column="id"/>
+        <result property="companyName" column="company_name"/>
+        <result property="businessCategory" column="business_category"/>
+        <result property="companyDescribe" column="company_describe"/>
+        <result property="companyPictureUrl" column="company_picture_url"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, company_name, business_category, company_describe, company_picture_url, create_user, create_date,
+        update_user, update_date
+    </sql>
+
+    <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO authorize_company
+        (id, company_name, business_category, company_describe, company_picture_url, create_user, create_date)
+        VALUES
+        (#{id}, #{companyName}, #{businessCategory}, #{companyDescribe}, #{companyPictureUrl}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
+        UPDATE authorize_company
+        <set>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="businessCategory  != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="companyDescribe != null and companyDescribe != ''">
+                company_describe = #{companyDescribe},
+            </if>
+            <if test="companyPictureUrl != null and companyPictureUrl != ''">
+                company_picture_url = #{companyPictureUrl},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAuthorizeCompany">
+        DELETE FROM authorize_company
+        WHERE id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findAuthorizeCompanyForList" resultMap="authorizeCompanyMap">
+        select <include refid="columns"/> FROM authorize_company
+    </select>
+
+    <select id="getAuthorizeCompanyById" parameterType="java.lang.Long" resultMap="authorizeCompanyMap">
+        SELECT <include refid="columns"/> FROM authorize_company
+        where id = #{id}
+    </select>
+
+</mapper>

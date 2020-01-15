@@ -117,6 +117,7 @@ CREATE TABLE authorize_company (
    company_name varchar(50) NOT NULL COMMENT '公司名称',
    business_category tinyint(1) NOT NULL COMMENT '业务分类 1:申请专利，2:证书买卖，3:技术成果转让，4:法律咨询',
    company_describe VARCHAR (1000) NOT NULL COMMENT '公司详情',
+   company_picture_url VARCHAR (500) DEFAULT NULL COMMENT '公司图片地址',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

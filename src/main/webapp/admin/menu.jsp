@@ -74,7 +74,7 @@ li {
 							<span class="menu-name">需求发布</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/freeMessage/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/authorizeCompany/listPage">
 						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">代办公司</span>
 						</div>
