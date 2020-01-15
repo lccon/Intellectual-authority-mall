@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.TaskReleaseMapper">
+    <resultMap id="taskReleaseMap" type="com.mall.domain.TaskRelease">
+        <id property="id" column="id"/>
+        <result property="taskCategory" column="task_category"/>
+        <result property="intellectualProperty" column="intellectual_property"/>
+        <result property="industryBelongs" column="industry_belongs"/>
+        <result property="purpose" column="purpose"/>
+        <result property="detailedDesc" column="detailed_desc"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc, create_user, create_date,
+        update_user, update_date
+    </sql>
+
+    <insert id="addTaskRelease" parameterType="com.mall.domain.TaskRelease">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO task_release
+        (id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc, create_user, create_date)
+        VALUES
+        (#{id}, #{taskCategory}, #{intellectualProperty}, #{industryBelongs}, #{purpose}, #{detailedDesc}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateTaskRelease" parameterType="com.mall.domain.TaskRelease">
+        UPDATE task_release
+        <set>
+            <if test="taskCategory != null">
+                task_category = #{taskCategory},
+            </if>
+            <if test="intellectualProperty  != null">
+                intellectual_property = #{intellectualProperty},
+            </if>
+            <if test="industryBelongs != null">
+                industry_belongs = #{industryBelongs},
+            </if>
+            <if test="purpose != null and purpose != ''">
+                purpose = #{purpose},
+            </if>
+            <if test="detailedDesc != null and detailedDesc != ''">
+                detailed_desc = #{detailedDesc},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTaskRelease">
+        DELETE FROM task_release
+        WHERE id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findTaskReleaseForList" resultMap="taskReleaseMap">
+        select <include refid="columns"/> FROM task_release
+    </select>
+
+    <select id="getTaskReleaseById" parameterType="java.lang.Long" resultMap="taskReleaseMap">
+        SELECT <include refid="columns"/> FROM task_release
+        where id = #{id}
+    </select>
+
+</mapper>

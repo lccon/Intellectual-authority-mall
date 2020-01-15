@@ -69,7 +69,7 @@ li {
 							<span class="menu-name">知识产权商城</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/freeMessage/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/taskRelease/listPage">
 						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">需求发布</span>
 						</div>
