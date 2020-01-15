@@ -138,9 +138,12 @@ CREATE TABLE roof_place(
 
 -- 政策资讯
 CREATE TABLE policy_advice(
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  advice_category bigint(1) NOT NULL COMMENT '资讯分类 1：政策法规，2：平台动态，3：新闻实事，4：行业知识',
-  advice_content VARCHAR (5000) NOT NULL COMMENT '资讯内容',
+   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   advice_category bigint(1) NOT NULL COMMENT '资讯分类 1：政策法规，2：平台动态，3：新闻实事，4：行业知识',
+   advice_title VARCHAR (200) NOT NULL COMMENT '资讯标题',
+   advice_subtitle VARCHAR (600) DEFAULT NULL COMMENT '资讯副标题',
+   advice_content VARCHAR (5000) NOT NULL COMMENT '资讯内容',
+   advice_picture_url VARCHAR (200) DEFAULT NULL COMMENT '资讯图片',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

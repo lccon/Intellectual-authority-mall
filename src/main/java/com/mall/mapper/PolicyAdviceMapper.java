@@ -1,6 +1,6 @@
 package com.mall.mapper;
 
-import com.mall.domain.FreeMessage;
+import com.mall.domain.PolicyAdvice;
 
 import java.util.List;
 
@@ -10,36 +10,36 @@ import java.util.List;
  * @Date:2020/1/9
  * @Author:lc
  */
-public interface FreeMessageMapper {
+public interface PolicyAdviceMapper {
 
     /**
      * 添加信息
-     * @param FreeMessage
+     * @param policyAdvice
      */
-    void addFreeMessage(FreeMessage FreeMessage);
+    void addPolicyAdvice(PolicyAdvice policyAdvice);
 
     /**
      * 修改发布的信息
      */
-    void updateFreeMessage(FreeMessage freeMessage);
+    void updatePolicyAdvice(PolicyAdvice policyAdvice);
 
     /**
      * 删除发布的信息
      * @param ids
      * @returnl
      */
-    Integer deleteFreeMessage(Long[] ids);
+    Integer deletePolicyAdvice(Long[] ids);
 
     /**
      * 查询列表
      * @return
      */
-    List<FreeMessage> findFreeMessageForList();
+    List<PolicyAdvice> findPolicyAdviceForList();
 
     /**
      * 查询单条信息
      * @param id
      * @return
      */
-    FreeMessage getFreeMessageById(Long id);
+    PolicyAdvice getPolicyAdviceById(Long id);
 }

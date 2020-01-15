@@ -1,31 +1,33 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div id="freeMessage">
+<div id="policyAdvice">
     <div class="toolbar">
-        <button id="addFreeMessage" type="button" class="tc-15-btn m">新增</button>
-        <button id="updateFreeMessage" type="button" class="tc-15-btn m">修改</button>
-        <button id="deleteFreeMessage" type="button" class="tc-15-btn m">删除</button>
+        <button id="addPolicyAdvice" type="button" class="tc-15-btn m">新增</button>
+        <button id="updatePolicyAdvice" type="button" class="tc-15-btn m">修改</button>
+        <button id="deletePolicyAdvice" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
     <div id="manage-area-inner">
-        <table id="freeMessageList"> </table>
-        <div id="freeMessageListPager"></div>
+        <table id="policyAdviceList"> </table>
+        <div id="policyAdviceListPager"></div>
     </div>
-    <div id="freeMessageDialog"></div>
+    <div id="policyAdviceDialog"></div>
 </div>
 
 
 <script type="text/javascript">
     $(function(){
-        $("#freeMessageList").jqGridFunction({
+        $("#policyAdviceList").jqGridFunction({
             datatype : "local",
             colModel : [
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
-                {name : "messageContent",index : "messageContent", label:'消息内容', sortable : false, width:'400'},
-                {name : "identity",index : "identity", label:'发布人身份', align:'center', sortable : false, width:'170', formatter:identityFormatter},
-                {name : "messageState", index:"messageState", label:"信息状态", align:'center', sortable:false, width:'170', formatter:messageStateFormatter},
-                {name : "browseVolume", index:"browseVolume", label:"浏览量", align:'center', sortable:false, width:'170', formatter:browseVolumeFormatter},
-                {name : "createUser", index:"createUser", label:"发布人", align:'center', sortable:false, width:'170'},
+                {name : "adviceCategory",index : "adviceCategory", label:'资讯分类', sortable : false, width:'150', formatter:adviceCategoryFormatter},
+                {name : "adviceTitle",index : "adviceTitle", label:'标题', align:'center', sortable : false, width:'170'},
+                {name : "adviceSubtitle", index:"adviceSubtitle", label:"副标题", align:'center', sortable:false, width:'170'},
+                {name : "adviceContent", index:"adviceContent", label:"资讯内容", align:'center', sortable:false, width:'170'},
+                {name : "advicePictureUrl", index:"advicePictureUrl", label:"图片", align:'center', sortable:false, width:'170', formatter:advicePictureUrlFormatter},
+                {name : "createUser", index:"createUser", label:"创建人", align:'center', sortable:false, width:'170'},
             ],
             multiselect : true,
             height:"492px",
@@ -34,52 +36,48 @@
             }
         });
 
-        function identityFormatter(el, options, rowData) {
-            if(rowData.identity == 1) {
-                return "买方";
-            } else if (rowData.identity == 2) {
-                return "卖方";
+        function adviceCategoryFormatter(el, options, rowData) {
+            if(rowData.adviceCategory == 1) {
+                return "政策法规";
+            } else if (rowData.adviceCategory == 2) {
+                return "平台动态";
+            } else if (rowData.adviceCategory == 3) {
+                return "新闻实事";
+            } else if (rowData.adviceCategory == 4) {
+                return "行业知识";
             }
             return "";
         }
 
-        function messageStateFormatter(el, options, rowData) {
-            if (rowData.messageState == 0) {
-                return "待审核";
-            } else if(rowData.messageState == 1) {
-                return "通过";
-            } else if (rowData.messageState == 2) {
-                return "驳回";
+        function advicePictureUrlFormatter(el, options, rowData) {
+            if(rowData.advicePictureUrl != null) {
+                var imgs = rowData.advicePictureUrl.split(",");
+                return '<c:forEach begin="0" end="0" step="1" var="img">'+
+                            '<img src="'+imgs[${img}]+'" width="100" height="100">'+' '+
+                        '</c:forEach>';
             }
             return "";
-        }
-
-        function browseVolumeFormatter(el, options, rowData) {
-            if (rowData.browseVolume == null) {
-                return 0;
-            }
-            return rowData.browseVolume;
         }
 
         onLoad();
         function onLoad(){
             var initParam = {
             }
-            $("#freeMessageList").setGridParam({
-                url:"/freeMessage/findFreeMessageForPage",
+            $("#policyAdviceList").setGridParam({
+                url:"/policyAdvice/findPolicyAdviceForPage",
                 datatype: "json",
                 page:1
             });
-            $("#freeMessageList").setPostData(initParam);
-            $("#freeMessageList").trigger("reloadGrid");
+            $("#policyAdviceList").setPostData(initParam);
+            $("#policyAdviceList").trigger("reloadGrid");
         }
 
-        $("#addFreeMessage").click(function(){
-            $('#freeMessageDialog').createDialog({
+        $("#addPolicyAdvice").click(function(){
+            $('#policyAdviceDialog').createDialog({
                 width: 1000,
                 height: 800,
                 title:'新增消息',
-                url:'${path}/freeMessage/gotoAddFreeMessagePage',
+                url:'${path}/policyAdvice/gotoAddPolicyAdvicePage',
                 buttons: {
                     "保存" : function(){
                         $("#maintainForm").submit();
@@ -91,8 +89,8 @@
             });
         });
 
-        $("#updateFreeMessage").click(function(){
-            var selectedIds = $("#freeMessageList").jqGrid("getGridParam", "selarrrow");
+        $("#updatePolicyAdvice").click(function(){
+            var selectedIds = $("#policyAdviceList").jqGrid("getGridParam", "selarrrow");
             if (selectedIds.length !== 1) {
                 $.messageBox({
                     level : 'warn',
@@ -101,11 +99,11 @@
                 return;
             }
 
-            $('#freeMessageDialog').createDialog({
+            $('#policyAdviceDialog').createDialog({
                 width: 1000,
                 height: 800,
                 title:'修改消息',
-                url:'${path}/freeMessage/gotoUpdateFreeMessagePage?id='+selectedIds,
+                url:'${path}/policyAdvice/gotoUpdatePolicyAdvicePage?id='+selectedIds,
                 buttons: {
                     "保存" : function(){
                         $("#maintainForm").submit();
@@ -117,7 +115,7 @@
             });
         });
 
-        $("#deleteFreeMessage").click(function(){
+        $("#deletePolicyAdvice").click(function(){
             if(!hasRowSelected()){
                 $.messageBox({level:'warn',message:"请选择一条或多条记录再进行操作！"});
                 return;
@@ -128,9 +126,9 @@
                 width:400,
                 okFunc:function(){
                     $.ajax({
-                        url:'${path}/freeMessage/deleteFreeMessage',
+                        url:'${path}/policyAdvice/deletePolicyAdvice',
                         data:{
-                            "ids":$("#freeMessageList").jqGrid("getGridParam", "selarrrow")
+                            "ids":$("#policyAdviceList").jqGrid("getGridParam", "selarrrow")
                         },
                         type: 'POST',
                         success:function(data){
@@ -173,7 +171,7 @@
         })
 
         function hasRowSelected(){
-            if(null != $("#freeMessageList").getGridParam("selrow")){
+            if(null != $("#policyAdviceList").getGridParam("selrow")){
                 return true;
             }
             return false;

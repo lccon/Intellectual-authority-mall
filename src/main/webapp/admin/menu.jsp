@@ -54,12 +54,12 @@ li {
 							<span class="menu-name">个人中心模块</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/user/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/policyAdvice/listPage">
 						<div class="item-inner">
 							<span class="menu-name">轮播图广告位</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/task/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/policyAdvice/listPage">
 						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">政策资讯模块</span>
 						</div>

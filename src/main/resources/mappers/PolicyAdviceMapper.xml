@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.PolicyAdviceMapper">
+    <resultMap id="policyAdviceMap" type="com.mall.domain.PolicyAdvice">
+        <id property="id" column="id"/>
+        <result property="adviceCategory" column="advice_category"/>
+        <result property="adviceTitle" column="advice_title"/>
+        <result property="adviceSubtitle" column="advice_subtitle"/>
+        <result property="adviceContent" column="advice_content"/>
+        <result property="advicePictureUrl" column="advice_picture_url"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url,
+        create_user, create_date, update_user, update_date
+    </sql>
+
+    <insert id="addPolicyAdvice" parameterType="com.mall.domain.PolicyAdvice">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO policy_advice
+        (id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url, create_user, create_date)
+        VALUES
+        (#{id}, #{adviceCategory}, #{adviceTitle}, #{adviceSubtitle}, #{adviceContent}, #{advicePictureUrl}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updatePolicyAdvice" parameterType="com.mall.domain.PolicyAdvice">
+        UPDATE policy_advice
+        <set>
+            <if test="adviceCategory != null">
+                advice_category = #{adviceCategory},
+            </if>
+            <if test="adviceTitle != null and adviceTitle != ''">
+                advice_title = #{adviceTitle},
+            </if>
+            <if test="adviceSubtitle != null and adviceSubtitle != ''">
+                advice_subtitle = #{adviceSubtitle},
+            </if>
+            <if test="adviceContent != null and adviceContent != ''">
+                advice_content = #{adviceContent},
+            </if>
+            <if test="advicePictureUrl != null and advicePictureUrl != ''">
+                advice_picture_url = #{advicePictureUrl},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePolicyAdvice">
+        DELETE FROM policy_advice
+        where id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findPolicyAdviceForList" resultMap="policyAdviceMap">
+        SELECT
+        <include refid="columns"/>
+        FROM policy_advice
+    </select>
+
+    <select id="getPolicyAdviceById" parameterType="java.lang.Long" resultMap="policyAdviceMap">
+        SELECT
+        <include refid="columns"/>
+        FROM policy_advice
+        WHERE id = #{id}
+    </select>
+
+</mapper>

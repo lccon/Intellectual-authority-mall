@@ -2,13 +2,13 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mall.domain.FreeMessage;
+import com.mall.domain.PolicyAdvice;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
-import com.mall.mapper.FreeMessageMapper;
-import com.mall.service.FreeMessageService;
+import com.mall.mapper.PolicyAdviceMapper;
+import com.mall.service.PolicyAdviceService;
 import com.mall.utils.StringUtil;
-import com.mall.vo.FreeMessageVO;
+import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,44 +21,44 @@ import java.util.List;
  * @Author:lc
  */
 @Service("freeMessageService")
-public class FreeMessageServiceImpl implements FreeMessageService {
+public class PolicyAdviceServiceImpl implements PolicyAdviceService {
 
     @Autowired
-    private FreeMessageMapper freeMessageMapper;
+    private PolicyAdviceMapper policyAdviceMapper;
 
     @Override
-    public FreeMessage addFreeMessage(FreeMessage freeMessage) {
-        if(freeMessage == null) {
+    public PolicyAdvice addPolicyAdvice(PolicyAdvice policyAdvice) {
+        if(policyAdvice == null) {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            freeMessageMapper.addFreeMessage(freeMessage);
-            return freeMessage;
+            policyAdviceMapper.addPolicyAdvice(policyAdvice);
+            return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("新增消息出错!", e);
         }
     }
 
     @Override
-    public FreeMessage updateFreeMessage(FreeMessage freeMessage) {
-        if(freeMessage == null) {
+    public PolicyAdvice updatePolicyAdvice(PolicyAdvice policyAdvice) {
+        if(policyAdvice == null) {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            freeMessageMapper.updateFreeMessage(freeMessage);
-            return freeMessage;
+            policyAdviceMapper.updatePolicyAdvice(policyAdvice);
+            return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("修改消息出错!", e);
         }
     }
 
     @Override
-    public Boolean deleteFreeMessage(Long[] ids) {
+    public Boolean deletePolicyAdvice(Long[] ids) {
         if(ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            Integer count = freeMessageMapper.deleteFreeMessage(ids);
+            Integer count = policyAdviceMapper.deletePolicyAdvice(ids);
             return count > 0;
         } catch (Exception e) {
             throw new ServiceValidationException("删除消息出错!", e);
@@ -66,11 +66,11 @@ public class FreeMessageServiceImpl implements FreeMessageService {
     }
 
     @Override
-    public PageInfo<FreeMessage> findFreeMessageForPage(FreeMessageVO freeMessageVO) {
+    public PageInfo<PolicyAdvice> findPolicyAdviceForPage(PolicyAdviceVO policyAdviceVO) {
         try {
-            PageHelper.startPage(freeMessageVO.getPage(), freeMessageVO.getRows(),
-                    StringUtil.joinSortFieldOrder(freeMessageVO.getSidx(), freeMessageVO.getSord()));
-            List<FreeMessage> freeMessageList = freeMessageMapper.findFreeMessageForList();
+            PageHelper.startPage(policyAdviceVO.getPage(), policyAdviceVO.getRows(),
+                    StringUtil.joinSortFieldOrder(policyAdviceVO.getSidx(), policyAdviceVO.getSord()));
+            List<PolicyAdvice> freeMessageList = policyAdviceMapper.findPolicyAdviceForList();
             return new PageInfo<>(freeMessageList);
         } catch (Exception e) {
             throw new ServiceValidationException("分页查询数据出错!", e);
@@ -78,13 +78,13 @@ public class FreeMessageServiceImpl implements FreeMessageService {
     }
 
     @Override
-    public FreeMessage getFreeMessageById(Long id) {
+    public PolicyAdvice getPolicyAdviceById(Long id) {
         if (id == null) {
             throw new BusinessValidationException("主键信息不能为空!");
         }
         try {
-            FreeMessage freeMessage = freeMessageMapper.getFreeMessageById(id);
-            return freeMessage;
+            PolicyAdvice policyAdvice = policyAdviceMapper.getPolicyAdviceById(id);
+            return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("获取单条信息出错！", e);
         }

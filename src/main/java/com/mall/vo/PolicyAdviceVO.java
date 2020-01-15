@@ -8,5 +8,5 @@ import com.mall.base.BaseVO;
  * @Date:2020/1/9
  * @Author:lc
  */
-public class FreeMessageVO extends BaseVO {
+public class PolicyAdviceVO extends BaseVO {
 }

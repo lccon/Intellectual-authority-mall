@@ -1,8 +1,8 @@
 package com.mall.service;
 
 import com.github.pagehelper.PageInfo;
-import com.mall.domain.FreeMessage;
-import com.mall.vo.FreeMessageVO;
+import com.mall.domain.PolicyAdvice;
+import com.mall.vo.PolicyAdviceVO;
 
 /**
  * Description:
@@ -10,40 +10,40 @@ import com.mall.vo.FreeMessageVO;
  * @Date:2020/1/10
  * @Author:lc
  */
-public interface FreeMessageService {
+public interface PolicyAdviceService {
 
     /**
      * 新增消息
      * @param freeMessage
      * @return
      */
-    FreeMessage addFreeMessage(FreeMessage freeMessage);
+    PolicyAdvice addPolicyAdvice(PolicyAdvice freeMessage);
 
     /**
      * 修改消息
      * @param freeMessage
      * @return
      */
-    FreeMessage updateFreeMessage(FreeMessage freeMessage);
+    PolicyAdvice updatePolicyAdvice(PolicyAdvice freeMessage);
 
     /**
      * 删除消息
      * @param ids
      * @return
      */
-    Boolean deleteFreeMessage(Long[] ids);
+    Boolean deletePolicyAdvice(Long[] ids);
 
     /**
      * 分页查询消息
-     * @param freeMessageVO
+     * @param policyAdviceVO
      * @return
      */
-    PageInfo<FreeMessage> findFreeMessageForPage(FreeMessageVO freeMessageVO);
+    PageInfo<PolicyAdvice> findPolicyAdviceForPage(PolicyAdviceVO policyAdviceVO);
 
     /**
      * 查询单条消息
      * @param id
      * @return
      */
-    FreeMessage getFreeMessageById(Long id);
+    PolicyAdvice getPolicyAdviceById(Long id);
 }
