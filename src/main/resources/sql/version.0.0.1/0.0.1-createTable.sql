@@ -30,20 +30,6 @@ CREATE TABLE `user_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 免费信息
-CREATE TABLE free_message(
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  message_content VARCHAR (5000) NOT NUll COMMENT '信息内容',
-  identity tinyint(1) NOT NULL COMMENT '用户身份 1:买方 2:卖方',
-  message_state tinyint(1) NOT NULL COMMENT '信息状态 0:待审核 1:通过 2:驳回',
-  browse_volume bigint(20) DEFAULT 0 COMMENT '浏览量',
-  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
-  `create_date` datetime NOT NULL COMMENT '新增时间',
-  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
-  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- 个人/企业认证
 CREATE TABLE user_authorize(
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -64,8 +50,8 @@ CREATE TABLE user_authorize(
 -- 代办的网站(轮播图)
 CREATE TABLE authorize_site (
    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-   address_url varchar(500) NOT NULL COMMENT '地址路径',
-   authorize_attach_id bigint(20) NOT NULL COMMENT '图片',
+   address_url varchar(500) NOT NULL COMMENT '链接地址',
+   site_picture_url VARCHAR (200) NOT NULL COMMENT '图片',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

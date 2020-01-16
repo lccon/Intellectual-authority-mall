@@ -54,7 +54,7 @@ li {
 							<span class="menu-name">个人中心模块</span>
 						</div>
 					</li>
-					<li class="system-item sys-mneu-name load" data-url="/policyAdvice/listPage">
+					<li class="system-item sys-mneu-name load" data-url="/authorizeSite/listPage">
 						<div class="item-inner">
 							<span class="menu-name">轮播图广告位</span>
 						</div>

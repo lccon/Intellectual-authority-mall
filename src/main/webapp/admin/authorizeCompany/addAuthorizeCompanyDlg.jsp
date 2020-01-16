@@ -137,8 +137,8 @@
             dataType: "json",
             success: function(result) {
                 if (result.flag == true) {
-                    $.messageBox({message:"上传成功"});
                     $("#companyPictureUrl").val(result.resultStr);
+                    $.messageBox({message:"上传成功"});
                 } else {
                     $.messageBox({message:result.resultStr});
                     $(obj).val('');

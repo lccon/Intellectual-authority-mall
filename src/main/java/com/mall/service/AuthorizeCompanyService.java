@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.mall.domain.AuthorizeCompany;
 import com.mall.vo.AuthorizeCompanyVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public interface AuthorizeCompanyService {
      * @param ids
      * @return
      */
-    Boolean deleteAuthorizeCompany(Long[] ids);
+    Boolean deleteAuthorizeCompany(Long[] ids, HttpServletRequest request);
 
     /**
      * 查询所有的代办公司信息

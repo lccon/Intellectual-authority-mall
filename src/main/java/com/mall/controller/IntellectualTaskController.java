@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Description:
  *
@@ -56,8 +58,8 @@ public class IntellectualTaskController {
 
     @RequestMapping("/deleteIntellectualTask")
     @ResponseBody
-    public Boolean deleteIntellectualTask(@RequestParam(value = "ids[]", required= true) Long[] ids) {
-        return intellectualTaskService.deleteIntellectualTask(ids);
+    public Boolean deleteIntellectualTask(@RequestParam(value = "ids[]", required= true) Long[] ids, HttpServletRequest request) {
+        return intellectualTaskService.deleteIntellectualTask(ids, request);
     }
 
     @RequestMapping("/findIntellectualTaskForPage")

@@ -11,7 +11,10 @@ import com.mall.utils.StringUtil;
 import com.mall.vo.AuthorizeCompanyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -53,11 +56,22 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
-    public Boolean deleteAuthorizeCompany(Long[] ids) {
+    public Boolean deleteAuthorizeCompany(Long[] ids, HttpServletRequest request) {
         if (ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空");
         }
         try {
+            for (Long id : ids) {
+                AuthorizeCompany authorizeCompany = getAuthorizeCompanyById(id);
+                if(authorizeCompany != null && !StringUtils.isEmpty(authorizeCompany.getCompanyPictureUrl())) {
+                    String[] companyPictureArr = authorizeCompany.getCompanyPictureUrl().split(",");
+                    for (String companyPicture : companyPictureArr) {
+                        String realPath = request.getSession().getServletContext().getRealPath(companyPicture);
+                        File file = new File(realPath);
+                        file.delete();
+                    }
+                }
+            }
             Integer count = authorizeCompanyMapper.deleteAuthorizeCompany(ids);
             return count > 0;
         } catch (Exception e) {

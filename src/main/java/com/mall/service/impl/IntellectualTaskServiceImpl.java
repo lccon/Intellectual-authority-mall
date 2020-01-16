@@ -11,7 +11,10 @@ import com.mall.utils.StringUtil;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -53,11 +56,29 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     }
 
     @Override
-    public Boolean deleteIntellectualTask(Long[] ids) {
+    public Boolean deleteIntellectualTask(Long[] ids, HttpServletRequest request) {
         if (ids == null || ids.length <= 0) {
             throw new BusinessValidationException("信息不能为空!");
         }
         try {
+            for (Long id : ids) {
+                IntellectualTask intellectualTask = getIntellectualTaskById(id);
+                if (intellectualTask != null) {
+                    if(!StringUtils.isEmpty(intellectualTask.getProductPictureUrl())) {
+                        String[] productPictureArr = intellectualTask.getProductPictureUrl().split(",");
+                        for (String productPicture : productPictureArr) {
+                            String realPath = request.getSession().getServletContext().getRealPath(productPicture);
+                            File file = new File(realPath);
+                            file.delete();
+                        }
+                    }
+                    if(!StringUtils.isEmpty(intellectualTask.getProductVideoUrl())) {
+                        String realPath = request.getSession().getServletContext().getRealPath(intellectualTask.getProductVideoUrl());
+                        File file = new File(realPath);
+                        file.delete();
+                    }
+                }
+            }
             Integer count = intellectualTaskMapper.deleteIntellectualTask(ids);
             return count > 0;
         } catch (Exception e) {

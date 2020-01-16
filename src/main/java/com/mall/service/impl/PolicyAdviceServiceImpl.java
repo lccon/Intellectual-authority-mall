@@ -11,7 +11,10 @@ import com.mall.utils.StringUtil;
 import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -53,11 +56,22 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
     }
 
     @Override
-    public Boolean deletePolicyAdvice(Long[] ids) {
+    public Boolean deletePolicyAdvice(Long[] ids, HttpServletRequest request) {
         if(ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
+            for (Long id : ids) {
+                PolicyAdvice policyAdvice = getPolicyAdviceById(id);
+                if (policyAdvice != null && !StringUtils.isEmpty(policyAdvice.getAdvicePictureUrl())) {
+                    String[] advicePictureArr = policyAdvice.getAdvicePictureUrl().split(",");
+                    for (String advicePicture : advicePictureArr) {
+                        String realPath = request.getSession().getServletContext().getRealPath(advicePicture);
+                        File file = new File(realPath);
+                        file.delete();
+                    }
+                }
+            }
             Integer count = policyAdviceMapper.deletePolicyAdvice(ids);
             return count > 0;
         } catch (Exception e) {

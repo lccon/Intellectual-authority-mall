@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.mall.domain.PolicyAdvice;
 import com.mall.vo.PolicyAdviceVO;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Description:
  *
@@ -31,7 +33,7 @@ public interface PolicyAdviceService {
      * @param ids
      * @return
      */
-    Boolean deletePolicyAdvice(Long[] ids);
+    Boolean deletePolicyAdvice(Long[] ids, HttpServletRequest request);
 
     /**
      * 分页查询消息

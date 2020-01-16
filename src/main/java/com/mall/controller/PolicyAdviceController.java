@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Description:
  *
@@ -56,8 +58,8 @@ public class PolicyAdviceController {
 
     @RequestMapping("/deletePolicyAdvice")
     @ResponseBody
-    public Boolean deletePolicyAdvice(@RequestParam(value = "ids[]", required = true) Long[] ids) {
-        return policyAdviceService.deletePolicyAdvice(ids);
+    public Boolean deletePolicyAdvice(@RequestParam(value = "ids[]", required = true) Long[] ids, HttpServletRequest request) {
+        return policyAdviceService.deletePolicyAdvice(ids, request);
     }
 
     @RequestMapping("/findPolicyAdviceForPage")

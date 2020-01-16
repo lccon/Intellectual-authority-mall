@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.mall.domain.IntellectualTask;
 import com.mall.vo.IntellectualTaskVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public interface IntellectualTaskService {
      * @param ids
      * @return
      */
-    Boolean deleteIntellectualTask(Long[] ids);
+    Boolean deleteIntellectualTask(Long[] ids, HttpServletRequest request);
 
     /**
      * 查询所有信息

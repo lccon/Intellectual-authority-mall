@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Description:
  *
@@ -58,8 +60,8 @@ public class AuthorizeCompanyController {
 
     @RequestMapping("/deleteAuthorizeCompany")
     @ResponseBody
-    public Boolean deleteAuthorizeCompany(@RequestParam(value="ids[]", required = true) Long[] ids) {
-        return authorizeCompanyService.deleteAuthorizeCompany(ids);
+    public Boolean deleteAuthorizeCompany(@RequestParam(value="ids[]", required = true) Long[] ids, HttpServletRequest request) {
+        return authorizeCompanyService.deleteAuthorizeCompany(ids, request);
     }
 
     @RequestMapping("/findAuthorizeCompanyForPage")
