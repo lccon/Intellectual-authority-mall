@@ -5,8 +5,12 @@ CREATE TABLE `user` (
   `pass_word` varchar(250) NOT NULL COMMENT '密码',
   `mobile` varchar(32) DEFAULT NULL COMMENT '手机号',
   `id_card` varchar(18) DEFAULT NULL COMMENT '身份证号',
-  head_portrait bigint(20) NOT NULL COMMENT '头像',
-  identity tinyint(1) NOT NULL COMMENT '用户身份 1:管理员 2:普通用户',
+   head_portrait VARCHAR(200) DEFAULT NULL COMMENT '头像',
+   identity tinyint(1) NOT NULL COMMENT '用户身份 1:管理员 2:普通用户',
+   authorize_type tinyint(1) DEFAULT NULL COMMENT '认证类型 1，企业认证 2，个人认证',
+   virtual_coin bigint(20) DEFAULT 0 COMMENT '虚拟币数量',
+   account_yue bigint(20) DEFAULT 0 COMMENT '账户余额',
+   free_message_num int(10) DEFAULT 0 COMMENT '可发布免费信息数量',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
@@ -137,23 +141,12 @@ CREATE TABLE policy_advice(
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 个人资金
-CREATE TABLE personal_funds (
-   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-   virtual_coin bigint(20) DEFAULT NULL COMMENT '虚拟币数量',
-   account_yue bigint(20) NOT NULL COMMENT '账户余额',
-   recharge_total bigint(20) DEFAULT NULL COMMENT '充值总额',
-  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
-  `create_date` datetime NOT NULL COMMENT '新增时间',
-  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
-  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- 充值记录
 CREATE TABLE recharge_record (
    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
    recharge_amount bigint(20) DEFAULT NULL COMMENT '充值金额',
+   consume_amount bigint(20) DEFAULT NULL COMMENT '消费金额',
+   user_id bigint(20) NOT NULL COMMENT '所属用户',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

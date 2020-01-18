@@ -1,7 +1,10 @@
 package com.mall.mapper;
 
 import com.mall.domain.User;
+import com.mall.vo.UserVO;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
 
@@ -14,6 +17,7 @@ public interface UserMapper {
     // LC
     User getUserByUsernamePassword(@Param("username") String username, @Param("password") String password);
 
-    // LC
-    User getUserByUsername(String username);
+    List<User> findUserForList(UserVO userVO);
+
+    Integer deleteUser(Long[] ids);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mall.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.mall.domain.User">
+  <resultMap id="userMap" type="com.mall.domain.User">
     <id property="id" column="id"/>
     <result property="username" column="user_name"/>
     <result property="password" column="pass_word"/>
@@ -9,6 +9,10 @@
     <result property="mobile" column="mobile"/>
     <result property="idCard" column="id_card"/>
     <result property="headPortrait" column="head_portrait"/>
+    <result property="authorizeType" column="authorize_type" />
+    <result property="accountYue" column="account_yue" />
+    <result property="virtualCoin" column="virtual_coin" />
+    <result property="freeMessageNum" column="free_message_num"/>
     <result property="createDate" column="create_date"/>
     <result property="createUser" column="create_user"/>
     <result property="updateDate" column="update_date"/>
@@ -16,11 +20,11 @@
   </resultMap>
 
   <sql id="column">
-    id, user_name, pass_word, identity, mobile, id_card, head_portrait,
-    create_date, create_user, update_date, update_user
+    id, user_name, pass_word, identity, mobile, id_card, head_portrait, authorize_type, account_yue, virtual_coin,
+    free_message_num, create_date, create_user, update_date, update_user
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="userMap">
     select
     <include refid="column" />
     from user
@@ -33,33 +37,57 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user
-    (id, user_name, pass_word, identity, mobile, id_card, head_portrait
-    create_date, create_user)
+    (id, user_name, pass_word, identity, mobile, id_card, head_portrait, authorize_type, account_yue, virtual_coin,
+    free_message_num, create_date, create_user)
     values
-    (#{id}, #{username}, #{password}, #{identity}, #{mobile}, #{idCard}, #{headPortrait},
-    #{createDate}, #{createUser})
+    (#{id}, #{username}, #{password}, #{identity}, #{mobile}, #{idCard}, #{headPortrait}, #{authorizeType}, #{accountYue}, #{virtualCoin},
+    #{freeMessageNum}, #{createDate}, #{createUser})
   </insert>
 
   <update id="updateByPrimaryKeySelective" parameterType="com.mall.domain.User">
     update user
     <set>
-      <if test="username != null">
+      <if test="username != null and username != ''">
         user_name = #{username},
       </if>
-      <if test="password != null">
+      <if test="password != null and password != ''">
         pass_word = #{password},
       </if>
       <if test="identity != null">
         identity = #{identity},
       </if>
+      <if test="mobile != null and mobile != ''">
+        mobile = #{mobile},
+      </if>
+      <if test="idCard != null and idCard != ''">
+        id_card = #{idCard},
+      </if>
+      <if test="headPortrait != null and headPortrait != ''">
+        head_portrait = #{headPortrait},
+      </if>
+      <if test="authorizeType != null">
+        authorize_type = #{authorizeType},
+      </if>
+      <if test="accountYue != null">
+        account_yue = #{accountYue},
+      </if>
+      <if test="virtualCoin != null">
+        virtual_coin = #{virtualCoin},
+      </if>
+      <if test="freeMessageNum != null">
+        free_message_num = #{freeMessageNum},
+      </if>
       <if test="updateDate != null">
         update_date = #{updateDate},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser}
       </if>
     </set>
     where id = #{id}
   </update>
 
-  <select id="getUserByUsernamePassword" resultMap="BaseResultMap">
+  <select id="getUserByUsernamePassword" resultMap="userMap">
     SELECT
     <include refid="column"/>
     from user
@@ -67,10 +95,22 @@
     and pass_word = #{password}
   </select>
 
-  <select id="getUserByUsername" resultMap="BaseResultMap">
+  <select id="findUserForList" parameterType="com.mall.vo.UserVO" resultMap="userMap">
     SELECT
     <include refid="column"/>
     FROM user
-    WHERE user_name = #{username}
+    <where>
+      <if test="identity != null">
+        identity = #{identity}
+      </if>
+    </where>
   </select>
+
+  <delete id="deleteUser">
+    DELETE FROM user
+    WHERE id IN
+    <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

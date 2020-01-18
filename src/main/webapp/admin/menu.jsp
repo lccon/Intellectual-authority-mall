@@ -50,12 +50,12 @@ li {
 
 				<ul class="menu-list">
 					<li class="system-item sys-mneu-name load" data-url="/user/listPage">
-						<div class="item-inner">
-							<span class="menu-name">个人中心模块</span>
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">用户管理模块</span>
 						</div>
 					</li>
 					<li class="system-item sys-mneu-name load" data-url="/authorizeSite/listPage">
-						<div class="item-inner">
+						<div class="item-inner sys-menuChild-name">
 							<span class="menu-name">轮播图广告位</span>
 						</div>
 					</li>
@@ -92,7 +92,17 @@ li {
 </body>
 <script>
 	$(function() {
-		
+
+		window.onload = function() {
+            $('.menu-list li').each(function(){
+                if($(this).data('url') == '/user/listPage'){
+                    $(this).addClass('checked');
+                    window.location.hash = '/user/listPage';
+                    loadContent('/user/listPage');
+                }
+            })
+		}
+
 		// 内容区域
 		var $contentWrapper = $('.content-wrapper')
 

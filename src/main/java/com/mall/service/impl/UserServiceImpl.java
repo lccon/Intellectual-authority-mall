@@ -1,5 +1,7 @@
 package com.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.component.ThreadVariable;
 import com.mall.mapper.UserMapper;
 import com.mall.domain.Session;
@@ -10,6 +12,8 @@ import com.mall.redis.template.RedisTemplate;
 import com.mall.service.SessionService;
 import com.mall.service.UserService;
 import com.mall.utils.PasswordUtil;
+import com.mall.utils.StringUtil;
+import com.mall.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +21,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
-@Service ("userService")
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -33,44 +38,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserById(Long id) {
+		if (id == null) {
+			throw new BusinessValidationException("用户信息不能为空!");
+		}
 		try {
 			return userMapper.selectByPrimaryKey(id);
 		} catch (Exception e) {
 			throw new ServiceValidationException("查询用户出错!", e);
 		}
 	}
-	
-	@Override
-	public User getUserByUsername(String username) {
-		if(StringUtils.isEmpty(username)) {
-			throw new BusinessValidationException("用户名不能为空！");
-		}
-		try {
-			User user = userMapper.getUserByUsername(username);
-			user.setPassword(null);
-			return user;
-		} catch (Exception e) {
-			throw new ServiceValidationException("获取用户失败！", e);
-		}
-	}
-	
+
 	@Override
 	public User addUser(User user) {
-		if (StringUtils.isEmpty(user.getUsername())) {
-			throw new BusinessValidationException("用户名不能为空！");
-		}
-		if (user.getUsername().length() == 0 || user.getUsername().length() >= 20) {
-			throw new BusinessValidationException("用户名为空或超过20长度限制");
-		}
-		if (StringUtils.isEmpty(user.getPassword())) {
-			throw new BusinessValidationException("密码不能为空！");
-		}
-		if (user.getPassword().length() == 0 || user.getPassword().length() >= 20) {
-			throw new BusinessValidationException("密码为空或超过20长度限制");
+		if (user == null) {
+			throw new BusinessValidationException("用户信息不能为空！");
 		}
 		try {
-			user.setId(null);
-			user.setIdentity("普通会员");
 			user.setPassword(PasswordUtil.getHashedPassword(user.getPassword()));
 			userMapper.addUser(user);
 			return user;
@@ -81,21 +64,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User updateUser(User user) {
-		User userCheck = findUserById(user.getId());
-		if (userCheck == null) {
-			throw new BusinessValidationException("用户不存在");
-		}
-		if (StringUtils.isEmpty(user.getUsername())) {
-			throw new BusinessValidationException("用户名为空");
-		}
-		if (user.getUsername().length() == 0 || user.getUsername().length() > 20) {
-			throw new BusinessValidationException("用户名为空或超过20长度限制");
-		}
-		if (StringUtils.isEmpty(user.getPassword())) {
-			throw new BusinessValidationException("密码为空");
-		}
-		if (user.getPassword().length() == 0 || user.getPassword().length() > 20) {
-			throw new BusinessValidationException("密码为空或超过20长度限制");
+		if (user == null) {
+			throw new BusinessValidationException("用户不存在！");
 		}
         try {
 			user.setPassword(PasswordUtil.getHashedPassword(user.getPassword()));
@@ -139,6 +109,31 @@ public class UserServiceImpl implements UserService {
 		User user = findUserById(session.getUserId());
 		user.setPassword(null);
 		return user;
+	}
+
+	@Override
+	public PageInfo<User> findUserForPage(UserVO userVO) {
+		try {
+			PageHelper.startPage(userVO.getPage(), userVO.getRows(),
+					StringUtil.joinSortFieldOrder(userVO.getSidx(), userVO.getSord()));
+			List<User> userList = userMapper.findUserForList(userVO);
+			return new PageInfo<>(userList);
+		} catch (Exception e) {
+			throw new ServiceValidationException("分页查询用户信息出错!", e);
+		}
+	}
+
+	@Override
+	public Boolean deleteUser(Long[] ids) {
+		if (ids == null || ids.length <= 0) {
+			throw new BusinessValidationException("参数不能为空!");
+		}
+		try {
+			Integer count = userMapper.deleteUser(ids);
+			return count > 0;
+		} catch (Exception e) {
+			throw new ServiceValidationException("删除数据失败!", e);
+		}
 	}
 
 	private Session proccessLoginSuccess(User user, Session session) {
