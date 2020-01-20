@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,13 @@ public class LoginController {
 		}
 		return newSession;
 	}
-	
+
+	@RequestMapping("/userMobileLogin")
+	@ResponseBody
+	public String userMobileLoginCheck(@RequestParam(value = "mobile") String mobile) {
+		return userService.getUserMobileLoginCheckInfo(mobile);
+	}
+
 	@RequestMapping (value = "/logout", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean logout(String token, HttpServletRequest request, HttpServletResponse response) {

@@ -22,4 +22,6 @@ public interface UserService {
 	PageInfo<User> findUserForPage(UserVO userVO);
 
 	Boolean deleteUser(Long[] ids);
+
+    String getUserMobileLoginCheckInfo(String mobile);
 }

@@ -16,6 +16,12 @@ public class GridProperties {
 
     public static final Long SESSION_OUT_TIME = Long.valueOf(getProperties().getProperty("session.outTime"));
 
+    public static final String MIAODI_URL = getProperties().getProperty("miaodi.url");
+
+    public static final String ACCOUNT_SID = getProperties().getProperty("account.sid");
+
+    public static final String AUTH_TOKEN = getProperties().getProperty("auth.token");
+
     private static Properties getProperties() {
         if (properties.size() == 0) {
             synchronized (properties) {

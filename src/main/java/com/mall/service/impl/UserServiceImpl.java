@@ -1,16 +1,21 @@
 package com.mall.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.JsonObject;
 import com.mall.component.ThreadVariable;
 import com.mall.mapper.UserMapper;
 import com.mall.domain.Session;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
+import com.mall.properties.GridProperties;
 import com.mall.redis.template.RedisTemplate;
 import com.mall.service.SessionService;
 import com.mall.service.UserService;
+import com.mall.utils.HttpUtil;
 import com.mall.utils.PasswordUtil;
 import com.mall.utils.StringUtil;
 import com.mall.vo.UserVO;
@@ -20,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -136,6 +142,30 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public String getUserMobileLoginCheckInfo(String mobile) {
+		try {
+			String code = smsCode();
+			StringBuilder sb = new StringBuilder();
+			sb.append("accountSid=").append(GridProperties.ACCOUNT_SID);
+			sb.append("&to=").append(mobile);
+			sb.append("&smsContent=").append( URLEncoder.encode("【世通服务】亲爱的用户，您的短信验证码为" + code + "，,2分钟内有效，若非本人操作请忽略。","UTF-8"));
+			String body = sb.toString() + HttpUtil.createCommonParam(GridProperties.ACCOUNT_SID, GridProperties.AUTH_TOKEN);
+			String result = HttpUtil.post(GridProperties.MIAODI_URL, body);
+			JSONObject jsonObject = JSONObject.parseObject(result);
+			List list = JSONObject.parseArray(jsonObject.getString("failList"));
+			if (list.size() > 0) {
+				jsonObject.put("result", false);
+			} else {
+				jsonObject.put("result", true);
+			}
+			jsonObject.put("code", code);
+			return jsonObject.toString();
+		} catch (Exception e) {
+			throw new ServiceValidationException("用户手机号登录校验失败！", e);
+		}
+	}
+
 	private Session proccessLoginSuccess(User user, Session session) {
 		String sid = UUID.randomUUID().toString();
 		Session newSession = new Session();
@@ -153,6 +183,11 @@ public class UserServiceImpl implements UserService {
 		ThreadVariable.setSession(newSession);
 		redisTemplate.set(newSession.getSessionId(), newSession);
 		return newSession;
+	}
+
+	private String smsCode() {
+		String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+		return random;
 	}
 
 }
