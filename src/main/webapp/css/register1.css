@@ -1,0 +1,154 @@
+#wrapper {
+    margin: 0 auto;
+    width: 980px
+}
+#wrapper {
+    position: relative;
+    z-index: 1
+}
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden
+}
+
+html .clearfix {
+    zoom: 1
+}
+
+html .clearfix {
+    zoom: 1
+}
+.clearfix p.desc {
+    font-size: 18px;
+    line-height: 30px;
+    font-family: 'Microsoft YaHei';
+    color: #a9a9a9;
+    margin-left: 30px
+}
+.noLogin-tab-list {
+    border-bottom: 1px solid #bec0ba;
+    font-size: 12px;
+    margin-left: 116px;
+    width: 600px;
+    zoom: 1
+}
+
+.noLogin-tab-list li {
+    background-color: #f5f6f4;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    color: #4b4b4b;
+    cursor: pointer;
+    float: left;
+    _display: inline;
+    height: 28px;
+    line-height: 27px;
+    margin-right: 8px;
+    padding: 0 17px;
+    font-size: 14px
+}
+
+.noLogin-tab-list li.current {
+    border: 1px solid #6ba001;
+    border-bottom: 0;
+    color: #fff;
+    top: 1px;
+    position: relative;
+    background: #62af01
+}
+
+.noLogin-tab-cont {
+    margin-left: 34px;
+    color: #4b4b4b;
+    padding-top: 20px;
+    zoom: 1
+}
+
+.noLogin-tab-input-text {
+    background: #fff;
+    border: 1px solid #c8c8c8;
+    box-shadow: 1px 1px 1px 0 #eaeaea inset;
+    float: left;
+    font-size: 14px;
+    height: 22px;
+    line-height: 22px;
+    padding: 3px 3px 3px 8px;
+    vertical-align: middle;
+    width: 250px
+}	
+.noLogin-tab-cont label.field-tit {
+    text-align: left
+}
+.login-tab {
+    margin: 20px 30px 30px;
+    font-size: 14px;
+    line-height: 26px;
+    border-bottom: 2px solid #f60
+}
+
+.login-tab li {
+    background: #f7f7f7;
+    height: 26px;
+    margin-right: 5px;
+    display: inline-block;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    border-bottom: 0
+}
+
+.login-tab li {
+    *display: inline
+}
+
+.login-tab .active {
+    border: 1px solid #f60;
+    background: #f60
+}
+
+.login-tab a {
+    color: #4b4b4b
+}
+
+.login-tab .active a {
+    color: #fff
+}
+.tab-con2 .tab-cont {
+    color: #4b4b4b;
+    margin-left: 51px;
+    _margin-left: 25px;
+    padding-top: 0
+}
+
+.tab-con2 .field {
+    margin-bottom: 18px
+}
+
+.tab-con2 .msg-box {
+    width: auto;
+    height: 30px;
+    line-height: 30px
+}
+
+.tab-con2 .btn-org {
+    width: 200px;
+    line-height: 26px
+}
+
+.tab-con2 .submit-box,
+.tab-con2 .N-txt1 {
+    margin-bottom: 13px;
+    padding-left: 0
+}
+.tab-con2 .btn-org {
+    margin: 0 0 0 86px
+}
+.error-box {
+    height: 30px;
+    padding: 0 0 5px 74px
+}
+.error-box {
+    padding: 0 0 0 78px
+}

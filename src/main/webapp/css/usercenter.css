@@ -1,0 +1,138 @@
+#nav-head{
+    margin-top: 60px;    
+    height: 172px;
+    width:1200px;
+    background:url(../img/userenter.jpg) repeat-x 0 30px;
+}
+#picture{
+    width:84px;
+    height:172px;
+    margin-top: 60px;
+    margin-left: 40px;
+    border-radius: 50%;
+}
+#picture img{
+    width:84px;
+    height:90px;
+    margin-top: 60px;
+    margin-left: 40px;
+}
+#head-text p{
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 20px;
+    color:#fff;
+    font-weight: bold;
+}
+#head-text span{
+    font-size: 14px;
+}
+#head-text a{
+    font-size: 14px;
+    color:#fff;
+}
+#leftnav{
+    background-color: #fff;
+    float: left;
+    margin-top:20px;
+    margin-left: 350px;
+    width:140px;
+}
+#leftnav ul{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#cap2{
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+#center{
+    margin-top: 20px;
+    margin-left:520px;
+    background-color: #fff;
+}
+#content{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/*我的资料页面样式开始*/
+.username{
+    float: left;
+    width:100px;
+    height:22px;
+}
+.username span{
+    font-size: 16px;
+}
+.inp{
+    float: left;
+    width:169px;
+    height:40px;
+}
+.id_img{
+    float: left;
+}
+.id_img .image{
+    margin-left:100px;
+}
+.renzheng{
+    margin-top:270px;
+}
+.renzheng span{
+    font-size: 16px;
+}
+/*我的资料页面样式结束*/
+
+/*认证页面开始*/
+.title{
+    font-size: 20px;
+    font-weight: bold;
+}
+/*认证页面结束*/
+
+/*超小屏幕 小于等于768px*/
+@media (max-width: 768px) {
+    #nav-head{
+        width:1000px;
+    }
+    #picture img{
+        width:40px;
+        height:40px;
+    }
+    #head-text p{
+        font-size: xx-small;
+    }
+    #leftnav{
+        width:100px;
+        margin-left:20px;
+    }
+    #leftnav ul li{
+        font-size: xx-small;
+    }
+    #cap2{
+        font-size: xx-small;
+    }
+    .id_img .image{
+        margin:0;
+    }
+    .id_img .image img{
+        width:50px;
+        height:50px;
+    }
+    #center{
+        width:240px;
+        margin-left:140px;
+    }
+    .renzheng{
+        margin-top:250px;
+    }
+    .renzheng img{
+        width:50px;
+        height:50px;
+    }
+    .btn{
+        margin:0;
+    }
+}

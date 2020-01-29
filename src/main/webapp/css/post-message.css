@@ -1,0 +1,132 @@
+.title li{
+    font-size: 17px;
+    list-style: none;
+    color:#666;
+}
+.num{
+    width:22px;
+    height:22px;
+    color:#fff;
+    background-color: #f46;
+    margin-right:12px;
+    border-radius:12px;
+    text-align: center;
+    font-size: 14px;
+}
+.top-title span{
+    font-size: 17px;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.choose-lb{
+    background-color: #fff;
+    text-align:center;
+
+}
+.choose-lb span{
+    font-size: 18px;
+    color:#333;
+    line-height: 60px;
+    font-weight: bold;
+}
+.main{
+    height:190px;
+    margin-top:20px;
+    background-color: #fff;
+    text-align: center;
+}
+.main ul{
+    list-style: none;
+}
+.main ul li {
+    font-size: 20px;
+    margin-top: 40px;
+}
+.main1{
+    background-color: #fff;
+    width:1200px;
+}
+
+.cap{
+    border-bottom: #ff6700 solid 1px;
+    text-align: center;
+}
+.cap span{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 80px;
+}
+.p-lab{
+    font-size: 16px;
+    margin-top: 30px;
+}
+.p-cap input{
+    width:390px;
+    height: 40px;
+}
+.fenlei select{
+    width:130px;
+    height:40px;
+}
+.p-zl input{
+    width:390px;
+    height: 40px;
+}
+.p-wzxq textarea{
+    margin-top:30px;
+}
+.cite cite{
+    margin-left: 328px;
+}
+
+/**/
+.inul {
+    min-height:44px;
+    margin:20px 0;
+}
+
+ul.inul>div{
+    float:left;
+}
+div.chuans{
+    position:relative;
+    width:400px;
+    height:220px;
+    border-radius: 3px;
+    border:1px dashed #ccc;
+    margin-right: 44px;
+    overflow: hidden;
+    margin-left: 450px;
+}
+div.chuans img{
+    position:absolute;
+    max-width:384px;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+.uploadImg{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 999;
+}
+span.delx {
+    position:absolute;
+    top:5px;
+    right:5px;
+    z-index: 9999;
+    font-size: 20px;
+    float:right;
+    display:none;
+    border-radius: 50%;
+}
+span.delx:hover{
+    background:#333;
+    color:#fff;
+    cursor:pointer;
+}

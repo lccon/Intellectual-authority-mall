@@ -1,0 +1,154 @@
+@charset "utf-8";
+#kind{
+    margin-top: 80px;
+    border: 1px solid #999;
+    background-color: #fff;
+}
+#kind ul{
+    float: left;
+    line-height: 50px;
+    font-size: 14px;
+    color:#333;
+    transition: color .5s;
+}
+#kind a{
+    color:#333
+}
+
+#kind a:hover{
+    color:#00c3f5;
+}
+.product{
+    border-top-width: 1px;
+    border-top-style:solid;
+	border-color: #ff6700;
+    padding-bottom: 100px;
+    background-color:#fff;
+    height:190px;
+}
+
+
+.warp{
+    float:right;
+    border:1px solid white;
+    width:250px;
+    height:20px;
+    margin-left: 3px;
+}
+.product:hover .warp a{
+    display: block;
+    
+}
+.warp a{
+    display:none;
+    float:right;
+}
+.warp a:hover{
+    color: #f46;
+}
+
+#caps a{
+	margin-top: 30px;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+    width: 100px;
+}
+#caps p{
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    width:100px;
+	
+}
+#desc {
+    height: 18px;
+    margin: 0 20px 12px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #b0b0b0;
+}
+#price {
+    text-align: right;
+    color: #ff6709;
+    font-size: 14px;
+}
+/*大于768px的屏幕*/
+@media (min-width: 768px) {
+	#caps a{
+		width:100px;
+		font-size: 15px;
+
+	}
+	#caps p{
+		width:100px;
+		font-size: 15px;
+
+
+}
+#kind {
+    font-size: 12px;
+}
+#kind ul li+li{
+    margin-left: 20px;
+    }
+}
+
+/* 中等屏幕（桌面显示器，大于等于992px） */
+@media (min-width: 992px) {
+    #caps a{
+        width:150px;
+		font-size: 18px;
+
+	}
+	#caps p{
+        width:150px;
+		font-size: 16px;
+
+    }
+    #kind ul li+li{
+        margin-left: 20px;
+        }
+
+}
+
+
+
+/* 大屏幕（大桌面显示器，大于等于1200px） */
+@media (min-width: 1200px) {
+	
+	#caps a{
+        width:auto;
+		font-size: 18px;
+
+	}
+	#caps p{
+        width:800px;
+		font-size: 16px;
+
+	}
+}
+/*超小屏幕 小于等于768px*/
+@media (max-width: 768px) {
+	#caps a{
+		width:50px;
+		font-size: xx-small;
+		margin-left: 20px;
+	}
+	#caps p{
+		width:50px;
+		font-size: xx-small;
+		margin-left: 20px;
+    }
+    #kind ul li+li{
+        margin-left: 20px;
+        }
+}
