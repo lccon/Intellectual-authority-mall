@@ -22,6 +22,12 @@ public class GridProperties {
 
     public static final String AUTH_TOKEN = getProperties().getProperty("auth.token");
 
+    public static final String QUARTZ_NAME = getProperties().getProperty("quartz.name");
+
+    public static final String QUARTZ_GROUP = getProperties().getProperty("quartz.group");
+
+    public static final String QUARTZ_config = getProperties().getProperty("quartz.config");
+
     private static Properties getProperties() {
         if (properties.size() == 0) {
             synchronized (properties) {
