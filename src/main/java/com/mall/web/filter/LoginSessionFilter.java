@@ -74,7 +74,7 @@ public class LoginSessionFilter implements Filter {
                 || "/api/userMobileLogin".equals(uri) || "/zscqsc.jsp".equals(uri)
                 || "/intellectualTask/findIntellectualTaskForList".equals(uri)
                 || "/about.jsp".equals(uri) || "/post-message.jsp".equals(uri)
-                || "/index.jsp".equals(uri)
+                || "/index.jsp".equals(uri) || "/login.jsp".equals(uri)
                 || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)) {
             return true;
         }

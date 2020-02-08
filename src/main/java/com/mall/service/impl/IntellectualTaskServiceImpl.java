@@ -127,7 +127,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=5;
+        int pageSize=1;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数

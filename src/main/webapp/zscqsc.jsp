@@ -90,7 +90,7 @@
     <!--需求列表-->
     <div style="margin-top: 50px;">
         <div class="container">
-            <c:forEach items="${list}" var="u">
+            <c:forEach items="${requestScope.pagemsg.lists}" var="u">
             <div class="product">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
@@ -119,23 +119,22 @@
     </div>
 
 
-        <!--<div>
+        <div>
             <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
             <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
             <span>
        <c:if test="${requestScope.pagemsg.currPage != 1}">
-           <a href="${pageContext.request.contextPath }/main?currentPage=1">[首页]</a>
-           <a href="${pageContext.request.contextPath }/main?currentPage=${requestScope.pagemsg.currPage-1}">[上一页]</a>
+           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">[首页]</a>
+           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}">[上一页]</a>
        </c:if>
 
        <c:if test="${requestScope.pagemsg.currPage != requestScope.pagemsg.totalPage}">
-           <a href="${pageContext.request.contextPath }/main?currentPage=${requestScope.pagemsg.currPage+1}">[下一页]</a>
-           <a href="${pageContext.request.contextPath }/main?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
+           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}">[下一页]</a>
+           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
        </c:if>
    </span>
 
         </div>
--->
     <!--网页底部-->
     <jsp:include page="footer.jsp" />
 </body>

@@ -74,12 +74,7 @@ public class IntellectualTaskController {
         return gridPage;
     }
 
-    @RequestMapping("/findIntellectualTaskForList")
-    public String findIntellectualTaskForList(HttpServletRequest request,ModelMap map) {
-        List<IntellectualTask> list = intellectualTaskService.findIntellectualTaskForList();
-        map.put("list", list);
-        return "/zscqsc";
-    }
+
     @RequestMapping("/findpageIntellectualTaskForList")
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,ModelMap map){
         model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage));//回显分页数据

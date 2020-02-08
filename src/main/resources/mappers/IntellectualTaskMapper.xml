@@ -100,9 +100,9 @@
         FROM intellectual_task
     </select>
 
-    <select id="findByPage" parameterType="Map" resultMap="BaseResultMap">
+    <select id="findByPage" parameterType="Map" resultMap="intellectualTaskMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="columns" />
         from intellectual_task
         <if test="start!=null and size!=null">
             limit #{start},#{size}
