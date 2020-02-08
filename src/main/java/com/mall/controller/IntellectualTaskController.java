@@ -5,14 +5,18 @@ import com.mall.base.GridPage;
 import com.mall.domain.IntellectualTask;
 import com.mall.service.IntellectualTaskService;
 import com.mall.vo.IntellectualTaskVO;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Description:
@@ -69,6 +73,22 @@ public class IntellectualTaskController {
         GridPage<IntellectualTask> gridPage = new GridPage<>(intellectualTaskList);
         return gridPage;
     }
+
+    @RequestMapping("/findIntellectualTaskForList")
+    public String findIntellectualTaskForList(HttpServletRequest request,ModelMap map) {
+        List<IntellectualTask> list = intellectualTaskService.findIntellectualTaskForList();
+        map.put("list", list);
+        return "/zscqsc";
+    }
+    @RequestMapping("/findpageIntellectualTaskForList")
+    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,ModelMap map){
+        model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage));//回显分页数据
+        List<IntellectualTask> list = intellectualTaskService.findIntellectualTaskForList();
+        map.put("list", list);
+        return "/zscqsc";
+    }
+
+
 
     @RequestMapping("/getIntellectualTaskById")
     @ResponseBody

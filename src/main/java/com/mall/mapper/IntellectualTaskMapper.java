@@ -1,6 +1,8 @@
 package com.mall.mapper;
 
 import com.mall.domain.IntellectualTask;
+import java.util.HashMap;
+import java.util.List;
 
 import java.util.List;
 
@@ -43,4 +45,6 @@ public interface IntellectualTaskMapper {
      * @return
      */
     IntellectualTask getIntellectualTaskById(Long id);
+    int countnum();
+    List<IntellectualTask> findByPage(HashMap<String,Object> map);
 }

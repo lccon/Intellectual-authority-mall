@@ -1,6 +1,6 @@
 @charset "utf-8";
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+	font-family: "Hiragino Sans GB", "Microsoft YaHei", 黑体, sans-serif;
 	color: #333;
 	background-color: #eeeff1;
 }
@@ -24,7 +24,6 @@ body a:hover{
 #login ul{
 	list-style: none;
 	float: right;
-	margin-right: 200px;
 }
 #login li{
 	float: right;
@@ -285,7 +284,7 @@ a:focus, a:hover {
 .w3ls-main {
     width: 620px;
     margin: 0 auto;
-    padding: 2em;
+    padding: 8em;
     min-height: 500px;
     background: rgba(255, 255, 255, 0.1);
 	-webkit-box-shadow:  0px 1px 3px 3px rgba(253, 249, 249, 0.75);
@@ -293,7 +292,7 @@ a:focus, a:hover {
     box-shadow: 0px 1px 3px 3px rgba(253, 249, 249, 0.75);
 }
 h1 {
-    font-size: 50px;
+    font-size: 24px;
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;

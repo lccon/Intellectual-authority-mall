@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <title>项目实战</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/usercenter.css">
+    <jsp:include page="jsinclude.jsp"/>
 </head>
 
 <body style="background-color: #e5e5e5e5;">
@@ -30,7 +28,7 @@
         </div>
         <div class="container">
             <div class="navbar-header">
-                <a href="index.html" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
+                <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
             </div> 
         </div>
     </nav>
@@ -133,6 +131,7 @@
             loadInner(sId);
         });
     </script>
+<jsp:include page="footer.jsp"/>
 </body>
 
 </html>

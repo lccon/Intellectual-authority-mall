@@ -3,7 +3,7 @@ package com.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.mall.domain.IntellectualTask;
 import com.mall.vo.IntellectualTaskVO;
-
+import com.mall.domain.pagebean;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -47,4 +47,7 @@ public interface IntellectualTaskService {
      */
     IntellectualTask getIntellectualTaskById(Long id);
 
+    List<IntellectualTask> findIntellectualTaskForList();
+    int countnum();
+    pagebean<IntellectualTask> findByPage(int currentPage);
 }

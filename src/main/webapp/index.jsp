@@ -1,52 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-	<title>项目实战</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<jsp:include page="jsinclude.jsp"/>
 </head>
 
 <body>
-	
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div id="login">
-			<ul>
-				<li>
-					<a href=#>个人中心</a>
-				</li>
-				<li>
-					<a href="#"><span class="glyphicon glyphicon-user"></span>用户名1234567</a>/
-					<a href="#"><span class="glyphicon glyphicon-user"></span>登录</a>/
-					<a href="#">注册</a>
-				</li>
-	
-			</ul>
-		</div>
-		<div class="container">
-			<div class="navbar-header">
-				<a href="index.html" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="navbar-collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li id="li1" ><a href="index.html"><span
-								class="glyphicon glyphicon-home"></span> 首页</a></li>
-					<li id="li1"><a href="zscqsc.html"> 知识产权商城</a></liid="li1">
-					<li id="li1"><a href="dsgs.html"> 代办公司</a></li>
-					<li id="li1"><a href="#"> 任务发布</a></liid="li1">
-					<li id="li1"><a href="#"> 政策资讯</a></li>
-					<li id="li1"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> 关于我们</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<jsp:include page="head.jsp"/>
 
 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
@@ -304,7 +266,7 @@
 </div>
 <!--意见反馈-->
 <div class="w3ls-main" id="ll">
-	<div class="close1">
+	<div class="close1" style="float: right">
 		<a href="#" id="close1" ><span class="glyphicon glyphicon-remove"></span></a>
 	</div>
 	<div class="w3ls-form">
@@ -346,21 +308,7 @@
 	</div>
 
 <!--页面底部-->
-	<footer id="footer">
-		<div class="container">
-			<div><span><span class='copy-icon'>&copy;</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></div>
-			<div><span>
-					<a href='http://www.beian.miit.gov.cn' rel='nofollow'>
-						京ICP备0000000号&nbsp;
-					</a>|&nbsp;
-					<a href='http://www.beian.miit.gov.cn' rel='nofollow'>京ICP证B0-000000000&nbsp;</a>|
-					京公网安备00000000号</span></div>
-		</div>
-	</footer>
-
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<jsp:include page="footer.jsp"/>
 	<script type="text/javascript">
 		//轮播自动播放
 		$('#myCarousel').carousel({

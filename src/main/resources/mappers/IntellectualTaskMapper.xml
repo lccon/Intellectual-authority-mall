@@ -94,5 +94,19 @@
         FROM intellectual_task
         WHERE id = #{id}
     </select>
+    <select id="countnum" resultType="int">
+        SELECT
+        count(*)
+        FROM intellectual_task
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from intellectual_task
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
 
 </mapper>

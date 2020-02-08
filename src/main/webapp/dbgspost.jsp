@@ -1,39 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-cn">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <title>项目实战</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/post-message.css">
+    <jsp:include page="jsinclude.jsp"/>
 </head>
 
 <body style="background-color: #e5e5e5e5;">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div id="login">
-            <ul>
-                <li>
-                    <a href=#>个人中心</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="#"><span class="glyphicon glyphicon-user"></span>用户名1234567</a>/
-                    <a href="#"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                    <a href="#">注册</a>
-                </li>
-
-            </ul>
-        </div>
-        <div class="container">
-            <div class="navbar-header">
-                <a href="index.html" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
-            </div> 
-        </div>
-    </nav>
+    <jsp:include page="head.jsp"/>
 
     <div class="container" style="margin-top: 80px;">
         <div class="row">
@@ -41,7 +17,7 @@
                 <div class="top-title">
                     <ol class="breadcrumb" style="margin-left:300px; background-color: #e5e5e5e5;">
                         <li> <label class="num"  style="background-color: #666;">1</label>
-                            选择身份类别（代办公司<a href="post-message.html" style="color:#f46">重选</a>）
+                            选择身份类别（代办公司<a href="post-message.jsp" style="color:#f46">重选</a>）
                         </li>
                         <span class="glyphicon glyphicon-menu-right"></span>
                         <li> <label class="num">2</label>
@@ -106,6 +82,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="footer.jsp"/>
 </body>
 
 </html>
