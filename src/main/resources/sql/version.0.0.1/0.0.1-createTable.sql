@@ -115,7 +115,7 @@ CREATE TABLE roof_place(
    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
    module_type tinyint(1) NOT NULL COMMENT '模块类型，1:知识产权，2:代办公司，3:需求任务',
    module_type_id bigint(20) NOT NULL COMMENT '模块id',
-   authorize_state tinyint(1) DEFAULT 0 COMMENT '认证状态 0:待审核 1:置顶 2:驳回',
+   authorize_state tinyint(1) DEFAULT 0 COMMENT '认证状态 0:待审核 1:驳回 2:置顶',
    top_duration int(10) DEFAULT NULL COMMENT '置顶时长 数字1，2，3，4',
    top_start_time datetime DEFAULT NULL COMMENT '置顶开始时间',
    top_end_time datetime DEFAULT NULL COMMENT '置顶结束时间',

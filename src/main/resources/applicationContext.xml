@@ -81,4 +81,15 @@
     <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
   </aop:config>
 
+  <!-- quartz持久化到db 进行集群任务 -->
+  <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+    <property name="dataSource">
+      <!--数据源引用-->
+      <ref bean="dataSource" />
+    </property>
+    <property name="overwriteExistingJobs" value="true" />
+    <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+    <property name="configLocation" value="classpath:quartz.properties" />
+  </bean>
+
 </beans>
