@@ -5,7 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <jsp:include page="jsinclude.jsp"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>项目实战</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/usercenter.css">
 </head>
 
 <body style="background-color: #e5e5e5e5;">
@@ -69,9 +74,8 @@
                     <li data-id="vocher"><a  href="#">帐户余额</a></li>
                     <li><a href="#">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我发布的</a></li>
-                    <li><a href="#">我的收藏</a></li>
+                    <li data-id="user_post"><a  href="#">我发布的</a></li>
+                    <li data-id="user_collect" ><a href="#">我的收藏</a></li>
                     <li><a href="#">我看过谁</a></li>
                     <li><a href="#">谁看过我</a></li>
                 </ul>
@@ -115,12 +119,16 @@
                         pathn = "vocher.jsp";
                         i = 2;
                         break;
-                    case "#info":
-                        pathn = "user_info.html";
+                    case "#user_post":
+                        pathn = "user_post.jsp";
                         i = 3;
-                        break;　　　　　　
+                        break;
+                    case "#user_collect":
+                        pathn = "user_collect.jsp";
+                        i = 4;
+                        break;
                     default:
-                        pathn = "user_center.html";
+                        pathn = "myinfo.jsp";
                         i = 0;
                         break;
                 }
