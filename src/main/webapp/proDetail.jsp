@@ -5,10 +5,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="jsinclude.jsp"/>
 </head>
 
-<body>
+<body onload="aaa();">
     <div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
    
     </div>
@@ -18,8 +18,6 @@
 
     <!--商品详情-->
     <div class="container" style="margin-top: 80px;background-color: #fff;">
-
-
         <div class="row">
             <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                 <div class="detail">
@@ -27,10 +25,10 @@
                         <div class="pro-detail-head">
                             <div class="pro-hd">
                                 <h1>
-                                    中国移动中国移动中国移动中国移动中国移动
+                                    ${intellectualTask.productName}
                                 </h1>
                                 <p class="info">
-                                    中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
+                                        ${intellectualTask.productBrief}
                                 </p>
                             </div>
                             <div class="pro-sell">
@@ -49,23 +47,23 @@
                         <div class="preview">
                             <div class="preview-box">
                                 <a href="#">
-                                    <img class="media-object" alt="" src="img/371.jpg" />
+                                    <img id="bigimg" class="media-object" alt="" src="" />
                                 </a>
                             </div>
                             <ul class="preview-items">
                                 <li class="current">
                                     <a href="javascript:;">
-                                        <img alt="" src="img/37a.jpg" />
+                                        <img id="img11" alt="" src="" />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:;">
-                                        <img alt="" src="img/37b.jpg" />
+                                        <img id="img22" alt="" src="" />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:;">
-                                        <img alt="" src="img/37c.jpg" />
+                                        <img id="img33" alt="" src="" />
                                     </a>
                                 </li>
                             </ul>
@@ -73,16 +71,50 @@
                         <div class="pro-service" >
                             <dl class="clearfix" style="margin-top:40px;">
                                 <dd>
-                                    <span>商品分类: </span><span>发明</span>
+                                    <span>商品分类: </span>
+                                    <span>
+                                        <c:if test="${intellectualTask.productCategory == 1}">发明</c:if>
+                                        <c:if test="${intellectualTask.productCategory == 2}">实用新型</c:if>
+                                        <c:if test="${intellectualTask.productCategory == 3}">外观</c:if>
+                                        <c:if test="${intellectualTask.productCategory == 4}">商标</c:if>
+                                        <c:if test="${intellectualTask.productCategory == 5}">版权</c:if>
+                                    </span>
                                 </dd>
                                 <dd>
-                                    <span>行业分类: </span><span>生活需要</span>
+                                    <span>行业分类: </span>
+                                    <span>
+                                        <c:if test="${intellectualTask.industryCategory==1}">生活需要</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==2}">交通运输</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==3}">化学化工</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==4}">轻工纺织</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==5}">建筑建材</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==6}">机械照明</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==7}">新能源</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==8}">电力电气</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==9}">武器爆破</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==10}">农林牧业</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==11}">视频饮料</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==12}">家具用品</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==13}">教育休闲</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==14}">医药医疗</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==15}">电子信息源</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==16}">仪器仪表</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==17}">包装印刷</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==18}">新型材料</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==19}">海洋开发</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==20}">航空航天</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==21}">采矿冶金</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==22}">橡胶塑料</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==23}">安全防护</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==24}">节能环保</c:if>
+                                        <c:if test="${intellectualTask.industryCategory==25}">其他</c:if>
+                                    </span>
                                 </dd>
                                 <dd>
-                                    <span>专利号&nbsp;&nbsp;: </span><span style="letter-spacing: 0;">123456789123648</span>
+                                    <span>专利号&nbsp;&nbsp;: </span><span style="letter-spacing: 0;">${intellectualTask.patentNumber}</span>
                                 </dd>
                                 <dd>
-                                    <span>发明人&nbsp;&nbsp;: </span><span>张三</span>
+                                    <span>发明人&nbsp;&nbsp;: </span><span>${intellectualTask.productBrief}</span>
                                 </dd>
                                 <dd>
                                     <span>联系方式: </span>
@@ -142,18 +174,18 @@
                   <!-- 商品详情图 -->
                   <div class="text">
                       <p>
-                        我公司专业生产各类随车吊、徐工随车吊、石煤随车吊。随州是*大的生产基地,质量保证、 价格便宜、全国包上户 、 大量现车、 可分期{车源描述}公司主要生产销售的系列产品有三一、徐工、石煤、腾宇等多个品牌。随车吊吊机分为:直臂吊机和折臂吊机。底盘品牌有:东风、解放、重汽、福田、陕汽、江淮、柳汽、华菱、楚风、王牌、天锦、天龙、江铃、唐俊等等。欢迎购车的朋友诚信交易,可以致电订购,车间生产基地,实地考察,给信放心安心买好车。【购车流程】电话洽淡(或来厂实地考察)---签订合同---安排生产---交付验收----签字确认。 厂家直销,全国超低价,期待您的来电!
+                          ${intellectualTask.productDetails}
                       </p>
 
                   </div>
                   <div class="infopicture">
-                    <img class="img-responsive" src="img/info.JPG" alt="">
-                    <img class="img-responsive" src="img/info.JPG" alt="">
-                    <img class="img-responsive" src="img/info.JPG" alt="">
+                    <img id="img1" class="img-responsive" src="" alt="">
+                    <img id="img2" class="img-responsive" src="" alt="">
+                    <img id="img3" class="img-responsive" src="" alt="">
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video width="320" height="240" controls>
-                    <source src="img/info1.mp4" type="video/mp4">
+                    <source src="${pageContext.request.contextPath}${intellectualTask.productVideoUrl}" type="video/mp4">
                     </video>
                     </div>
 
@@ -162,7 +194,6 @@
     </div>
     
 </div>
-
 
 <!--商品详情结束-->
     <script>
@@ -179,6 +210,37 @@
             box.style.display = "none";
             cover.style.display="none";
         }
+
+    </script>
+    <script type="text/javascript">
+        function aaa()//用window的onload事件，窗体加载完毕的时候
+        {
+            var bigimg=document.getElementById("bigimg");
+            var url1="${intellectualTask.productPictureUrl}".split(",");
+            var img1=document.getElementById("img1");
+            var img2=document.getElementById("img2");
+            var img3=document.getElementById("img3");
+            var img11=document.getElementById("img11");
+            var img22=document.getElementById("img22");
+            var img33=document.getElementById("img33");
+            bigimg.src="${pageContext.request.contextPath}"+url1[0];
+            img1.src="${pageContext.request.contextPath}"+url1[0];
+            img2.src="${pageContext.request.contextPath}"+url1[1];
+            img3.src="${pageContext.request.contextPath}"+url1[2];
+            img11.src="${pageContext.request.contextPath}"+url1[0];
+            img22.src="${pageContext.request.contextPath}"+url1[1];
+            img33.src="${pageContext.request.contextPath}"+url1[2];
+        }
+        $(function() {
+            /* 小图控制大图*/
+
+            $(".detail-box .preview-items li").on('click', function() {
+                var url1="${intellectualTask.productPictureUrl}".split(",");
+                var index = $(this).index();
+                bigimg.src="${pageContext.request.contextPath}"+url1[index];
+                console.log(url1[0]);
+            })
+        });
     </script>
     <!--网页底部-->
     <jsp:include page="footer.jsp"/>

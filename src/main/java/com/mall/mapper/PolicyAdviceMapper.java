@@ -2,6 +2,7 @@ package com.mall.mapper;
 
 import com.mall.domain.PolicyAdvice;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,4 +43,6 @@ public interface PolicyAdviceMapper {
      * @return
      */
     PolicyAdvice getPolicyAdviceById(Long id);
+    int countnum();
+    List<PolicyAdvice>findByPage(HashMap<String,Object> map);
 }

@@ -3,6 +3,7 @@ package com.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.mall.domain.PolicyAdvice;
 import com.mall.vo.PolicyAdviceVO;
+import com.mall.domain.pagebean;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,4 +49,6 @@ public interface PolicyAdviceService {
      * @return
      */
     PolicyAdvice getPolicyAdviceById(Long id);
+    int countnum();
+    pagebean<PolicyAdvice> findByPage(int currentPage);
 }

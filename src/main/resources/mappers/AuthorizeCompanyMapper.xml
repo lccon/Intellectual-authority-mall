@@ -70,4 +70,18 @@
         where id = #{id}
     </select>
 
+    <select id="countnum" resultType="int">
+        SELECT
+        count(*)
+        FROM authorize_company
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="authorizeCompanyMap">
+        select
+        <include refid="columns" />
+        from authorize_company
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
 </mapper>

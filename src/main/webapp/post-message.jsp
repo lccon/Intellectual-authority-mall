@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
         </div>
     </nav>
 
-    <div class="container" style="margin-top: 80px;">
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="top-title">
@@ -54,9 +54,9 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="main">
                         <ul>
-                            <li><a href="zxcqpost.html" >知识产权信息（供方）</a></li>
+                            <li><a href="zxcqpost.jsp" >知识产权信息（供方）</a></li>
                             <li><a href="dbgspost.jsp">代办公司信息（中介方）</a></li>
-                            <li><a href="xqfbpost.html" >需求任务发布（需方）</a></li>
+                            <li><a href="xqfbpost.jsp" >需求任务发布（需方）</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,46 +68,7 @@ pageEncoding="UTF-8"%>
    
 
     <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-    <script>
-        $(function() {
-            $("#userMenu").on("click", "li", function() {
-                var sId = $(this).data("id"); //获取data-id的值
-                window.location.hash = sId; //设置锚点
-                loadInner(sId);
-            });
- 
-            function loadInner(sId) {
-                var sId = window.location.hash;
-                var pathn, i;
-                switch(sId) {
-                    case "#center":
-                        pathn = "myinfo.html";
-                        i = 0;
-                        break;　　　　　　　
-                    case "#renzheng":
-                        pathn = "renzheng.html";
-                        i = 1;
-                        break;
-                    case "#trade":
-                        pathn = "user_trade.html";
-                        i = 2;
-                        break;
-                    case "#info":
-                        pathn = "user_info.html";
-                        i = 3;
-                        break;　　　　　　
-                    default:
-                        pathn = "user_center.html";
-                        i = 0;
-                        break;
-                }
-                $("#content").load(pathn); //加载相对应的内容
-                $(".userMenu li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮
-            }
-            var sId = window.location.hash;
-            loadInner(sId);
-        });
-    </script>
+
 </body>
 
 </html>

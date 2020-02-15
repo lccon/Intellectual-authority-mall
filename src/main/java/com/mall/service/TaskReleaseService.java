@@ -2,6 +2,7 @@ package com.mall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.domain.TaskRelease;
+import com.mall.domain.pagebean;
 import com.mall.vo.TaskReleaseVO;
 
 import java.util.List;
@@ -45,5 +46,6 @@ public interface TaskReleaseService {
      * @return
      */
     TaskRelease getTaskReleaseById(Long id);
-
+    int countnum();
+    pagebean<TaskRelease> findByPage(int currentPage);
 }

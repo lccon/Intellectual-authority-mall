@@ -75,6 +75,15 @@ public class LoginSessionFilter implements Filter {
                 || "/intellectualTask/findIntellectualTaskForList".equals(uri)
                 || "/about.jsp".equals(uri) || "/post-message.jsp".equals(uri)
                 || "/index.jsp".equals(uri) || "/login.jsp".equals(uri)
+                || "/taskrelease.jsp".equals(uri) || "/proDetail.jsp".equals(uri)
+                || "/taskRelease/findpageTaskReleaseForList".equals(uri)
+                || "/policyAdvice/findpagepolicyAdviceForList".equals(uri)
+                || "/authorizeCompany/findpageauthorizeCompanyForList".equals(uri)
+                || "/intellectualTask/getIntellectualTaskById".equals(uri)
+                || "/authorizeCompany/getAuthorizeCompanyById".equals(uri)
+                || "/taskRelease/getTaskReleaseById".equals(uri)
+                || "/policyAdvice/getPolicyAdviceById".equals(uri)
+                || "/post-message.jsp".equals(uri)
                 || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)) {
             return true;
         }

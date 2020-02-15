@@ -7,6 +7,7 @@ import com.mall.service.PolicyAdviceService;
 import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,8 +72,15 @@ public class PolicyAdviceController {
     }
 
     @RequestMapping("/getPolicyAdviceById")
-    @ResponseBody
-    public PolicyAdvice getPolicyAdviceById(Long id) {
-        return policyAdviceService.getPolicyAdviceById(id);
+    public String getPolicyAdviceById(@RequestParam(value = "id", required = true) Long id,ModelMap map) {
+        PolicyAdvice policyAdvice= policyAdviceService.getPolicyAdviceById(id);
+        map.put("policyAdvice",policyAdvice);
+        return "policyadvice_Detail";
+    }
+
+    @RequestMapping("/findpagepolicyAdviceForList")
+    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
+        model.addAttribute("pagemsg", policyAdviceService.findByPage(currentPage));//回显分页数据
+        return "/policyadvice";
     }
 }

@@ -8,6 +8,7 @@ import com.mall.vo.AuthorizeCompanyVO;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,9 +74,16 @@ public class AuthorizeCompanyController {
     }
 
     @RequestMapping("/getAuthorizeCompanyById")
-    @ResponseBody
-    public AuthorizeCompany getAuthorizeCompanyById(@RequestParam(value = "id", required = true) Long id) {
-        return authorizeCompanyService.getAuthorizeCompanyById(id);
+    public String getAuthorizeCompanyById(@RequestParam(value = "id", required = true) Long id,ModelMap map) {
+        AuthorizeCompany authorizeCompany= authorizeCompanyService.getAuthorizeCompanyById(id);
+        map.put("authorizeCompany",authorizeCompany);
+        return "authorizecompany_Detail";
+    }
+
+    @RequestMapping("/findpageauthorizeCompanyForList")
+    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
+        model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage));//回显分页数据
+        return "/authorizecompany";
     }
 
 }

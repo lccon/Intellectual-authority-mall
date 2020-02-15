@@ -2,6 +2,7 @@ package com.mall.mapper;
 
 import com.mall.domain.TaskRelease;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,4 +44,6 @@ public interface TaskReleaseMapper {
      * @return
      */
     TaskRelease getTaskReleaseById(Long id);
+    int countnum();
+    List<TaskRelease> findByPage(HashMap<String,Object> map);
 }

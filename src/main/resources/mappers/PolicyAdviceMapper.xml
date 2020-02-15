@@ -78,4 +78,19 @@
         WHERE id = #{id}
     </select>
 
+    <select id="countnum" resultType="int">
+        SELECT
+        count(*)
+        FROM policy_advice
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="policyAdviceMap">
+        select
+        <include refid="columns" />
+        from policy_advice
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
 </mapper>

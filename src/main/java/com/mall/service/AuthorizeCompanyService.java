@@ -2,6 +2,7 @@ package com.mall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.domain.AuthorizeCompany;
+import com.mall.domain.pagebean;
 import com.mall.vo.AuthorizeCompanyVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,4 +47,6 @@ public interface AuthorizeCompanyService {
      * @return
      */
     AuthorizeCompany getAuthorizeCompanyById(Long id);
+    int countnum();
+    pagebean<AuthorizeCompany> findByPage(int currentPage);
 }

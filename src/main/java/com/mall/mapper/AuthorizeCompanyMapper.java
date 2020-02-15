@@ -2,6 +2,7 @@ package com.mall.mapper;
 
 import com.mall.domain.AuthorizeCompany;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,4 +44,6 @@ public interface AuthorizeCompanyMapper {
      * @return
      */
     AuthorizeCompany getAuthorizeCompanyById(Long id);
+    int countnum();
+    List<AuthorizeCompany>findByPage(HashMap<String,Object> map);
 }

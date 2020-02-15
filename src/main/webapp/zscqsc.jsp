@@ -9,7 +9,7 @@
     <jsp:include page="jsinclude.jsp"/>
 </head>
 
-<body>
+<body onload="url1()">
     <!--网页头部-->
     <jsp:include page="head.jsp" />
     <!--商品行业分类-->
@@ -96,14 +96,21 @@
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;">
                             <div class="media-left">
-                                <a href="#"><img src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
+                                <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="img1" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
                             </div>
                             <div class="media-body" id="caps">
-                                <a href="#">${u.productName }</a>
+                                <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                 <p id="desc">${u.productBrief }</p>
                                 <p id="price">1800元</p>
                                 <p id="desc">浏览量：100</p>
                             </div>
+                            <script type="text/javascript">
+                                function url1() {
+                                    var url11="${u.productPictureUrl}".split(",");
+                                    var img1=document.getElementById("img1");
+                                    img1.src="${pageContext.request.contextPath}"+url11[0];
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -119,24 +126,86 @@
     </div>
 
 
-        <div>
-            <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
-            <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
-            <span>
+        <div class="container">
+            <ul class="pagination">
+
        <c:if test="${requestScope.pagemsg.currPage != 1}">
-           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">[首页]</a>
-           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}">[上一页]</a>
+           <li>
+                <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">[首页]</a>
+           </li>
+           <li>
+                <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}">&laquo;</a>
+           </li>
        </c:if>
+
 
        <c:if test="${requestScope.pagemsg.currPage != requestScope.pagemsg.totalPage}">
-           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}">[下一页]</a>
-           <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
+           <li>
+               <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}">&raquo;</a>
+           </li>
+           <li>
+               <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
+           </li>
        </c:if>
-   </span>
-
+                <li>
+                    <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
+                    <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
+                </li>
+            </ul>
         </div>
+    <div class="container">
+        <div class="row pad-15">
+            <div class="col-md-12">
+                <nav class="pagination-outer" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}" class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">1</a></li>
+                        <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalCount }" step="1">
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
+                            </li>
+                        </c:forEach>
+                        <li class="page-item">
+                            <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}" class="page-link" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
     <!--网页底部-->
     <jsp:include page="footer.jsp" />
+
+    <script>
+        $(document).ready(function(){
+            $('.pagination li').click(function(){
+                $(this).addClass('active').siblings().removeClass("active");
+                console.log("111");
+            });
+        })
+    </script>
+<script>
+    function aaa(i) {
+         $.ajax({
+             type: "POST",
+             url: "/intellectualTask/findpageIntellectualTaskForList", //你的请求程序页面随便啦
+             async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
+             data: {},//请求需要发送的处理数据
+             success: function (msg) {
+                 if (msg) {//根据返回值进行跳转
+                     window.location.href = "/intellectualTask/findpageIntellectualTaskForList?currentPage" + i;
+                 }
+             }
+         })
+    }
+</script>
+
 </body>
 
 </html>

@@ -50,4 +50,5 @@ public interface IntellectualTaskService {
     List<IntellectualTask> findIntellectualTaskForList();
     int countnum();
     pagebean<IntellectualTask> findByPage(int currentPage);
+
 }

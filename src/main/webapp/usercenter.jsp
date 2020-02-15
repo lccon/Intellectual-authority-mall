@@ -104,15 +104,15 @@
                 var pathn, i;
                 switch(sId) {
                     case "#center":
-                        pathn = "myinfo.html";
+                        pathn = "myinfo.jsp";
                         i = 0;
                         break;　　　　　　　
                     case "#renzheng":
-                        pathn = "renzheng.html";
+                        pathn = "renzheng.jsp";
                         i = 1;
                         break;
                     case "#vocher":
-                        pathn = "vocher.html";
+                        pathn = "vocher.jsp";
                         i = 2;
                         break;
                     case "#info":

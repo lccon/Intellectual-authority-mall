@@ -74,4 +74,19 @@
         where id = #{id}
     </select>
 
+
+    <select id="countnum" resultType="int">
+        SELECT
+        count(*)
+        FROM task_release
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="taskReleaseMap">
+        select
+        <include refid="columns" />
+        from task_release
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
 </mapper>

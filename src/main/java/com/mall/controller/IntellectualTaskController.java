@@ -86,8 +86,9 @@ public class IntellectualTaskController {
 
 
     @RequestMapping("/getIntellectualTaskById")
-    @ResponseBody
-    public IntellectualTask getIntellectualTaskById(@RequestParam(value = "id", required = true) Long id) {
-        return intellectualTaskService.getIntellectualTaskById(id);
+    public String getIntellectualTaskById(@RequestParam(value = "id", required = true) Long id, ModelMap map) {
+        IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(id);
+        map.put("intellectualTask", intellectualTask);
+        return "/proDetail";
     }
 }
