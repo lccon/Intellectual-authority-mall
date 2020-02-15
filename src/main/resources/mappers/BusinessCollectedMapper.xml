@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.BusinessCollectedMapper">
+    <resultMap id="businessCollectedMap" type="com.mall.domain.BusinessCollected">
+        <id property="id" column="id"/>
+        <result property="moduleType" column="module_type"/>
+        <result property="moduleTypeId" column="module_type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+    <sql id="columns">
+        id, module_type, module_type_id, user_id, create_user, create_date, update_user, update_date
+    </sql>
+
+    <insert id="addBusinessCollected" parameterType="com.mall.domain.BusinessCollected">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO business_collected
+        (id, module_type, module_type_id, user_id, create_user, create_date)
+        VALUES
+        (#{id}, #{moduleType}, #{moduleTypeId}, #{userId}, #{createUser}, #{createDate})
+    </insert>
+
+    <delete id="deleteBusinessCollected" parameterType="com.mall.domain.BusinessCollected">
+        DELETE FROM business_collected
+        WHERE user_id = #{userId}
+        AND module_type = #{moduleType}
+        AND module_type_id = #{moduleTypeId}
+    </delete>
+
+    <select id="findBusinessCollectedForList" parameterType="com.mall.vo.BusinessCollectedVO" resultMap="businessCollectedMap">
+        SELECT <include refid="columns"/> FROM business_collected
+        WHERE user_id = #{userId}
+        AND module_type = #{moduleType}
+    </select>
+</mapper>

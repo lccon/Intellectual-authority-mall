@@ -166,3 +166,16 @@ CREATE TABLE leave_message(
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 业务收藏
+CREATE TABLE business_collected(
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  module_type tinyint(1) NOT NULL COMMENT '模块类型，1:知识产权，2:代办公司，3:需求任务',
+  module_type_id bigint(20) NOT NULL COMMENT '模块id',
+   user_id bigint(20) NOT NULL COMMENT '用户id',
+  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
+  `create_date` datetime NOT NULL COMMENT '新增时间',
+  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
+  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
