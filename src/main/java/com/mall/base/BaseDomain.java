@@ -19,8 +19,6 @@ public class BaseDomain implements Serializable {
 
     private String updateUser;
 
-    private String mobile;
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -51,13 +49,5 @@ public class BaseDomain implements Serializable {
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 }

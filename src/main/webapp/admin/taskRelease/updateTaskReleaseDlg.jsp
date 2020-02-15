@@ -13,6 +13,7 @@
 </style>
 
 <form id="maintainForm" method="post" action="/taskRelease/updateTaskRelease">
+    <input type="hidden" name="id" value="${taskRelease.id}">
     <div class="container_24 cf">
         <div class="grid_4 label-right">
             <em class="form-red">*</em>
@@ -46,31 +47,31 @@
             </div>
             <div class="grid_7">
                 <select name="industryBelongs">
-                    <option value="1" <c:if test="${taskRelease.industryCategory == 1}">selected</c:if>>生活需要</option>
-                    <option value="2" <c:if test="${taskRelease.industryCategory == 2}">selected</c:if>>交通运输</option>
-                    <option value="3" <c:if test="${taskRelease.industryCategory == 3}">selected</c:if>>化学化工</option>
-                    <option value="4" <c:if test="${taskRelease.industryCategory == 4}">selected</c:if>>轻工纺织</option>
-                    <option value="5" <c:if test="${taskRelease.industryCategory == 5}">selected</c:if>>建筑建材</option>
-                    <option value="6" <c:if test="${taskRelease.industryCategory == 6}">selected</c:if>>机械照明</option>
-                    <option value="7" <c:if test="${taskRelease.industryCategory == 7}">selected</c:if>>新能源</option>
-                    <option value="8" <c:if test="${taskRelease.industryCategory == 8}">selected</c:if>>电力电气</option>
-                    <option value="9" <c:if test="${taskRelease.industryCategory == 9}">selected</c:if>>武器爆破</option>
-                    <option value="10" <c:if test="${taskRelease.industryCategory == 10}">selected</c:if>>农林牧业</option>
-                    <option value="11" <c:if test="${taskRelease.industryCategory == 11}">selected</c:if>>视频饮料</option>
-                    <option value="12" <c:if test="${taskRelease.industryCategory == 12}">selected</c:if>>家具用品</option>
-                    <option value="13" <c:if test="${taskRelease.industryCategory == 13}">selected</c:if>>教育休闲</option>
-                    <option value="14" <c:if test="${taskRelease.industryCategory == 14}">selected</c:if>>医药医疗</option>
-                    <option value="15" <c:if test="${taskRelease.industryCategory == 15}">selected</c:if>>电子信息源</option>
-                    <option value="16" <c:if test="${taskRelease.industryCategory == 16}">selected</c:if>>仪器仪表</option>
-                    <option value="17" <c:if test="${taskRelease.industryCategory == 17}">selected</c:if>>包装印刷</option>
-                    <option value="18" <c:if test="${taskRelease.industryCategory == 18}">selected</c:if>>新型材料</option>
-                    <option value="19" <c:if test="${taskRelease.industryCategory == 19}">selected</c:if>>海洋开发</option>
-                    <option value="20" <c:if test="${taskRelease.industryCategory == 20}">selected</c:if>>航空航天</option>
-                    <option value="21" <c:if test="${taskRelease.industryCategory == 21}">selected</c:if>>采矿冶金</option>
-                    <option value="22" <c:if test="${taskRelease.industryCategory == 22}">selected</c:if>>橡胶塑料</option>
-                    <option value="23" <c:if test="${taskRelease.industryCategory == 23}">selected</c:if>>安全防护</option>
-                    <option value="24" <c:if test="${taskRelease.industryCategory == 24}">selected</c:if>>节能环保</option>
-                    <option value="25" <c:if test="${taskRelease.industryCategory == 15}">selected</c:if>>其他</option>
+                    <option value="1" <c:if test="${taskRelease.industryBelongs == 1}">selected</c:if>>生活需要</option>
+                    <option value="2" <c:if test="${taskRelease.industryBelongs == 2}">selected</c:if>>交通运输</option>
+                    <option value="3" <c:if test="${taskRelease.industryBelongs == 3}">selected</c:if>>化学化工</option>
+                    <option value="4" <c:if test="${taskRelease.industryBelongs == 4}">selected</c:if>>轻工纺织</option>
+                    <option value="5" <c:if test="${taskRelease.industryBelongs == 5}">selected</c:if>>建筑建材</option>
+                    <option value="6" <c:if test="${taskRelease.industryBelongs == 6}">selected</c:if>>机械照明</option>
+                    <option value="7" <c:if test="${taskRelease.industryBelongs == 7}">selected</c:if>>新能源</option>
+                    <option value="8" <c:if test="${taskRelease.industryBelongs == 8}">selected</c:if>>电力电气</option>
+                    <option value="9" <c:if test="${taskRelease.industryBelongs == 9}">selected</c:if>>武器爆破</option>
+                    <option value="10" <c:if test="${taskRelease.industryBelongs == 10}">selected</c:if>>农林牧业</option>
+                    <option value="11" <c:if test="${taskRelease.industryBelongs == 11}">selected</c:if>>视频饮料</option>
+                    <option value="12" <c:if test="${taskRelease.industryBelongs == 12}">selected</c:if>>家具用品</option>
+                    <option value="13" <c:if test="${taskRelease.industryBelongs == 13}">selected</c:if>>教育休闲</option>
+                    <option value="14" <c:if test="${taskRelease.industryBelongs == 14}">selected</c:if>>医药医疗</option>
+                    <option value="15" <c:if test="${taskRelease.industryBelongs == 15}">selected</c:if>>电子信息源</option>
+                    <option value="16" <c:if test="${taskRelease.industryBelongs == 16}">selected</c:if>>仪器仪表</option>
+                    <option value="17" <c:if test="${taskRelease.industryBelongs == 17}">selected</c:if>>包装印刷</option>
+                    <option value="18" <c:if test="${taskRelease.industryBelongs == 18}">selected</c:if>>新型材料</option>
+                    <option value="19" <c:if test="${taskRelease.industryBelongs == 19}">selected</c:if>>海洋开发</option>
+                    <option value="20" <c:if test="${taskRelease.industryBelongs == 20}">selected</c:if>>航空航天</option>
+                    <option value="21" <c:if test="${taskRelease.industryBelongs == 21}">selected</c:if>>采矿冶金</option>
+                    <option value="22" <c:if test="${taskRelease.industryBelongs == 22}">selected</c:if>>橡胶塑料</option>
+                    <option value="23" <c:if test="${taskRelease.industryBelongs == 23}">selected</c:if>>安全防护</option>
+                    <option value="24" <c:if test="${taskRelease.industryBelongs == 24}">selected</c:if>>节能环保</option>
+                    <option value="25" <c:if test="${taskRelease.industryBelongs == 15}">selected</c:if>>其他</option>
                 </select>
             </div>
         </div>
@@ -93,7 +94,7 @@
             </script>
         </div>
     </div>
-</form>
+</form>industryBelongs
 
 <!-- 配置文件 -->
 <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
@@ -139,13 +140,13 @@
                     success: function(data){
                         if(data != null && !data.id){
                             $.messageBox({
-                                message:"新增失败",
+                                message:"修改失败",
                                 level: "error"
                             });
                             return;
                         }
                         $("#taskReleaseList").trigger("reloadGrid");
-                        $.messageBox({message:"新增成功!"});
+                        $.messageBox({message:"修改成功!"});
                         $("#taskReleaseDialog").dialog("close");
                     },
                     error: function(data){

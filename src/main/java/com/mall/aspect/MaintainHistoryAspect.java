@@ -24,9 +24,9 @@ public class MaintainHistoryAspect {
     baseDomain.setCreateDate(new Date());
     baseDomain.setUpdateUser(session.getUserName());
     baseDomain.setUpdateDate(new Date());
-    if (!StringUtils.isEmpty(session.getMobile())) {
+    /*if (!StringUtils.isEmpty(session.getMobile())) {
       baseDomain.setMobile(session.getMobile());
-    }
+    }*/
   }
 
   @Before("execution(public * com.mall..*.*Mapper.update*(..)) &&  args(baseDomain,..)")

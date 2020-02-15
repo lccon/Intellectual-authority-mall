@@ -21,6 +21,10 @@ public class TaskRelease extends BaseDomain{
     private String purpose;
     /** 详细说明 */
     private String detailedDesc;
+    /** 真是姓名 */
+    private String realName;
+    /** 手机号 */
+    private String mobile;
 
     public Long getId() {
         return id;
@@ -68,5 +72,21 @@ public class TaskRelease extends BaseDomain{
 
     public void setDetailedDesc(String detailedDesc) {
         this.detailedDesc = detailedDesc;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

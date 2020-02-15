@@ -20,6 +20,12 @@ public class AuthorizeCompany extends BaseDomain {
     private String companyDescribe;
     /** 公司图片地址 */
     private String companyPictureUrl;
+    /** 真是姓名 */
+    private String realName;
+    /** 手机号 */
+    private String mobile;
+    /** 友情链接 */
+    private String friendshipLink;
 
     public Long getId() {
         return id;
@@ -59,5 +65,29 @@ public class AuthorizeCompany extends BaseDomain {
 
     public void setCompanyPictureUrl(String companyPictureUrl) {
         this.companyPictureUrl = companyPictureUrl;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getFriendshipLink() {
+        return friendshipLink;
+    }
+
+    public void setFriendshipLink(String friendshipLink) {
+        this.friendshipLink = friendshipLink;
     }
 }

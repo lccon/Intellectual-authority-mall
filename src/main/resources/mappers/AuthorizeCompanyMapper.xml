@@ -7,6 +7,9 @@
         <result property="businessCategory" column="business_category"/>
         <result property="companyDescribe" column="company_describe"/>
         <result property="companyPictureUrl" column="company_picture_url"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="friendshipLink" column="friendship_link"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -14,8 +17,8 @@
     </resultMap>
 
     <sql id="columns">
-        id, company_name, business_category, company_describe, company_picture_url, create_user, create_date,
-        update_user, update_date
+        id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
@@ -23,9 +26,11 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO authorize_company
-        (id, company_name, business_category, company_describe, company_picture_url, create_user, create_date)
+        (id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, create_user, create_date)
         VALUES
-        (#{id}, #{companyName}, #{businessCategory}, #{companyDescribe}, #{companyPictureUrl}, #{createUser}, #{createDate})
+        (#{id}, #{companyName}, #{businessCategory}, #{companyDescribe}, #{companyPictureUrl},
+        #{realName}, #{mobile}, #{friendshipLink}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
@@ -42,6 +47,15 @@
             </if>
             <if test="companyPictureUrl != null and companyPictureUrl != ''">
                 company_picture_url = #{companyPictureUrl},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="friendshipLink != null and friendshipLink != ''">
+                friendship_link = #{friendshipLink},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser},

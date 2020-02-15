@@ -23,6 +23,8 @@ public class User extends BaseDomain {
     private Long virtualCoin;
     /** 可发布免费信息数量 */
     private Integer freeMessageNum;
+    /** 手机号 */
+    private String mobile;
 
     public Long getId() {
         return id;
@@ -104,4 +106,11 @@ public class User extends BaseDomain {
         this.freeMessageNum = freeMessageNum;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 }

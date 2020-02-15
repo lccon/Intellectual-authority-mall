@@ -8,6 +8,8 @@
         <result property="industryBelongs" column="industry_belongs"/>
         <result property="purpose" column="purpose"/>
         <result property="detailedDesc" column="detailed_desc"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -15,8 +17,8 @@
     </resultMap>
 
     <sql id="columns">
-        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc, create_user, create_date,
-        update_user, update_date
+        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addTaskRelease" parameterType="com.mall.domain.TaskRelease">
@@ -24,9 +26,11 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO task_release
-        (id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc, create_user, create_date)
+        (id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, create_user, create_date)
         VALUES
-        (#{id}, #{taskCategory}, #{intellectualProperty}, #{industryBelongs}, #{purpose}, #{detailedDesc}, #{createUser}, #{createDate})
+        (#{id}, #{taskCategory}, #{intellectualProperty}, #{industryBelongs}, #{purpose}, #{detailedDesc},
+        #{realName}, #{mobile}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateTaskRelease" parameterType="com.mall.domain.TaskRelease">
@@ -46,6 +50,12 @@
             </if>
             <if test="detailedDesc != null and detailedDesc != ''">
                 detailed_desc = #{detailedDesc},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser},

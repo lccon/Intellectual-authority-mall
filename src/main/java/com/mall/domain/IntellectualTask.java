@@ -27,6 +27,10 @@ public class IntellectualTask extends BaseDomain {
     private String productPictureUrl;
     /** 视频地址 */
     private String productVideoUrl;
+    /** 真是姓名 */
+    private String realName;
+    /** 手机号 */
+    private String mobile;
 
     public Long getId() {
         return id;
@@ -98,5 +102,21 @@ public class IntellectualTask extends BaseDomain {
 
     public void setProductVideoUrl(String productVideoUrl) {
         this.productVideoUrl = productVideoUrl;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
