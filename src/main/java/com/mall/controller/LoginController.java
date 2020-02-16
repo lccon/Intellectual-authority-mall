@@ -32,7 +32,7 @@ public class LoginController {
 
 	@RequestMapping (value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Session login(HttpServletRequest request, HttpServletResponse response, String username, String password, ModelMap map) {
+	public Session login(HttpServletRequest request, HttpServletResponse response, String username, String password) {
 		String sessionId = CookieUtil.getSessionId(request);
 		CookieUtil.clearSessionsFromCookies(request, response);
 		Session session = new Session();
@@ -44,7 +44,6 @@ public class LoginController {
 			CookieUtil.putSessionIdInCookies(request, response, PermissionConstant.LOGIN_SESSION_ID,
 					newSession.getSessionId());
 		}
-		map.put("newsession", newSession);
 		return newSession;
 	}
 

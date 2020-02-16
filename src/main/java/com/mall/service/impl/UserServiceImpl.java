@@ -74,7 +74,6 @@ public class UserServiceImpl implements UserService {
 			throw new BusinessValidationException("用户不存在！");
 		}
         try {
-			user.setPassword(PasswordUtil.getHashedPassword(user.getPassword()));
 			userMapper.updateByPrimaryKeySelective(user);
 			return user;
 		} catch (Exception e) {
