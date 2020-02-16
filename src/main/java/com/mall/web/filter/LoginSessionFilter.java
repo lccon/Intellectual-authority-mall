@@ -46,15 +46,21 @@ public class LoginSessionFilter implements Filter {
             return;
         }
 
-        // 无需登录验证
-        if (isNotLoginValidate(uri)) {
-            chain.doFilter(request, response);
-            ThreadVariable.clearThreadVariable();
-            return;
+        String sid = CookieUtil.getSessionIdFromCookies(request);
+        Boolean login = false;
+        if(sid == null) {
+            login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
+            if(!login) {
+                // 无需登录验证
+                if (isNotLoginValidate(uri)) {
+                    chain.doFilter(request, response);
+                    ThreadVariable.clearThreadVariable();
+                    return;
+                }
+            }
         }
 
-        String sid = CookieUtil.getSessionIdFromCookies(request);
-        Boolean login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
+        login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
         if (login) {
             CookieUtil.putSessionIdInCookies(request, response, PermissionConstant.LOGIN_SESSION_ID, sid);
             chain.doFilter(request, response);
