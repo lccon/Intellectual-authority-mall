@@ -13,7 +13,13 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body >
-   
+<div style="width:80px;">
+    <ul>
+        <li id="title">我的认证</li>
+    </ul>
+</div>
+   <div style="background-color: #fff;">
+       <div style="margin-left: 50px;">
     <div class="titleline">
         <div class="title">
             请进入个人认证或企业认证
@@ -102,6 +108,8 @@ pageEncoding="UTF-8"%>
         <button type="button" id="button2">提交绑定</button>
     </div>
 </div>
+       </div>
+   </div>
 <script>
     var geren = document.getElementById("geren");
     var qiye=document.getElementById("qiye");

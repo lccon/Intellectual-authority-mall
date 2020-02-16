@@ -24,6 +24,11 @@
     }
 </style>
 <body>
+<div style="width:80px;">
+    <ul>
+        <li id="title">我的收藏</li>
+    </ul>
+</div>
 <div class="info">
 
     <ul style="margin-left: 30px;">

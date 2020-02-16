@@ -24,7 +24,12 @@
         <div class="wrap-container clearfix">
             <div class="sub-header">
                 <div class="zerogrid">
-                    <h1>Blog</h1>
+                    <h1>
+                        <c:if test="${policyAdvice.adviceCategory==1}">政策法规</c:if>
+                        <c:if test="${policyAdvice.adviceCategory==2}">平台动态</c:if>
+                        <c:if test="${policyAdvice.adviceCategory==3}">新闻实事</c:if>
+                        <c:if test="${policyAdvice.adviceCategory==4}">行业知识</c:if>
+                    </h1>
                 </div>
             </div>
             <div class="zerogrid">

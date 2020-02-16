@@ -1,23 +1,35 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
 <html>
 <head>
+    <%--<jsp:include page="/admin/baseInclude.jsp" />--%>
 </head>
 
 <body>
 <!--网页头部-->
+<
+<style>
+    .quit{
+        margin-left: 30px;
+    }
+</style>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="login">
         <ul>
             <li>
-                <a href=#>个人中心</a>
+                <a href="/usercenter.jsp">个人中心</a>
             </li>
         </ul>
         <ul>
             <li>
-                <a href="#"><span class="glyphicon glyphicon-user"></span>用户名1234567</a>/
-                <a href="#"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                <a href="#">注册</a>
+                <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
+                    <a class="quit" href="/admin/userlogout">退出</a>
+                <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
+                <a href="/register.jsp">注册</a>
             </li>
 
         </ul>

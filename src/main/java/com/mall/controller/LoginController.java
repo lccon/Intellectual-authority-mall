@@ -12,6 +12,7 @@ import com.mall.utils.CookieUtil;
 import com.mall.utils.IpAddressUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,7 @@ public class LoginController {
 
 	@RequestMapping (value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Session login(HttpServletRequest request, HttpServletResponse response, String username, String password) {
+	public Session login(HttpServletRequest request, HttpServletResponse response, String username, String password, ModelMap map) {
 		String sessionId = CookieUtil.getSessionId(request);
 		CookieUtil.clearSessionsFromCookies(request, response);
 		Session session = new Session();
@@ -43,6 +44,7 @@ public class LoginController {
 			CookieUtil.putSessionIdInCookies(request, response, PermissionConstant.LOGIN_SESSION_ID,
 					newSession.getSessionId());
 		}
+		map.put("newsession", newSession);
 		return newSession;
 	}
 

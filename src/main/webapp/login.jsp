@@ -121,7 +121,7 @@
                                     $("#password").val("");
                                     $("#loginButton").attr('disabled', false);
                                 } else {
-                                    document.location.href = "/index.jsp";
+                                    document.location.href = "/index.jsp?username="+data.userName;
                                 }
 							}
 						},

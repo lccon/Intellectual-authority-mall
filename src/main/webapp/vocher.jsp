@@ -18,12 +18,14 @@ pageEncoding="UTF-8"%>
 
 </head>
 
-<bod>
+<body style="background-color: #fff;">
+
     <!--用户中心头部信息-->
 
     <!--侧边栏-->
 
     <!--中央显示区域-->
+    <div style="margin-left: 50px;">
     <div style="margin-top: 80px;">
         <ul>
             <li class="col-lg-3 col-sm-6 account-type" data-type="0">
@@ -117,11 +119,8 @@ pageEncoding="UTF-8"%>
                 </dl>
             </div>
         </div>
-    </div>                   
-            
-
-
-
-</bod>
+    </div>
+</div>
+</body>
 
 </html>

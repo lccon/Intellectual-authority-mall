@@ -9,7 +9,7 @@
     <jsp:include page="jsinclude.jsp"/>
 </head>
 
-<body>
+<body onload="url1();">
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
@@ -65,12 +65,18 @@
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;">
                             <div class="media-left">
-                                <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}"><img  style="max-width:450px;max-height: 190px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
+                                <script>
+                                    function url1() {
+                                        var url1="${u.advicePictureUrl}".split(",");
+                                        var img1=document.getElementById("img1");
+                                        img1.src="${pageContext.request.contextPath}"+url1[0];
+                                    }
+                                </script>
+                                <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}"><img  id="img1" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle }</a>
                                 <p id="desc">${u.adviceSubtitle }</p>
-                                <p id="price">1800元</p>
                                 <p id="desc">浏览量：100</p>
                             </div>
                         </div>
@@ -130,6 +136,7 @@
         </div>
     </div>
 </div>
+
 <!--网页底部-->
 <jsp:include page="footer.jsp" />
 </body>

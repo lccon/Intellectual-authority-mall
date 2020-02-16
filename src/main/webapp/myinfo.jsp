@@ -12,6 +12,13 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
+<div style="width:80px;">
+    <ul>
+        <li id="title">我的资料</li>
+    </ul>
+</div>
+<div style="background-color:#fff;">
+<div style="margin-left:50px;">
     <div class="name">
         <label class="username">
             <span style="color:#ec5524;">*</span>
@@ -42,7 +49,10 @@ pageEncoding="UTF-8"%>
     </div>
     <div class="btn-group" role="group" aria-label="..." id="btn" style="margin-top: 100px; margin-left: 100px;">          
         <button type="button" class="btn btn-default" id="button2" style="margin-bottom: 100px;">确认保存</button>
-    </div> 
+    </div>
+</div>
+</div>
+
 </body>
 
 </html>

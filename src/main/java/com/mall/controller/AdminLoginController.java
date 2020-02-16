@@ -37,5 +37,13 @@ public class AdminLoginController {
         CookieUtil.clearSessionsFromCookies(request,response);
         return "redirect:/admin/login";
     }
+    @RequestMapping(value="/userlogout")
+    public String userlogout(HttpServletRequest request, HttpServletResponse response) {
+        String sessionId = CookieUtil.getSessionIdFromCookies(request);
+        loginService.loginOut(sessionId);
+        CookieUtil.clearSessionsFromCookies(request,response);
+        return "redirect:/login";
+    }
+
 
 }

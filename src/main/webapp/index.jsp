@@ -2,14 +2,35 @@
 <html lang="zh-cn">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ page import="com.mall.component.ThreadVariable" %>--%>
+
 <head>
+    <%@ page import="com.mall.component.ThreadVariable" %>
+    <%
+            out.print(ThreadVariable.getSession().getUserName());
+    %>
+   <%-- <%
+    String path = request.getContextPath();
+    request.setAttribute("path",path);
+    request.setAttribute("currentSession","");
+    request.setAttribute("userRealName", ThreadVariable.getSession().getUserName());
+    %>--%>
+
+<%--<body>
+<input type="text" value="<%=ThreadVariable.getSession().getUserName()%>">
+</body>
+
+<script type="text/javascript">
+    var PATH='${path}';
+    var listUrl;
+    var userRealName='${userRealName}';
+</script>--%>
 	<jsp:include page="jsinclude.jsp"/>
 </head>
 
 <body>
-	<jsp:include page="head.jsp"/>
-
+    <input type="text" value="${userRealName}">
+    <jsp:include page="head.jsp"/>
 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
