@@ -4,7 +4,9 @@
 String path = request.getContextPath();
 request.setAttribute("path",path);
 request.setAttribute("currentSession","");
-request.setAttribute("userRealName", ThreadVariable.getSession().getUserName());
+    if (ThreadVariable.getSession()!= null && ThreadVariable.getSession().getUserName() != null) {
+        request.setAttribute("userRealName", ThreadVariable.getSession().getUserName());
+    }
 %>
 
 <script type="text/javascript">

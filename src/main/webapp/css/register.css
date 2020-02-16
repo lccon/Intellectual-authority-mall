@@ -746,28 +746,19 @@ a.reg:visited {
 .w-860 {
     width: 860px
 }
-
 #footer {
-    color: #4b4b4b;
-    margin: 0 auto;
-    padding: 15px 0 35px;
+    background-color: #666;
+    border-top: 1px solid #ccc;
+    padding: 20px;
     text-align: center;
-    width: 980px
+    color: #eee;
 }
-
-#footer a {
-    color: #4b4b4b;
-    white-space: nowrap
+#footer a{
+    color:#eee;
 }
-
-#footer a.fc-red {
-    color: #e30
+#footer a:hover{
+    color:#180fb3;
 }
-
-#footer .onlink {
-    color: #e30
-}
-
 #relate-category,
 #list-description,
 #all-region,

@@ -72,7 +72,7 @@ public class LoginSessionFilter implements Filter {
 
     private boolean isNotLoginValidate(String uri) {
         if("/".equals(uri) || "/api/login".equals(uri) || "/admin/login".equals(uri)
-                || "/api/userMobileLogin".equals(uri) || "/zscqsc.jsp".equals(uri)
+                || "/api/userMobileLogin".equals(uri)
                 || "/intellectualTask/findIntellectualTaskForList".equals(uri)
                 || "/about.jsp".equals(uri) || "/post-message.jsp".equals(uri)
                 || "/login.jsp".equals(uri)

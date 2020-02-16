@@ -504,7 +504,6 @@ var GJ = window.GJ || {},
     GJ.extend = function(r, s, px, sx)
     {
         if (!s||!r){
-            alert("extend failed, verify dependencies");
         }
 
         var sp=s.prototype, F=function(){};
