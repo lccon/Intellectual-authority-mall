@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
@@ -41,16 +42,17 @@
 
 </div>
 <div style="margin-top: 50px;">
+    <c:forEach items="${gridPage.rows}" var="u">
     <div class="product" style="height: 100px;">
         <div class="row">
             <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
                 <div class="media">
                     <div class="media-body" id="caps" >
                         <div style="width: 360px; float: left;">
-                            <a href="/taskRelease/getTaskReleaseById?id=${u.id}">中国移动中国移动中国移动中国移动中国移动</a>
+                            <a href="#">${u.collectedContent}</a>
                         </div>
                         <div style="width: 300px; float: left; margin-top: 50px;">
-                            <p id="desc">收藏于2020年02月15日</p>
+                            <p id="desc">收藏于<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
                         </div>
                     </div>
 
@@ -58,10 +60,11 @@
 
             </div>
             <div style="margin: 50px 20px 20px 20px;">
-                <a class="collect" href="#">取消收藏</a>
+                <a class="collect" href="/businessCollected/deleteBusinessCollected?userId=11&moduleType=1&moduleTypeId=1">取消收藏</a>
             </div>
         </div>
     </div>
+    </c:forEach>
 </div>
 </body>
 

@@ -10,12 +10,22 @@ import com.mall.base.BaseDomain;
  */
 public class BusinessCollected extends BaseDomain {
 
+    /** 主键 */
+    private Long id;
     /** 模块类型 */
     private Integer moduleType;
     /** 模块id */
     private Long moduleTypeId;
     /** 用户id */
     private Long userId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getModuleType() {
         return moduleType;

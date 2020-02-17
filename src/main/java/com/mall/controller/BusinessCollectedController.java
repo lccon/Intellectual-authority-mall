@@ -11,6 +11,7 @@ import com.mall.vo.BusinessCollectedVO;
 import com.mall.vo.CollectedInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,15 +49,15 @@ public class BusinessCollectedController {
     }
 
     @RequestMapping("/findBusinessCollectedForPage")
-    @ResponseBody
-    public GridPage<CollectedInfoVO> findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO) {
+    public String findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO, ModelMap map) {
         if (ThreadVariable.getSession() == null) {
             throw new BusinessValidationException("请重新登录");
         }
         businessCollectedVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<CollectedInfoVO> businessCollected = businessCollectedService.findBusinessCollectedForPage(businessCollectedVO);
         GridPage<CollectedInfoVO> gridPage = new GridPage<>(businessCollected);
-        return gridPage;
+        map.put("gridPage", gridPage);
+        return "user_collect";
     }
 
 }

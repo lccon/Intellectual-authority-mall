@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a class="label label-primary bstreedit">收藏<span class="glyphicon glyphicon-heart-empty"></span></a>
+                    <a href="/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId=${u.id}" class="label label-primary bstreedit">收藏<span class="glyphicon glyphicon-heart-empty"></span></a>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>

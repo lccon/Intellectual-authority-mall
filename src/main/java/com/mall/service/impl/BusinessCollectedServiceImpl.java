@@ -74,13 +74,13 @@ public class BusinessCollectedServiceImpl implements BusinessCollectedService {
             for (BusinessCollected businessCollected : businessCollectedList) {
                 CollectedInfoVO collectedInfoVO = new CollectedInfoVO();
                 collectedInfoVO.setCollectedDate(businessCollected.getCreateDate());
-                if (ModuleTypeEnum.INTELLECTUAL_TASK.equals(businessCollected.getModuleType())) {
+                if (ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode().equals(businessCollected.getModuleType())) {
                     IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(businessCollected.getModuleTypeId());
                     collectedInfoVO.setCollectedContent(intellectualTask.getProductName());
-                } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.equals(businessCollected.getModuleType())) {
+                } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode().equals(businessCollected.getModuleType())) {
                     AuthorizeCompany authorizeCompany = authorizeCompanyService.getAuthorizeCompanyById(businessCollected.getModuleTypeId());
                     collectedInfoVO.setCollectedContent(authorizeCompany.getCompanyName());
-                } else if (ModuleTypeEnum.TASK_RELEASE.equals(businessCollected.getModuleType())) {
+                } else if (ModuleTypeEnum.TASK_RELEASE.getModuleCode().equals(businessCollected.getModuleType())) {
                     TaskRelease taskRelease = taskReleaseService.getTaskReleaseById(businessCollected.getModuleTypeId());
                     collectedInfoVO.setCollectedContent(taskRelease.getPurpose());
                 }

@@ -126,7 +126,7 @@
                         i = 3;
                         break;
                     case "#user_collect":
-                        pathn = "user_collect.jsp";
+                        pathn = "/businessCollected/findBusinessCollectedForPage?moduleType=1";
                         i = 4;
                         break;
                     default:
