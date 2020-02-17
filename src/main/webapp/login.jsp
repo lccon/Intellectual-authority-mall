@@ -32,7 +32,7 @@
 						</span>
                     </div>
 					<p class="user-input">
-						<input id="username" type="text" placeholder="邮箱地址" name="username">
+						<input id="username" type="text" placeholder="邮箱地址" name="username" style="text-transform:lowercase;">
 					</p>
 					<p class="password-input">
 						<input id="password" type="password" placeholder="密码" name="password">
@@ -121,7 +121,7 @@
                                     $("#password").val("");
                                     $("#loginButton").attr('disabled', false);
                                 } else {
-                                    document.location.href = "/index.jsp";
+                                    document.location.href = "/";
                                 }
 							}
 						},

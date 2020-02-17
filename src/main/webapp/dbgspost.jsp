@@ -18,16 +18,23 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="login">
+        <c:if test="${userRealName!=null}">
+            <ul>
+                <li>
+                    <a href="/usercenter.jsp">个人中心</a>
+                </li>
+            </ul>
+        </c:if>
         <ul>
             <li>
-                <a href=#>个人中心</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="#"><span class="glyphicon glyphicon-user"></span>用户名1234567</a>/
-                <a href="#"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                <a href="#">注册</a>
+                <c:if test="${userRealName!=null}">
+                    <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
+                    <a class="quit" href="/admin/userlogout">退出</a>
+                </c:if>
+                <c:if test="${userRealName==null}">
+                    <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
+                    <a href="/register.jsp">注册</a>
+                </c:if>
             </li>
 
         </ul>

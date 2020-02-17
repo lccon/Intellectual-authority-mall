@@ -50,7 +50,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li id="li1"><a href="/index.jsp"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                <li id="li1"><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                 <li id="li1"><a href="/intellectualTask/findpageIntellectualTaskForList"> 知识产权商城</a></li>
                 <li id="li1"><a href="/authorizeCompany/findpageauthorizeCompanyForList"> 代办公司</a></li>
                 <li id="li1"><a href="/taskRelease/findpageTaskReleaseForList"> 任务发布</a></li>

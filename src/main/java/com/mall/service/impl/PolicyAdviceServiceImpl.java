@@ -94,6 +94,11 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
     }
 
     @Override
+    public List<PolicyAdvice> findPolicyAdviceForList() {
+        return policyAdviceMapper.findPolicyAdviceForList();
+    }
+
+    @Override
     public PolicyAdvice getPolicyAdviceById(Long id) {
         if (id == null) {
             throw new BusinessValidationException("主键信息不能为空!");

@@ -46,4 +46,5 @@ public interface AuthorizeCompanyMapper {
     AuthorizeCompany getAuthorizeCompanyById(Long id);
     int countnum();
     List<AuthorizeCompany>findByPage(HashMap<String,Object> map);
+    List<AuthorizeCompany> findByauthorizeCompany(String company_name,String company_describe);
 }

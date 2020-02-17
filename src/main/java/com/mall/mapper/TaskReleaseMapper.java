@@ -46,4 +46,6 @@ public interface TaskReleaseMapper {
     TaskRelease getTaskReleaseById(Long id);
     int countnum();
     List<TaskRelease> findByPage(HashMap<String,Object> map);
+    List<TaskRelease> getTaskReleaseByTask_category(Integer task_category);
+    List<TaskRelease> findBytaskRelease(String purpose,String detailed_desc);
 }

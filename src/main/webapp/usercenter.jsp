@@ -14,10 +14,10 @@
 </head>
 
 <body style="background-color: #e5e5e5e5;">
-
+<jsp:include page="/admin/baseInclude.jsp" />
     <nav class="navbar navbar-default navbar-fixed-top">
         <div id="login">
-            <c:if test="${param.username != null}">
+            <c:if test="${userRealName!=null}">
                 <ul>
                     <li>
                         <a href="/usercenter.jsp">个人中心</a>
@@ -26,17 +26,22 @@
             </c:if>
             <ul>
                 <li>
-                    <c:if test="${param.username != null}">
-                        <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${param.username}</a>
+                    <c:if test="${userRealName!=null}">
+                        <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
                         <a class="quit" href="/admin/userlogout">退出</a>
                     </c:if>
-                    <c:if test="${param.username == null}">
+                    <c:if test="${userRealName==null}">
                         <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
                         <a href="/register.jsp">注册</a>
                     </c:if>
                 </li>
 
             </ul>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
+            </div>
         </div>
     </nav>
 
@@ -52,11 +57,7 @@
                     </div>
                     <div class="media-body" id="head-text">
                         <p>
-                            用户名11323241&nbsp;欢迎发布信息
-                        </p>
-                        <p style="margin-top: 15px;">
-                            <span class="glyphicon glyphicon-phone">12345678901</span>
-                            <a href="#">修改</a>
+                            尊敬的${userRealName}&nbsp;欢迎发布信息
                         </p>
                     </div>
                 </div>
@@ -69,17 +70,17 @@
             <div class="span6">
                 <ul class="nav nav-list" id="userMenu">
                     <li class="nav-header" id="cap2">帐户管理</li>
-                    <li class="active" data-id="center"><a href="#" >我的资料</a></li>
-                    <li data-id="renzheng"><a href="#">我的认证</a></li>
-                    <li><a href="#">帐户明细</a></li>
+                    <li class="active" data-url="/userCenter/myinfo"><a class="item-inner" href="javascript:void(0);" >我的资料</a></li>
+                    <li data-url="/userCenter/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
+                    <li><a href="javascript:void(0);">帐户明细</a></li>
                     <li class="nav-header"  id="cap2">我的资金</li>
-                    <li data-id="vocher"><a  href="#">帐户余额</a></li>
-                    <li><a href="#">充值记录</a></li>
+                    <li data-url="vocher"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
+                    <li><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
-                    <li data-id="user_post"><a  href="#">我发布的</a></li>
-                    <li data-id="user_collect" ><a href="#">我的收藏</a></li>
-                    <li><a href="#">我看过谁</a></li>
-                    <li><a href="#">谁看过我</a></li>
+                    <li data-url="user_post"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
+                    <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">我的收藏</a></li>
+                    <li><a href="javascript:void(0);">我看过谁</a></li>
+                    <li><a href="javascript:void(0);">谁看过我</a></li>
                 </ul>
             </div>
         </div>
@@ -99,48 +100,50 @@
     <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <script>
         $(function() {
-            $("#userMenu").on("click", "li", function() {
-                var sId = $(this).data("id"); //获取data-id的值
-                window.location.hash = sId; //设置锚点
-                loadInner(sId);
-            });
- 
-            function loadInner(sId) {
-                var sId = window.location.hash;
-                var pathn, i;
-                switch(sId) {
-                    case "#center":
-                        pathn = "myinfo.jsp";
-                        i = 0;
-                        break;　　　　　　　
-                    case "#renzheng":
-                        pathn = "renzheng.jsp";
-                        i = 1;
-                        break;
-                    case "#vocher":
-                        pathn = "vocher.jsp";
-                        i = 2;
-                        break;
-                    case "#user_post":
-                        pathn = "user_post.jsp";
-                        i = 3;
-                        break;
-                    case "#user_collect":
-                        pathn = "/businessCollected/findBusinessCollectedForPage?moduleType=1";
-                        i = 4;
-                        break;
-                    default:
-                        pathn = "myinfo.jsp";
-                        i = 0;
-                        break;
-                }
-                $("#content").load(pathn); //加载相对应的内容
-                $(".userMenu li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮
+
+            window.onload = function() {
+                $('#userMenu li').each(function(){
+                    if($(this).data('url') == '/userCenter/myinfo'){
+                        $(this).addClass('checked');
+                        window.location.hash = '/userCenter/myinfo';
+                        loadContent('/userCenter/myinfo');
+                    }
+                })
             }
-            var sId = window.location.hash;
-            loadInner(sId);
-        });
+
+            // 内容区域
+            var $contentWrapper = $('#center')
+
+            var loadContent = function(path) {
+                path = path || location.hash
+
+                $.ajax({
+                    url : path,
+                    success : function(rst) {
+                        $contentWrapper.html(rst)
+                    }
+                })
+            }
+
+
+
+            $('#userMenu').on('click','li', function() {
+                var $elmLink = $(this);
+                var link = $elmLink.data('url');
+                console.log($elmLink,link)
+                if(!link || link == ''){
+                    return;
+                }
+                window.location.hash = link;
+                loadContent(link);
+            })
+
+
+
+
+        })
     </script>
+
 <jsp:include page="footer.jsp"/>
 </body>
 

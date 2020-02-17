@@ -27,7 +27,7 @@
                                 <h1>
                                     ${intellectualTask.productName}
                                 </h1>
-                                <p class="info">
+                                <p class="info1">
                                         ${intellectualTask.productBrief}
                                 </p>
                             </div>

@@ -10,6 +10,7 @@
 </head>
 
 <body onload="url1()">
+<div id="center11">
     <!--网页头部-->
     <jsp:include page="head.jsp" />
     <!--商品行业分类-->
@@ -115,7 +116,31 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a href="/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId=${u.id}" class="label label-primary bstreedit">收藏<span class="glyphicon glyphicon-heart-empty"></span></a>
+                    <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    <script>
+                        function addcollect() {
+                            var a=document.getElementById("addcollect");
+                            var abc=document.getElementById("abc");
+                            $.ajax({
+                                type:"POST",
+                                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId=${u.id}",
+                                cache:false,
+                                contentType: false,
+                                processData: false,
+                                success: function(result) {
+                                    if(result){
+                                        a.class="glyphicon glyphicon-heart";
+                                        abc.innerText="收藏成功";
+                                        console.log(a.class);
+                                    }
+                                    else {
+                                        console.log("456");
+                                    }
+
+                                },
+                            })
+                        }
+                    </script>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
@@ -153,7 +178,8 @@
                 </li>
             </ul>
         </div>
-    <div class="container">
+</div>
+<div class="container">
         <div class="row pad-15">
             <div class="col-md-12">
                 <nav class="pagination-outer" aria-label="Page navigation">
@@ -166,7 +192,7 @@
                         <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">1</a></li>
                         <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalCount }" step="1">
                             <li class="page-item">
-                                <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
+                                <a class="page-link" href="javascript:void(0);" onclick="aaa(${i})">${i}</a>
                             </li>
                         </c:forEach>
                         <li class="page-item">
@@ -191,21 +217,17 @@
         })
     </script>
 <script>
-    function aaa(i) {
-         $.ajax({
-             type: "POST",
-             url: "/intellectualTask/findpageIntellectualTaskForList", //你的请求程序页面随便啦
-             async: false,//同步：意思是当有返回值以后才会进行后面的js程序。
-             data: {},//请求需要发送的处理数据
-             success: function (msg) {
-                 if (msg) {//根据返回值进行跳转
-                     window.location.href = "/intellectualTask/findpageIntellectualTaskForList?currentPage" + i;
-                 }
-             }
-         })
+    function aaa(path) {
+        var $contentWrapper = $('#center11')
+        $.ajax({
+            url : "${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage="+path,
+            success : function(rst) {
+                $contentWrapper.html(rst)
+                url1();
+            }
+        })
     }
 </script>
-
 </body>
 
 </html>

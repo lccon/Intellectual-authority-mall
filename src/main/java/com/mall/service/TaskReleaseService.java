@@ -46,6 +46,8 @@ public interface TaskReleaseService {
      * @return
      */
     TaskRelease getTaskReleaseById(Long id);
+    List<TaskRelease> getTaskReleaseByTask_category(Integer taskCategory);
     int countnum();
     pagebean<TaskRelease> findByPage(int currentPage);
+    List<TaskRelease> findBytaskRelease(String purpose,String detailed_desc);
 }

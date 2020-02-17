@@ -6,6 +6,7 @@ import com.mall.vo.PolicyAdviceVO;
 import com.mall.domain.pagebean;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Description:
@@ -49,6 +50,7 @@ public interface PolicyAdviceService {
      * @return
      */
     PolicyAdvice getPolicyAdviceById(Long id);
+    List<PolicyAdvice> findPolicyAdviceForList();
     int countnum();
     pagebean<PolicyAdvice> findByPage(int currentPage);
 }

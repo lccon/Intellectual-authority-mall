@@ -60,7 +60,7 @@ height: 75px;
     font-weight: 400;
     color: #000;
 }
-.pro-detail-head .pro-hd .info{
+.pro-detail-head .pro-hd .info1{
     font-size: 16px;
     color: #999;
 }
@@ -252,7 +252,7 @@ color: #00c3f5;
     white-space: nowrap;
     font-size: xx-small;
    }
-   .pro-detail-head .pro-hd .info{
+   .pro-detail-head .pro-hd .info1{
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -1,5 +1,6 @@
 package com.mall.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
@@ -28,12 +29,19 @@ public class BusinessCollectedController {
 
     @RequestMapping("/addBusinessCollected")
     @ResponseBody
-    public BusinessCollected addBusinessCollected(BusinessCollected businessCollected) {
+    public boolean addBusinessCollected(BusinessCollected businessCollected) {
         if (ThreadVariable.getSession() == null) {
             throw new BusinessValidationException("请重新登录");
         }
         businessCollected.setUserId(ThreadVariable.getSession().getUserId());
-        return businessCollectedService.addBusinessCollected(businessCollected);
+        boolean result;
+        if(businessCollectedService.addBusinessCollected(businessCollected)!=null){
+            result=true;
+        }
+        else {
+            result=false;
+        }
+        return result;
     }
 
     @RequestMapping("/deleteBusinessCollected")
@@ -45,7 +53,8 @@ public class BusinessCollectedController {
             }
             businessCollected.setUserId(ThreadVariable.getSession().getUserId());
         }
-        return businessCollectedService.deleteBusinessCollected(businessCollected);
+        boolean result=businessCollectedService.deleteBusinessCollected(businessCollected);
+        return result;
     }
 
     @RequestMapping("/findBusinessCollectedForPage")

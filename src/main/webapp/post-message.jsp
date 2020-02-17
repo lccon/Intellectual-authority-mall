@@ -9,29 +9,35 @@ pageEncoding="UTF-8"%>
 
 <body style="background-color: #e5e5e5e5;">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div id="login">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div id="login">
+        <c:if test="${userRealName!=null}">
             <ul>
                 <li>
-                    <a href=#>个人中心</a>
+                    <a href="/usercenter.jsp">个人中心</a>
                 </li>
             </ul>
-            <ul>
-                <li>
-                    <a href="#"><span class="glyphicon glyphicon-user"></span>用户名1234567</a>/
-                    <a href="#"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                    <a href="#">注册</a>
-                </li>
+        </c:if>
+        <ul>
+            <li>
+                <c:if test="${userRealName!=null}">
+                    <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
+                    <a class="quit" href="/admin/userlogout">退出</a>
+                </c:if>
+                <c:if test="${userRealName==null}">
+                    <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
+                    <a href="/register.jsp">注册</a>
+                </c:if>
+            </li>
 
-            </ul>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="navbar-header">
+            <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
         </div>
-        <div class="container">
-            <div class="navbar-header">
-                <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
-            </div> 
-        </div>
-    </nav>
-
+    </div>
+</nav>
     <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">

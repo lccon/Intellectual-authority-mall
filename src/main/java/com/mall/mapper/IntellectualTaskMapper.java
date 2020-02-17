@@ -47,4 +47,5 @@ public interface IntellectualTaskMapper {
     IntellectualTask getIntellectualTaskById(Long id);
     int countnum();
     List<IntellectualTask> findByPage(HashMap<String,Object> map);
+    List<IntellectualTask> findByintellectualTask(String product_name,String product_brief);
 }

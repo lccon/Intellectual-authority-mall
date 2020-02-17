@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/usercenter.css">
     <link rel="stylesheet" href="css/spro.css">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
 </head>
 <style>
     .collect{
@@ -25,25 +26,31 @@
     }
 </style>
 <body>
+<div id="center11">
 <div style="width:80px;">
     <ul>
         <li id="title">我的收藏</li>
     </ul>
+    <ul id="title2">
+        <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">知识产权商城</a></li>
+        <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=2" ><a  class="item-inner" href="javascript:void(0);">代办公司</a></li>
+        <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=3" ><a  class="item-inner" href="javascript:void(0);">任务发布</a></li>
+    </ul>
 </div>
 <div class="info">
-
     <ul style="margin-left: 30px;">
         <strong style="margin-left: 150px;">
             <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
             您还没有收藏信息
+            ${gridPage.rows}
         </strong>
         <li style="margin-left: 174px;">去<a style="color: #f46;" href="#">首页</a>随便逛逛，看看大家都在发些什么信息</li>
     </ul>
-
 </div>
+
 <div style="margin-top: 50px;">
     <c:forEach items="${gridPage.rows}" var="u">
-    <div class="product" style="height: 100px;">
+    <div id="product1" class="product" style="height: 100px;">
         <div class="row">
             <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
                 <div class="media">
@@ -60,12 +67,61 @@
 
             </div>
             <div style="margin: 50px 20px 20px 20px;">
-                <a class="collect" href="/businessCollected/deleteBusinessCollected?userId=11&moduleType=1&moduleTypeId=1">取消收藏</a>
+                <a class="collect" href="javascript:void(0);" onclick="deletecollect(${u.userId},${u.moduleType},${u.moduleTypeId})">取消收藏</a>
             </div>
         </div>
     </div>
     </c:forEach>
 </div>
+</div>
+<script>
+    function deletecollect(userid,moduletype,moduletypeid) {
+        $.ajax({
+            type:"POST",
+            url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+            async : false,
+            data:{type:1},
+            timeout:1000,
+            success: function(result) {
+                if(result){
+                    console.log(userid,moduletype,moduletypeid);
+                    console.log("删除成功");
+                    $("#product1").html("user_collect");
+                }
+                else {
+                    console.log("删除失败");
+                }
+
+            },
+        })
+    }
+    var $contentWrapper = $('#center11')
+
+    var loadContent = function(path) {
+        path = path || location.hash
+
+        $.ajax({
+            url : path,
+            success : function(rst) {
+                $contentWrapper.html(rst)
+            }
+        })
+    }
+
+
+
+    $('#title2').on('click','li', function() {
+        var $elmLink = $(this);
+        var link = $elmLink.data('url');
+        console.log($elmLink,link)
+        if(!link || link == ''){
+            return;
+        }
+        window.location.hash = link;
+        loadContent(link);
+    })
+
+</script>
 </body>
 
 </html>

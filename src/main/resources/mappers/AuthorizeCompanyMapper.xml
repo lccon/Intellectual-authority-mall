@@ -102,4 +102,11 @@
             limit #{start},#{size}
         </if>
     </select>
+
+    <select id="findByauthorizeCompany" parameterType="Map" resultMap="authorizeCompanyMap">
+        select
+        <include refid="columns" />
+        from authorize_company
+        where company_name LIKE "%"+#{company_name}+"%" or company_describe LIKE "%"+#{company_describe}+"%"
+    </select>
 </mapper>

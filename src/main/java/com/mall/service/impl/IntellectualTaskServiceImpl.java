@@ -115,6 +115,13 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     public List<IntellectualTask> findIntellectualTaskForList() {
         return intellectualTaskMapper.findIntellectualTaskForList();
     }
+
+    @Override
+    public List<IntellectualTask> findByintellectualTask(String product_name,String product_brief) {
+        return intellectualTaskMapper.findByintellectualTask(product_name,product_brief);
+    }
+
+
     public int countnum(){
         return intellectualTaskMapper.countnum();
     }

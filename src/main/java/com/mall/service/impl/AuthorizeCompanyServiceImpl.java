@@ -58,6 +58,16 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
+    public List<AuthorizeCompany> findAuthorizeCompanyForList() {
+        return authorizeCompanyMapper.findAuthorizeCompanyForList();
+    }
+
+    @Override
+    public List<AuthorizeCompany> findByauthorizeCompany(String company_name,String company_describe) {
+        return authorizeCompanyMapper.findByauthorizeCompany(company_name,company_describe);
+    }
+
+    @Override
     public Boolean deleteAuthorizeCompany(Long[] ids, HttpServletRequest request) {
         if (ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空");

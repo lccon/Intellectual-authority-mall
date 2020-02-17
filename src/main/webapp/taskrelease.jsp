@@ -122,7 +122,31 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a class="label label-primary bstreedit">收藏<span class="glyphicon glyphicon-heart-empty"></span></a>
+                    <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    <script>
+                        function addcollect() {
+                            var a=document.getElementById("addcollect");
+                            var abc=document.getElementById("abc");
+                            $.ajax({
+                                type:"POST",
+                                url: "/businessCollected/addBusinessCollected?moduleType=3&moduleTypeId=${u.id}",
+                                cache:false,
+                                contentType: false,
+                                processData: false,
+                                success: function(result) {
+                                    if(result){
+                                        a.class="glyphicon glyphicon-heart";
+                                        abc.innerText="收藏成功";
+                                        console.log(a.class);
+                                    }
+                                    else {
+                                        console.log("456");
+                                    }
+
+                                },
+                            })
+                        }
+                    </script>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -42,7 +43,7 @@ pageEncoding="UTF-8"%>
 			<div class="input-group">
 				<input type="text" class="form-control" id="input1" placeholder="默认搜索项">
 				<div class="input-group-btn">
-					<button class="btn btn-default" id="button1" >搜索</button>
+					<a class="btn btn-default" id="button1" href="/find">搜索</a>
 					<button class="btn btn-default" id="button2">免费发布信息</button>
 				</div>
 			</div>
@@ -74,92 +75,115 @@ pageEncoding="UTF-8"%>
 		</div>
 		<tr>
 			<th>
+				<c:forEach items="${IntellectualTask}" var="u" begin="0" end="4" step="1">
+
 				<div class="pro-box">
+
 				<ul>
 				<li class="media" id="product">
 					<div class="row">
 						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
+
+							<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
+								<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
 							</a>
+							<script>
+                                var url1="${u.productPictureUrl}".split(",");
+                                var img1=document.getElementById("cap${u.id}");
+                                img1.src="${pageContext.request.contextPath}"+url1[0];
+							</script>
 						</div>
 					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
+						<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
+						<p id="desc">${u.productBrief}</p>
 						<p id="price">1800元</p>
 					</div>
 				</div>
 				</li>
 			</ul>
 		</div>
+				</c:forEach>
+
 			</th>
 
 
 			<th>
+				<c:forEach items="${AuthorizeCompany}" var="i" begin="0" end="4" step="1">
 				<div class="pro-box">
 				<ul>
 				<li class="media" id="product">
 					<div class="row">
 						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
+
+							<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
+								<img src="" alt="" id="zzz${i.id}" style="width: 153px;height: 153px;"></img>
+								<script>
+                                        var url2="${i.companyPictureUrl}".split(",");
+                                        var img2=document.getElementById("zzz${i.id}");
+                                        img2.src="${pageContext.request.contextPath}"+url2[0];
+								</script>
 							</a>
 						</div>
 					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
-						<p id="price">1800元</p>
+						<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
+						<p id="desc">${i.companyDescribe}</p>
 					</div>
 				</div>
 				</li>
 			</ul>
 		</div>
-			</th>
-
-
-
-			<th>
-				<div class="pro-box">
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
-							</a>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
-						<p id="price">1800元</p>
-					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
+				</c:forEach>
 			</th>
 
 
 
 			<th>
-				<div class="pro-box">
+				<c:forEach items="${TaskRelease}" var="o" begin="0" end="4" step="1">
+					<div class="pro-box">
 				<ul>
 				<li class="media" id="product">
 					<div class="row">
 						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
+
+							<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
+								<img src="img/tab1-1.png" alt="" id="cap" style="width: 153px;height: 153px;"></img>
 							</a>
 						</div>
 					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
-						<p id="price">1800元</p>
+						<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
+						<p id="desc">${o.detailedDesc}</p>
 					</div>
 				</div>
 				</li>
 			</ul>
 		</div>
+				</c:forEach>
+
+			</th>
+
+
+
+			<th>
+				<c:forEach items="${TaskRelease1}" var="o" begin="0" end="4" step="1">
+					<div class="pro-box">
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+										<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
+											<img src="img/tab1-2.jpg" alt="" id="cap" style="width: 153px;height: 153px;"></img>
+										</a>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
+										<p id="desc">${o.detailedDesc}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+
 			</th>
 		</tr>
 
@@ -173,46 +197,64 @@ pageEncoding="UTF-8"%>
 <!--加入新闻模块-->
 		<tr>
 			<th>
-				<div class="pro-box">
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
-							</a>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
-						<p id="price">1800元</p>
+				<c:forEach items="${IntellectualTask}" var="u" begin="5" end="5" step="1">
+
+					<div class="pro-box">
+
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
+											<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
+										</a>
+										<script>
+                                            var url1="${u.productPictureUrl}".split(",");
+                                            var img1=document.getElementById("cap${u.id}");
+                                            img1.src="${pageContext.request.contextPath}"+url1[0];
+										</script>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
+										<p id="desc">${u.productBrief}</p>
+										<p id="price">1800</p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
+				</c:forEach>
+
 			</th>
 
 
 			<th>
-				<div class="pro-box">
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-							<a href="#" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap"></img>
-							</a>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="#">中国移动中国移动中国移动中国移动中国移动</a>
-						<p id="desc">中中中中中中中中中中中中中</p>
-						<p id="price">1800元</p>
+				<c:forEach items="${AuthorizeCompany}" var="i" begin="0" end="0" step="1">
+					<div class="pro-box">
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
+											<img src="" alt="" id="bza${i.id}" style="width: 153px;height: 153px;"></img>
+											<script>
+                                                var url2="${i.companyPictureUrl}".split(",");
+                                                var img2=document.getElementById("bza${i.id}");
+                                                img2.src="${pageContext.request.contextPath}"+url2[0];
+											</script>
+										</a>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
+										<p id="desc">${i.companyDescribe}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
+				</c:forEach>
 			</th>
 
 
@@ -227,7 +269,128 @@ pageEncoding="UTF-8"%>
 		</tr>
 
 <!--复制的数据后期可删除-->
+		<tr>
+			<th>
+				<c:forEach items="${IntellectualTask}" var="u" begin="6" end="10" step="1">
 
+					<div class="pro-box">
+
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
+											<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
+										</a>
+										<script>
+                                            var url1="${u.productPictureUrl}".split(",");
+                                            var img1=document.getElementById("cap${u.id}");
+                                            img1.src="${pageContext.request.contextPath}"+url1[0];
+										</script>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
+										<p id="desc">${u.productBrief}</p>
+										<p id="price">1800元</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+
+			</th>
+
+
+			<th>
+				<c:forEach items="${AuthorizeCompany}" var="i" begin="1" end="5" step="1">
+					<div class="pro-box">
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
+											<img src="" alt="" id="boc${i.id}" style="width: 153px;height: 153px;"></img>
+											<script>
+                                                var url2="${i.companyPictureUrl}".split(",");
+                                                var img2=document.getElementById("boc${i.id}");
+                                                img2.src="${pageContext.request.contextPath}"+url2[0];
+											</script>
+										</a>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
+										<p id="desc">${i.companyDescribe}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+			</th>
+
+
+
+			<th>
+				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="5" step="1">
+					<div class="pro-box">
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/policyAdvice/getPolicyAdviceById?id=${p.id}" class="thumbnail">
+											<img src="" alt="" id="zpolicy${p.id}" style="width: 153px;height: 153px;"></img>
+											<script>
+                                                var url3="${p.advicePictureUrl}".split(",");
+                                                var img3=document.getElementById("zpolicy${p.id}");
+                                                img3.src="${pageContext.request.contextPath}"+url3[0];
+											</script>
+										</a>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>
+										<p id="desc">${p.adviceSubtitle}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+			</th>
+
+
+
+			<th>
+				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="5" step="1">
+					<div class="pro-box">
+						<ul>
+							<li class="media" id="product">
+								<div class="row">
+									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+
+										<a href="/policyAdvice/getPolicyAdviceById?id=${p.id}" class="thumbnail">
+											<img src="" alt="" id="policy${p.id}" style="width: 153px;height: 153px;"></img>
+											<script>
+                                                var url3="${p.advicePictureUrl}".split(",");
+                                                var img3=document.getElementById("policy${p.id}");
+                                                img3.src="${pageContext.request.contextPath}"+url3[0];
+											</script>
+										</a>
+									</div>
+									<div class="media-body" id="cap">
+										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>
+										<p id="desc">${p.adviceSubtitle}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+			</th>
+		</tr>
 
 
 
@@ -342,6 +505,7 @@ pageEncoding="UTF-8"%>
 		});
 
 	</script>
+
 	<script>
 		console.log("123");
         var idea = document.getElementById("iede");

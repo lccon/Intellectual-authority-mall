@@ -78,7 +78,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
             throw new ServiceValidationException("获取需求任务列表出错!", e);
         }
     }
-
+    @Override
+    public List<TaskRelease> getTaskReleaseByTask_category(Integer taskCategory) {
+        return taskReleaseMapper.getTaskReleaseByTask_category(taskCategory);
+    }
+    @Override
+    public List<TaskRelease> findBytaskRelease(String purpose,String detailed_desc) {
+        return taskReleaseMapper.findBytaskRelease(purpose,detailed_desc);
+    }
     @Override
     public TaskRelease getTaskReleaseById(Long id) {
         if(id == null) {

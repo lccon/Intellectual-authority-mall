@@ -83,6 +83,11 @@
         select <include refid="columns"/> FROM task_release
     </select>
 
+    <select id="getTaskReleaseByTask_category" parameterType="Map" resultMap="taskReleaseMap">
+        SELECT <include refid="columns"/> FROM task_release
+        where task_category = #{task_category}
+    </select>
+
     <select id="getTaskReleaseById" parameterType="java.lang.Long" resultMap="taskReleaseMap">
         SELECT <include refid="columns"/> FROM task_release
         where id = #{id}
@@ -102,5 +107,12 @@
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
+    </select>
+
+    <select id="findBytaskRelease" parameterType="Map" resultMap="taskReleaseMap">
+        select
+        <include refid="columns" />
+        from task_release
+        where purpose LIKE "%"+#{purpose}+"%" or detailed_desc LIKE "%"+#{detailed_desc}+"%"
     </select>
 </mapper>
