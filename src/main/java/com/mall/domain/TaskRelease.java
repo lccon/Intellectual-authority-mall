@@ -25,6 +25,8 @@ public class TaskRelease extends BaseDomain{
     private String realName;
     /** 手机号 */
     private String mobile;
+    /** 状态 */
+    private Integer state;
 
     public Long getId() {
         return id;
@@ -88,5 +90,13 @@ public class TaskRelease extends BaseDomain{
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

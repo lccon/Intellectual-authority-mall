@@ -10,7 +10,6 @@ import com.mall.mapper.BusinessCollectedMapper;
 import com.mall.service.*;
 import com.mall.utils.StringUtil;
 import com.mall.vo.BusinessCollectedVO;
-import com.mall.vo.CollectedInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +61,7 @@ public class BusinessCollectedServiceImpl implements BusinessCollectedService {
     }
 
     @Override
-    public PageInfo<CollectedInfoVO> findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO) {
+    public PageInfo<BusinessCollectedVO> findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO) {
         if (businessCollectedVO == null) {
             throw new BusinessValidationException("参数不能为空!");
         }
@@ -70,10 +69,13 @@ public class BusinessCollectedServiceImpl implements BusinessCollectedService {
             PageHelper.startPage(businessCollectedVO.getPage(), businessCollectedVO.getRows(),
                     StringUtil.joinSortFieldOrder(businessCollectedVO.getSidx(), businessCollectedVO.getSord()));
             List<BusinessCollected> businessCollectedList = businessCollectedMapper.findBusinessCollectedForList(businessCollectedVO);
-            List<CollectedInfoVO> collectedInfoVOList = new ArrayList<>();
+            List<BusinessCollectedVO> collectedInfoVOList = new ArrayList<>();
             for (BusinessCollected businessCollected : businessCollectedList) {
-                CollectedInfoVO collectedInfoVO = new CollectedInfoVO();
+                BusinessCollectedVO collectedInfoVO = new BusinessCollectedVO();
                 collectedInfoVO.setCollectedDate(businessCollected.getCreateDate());
+                collectedInfoVO.setModuleType(businessCollected.getModuleType());
+                collectedInfoVO.setModuleTypeId(businessCollected.getModuleTypeId());
+                collectedInfoVO.setUserId(businessCollected.getUserId());
                 if (ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode().equals(businessCollected.getModuleType())) {
                     IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(businessCollected.getModuleTypeId());
                     collectedInfoVO.setCollectedContent(intellectualTask.getProductName());

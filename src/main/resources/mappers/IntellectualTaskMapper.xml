@@ -13,6 +13,7 @@
         <result property="productVideoUrl" column="product_video_url"/>
         <result property="realName" column="real_name"/>
         <result property="mobile" column="mobile"/>
+        <result property="state" column="state"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -22,7 +23,7 @@
     <sql id="columns">
         id, product_name, product_brief, product_details, patent_number,
         product_category, industry_category, product_picture_url, product_video_url,
-        real_name, mobile, create_user, create_date, update_user, update_date
+        real_name, mobile, state, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addIntellectualTask" parameterType="com.mall.domain.IntellectualTask">
@@ -32,11 +33,11 @@
         INSERT INTO intellectual_task
         (id, product_name, product_brief, product_details, patent_number,
         product_category, industry_category, product_picture_url, product_video_url,
-        real_name, mobile, create_user, create_date)
+        real_name, mobile, state, create_user, create_date)
         VALUES
         (#{id}, #{productName}, #{productBrief}, #{productDetails}, #{patentNumber},
         #{productCategory}, #{industryCategory}, #{productPictureUrl}, #{productVideoUrl},
-        #{realName}, #{mobile}, #{createUser}, #{createDate})
+        #{realName}, #{mobile}, #{state}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateIntellectualTask" parameterType="com.mall.domain.IntellectualTask">
@@ -71,6 +72,9 @@
             </if>
             <if test="mobile != null and mobile != ''">
                 mobile = #{mobile},
+            </if>
+            <if test="state != null">
+                state = #{state},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser},

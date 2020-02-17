@@ -3,9 +3,6 @@ package com.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.mall.domain.BusinessCollected;
 import com.mall.vo.BusinessCollectedVO;
-import com.mall.vo.CollectedInfoVO;
-
-import java.util.List;
 
 /**
  * Description:
@@ -30,5 +27,5 @@ public interface BusinessCollectedService {
      * 收藏列表
      * @return
      */
-    PageInfo<CollectedInfoVO> findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO);
+    PageInfo<BusinessCollectedVO> findBusinessCollectedForPage(BusinessCollectedVO businessCollectedVO);
 }

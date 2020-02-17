@@ -10,3 +10,8 @@ ALTER TABLE task_release ADD COLUMN mobile VARCHAR(11) DEFAULT null COMMENT '手
 ALTER TABLE authorize_company ADD COLUMN real_name VARCHAR(32) DEFAULT null COMMENT '真实姓名' after company_picture_url;
 ALTER TABLE authorize_company ADD COLUMN mobile VARCHAR(11) DEFAULT null COMMENT '手机号' after real_name;
 ALTER TABLE authorize_company ADD COLUMN friendship_link VARCHAR(11) DEFAULT null COMMENT '友情链接' after mobile;
+
+-- 添加状态
+ALTER TABLE intellectual_task ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after mobile;
+ALTER TABLE task_release ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after mobile;
+ALTER TABLE authorize_company ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after friendship_link;

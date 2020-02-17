@@ -26,6 +26,8 @@ public class AuthorizeCompany extends BaseDomain {
     private String mobile;
     /** 友情链接 */
     private String friendshipLink;
+    /** 状态 */
+    private Integer state;
 
     public Long getId() {
         return id;
@@ -89,5 +91,13 @@ public class AuthorizeCompany extends BaseDomain {
 
     public void setFriendshipLink(String friendshipLink) {
         this.friendshipLink = friendshipLink;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

@@ -5,10 +5,8 @@ import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.BusinessCollected;
 import com.mall.exception.base.BusinessValidationException;
-import com.mall.properties.GridProperties;
 import com.mall.service.BusinessCollectedService;
 import com.mall.vo.BusinessCollectedVO;
-import com.mall.vo.CollectedInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,10 +39,12 @@ public class BusinessCollectedController {
     @RequestMapping("/deleteBusinessCollected")
     @ResponseBody
     public Boolean deleteBusinessCollected(BusinessCollected businessCollected) {
-        if (ThreadVariable.getSession() == null) {
-            throw new BusinessValidationException("请重新登录");
+        if(businessCollected.getUserId() == null) {
+            if (ThreadVariable.getSession() == null) {
+                throw new BusinessValidationException("请重新登录");
+            }
+            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
         }
-        businessCollected.setUserId(ThreadVariable.getSession().getUserId());
         return businessCollectedService.deleteBusinessCollected(businessCollected);
     }
 
@@ -54,8 +54,8 @@ public class BusinessCollectedController {
             throw new BusinessValidationException("请重新登录");
         }
         businessCollectedVO.setUserId(ThreadVariable.getSession().getUserId());
-        PageInfo<CollectedInfoVO> businessCollected = businessCollectedService.findBusinessCollectedForPage(businessCollectedVO);
-        GridPage<CollectedInfoVO> gridPage = new GridPage<>(businessCollected);
+        PageInfo<BusinessCollectedVO> businessCollected = businessCollectedService.findBusinessCollectedForPage(businessCollectedVO);
+        GridPage<BusinessCollectedVO> gridPage = new GridPage<>(businessCollected);
         map.put("gridPage", gridPage);
         return "user_collect";
     }
