@@ -59,6 +59,11 @@ public class AuthorizeSiteServiceImpl implements AuthorizeSiteService {
     }
 
     @Override
+    public List<AuthorizeSite> findAuthorizeSiteForList() {
+        return authorizeSiteMapper.findAuthorizeSiteForList();
+    }
+
+    @Override
     public Boolean deleteAuthorizeSite(Long[] ids, HttpServletRequest request) {
         if (ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空!");

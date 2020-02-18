@@ -355,7 +355,6 @@ h1 {
     font-size: 24px;
     font-weight: 500;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 3px;
     margin: 35px 0 35px 0;
     padding: 0;
@@ -365,7 +364,6 @@ label.w3ls-opt {
     font-size: 15px;
     font-weight: 500;
     text-align: left;
-    text-transform: capitalize;
     letter-spacing: 1px;
     padding: 10px 0;
 	color: #666;
@@ -381,7 +379,6 @@ label.w3ls-opt1 {
     font-size: 15px;
     font-weight: 500;
     text-align: center;
-    text-transform: lowercase;
     letter-spacing: 2px;
     color: #666;	
 	font-family: 'Quicksand', sans-serif;
@@ -389,7 +386,6 @@ label.w3ls-opt1 {
 input[type="text"] {
     font-size: 15px;
     font-weight: 500;
-    text-transform: capitalize;
     letter-spacing: 1px;
     padding: 10px;
     margin: 10px 0;
@@ -404,7 +400,6 @@ input[type="text"] {
 input[type="email"] {
     font-size: 15px;
     font-weight: 500;
-    text-transform: capitalize;
 	letter-spacing: 1px;
     width: 100%;
     padding: 10px;
@@ -412,7 +407,7 @@ input[type="email"] {
     outline: none;
 	border: 1px solid #000;
 	background: transparent;
-    color: #fff;
+    color: #000;
     box-sizing: border-box;
 	font-family: 'Raleway', sans-serif;
 }
@@ -431,7 +426,6 @@ input[type="email"] {
 span.w3ls-input textarea {
     font-size: 15px;
     font-weight: 500;
-    text-transform: capitalize;
     letter-spacing: 1px;
     padding: 10px;
     width: 100%;
@@ -439,7 +433,7 @@ span.w3ls-input textarea {
 	border: 1px solid #000;
 	background: transparent;
 	box-sizing: border-box;
-    color: #fff;
+    color: #000;
 	outline: none;
 	min-height: 90px;
 	resize: none;
@@ -479,7 +473,6 @@ span.text:nth-child(5) {
 input[type="submit"] {
 	font-size: 15px;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 2px;
 	display: block;
     padding: 10px;
@@ -496,7 +489,6 @@ input[type="submit"] {
 span.w3ls-text.w3ls-name select {
     font-size: 15px;
     font-weight: 500;
-    text-transform: capitalize;
     letter-spacing: 1px;
     padding: 10px;
     margin: 10px 0;
@@ -518,7 +510,6 @@ footer {
 	font-size: 15px;
 	font-weight: 500;
     text-align: center;
-    text-transform: capitalize;
     letter-spacing: 2px;
     color: #fff;
     margin: 40px 0 30px 0;
@@ -528,7 +519,6 @@ footer a{
 	font-size: 15px;
 	font-weight: 500;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 1px;
 	color: #ff4f81;
 	font-family: 'Lato', sans-serif;

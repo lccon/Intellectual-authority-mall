@@ -50,6 +50,6 @@ public interface IntellectualTaskService {
     List<IntellectualTask> findIntellectualTaskForList();
     int countnum();
     pagebean<IntellectualTask> findByPage(int currentPage);
-    List<IntellectualTask> findByintellectualTask(String product_name,String product_brief);
+    List<IntellectualTask> findByintellectualTask(String productName,String productBrief);
 
 }

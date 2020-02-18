@@ -41,7 +41,7 @@
     </div>
     <div class="container">
         <div class="navbar-header">
-            <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
+            <a href="/" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

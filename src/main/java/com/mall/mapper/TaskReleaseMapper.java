@@ -1,6 +1,7 @@
 package com.mall.mapper;
 
 import com.mall.domain.TaskRelease;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,8 +45,12 @@ public interface TaskReleaseMapper {
      * @return
      */
     TaskRelease getTaskReleaseById(Long id);
+
     int countnum();
+
     List<TaskRelease> findByPage(HashMap<String,Object> map);
+
     List<TaskRelease> getTaskReleaseByTask_category(Integer task_category);
-    List<TaskRelease> findBytaskRelease(String purpose,String detailed_desc);
+
+    List<TaskRelease> findBytaskRelease(@Param("purpose") String purpose, @Param("detailedDesc") String detailedDesc);
 }

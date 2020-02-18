@@ -121,11 +121,12 @@
         </if>
     </select>
 
-    <select id="findByintellectualTask" parameterType="Map" resultMap="intellectualTaskMap">
+    <select id="findByintellectualTask" resultMap="intellectualTaskMap">
         select
         <include refid="columns" />
-        from intellectual_task
-        where product_name LIKE "%"+#{product_name}+"%" or product_brief LIKE "%"+#{product_brief}+"%"
+        FROM intellectual_task
+        WHERE product_name LIKE concat(#{productName},'%')
+        OR product_brief LIKE concat(#{productBrief},'%')
     </select>
 
 </mapper>

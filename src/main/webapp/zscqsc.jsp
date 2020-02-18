@@ -9,7 +9,7 @@
     <jsp:include page="jsinclude.jsp"/>
 </head>
 
-<body onload="url1()">
+<body>
 <div id="center11">
     <!--网页头部-->
     <jsp:include page="head.jsp" />
@@ -97,7 +97,14 @@
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;">
                             <div class="media-left">
-                                <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="img1" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
+                                <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">
+                                    <img  id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
+                                    <script type="text/javascript">
+                                        var url11="${u.productPictureUrl}".split(",");
+                                        var img1=document.getElementById("img${u.id}");
+                                        img1.src="${pageContext.request.contextPath}"+url11[0];
+                                    </script>
+                                </a>
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
@@ -105,13 +112,7 @@
                                 <p id="price">1800元</p>
                                 <p id="desc">浏览量：100</p>
                             </div>
-                            <script type="text/javascript">
-                                function url1() {
-                                    var url11="${u.productPictureUrl}".split(",");
-                                    var img1=document.getElementById("img1");
-                                    img1.src="${pageContext.request.contextPath}"+url11[0];
-                                }
-                            </script>
+
                         </div>
                     </div>
                 </div>
@@ -178,8 +179,8 @@
                 </li>
             </ul>
         </div>
-</div>
-<div class="container">
+
+    <div class="container">
         <div class="row pad-15">
             <div class="col-md-12">
                 <nav class="pagination-outer" aria-label="Page navigation">
@@ -189,10 +190,10 @@
                                 <span aria-hidden="true">«</span>
                             </a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">1</a></li>
-                        <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalCount }" step="1">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0);" onclick="aaa(1)">1</a></li>
+                        <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage}" step="1">
                             <li class="page-item">
-                                <a class="page-link" href="javascript:void(0);" onclick="aaa(${i})">${i}</a>
+                                <a id="page" class="page-link" href="javascript:void(0);" onclick="aaa(${i})">${i}</a>
                             </li>
                         </c:forEach>
                         <li class="page-item">
@@ -205,6 +206,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function aaa(path) {
+            var $contentWrapper = $('#center11')
+            var page=document.getElementById("page");
+            console.log(path);
+            $.ajax({
+                url : "${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage="+path,
+                success : function(rst) {
+                    $contentWrapper.html(rst)
+                }
+            })
+        }
+    </script>
+</div>
     <!--网页底部-->
     <jsp:include page="footer.jsp" />
 
@@ -216,18 +231,8 @@
             });
         })
     </script>
-<script>
-    function aaa(path) {
-        var $contentWrapper = $('#center11')
-        $.ajax({
-            url : "${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage="+path,
-            success : function(rst) {
-                $contentWrapper.html(rst)
-                url1();
-            }
-        })
-    }
-</script>
+
+</div>
 </body>
 
 </html>

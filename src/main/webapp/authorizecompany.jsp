@@ -61,15 +61,16 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;">
-                            <script>
-                                function url1() {
-                                    var url1="${u.companyPictureUrl}".split(",");
-                                    var img1=document.getElementById("img1");
-                                    img1.src="${pageContext.request.contextPath}"+url1[0];
-                                }
-                            </script>
+
                             <div class="media-left">
-                                <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}"><img id="img1" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
+                                <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">
+                                    <img id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
+                                    <script>
+                                    var url1="${u.companyPictureUrl}".split(",");
+                                    var img1=document.getElementById("img${u.id}");
+                                    img1.src="${pageContext.request.contextPath}"+url1[0];
+                                    </script>
+                                </a>
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
@@ -129,7 +130,7 @@
                         </a>
                     </li>
                     <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/authorizeCompany/findpageauthorizeCompanyForList?currentPage=1">1</a></li>
-                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalCount }" step="1">
+                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage}" step="1">
                         <li class="page-item">
                             <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
                         </li>

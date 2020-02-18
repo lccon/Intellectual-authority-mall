@@ -107,10 +107,10 @@
                         <div class="media" style="width: 1150px;">
                             <div class="media-left" >
                                 <c:if test="${u.taskCategory==1}">
-                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;max-height: 190px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
                                 </c:if>
                                 <c:if test="${u.taskCategory==2}">
-                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;max-height: 190px;" src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
                                 </c:if>
                             </div>
                             <div class="media-body" id="caps">
@@ -184,7 +184,7 @@
                         </a>
                     </li>
                     <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=1">1</a></li>
-                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalCount }" step="1">
+                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage }" step="1">
                         <li class="page-item">
                             <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
                         </li>

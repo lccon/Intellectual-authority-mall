@@ -47,8 +47,12 @@ public interface AuthorizeCompanyService {
      * @return
      */
     AuthorizeCompany getAuthorizeCompanyById(Long id);
+
     List<AuthorizeCompany> findAuthorizeCompanyForList();
+
     int countnum();
+
     pagebean<AuthorizeCompany> findByPage(int currentPage);
-    List<AuthorizeCompany> findByauthorizeCompany(String company_name,String company_describe);
+
+    List<AuthorizeCompany> findByauthorizeCompany(String companyName,String companyDescribe);
 }

@@ -103,10 +103,11 @@
         </if>
     </select>
 
-    <select id="findByauthorizeCompany" parameterType="Map" resultMap="authorizeCompanyMap">
+    <select id="findByauthorizeCompany" resultMap="authorizeCompanyMap">
         select
         <include refid="columns" />
-        from authorize_company
-        where company_name LIKE "%"+#{company_name}+"%" or company_describe LIKE "%"+#{company_describe}+"%"
+        FROM authorize_company
+        WHERE company_name LIKE concat(#{companyName},'%')
+        OR company_describe LIKE concat(#{companyDescribe},'%')
     </select>
 </mapper>

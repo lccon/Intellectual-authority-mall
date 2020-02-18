@@ -14,8 +14,11 @@
     <!--网页头部-->
     <jsp:include page="head.jsp" />
     <!--商品行业分类-->
+    <div class="container" id="kind1" style="margin-top:100px;">
+
+    </div>
     <!--搜索框-->
-    <div class="span">
+    <div class="span"  >
         <div class="container">
             <div class="input-group">
                 <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
@@ -40,18 +43,16 @@
 
 
 
-
     <!--需求列表-->
     <div style="margin-top: 50px;">
         <div class="container">
-            <c:if test="${IntellectualTask!=null&&IntellectualTask.isEmpty()}">
             <c:forEach items="${IntellectualTask}" var="u">
                 <div class="product">
                     <div class="row">
                         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                             <div class="media" style="width: 1150px;">
                                 <div class="media-left">
-                                    <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="img1" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
+                                    <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="intellimg${u.id}" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
@@ -62,7 +63,7 @@
                                 <script type="text/javascript">
                                     function url1() {
                                         var url11="${u.productPictureUrl}".split(",");
-                                        var img1=document.getElementById("img1");
+                                        var img1=document.getElementById("intellimg${u.id}");
                                         img1.src="${pageContext.request.contextPath}"+url11[0];
                                     }
                                 </script>
@@ -99,7 +100,107 @@
                     </div>
                 </div>
             </c:forEach>
-            </c:if>
+            <c:forEach items="${AuthorizeCompanylist}" var="u">
+                <div class="product">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
+                            <div class="media" style="width: 1150px;">
+                                <div class="media-left">
+                                    <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}"><img  id="authimg${u.id}" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
+                                </div>
+                                <div class="media-body" id="caps">
+                                    <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
+                                    <p id="desc">${u.companyDescribe }</p>
+                                    <p id="desc">浏览量：100</p>
+                                </div>
+                                <script type="text/javascript">
+                                    function url1() {
+                                        var url11="${u.companyPictureUrl}".split(",");
+                                        var img1=document.getElementById("authimg${u.id}");
+                                        img1.src="${pageContext.request.contextPath}"+url11[0];
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="warp">
+                        <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        <script>
+                            function addcollect() {
+                                var a=document.getElementById("addcollect");
+                                var abc=document.getElementById("abc");
+                                $.ajax({
+                                    type:"POST",
+                                    url: "/businessCollected/addBusinessCollected?moduleType=2&moduleTypeId=${u.id}",
+                                    cache:false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(result) {
+                                        if(result){
+                                            a.class="glyphicon glyphicon-heart";
+                                            abc.innerText="收藏成功";
+                                            console.log(a.class);
+                                        }
+                                        else {
+                                            console.log("456");
+                                        }
+
+                                    },
+                                })
+                            }
+                        </script>
+                        <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
+                    </div>
+                </div>
+            </c:forEach>
+
+            <c:forEach items="${TaskRelease}" var="u">
+                <div class="product">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
+                            <div class="media" style="width: 1150px;">
+                                <div class="media-left">
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img  id="taskimg${u.id}" style="max-width:450px;max-height: 190px;" src="" class="media-object" alt=""></a>
+                                </div>
+                                <div class="media-body" id="caps">
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
+                                    <p id="desc">${u.detailedDesc }</p>
+                                    <p id="desc">浏览量：100</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="warp">
+                        <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        <script>
+                            function addcollect() {
+                                var a=document.getElementById("addcollect");
+                                var abc=document.getElementById("abc");
+                                $.ajax({
+                                    type:"POST",
+                                    url: "/businessCollected/addBusinessCollected?moduleType=3&moduleTypeId=${u.id}",
+                                    cache:false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(result) {
+                                        if(result){
+                                            a.class="glyphicon glyphicon-heart";
+                                            abc.innerText="收藏成功";
+                                            console.log(a.class);
+                                        }
+                                        else {
+                                            console.log("456");
+                                        }
+
+                                    },
+                                })
+                            }
+                        </script>
+                        <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
 
     </div>

@@ -1,18 +1,13 @@
 package com.mall.controller;
 
-import com.mall.domain.AuthorizeCompany;
-import com.mall.domain.IntellectualTask;
-import com.mall.domain.PolicyAdvice;
-import com.mall.domain.TaskRelease;
-import com.mall.service.AuthorizeCompanyService;
-import com.mall.service.IntellectualTaskService;
-import com.mall.service.PolicyAdviceService;
-import com.mall.service.TaskReleaseService;
+import com.mall.domain.*;
+import com.mall.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -32,7 +27,10 @@ public class IndexController {
     private TaskReleaseService taskReleaseService;
     @Autowired
     private PolicyAdviceService policyAdviceService;
-
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
+    @Autowired
+    private LeaveMessageService leaveMessageService;
 
     @RequestMapping("/")
     public String main(ModelMap map) {
@@ -41,6 +39,8 @@ public class IndexController {
         List<TaskRelease> TaskReleaselist1=taskReleaseService.getTaskReleaseByTask_category(2);
         List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList();
         List<PolicyAdvice> PolicyAdvicelist=policyAdviceService.findPolicyAdviceForList();
+        List<AuthorizeSite> AuthorizeSitelist=authorizeSiteService.findAuthorizeSiteForList();
+        map.put("AuthorizeSite",AuthorizeSitelist);
         map.put("IntellectualTask",IntellectualTasklist);
         map.put("TaskRelease",TaskReleaselist);
         map.put("TaskRelease1",TaskReleaselist1);
@@ -50,16 +50,24 @@ public class IndexController {
     }
 
     @RequestMapping("/find")
-    public String find(ModelMap map){
-        String str1="卖了";
+    public String find(String str1,ModelMap map){
+        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findByauthorizeCompany("达","达");
         List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findByintellectualTask(str1,str1);
         List<TaskRelease> TaskReleaselist=taskReleaseService.findBytaskRelease(str1,str1);
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findByauthorizeCompany(str1,str1);
         map.put("IntellectualTask",IntellectualTasklist);
         map.put("TaskRelease",TaskReleaselist);
         map.put("AuthorizeCompany",AuthorizeCompanylist);
         return "/findpage";
     }
+    @RequestMapping("/addLeaveMessage")
+    @ResponseBody
+    public LeaveMessage addLeaveMessage(LeaveMessage leaveMessage) {
+        return leaveMessageService.addLeaveMessage(leaveMessage);
+    }
 
+    @RequestMapping("/post-message")
+    public String postmessage(){
+        return "/post-message";
+    }
 
 }

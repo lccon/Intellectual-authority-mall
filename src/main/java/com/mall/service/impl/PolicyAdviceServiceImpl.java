@@ -123,7 +123,7 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=1;
+        int pageSize=3;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数

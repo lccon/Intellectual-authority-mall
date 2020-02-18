@@ -91,7 +91,8 @@ public class LoginSessionFilter implements Filter {
                 || "/taskRelease/getTaskReleaseById".equals(uri)
                 || "/policyAdvice/getPolicyAdviceById".equals(uri)
                 || "/post-message.jsp".equals(uri)
-                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)) {
+                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
+                /*|| "/find".equals(uri)*/) {
             return true;
         }
         return false;

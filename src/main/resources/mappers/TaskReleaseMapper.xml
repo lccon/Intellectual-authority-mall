@@ -109,10 +109,11 @@
         </if>
     </select>
 
-    <select id="findBytaskRelease" parameterType="Map" resultMap="taskReleaseMap">
+    <select id="findBytaskRelease" resultMap="taskReleaseMap">
         select
         <include refid="columns" />
-        from task_release
-        where purpose LIKE "%"+#{purpose}+"%" or detailed_desc LIKE "%"+#{detailed_desc}+"%"
+        FROM task_release
+        WHERE purpose LIKE concat(#{purpose},'%')
+        OR detailed_desc LIKE concat(#{detailedDesc},'%')
     </select>
 </mapper>

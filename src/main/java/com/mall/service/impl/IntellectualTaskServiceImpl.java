@@ -117,8 +117,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     }
 
     @Override
-    public List<IntellectualTask> findByintellectualTask(String product_name,String product_brief) {
-        return intellectualTaskMapper.findByintellectualTask(product_name,product_brief);
+    public List<IntellectualTask> findByintellectualTask(String productName,String productBrief) {
+        return intellectualTaskMapper.findByintellectualTask(productName,productBrief);
     }
 
 
@@ -134,7 +134,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=1;
+        int pageSize=3;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数

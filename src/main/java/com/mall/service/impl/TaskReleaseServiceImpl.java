@@ -83,8 +83,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         return taskReleaseMapper.getTaskReleaseByTask_category(taskCategory);
     }
     @Override
-    public List<TaskRelease> findBytaskRelease(String purpose,String detailed_desc) {
-        return taskReleaseMapper.findBytaskRelease(purpose,detailed_desc);
+    public List<TaskRelease> findBytaskRelease(String purpose,String detailedDesc) {
+        return taskReleaseMapper.findBytaskRelease(purpose,detailedDesc);
     }
     @Override
     public TaskRelease getTaskReleaseById(Long id) {
@@ -110,7 +110,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=1;
+        int pageSize=3;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数

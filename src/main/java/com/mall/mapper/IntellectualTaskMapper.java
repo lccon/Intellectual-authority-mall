@@ -1,6 +1,8 @@
 package com.mall.mapper;
 
 import com.mall.domain.IntellectualTask;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,7 +47,10 @@ public interface IntellectualTaskMapper {
      * @return
      */
     IntellectualTask getIntellectualTaskById(Long id);
+
     int countnum();
+
     List<IntellectualTask> findByPage(HashMap<String,Object> map);
-    List<IntellectualTask> findByintellectualTask(String product_name,String product_brief);
+
+    List<IntellectualTask> findByintellectualTask(@Param("productName") String productName, @Param("productBrief") String productBrief);
 }

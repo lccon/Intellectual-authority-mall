@@ -5,6 +5,7 @@ import com.mall.domain.AuthorizeSite;
 import com.mall.vo.AuthorizeSiteVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Description:
@@ -45,5 +46,6 @@ public interface AuthorizeSiteService {
      * @return
      */
     AuthorizeSite getAuthorizeSiteById(Long id);
+    List<AuthorizeSite>findAuthorizeSiteForList();
 
 }

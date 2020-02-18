@@ -14,17 +14,35 @@ pageEncoding="UTF-8"%>
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3" ></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			<li data-target="#myCarousel" data-slide-to="5"></li>
 		</ol>
 		<div class="carousel-inner">
-			<div class="item active" style="background:#223240">
-				<img src="img/bananer1.jpg" alt="第一张">
-			</div>
-			<div class="item" style="background:#F5E4DC;">
-				<img src="img/bananer2.jpg" alt="第二张">
-			</div>
-			<div class="item" style="background:#DE2A2D;">
-				<img src="img/bananer3.jpg" alt="第三张">
-			</div>
+			<c:forEach items="${AuthorizeSite}" var="u" begin="0" end="0" step="1">
+				<div class="item active" style="background:#223240">
+					<a href="http://${u.addressUrl}" target="_blank">
+						<img id="zauthimg${u.id}" src="" alt="第一张">
+						<script>
+                            var authurl1="${u.sitePictureUrl}".split(",");
+                            var authimg1=document.getElementById("zauthimg${u.id}");
+                            authimg1.src="${pageContext.request.contextPath}"+authurl1[0];
+						</script>
+					</a>
+				</div>
+			</c:forEach>
+			<c:forEach items="${AuthorizeSite}" var="u" begin="1" end="5" step="1">
+				<div class="item" style="background:#223240">
+					<a href="http://${u.addressUrl}" target="_blank">
+						<img id="authimg${u.id}" src="" alt="">
+						<script>
+                            var authurl2="${u.sitePictureUrl}".split(",");
+                            var authimg2=document.getElementById("authimg${u.id}");
+                            authimg2.src="${pageContext.request.contextPath}"+authurl2[0];
+						</script>
+					</a>
+				</div>
+			</c:forEach>
 			<!-- 		<div style="background:#eee;">
 			<img src="img/slide.png" alt="第三张">
 		</div> -->
@@ -43,8 +61,15 @@ pageEncoding="UTF-8"%>
 			<div class="input-group">
 				<input type="text" class="form-control" id="input1" placeholder="默认搜索项">
 				<div class="input-group-btn">
-					<a class="btn btn-default" id="button1" href="/find">搜索</a>
-					<button class="btn btn-default" id="button2">免费发布信息</button>
+					<a class="btn btn-default" id="button1" href="javascript:void(0);" onclick="findpage()">搜索</a>
+					<script>
+						function findpage() {
+							var a1=document.getElementById("button1");
+							var input1=document.getElementById("input1").value;
+							a1.href="/find?str1="+input1;
+                        }
+					</script>
+					<a href="/post-message" class="btn btn-default" id="button2">免费发布信息</a>
 				</div>
 			</div>
 
@@ -428,13 +453,11 @@ pageEncoding="UTF-8"%>
 <!--意见反馈-->
 <div class="w3ls-main" id="ll">
 	<div class="close1" style="float: right">
-		<a href="#" id="close1" ><span class="glyphicon glyphicon-remove"></span></a>
+		<a href="javascript:void(0);" id="close1" ><span class="glyphicon glyphicon-remove"></span></a>
 	</div>
 	<div class="w3ls-form">
 		<h1>意见反馈</h1>
-	<form action="#" method="post">
-
-	<ul class="fields">
+			<ul class="fields">
 		<li>	
 			<label class="w3ls-opt">您的姓名<span class="w3ls-star"> * </span></label>
 			<div class="w3ls-name">	
@@ -457,19 +480,42 @@ pageEncoding="UTF-8"%>
 		</li>
 		<div class="input">
 			<label class="w3ls-opt1">您的问题或建议<span> ?</span></label>
-			<span class="w3ls-input"><textarea placeholder="请输入您的问题或建议"></textarea></span>
+			<span class="w3ls-input"><textarea name="message" id="message" placeholder="请输入您的问题或建议"></textarea></span>
 		</div>
 	</ul>
 	<div class="clear"></div>
 		<div class="w3ls-btn">
-			<input type="submit" value="提交">
+			<input type="submit" value="提交" onclick="addLevemessage()">
 		</div>
-	</form>
 	</div>
 	</div>
 
 <!--页面底部-->
 	<jsp:include page="footer.jsp"/>
+    <script type="text/javascript">
+        function addLevemessage(){
+            var message=document.getElementById("message").value;
+            var box = document.getElementById("ll");
+            $.ajax({
+                type:"POST",
+                url: "/addLeaveMessage?message="+message,
+                async : false,
+                data:{type:1},
+                timeout:1000,
+                success: function(data) {
+                    if(data != null && !data.id){
+                        console.log("新增失败");
+                        box.style.display="none";
+                    }
+                    else{
+                        console.log("新增成功");
+                        box.style.display="none";
+                    }
+
+                },
+            })
+        }
+    </script>
 	<script type="text/javascript">
 		//轮播自动播放
 		$('#myCarousel').carousel({
@@ -507,7 +553,6 @@ pageEncoding="UTF-8"%>
 	</script>
 
 	<script>
-		console.log("123");
         var idea = document.getElementById("iede");
         var box = document.getElementById("ll");
 		var close1=document.getElementById("close1");

@@ -37,16 +37,18 @@
         <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=3" ><a  class="item-inner" href="javascript:void(0);">任务发布</a></li>
     </ul>
 </div>
+    <c:if test="${gridPage.rows.size() == 0}">
 <div class="info">
     <ul style="margin-left: 30px;">
         <strong style="margin-left: 150px;">
             <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
             您还没有收藏信息
-            ${gridPage.rows}
         </strong>
         <li style="margin-left: 174px;">去<a style="color: #f46;" href="#">首页</a>随便逛逛，看看大家都在发些什么信息</li>
     </ul>
 </div>
+    </c:if>
+<c:if test="${gridPage.rows.size() > 0}">
 
 <div style="margin-top: 50px;">
     <c:forEach items="${gridPage.rows}" var="u">
@@ -73,6 +75,7 @@
     </div>
     </c:forEach>
 </div>
+</c:if>
 </div>
 <script>
     function deletecollect(userid,moduletype,moduletypeid) {

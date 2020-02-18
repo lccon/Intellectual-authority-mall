@@ -63,8 +63,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
-    public List<AuthorizeCompany> findByauthorizeCompany(String company_name,String company_describe) {
-        return authorizeCompanyMapper.findByauthorizeCompany(company_name,company_describe);
+    public List<AuthorizeCompany> findByauthorizeCompany(String companyName,String companyDescribe) {
+        return authorizeCompanyMapper.findByauthorizeCompany(companyName,companyDescribe);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=1;
+        int pageSize=3;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
