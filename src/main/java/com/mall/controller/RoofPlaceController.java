@@ -24,14 +24,7 @@ public class RoofPlaceController {
 
     @RequestMapping("/addRoofPlace")
     @ResponseBody
-    public RoofPlace addRoofPlace() {
-        RoofPlace roofPlace = new RoofPlace();
-        roofPlace.setModuleType(1);
-        roofPlace.setModuleTypeId(2L);
-        roofPlace.setAuthorizeState(2);
-        roofPlace.setTopDuration(1);
-        roofPlace.setTopStartTime(new Date());
-        roofPlace.setTopEndTime(new Date());
+    public RoofPlace addRoofPlace(RoofPlace roofPlace) {
         return roofPlaceService.addRoofPlace(roofPlace);
     }
 

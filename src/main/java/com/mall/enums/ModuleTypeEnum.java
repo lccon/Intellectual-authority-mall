@@ -10,7 +10,8 @@ public enum ModuleTypeEnum {
 
     INTELLECTUAL_TASK(1, "知识产权"),
     AUTHORIZE_COMPANY(2, "代办公司"),
-    TASK_RELEASE(3, "需求任务");
+    TASK_RELEASE(3, "需求任务"),
+    POLICY_ADVICE(4, "政策资讯");
 
     /** 类型编码 */
     private Integer moduleCode;

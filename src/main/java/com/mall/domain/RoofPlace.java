@@ -13,13 +13,13 @@ import java.util.Date;
 public class RoofPlace extends BaseDomain {
 
     private Long id;
-    /** 模块类型，1:知识产权，2:代办公司，3:需求任务 */
+    /** 模块类型，1:知识产权，2:代办公司，3:需求任务，4:政策咨询 */
     private Integer moduleType;
     /** 模块id */
     private Long moduleTypeId;
     /** 认证状态 0:待审核 1:驳回 2:置顶 */
     private Integer authorizeState;
-    /** 置顶时长 */
+    /** 置顶时长 天数*/
     private Integer topDuration;
     /** 置顶开始时间 */
     private Date topStartTime;

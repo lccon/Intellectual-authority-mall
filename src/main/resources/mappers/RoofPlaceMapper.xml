@@ -55,16 +55,15 @@
         and module_type_id = #{moduleTypeId}
     </update>
 
-    <update id="updateAuthorizeState">
-        UPDATE roof_place SET authorize_state = 0
-        WHERE top_end_time <![CDATA[ <= ]]> now()
-        and authorize_state = 2
-    </update>
+    <delete id="deleteRoofPlace" parameterType="com.mall.domain.RoofPlace">
+        DELETE FROM roof_place
+        WHERE module_type = #{moduleType}
+        and module_type_id = #{moduleTypeId}
+    </delete>
 
-    <select id="findRoofPlaceByStateForList" resultMap="roofPlaceMap">
+    <select id="getRoofPlace" parameterType="com.mall.domain.RoofPlace" resultMap="roofPlaceMap">
         SELECT <include refid="columns"/> FROM roof_place
-        WHERE authorize_state = 2
-        and top_end_time <![CDATA[ <= ]]> now()
+        WHERE module_type = #{moduleType}
+        and module_type_id = #{moduleTypeId}
     </select>
-
 </mapper>

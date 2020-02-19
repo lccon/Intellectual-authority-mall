@@ -25,14 +25,16 @@ public interface RoofPlaceMapper {
     void updateRoofPlace(RoofPlace roofPlace);
 
     /**
-     * 修改置顶状态
-     */
-    void updateAuthorizeState();
-
-    /**
-     * 通过状态查询置顶信息
+     * 删除置顶信息
+     * @param roofPlace
      * @return
      */
-    List<RoofPlace> findRoofPlaceByStateForList();
+    Integer deleteRoofPlace(RoofPlace roofPlace);
 
+    /**
+     * 获取置顶信息
+     * @param roofPlace
+     * @return
+     */
+    RoofPlace getRoofPlace(RoofPlace roofPlace);
 }
