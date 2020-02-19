@@ -2,12 +2,16 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.constant.CommonConstants;
 import com.mall.domain.PolicyAdvice;
+import com.mall.domain.RoofPlace;
 import com.mall.domain.pagebean;
+import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.PolicyAdviceMapper;
 import com.mall.service.PolicyAdviceService;
+import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
 import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +36,8 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
 
     @Autowired
     private PolicyAdviceMapper policyAdviceMapper;
+    @Autowired
+    private RoofPlaceService roofPlaceService;
 
     @Override
     public PolicyAdvice addPolicyAdvice(PolicyAdvice policyAdvice) {
@@ -38,6 +46,12 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             policyAdviceMapper.addPolicyAdvice(policyAdvice);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+            roofPlace.setModuleTypeId(policyAdvice.getId());
+            roofPlace.setTopDuration(policyAdvice.getTopDuration());
+            roofPlace.setAuthorizeState(policyAdvice.getRoofPlaceState());
+            roofPlaceService.addRoofPlace(roofPlace);
             return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("新增消息出错!", e);
@@ -51,6 +65,11 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             policyAdviceMapper.updatePolicyAdvice(policyAdvice);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+            roofPlace.setModuleTypeId(policyAdvice.getId());
+            roofPlace.setTopDuration(policyAdvice.getTopDuration());
+            roofPlaceService.updateRoofPlace(roofPlace);
             return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("修改消息出错!", e);
@@ -73,6 +92,10 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
                         file.delete();
                     }
                 }
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+                roofPlace.setModuleTypeId(id);
+                roofPlaceService.deleteRoofPlace(roofPlace);
             }
             Integer count = policyAdviceMapper.deletePolicyAdvice(ids);
             return count > 0;
@@ -86,8 +109,9 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         try {
             PageHelper.startPage(policyAdviceVO.getPage(), policyAdviceVO.getRows(),
                     StringUtil.joinSortFieldOrder(policyAdviceVO.getSidx(), policyAdviceVO.getSord()));
-            List<PolicyAdvice> freeMessageList = policyAdviceMapper.findPolicyAdviceForList();
-            return new PageInfo<>(freeMessageList);
+            List<PolicyAdvice> policyAdviceList = policyAdviceMapper.findPolicyAdviceForList();
+            handlePolicyAdvice(policyAdviceList);
+            return new PageInfo<>(policyAdviceList);
         } catch (Exception e) {
             throw new ServiceValidationException("分页查询数据出错!", e);
         }
@@ -105,6 +129,14 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             PolicyAdvice policyAdvice = policyAdviceMapper.getPolicyAdviceById(id);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+            roofPlace.setModuleTypeId(policyAdvice.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                policyAdvice.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                policyAdvice.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
             return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("获取单条信息出错！", e);
@@ -139,7 +171,32 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         map.put("size", pageBean.getPageSize());
         //封装每页显示的数据
         List<PolicyAdvice> lists = policyAdviceMapper.findByPage(map);
+        handlePolicyAdvice(lists);
+        Collections.sort(lists, new Comparator<PolicyAdvice>() {
+            @Override
+            public int compare(PolicyAdvice o1, PolicyAdvice o2) {
+                if (o1.getRoofPlaceState() != null && o2.getRoofPlaceState() != null &&
+                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
+                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
+                } else {
+                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
+                }
+            }
+        });
         pageBean.setLists(lists);
         return pageBean;
+    }
+
+    private void handlePolicyAdvice(List<PolicyAdvice> policyAdviceList) {
+        RoofPlace roofPlace = new RoofPlace();
+        roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+        for (PolicyAdvice policyAdvice : policyAdviceList) {
+            roofPlace.setModuleTypeId(policyAdvice.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                policyAdvice.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                policyAdvice.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+        }
     }
 }

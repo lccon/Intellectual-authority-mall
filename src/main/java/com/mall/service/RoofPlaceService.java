@@ -35,6 +35,6 @@ public interface RoofPlaceService {
      * 查询置顶信息
      * @return
      */
-    Boolean countRoofPlaceDetail(RoofPlace roofPlace);
+    RoofPlace getRoofPlaceInfo(RoofPlace roofPlace);
 
 }

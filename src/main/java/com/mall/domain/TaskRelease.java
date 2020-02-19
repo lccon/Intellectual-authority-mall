@@ -2,6 +2,8 @@ package com.mall.domain;
 
 import com.mall.base.BaseDomain;
 
+import java.util.Date;
+
 /**
  * Description:
  *
@@ -27,6 +29,10 @@ public class TaskRelease extends BaseDomain{
     private String mobile;
     /** 状态 */
     private Integer state;
+    /** 是否置顶 */
+    private Integer roofPlaceState;
+    /** 置顶时长 天数*/
+    private Integer topDuration;
 
     public Long getId() {
         return id;
@@ -98,5 +104,21 @@ public class TaskRelease extends BaseDomain{
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public Integer getRoofPlaceState() {
+        return roofPlaceState;
+    }
+
+    public void setRoofPlaceState(Integer roofPlaceState) {
+        this.roofPlaceState = roofPlaceState;
+    }
+
+    public Integer getTopDuration() {
+        return topDuration;
+    }
+
+    public void setTopDuration(Integer topDuration) {
+        this.topDuration = topDuration;
     }
 }

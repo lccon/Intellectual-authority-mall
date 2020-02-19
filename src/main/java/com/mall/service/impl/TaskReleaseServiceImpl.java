@@ -2,17 +2,25 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.constant.CommonConstants;
+import com.mall.domain.IntellectualTask;
+import com.mall.domain.RoofPlace;
 import com.mall.domain.TaskRelease;
 import com.mall.domain.pagebean;
+import com.mall.enums.ModuleTypeEnum;
+import com.mall.enums.RoofPlaceStateEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.TaskReleaseMapper;
+import com.mall.service.RoofPlaceService;
 import com.mall.service.TaskReleaseService;
 import com.mall.utils.StringUtil;
 import com.mall.vo.TaskReleaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +35,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
 
     @Autowired
     private TaskReleaseMapper taskReleaseMapper;
+    @Autowired
+    private RoofPlaceService roofPlaceService;
 
     @Override
     public TaskRelease addTaskRelease(TaskRelease taskRelease) {
@@ -35,6 +45,12 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             taskReleaseMapper.addTaskRelease(taskRelease);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+            roofPlace.setModuleTypeId(taskRelease.getId());
+            roofPlace.setTopDuration(taskRelease.getTopDuration());
+            roofPlace.setAuthorizeState(taskRelease.getRoofPlaceState());
+            roofPlaceService.addRoofPlace(roofPlace);
             return taskRelease;
         } catch (Exception e) {
             throw new ServiceValidationException("新增需求任务出错!", e);
@@ -48,6 +64,11 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             taskReleaseMapper.updateTaskRelease(taskRelease);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+            roofPlace.setModuleTypeId(taskRelease.getId());
+            roofPlace.setTopDuration(taskRelease.getTopDuration());
+            roofPlaceService.updateRoofPlace(roofPlace);
             return taskRelease;
         } catch (Exception e) {
             throw new ServiceValidationException("修改需求任务出错!", e);
@@ -61,6 +82,13 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             Integer count = taskReleaseMapper.deleteTaskRelease(ids);
+            for (Long id : ids) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+                roofPlace.setModuleTypeId(id);
+                roofPlaceService.deleteRoofPlace(roofPlace);
+            }
+
             return count > 0;
         } catch (Exception e) {
             throw new ServiceValidationException("删除需求任务出错!", e);
@@ -73,6 +101,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
             PageHelper.startPage(taskReleaseVO.getPage(), taskReleaseVO.getRows(),
                     StringUtil.joinSortFieldOrder(taskReleaseVO.getSidx(), taskReleaseVO.getSord()));
             List<TaskRelease> taskReleaseList = taskReleaseMapper.findTaskReleaseForList();
+            handleTaskRelease(taskReleaseList);
             return new PageInfo<>(taskReleaseList);
         } catch (Exception e) {
             throw new ServiceValidationException("获取需求任务列表出错!", e);
@@ -92,7 +121,16 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            return taskReleaseMapper.getTaskReleaseById(id);
+            TaskRelease taskRelease = taskReleaseMapper.getTaskReleaseById(id);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+            roofPlace.setModuleTypeId(taskRelease.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                taskRelease.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            return taskRelease;
         } catch (Exception e) {
             throw new ServiceValidationException("获取需求任务信息出错!", e);
         }
@@ -126,7 +164,32 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         map.put("size", pageBean.getPageSize());
         //封装每页显示的数据
         List<TaskRelease> lists = taskReleaseMapper.findByPage(map);
+        handleTaskRelease(lists);
+        Collections.sort(lists, new Comparator<TaskRelease>() {
+            @Override
+            public int compare(TaskRelease o1, TaskRelease o2) {
+                if (o1.getRoofPlaceState() != null && o2.getRoofPlaceState() != null &&
+                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
+                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
+                } else {
+                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
+                }
+            }
+        });
         pageBean.setLists(lists);
         return pageBean;
+    }
+
+    private void handleTaskRelease(List<TaskRelease> taskReleaseList) {
+        RoofPlace roofPlace = new RoofPlace();
+        roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+        for (TaskRelease taskRelease : taskReleaseList) {
+            roofPlace.setModuleTypeId(taskRelease.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                taskRelease.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+        }
     }
 }

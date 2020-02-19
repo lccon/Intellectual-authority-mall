@@ -2,12 +2,17 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.constant.CommonConstants;
 import com.mall.domain.AuthorizeCompany;
+import com.mall.domain.RoofPlace;
+import com.mall.domain.TaskRelease;
 import com.mall.domain.pagebean;
+import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.AuthorizeCompanyMapper;
 import com.mall.service.AuthorizeCompanyService;
+import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
 import com.mall.vo.AuthorizeCompanyVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +37,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
 
     @Autowired
     private AuthorizeCompanyMapper authorizeCompanyMapper;
+    @Autowired
+    private RoofPlaceService roofPlaceService;
 
     @Override
     public AuthorizeCompany addAuthorizeCompany(AuthorizeCompany authorizeCompany) {
@@ -38,6 +47,12 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
         try {
             authorizeCompanyMapper.addAuthorizeCompany(authorizeCompany);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+            roofPlace.setModuleTypeId(authorizeCompany.getId());
+            roofPlace.setTopDuration(authorizeCompany.getTopDuration());
+            roofPlace.setAuthorizeState(authorizeCompany.getRoofPlaceState());
+            roofPlaceService.addRoofPlace(roofPlace);
             return authorizeCompany;
         } catch (Exception e) {
             throw new ServiceValidationException("新增代办公司信息出错", e);
@@ -51,6 +66,11 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
         try {
             authorizeCompanyMapper.updateAuthorizeCompany(authorizeCompany);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+            roofPlace.setModuleTypeId(authorizeCompany.getId());
+            roofPlace.setTopDuration(authorizeCompany.getTopDuration());
+            roofPlaceService.updateRoofPlace(roofPlace);
             return authorizeCompany;
         } catch (Exception e) {
             throw new ServiceValidationException("修改代办公司信息出错", e);
@@ -83,6 +103,10 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
                         file.delete();
                     }
                 }
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                roofPlace.setModuleTypeId(id);
+                roofPlaceService.deleteRoofPlace(roofPlace);
             }
             Integer count = authorizeCompanyMapper.deleteAuthorizeCompany(ids);
             return count > 0;
@@ -97,6 +121,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
             PageHelper.startPage(authorizeCompanyVO.getPage(), authorizeCompanyVO.getRows(),
                     StringUtil.joinSortFieldOrder(authorizeCompanyVO.getSidx(), authorizeCompanyVO.getSord()));
             List<AuthorizeCompany> authorizeCompanyList = authorizeCompanyMapper.findAuthorizeCompanyForList();
+            handleAuthorizeCompany(authorizeCompanyList);
             return new PageInfo<>(authorizeCompanyList);
         } catch (Exception e) {
             throw new ServiceValidationException("查询代办公司列表出错!", e);
@@ -109,7 +134,16 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            return authorizeCompanyMapper.getAuthorizeCompanyById(id);
+            AuthorizeCompany authorizeCompany = authorizeCompanyMapper.getAuthorizeCompanyById(id);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+            roofPlace.setModuleTypeId(authorizeCompany.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            return authorizeCompany;
         } catch (Exception e) {
             throw new ServiceValidationException("获取单条代办公司信息出错!", e);
         }
@@ -143,7 +177,32 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         map.put("size", pageBean.getPageSize());
         //封装每页显示的数据
         List<AuthorizeCompany> lists = authorizeCompanyMapper.findByPage(map);
+        handleAuthorizeCompany(lists);
+        Collections.sort(lists, new Comparator<AuthorizeCompany>() {
+            @Override
+            public int compare(AuthorizeCompany o1, AuthorizeCompany o2) {
+                if (o1.getRoofPlaceState() != null && o2.getRoofPlaceState() != null &&
+                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
+                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
+                } else {
+                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
+                }
+            }
+        });
         pageBean.setLists(lists);
         return pageBean;
+    }
+
+    private void handleAuthorizeCompany(List<AuthorizeCompany> authorizeCompanyList) {
+        RoofPlace roofPlace = new RoofPlace();
+        roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+        for (AuthorizeCompany authorizeCompany : authorizeCompanyList) {
+            roofPlace.setModuleTypeId(authorizeCompany.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+        }
     }
 }

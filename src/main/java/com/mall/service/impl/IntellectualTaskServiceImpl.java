@@ -2,11 +2,16 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.constant.CommonConstants;
 import com.mall.domain.IntellectualTask;
+import com.mall.domain.PolicyAdvice;
+import com.mall.domain.RoofPlace;
+import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.IntellectualTaskMapper;
 import com.mall.service.IntellectualTaskService;
+import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,8 @@ import com.mall.domain.pagebean;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.HashMap;
 /**
@@ -29,6 +36,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
 
     @Autowired
     private IntellectualTaskMapper intellectualTaskMapper;
+    @Autowired
+    private RoofPlaceService roofPlaceService;
 
     @Override
     public IntellectualTask addIntellectualTask(IntellectualTask intellectualTask) {
@@ -37,6 +46,12 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             intellectualTaskMapper.addIntellectualTask(intellectualTask);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+            roofPlace.setModuleTypeId(intellectualTask.getId());
+            roofPlace.setTopDuration(intellectualTask.getTopDuration());
+            roofPlace.setAuthorizeState(intellectualTask.getRoofPlaceState());
+            roofPlaceService.addRoofPlace(roofPlace);
             return intellectualTask;
         } catch (Exception e) {
             throw new ServiceValidationException("新增知识产权信息出错!", e);
@@ -50,6 +65,11 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             intellectualTaskMapper.updateIntellectualTask(intellectualTask);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+            roofPlace.setModuleTypeId(intellectualTask.getId());
+            roofPlace.setTopDuration(intellectualTask.getTopDuration());
+            roofPlaceService.updateRoofPlace(roofPlace);
             return intellectualTask;
         } catch (Exception e) {
             throw new ServiceValidationException("修改知识产权信息出错!", e);
@@ -79,6 +99,10 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
                         file.delete();
                     }
                 }
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                roofPlace.setModuleTypeId(id);
+                roofPlaceService.deleteRoofPlace(roofPlace);
             }
             Integer count = intellectualTaskMapper.deleteIntellectualTask(ids);
             return count > 0;
@@ -93,6 +117,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
             PageHelper.startPage(intellectualTaskVO.getPage(), intellectualTaskVO.getRows(),
                     StringUtil.joinSortFieldOrder(intellectualTaskVO.getSidx(), intellectualTaskVO.getSord()));
             List<IntellectualTask> intellectualTaskList = intellectualTaskMapper.findIntellectualTaskForList();
+            handleIntellectualTask(intellectualTaskList);
             return new PageInfo<>(intellectualTaskList);
         } catch (Exception e) {
             throw new ServiceValidationException("分页查询知识产权信息出错!", e);
@@ -105,7 +130,16 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
             throw new BusinessValidationException("参数不能为空");
         }
         try {
-            return intellectualTaskMapper.getIntellectualTaskById(id);
+            IntellectualTask intellectualTask = intellectualTaskMapper.getIntellectualTaskById(id);
+            RoofPlace roofPlace = new RoofPlace();
+            roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+            roofPlace.setModuleTypeId(intellectualTask.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            return intellectualTask;
         } catch (Exception e) {
             throw new ServiceValidationException("获取单条数据出错!", e);
         }
@@ -150,8 +184,32 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         map.put("size", pageBean.getPageSize());
         //封装每页显示的数据
         List<IntellectualTask> lists = intellectualTaskMapper.findByPage(map);
+        handleIntellectualTask(lists);
+        Collections.sort(lists, new Comparator<IntellectualTask>() {
+            @Override
+            public int compare(IntellectualTask o1, IntellectualTask o2) {
+                if (o1.getRoofPlaceState()!= null && o2.getRoofPlaceState() != null &&
+                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
+                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
+                } else {
+                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
+                }
+            }
+        });
         pageBean.setLists(lists);
         return pageBean;
     }
 
+    private void handleIntellectualTask(List<IntellectualTask> intellectualTaskList) {
+        RoofPlace roofPlace = new RoofPlace();
+        roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+        for (IntellectualTask intellectualTask:intellectualTaskList) {
+            roofPlace.setModuleTypeId(intellectualTask.getId());
+            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+            if (roofPlaceInfo != null) {
+                intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+        }
+    }
 }

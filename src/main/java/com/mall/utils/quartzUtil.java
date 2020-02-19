@@ -1,6 +1,5 @@
 package com.mall.utils;
 
-import com.mall.quartz.DurTimeScheduler;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +38,7 @@ public class quartzUtil {
         Trigger triggerCon = scheduler.getTrigger(TriggerKey.triggerKey(quartzName, quartzGroup));
         JobDetail job = scheduler.getJobDetail(JobKey.jobKey(quartzName, quartzGroup));
 
-        if (triggerCon == null || job == null) {
+        /*if (triggerCon == null || job == null) {
             JobDetail jobDetail = JobBuilder.newJob(DurTimeScheduler.class).withIdentity(quartzName, quartzGroup)
                     .storeDurably(false).build();
             Trigger trigger = TriggerBuilder.newTrigger().forJob(jobDetail).withIdentity(quartzName, quartzGroup)
@@ -47,6 +46,6 @@ public class quartzUtil {
 
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
-        }
+        }*/
     }
 }
