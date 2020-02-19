@@ -51,7 +51,7 @@ public class IndexController {
 
     @RequestMapping("/find")
     public String find(String str1,ModelMap map){
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findByauthorizeCompany("达","达");
+        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findByAuthorizeCompany(str1,str1);
         List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findByintellectualTask(str1,str1);
         List<TaskRelease> TaskReleaselist=taskReleaseService.findBytaskRelease(str1,str1);
         map.put("IntellectualTask",IntellectualTasklist);

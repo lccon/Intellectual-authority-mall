@@ -82,4 +82,11 @@ public class TaskReleaseController {
         map.put("taskRelease",taskRelease);
         return "taskrelease_Detail";
     }
+
+    @RequestMapping("/findByTaskRelease")
+    public String findByIntellectualTask(String str1,ModelMap map){
+        List<TaskRelease> TaskReleaselist = taskReleaseService.findBytaskRelease(str1,str1);
+        map.put("TaskRelease",TaskReleaselist);
+        return "/findpage";
+    }
 }

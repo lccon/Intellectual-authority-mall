@@ -76,8 +76,15 @@
         <div class="input-group">
             <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
             <div class="input-group-btn">
-                <button class="btn btn-default" id="button1">搜索</button>
-                <button class="btn btn-default" id="button2">免费发布信息</button>
+                <a class="btn btn-default" id="button1" onclick="findpage()">搜索</a>
+                <script>
+                    function findpage() {
+                        var a1=document.getElementById("button1");
+                        var input1=document.getElementById("input1").value;
+                        a1.href="/taskRelease/findByTaskRelease?str1="+input1;
+                    }
+                </script>
+                <a class="btn btn-default" id="button2">免费发布信息</a>
             </div>
         </div>
 

@@ -54,5 +54,8 @@ public interface AuthorizeCompanyService {
 
     pagebean<AuthorizeCompany> findByPage(int currentPage);
 
-    List<AuthorizeCompany> findByauthorizeCompany(String companyName,String companyDescribe);
+
+    List<AuthorizeCompany> findByAuthorizeCompany(String companyName,String companyDescribe);
+
+
 }

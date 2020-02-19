@@ -63,8 +63,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
-    public List<AuthorizeCompany> findByauthorizeCompany(String companyName,String companyDescribe) {
-        return authorizeCompanyMapper.findByauthorizeCompany(companyName,companyDescribe);
+    public List<AuthorizeCompany> findByAuthorizeCompany(String companyName,String companyDescribe) {
+        return authorizeCompanyMapper.findByAuthorizeCompany(companyName,companyDescribe);
     }
 
     @Override

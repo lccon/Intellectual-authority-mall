@@ -53,4 +53,5 @@ public interface IntellectualTaskMapper {
     List<IntellectualTask> findByPage(HashMap<String,Object> map);
 
     List<IntellectualTask> findByintellectualTask(@Param("productName") String productName, @Param("productBrief") String productBrief);
+
 }

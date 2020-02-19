@@ -26,12 +26,12 @@ pageEncoding="UTF-8"%>
             <hr>
         </div>
     </div>
-    <div class="container" style="margin-top: 20px;">
+    <div class="container1" style="margin-top: 20px;">
             <label><input name="f1" id="geren" type="radio" value="" checked/>个人认证 </label> 
             <label style="margin-left: 20px;"><input name="f1" id="qiye" type="radio" value="" />企业认证 </label>         
     </div>
 
-    <div class="container" id="grmodel">
+    <div class="container1" id="grmodel">
         <div class="into" style="margin-top: 20px;">
             <p>
                 请输入真实姓名和身份证号，并上传证明图片，我们不会泄露您的个人信息。

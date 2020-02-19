@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-
+import java.util.List;
 /**
  * Description:
  *
@@ -84,6 +84,14 @@ public class AuthorizeCompanyController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
         model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage));//回显分页数据
         return "/authorizecompany";
+    }
+
+
+    @RequestMapping("/findByIntellectualTask")
+    public String findByIntellectualTask(String str1,ModelMap map){
+        List<AuthorizeCompany> AuthorizeCompanylist = authorizeCompanyService.findByAuthorizeCompany(str1,str1);
+        map.put("AuthorizeCompany",AuthorizeCompanylist);
+        return "/findpage";
     }
 
 }

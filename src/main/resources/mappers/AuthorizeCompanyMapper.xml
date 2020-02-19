@@ -103,7 +103,8 @@
         </if>
     </select>
 
-    <select id="findByauthorizeCompany" resultMap="authorizeCompanyMap">
+
+    <select id="findByAuthorizeCompany" resultMap="authorizeCompanyMap">
         select
         <include refid="columns" />
         FROM authorize_company

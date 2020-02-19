@@ -50,6 +50,7 @@ public interface AuthorizeCompanyMapper {
 
     List<AuthorizeCompany>findByPage(HashMap<String,Object> map);
 
-    List<AuthorizeCompany> findByauthorizeCompany(@Param("companyName") String companyName, @Param("companyDescribe") String companyDescribe);
+    List<AuthorizeCompany> findByAuthorizeCompany(@Param("companyName") String companyName, @Param("companyDescribe") String companyDescribe);
+
 
 }

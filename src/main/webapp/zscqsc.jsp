@@ -67,8 +67,15 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
                 <div class="input-group-btn">
-                    <button class="btn btn-default" id="button1">搜索</button>
-                    <button class="btn btn-default" id="button2">免费发布信息</button>
+                    <a class="btn btn-default" id="button1" onclick="findpage()">搜索</a>
+                    <script>
+                        function findpage() {
+                            var a1=document.getElementById("button1");
+                            var input1=document.getElementById("input1").value;
+                            a1.href="/intellectualTask/findByIntellectualTask?str1="+input1;
+                        }
+                    </script>
+                    <a class="btn btn-default" id="button2">免费发布信息</a>
                 </div>
             </div>
 
@@ -150,89 +157,70 @@
         </div>
 
     </div>
-
-
-        <div class="container">
-            <ul class="pagination">
-
-       <c:if test="${requestScope.pagemsg.currPage != 1}">
-           <li>
-                <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=1">[首页]</a>
-           </li>
-           <li>
-                <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}">&laquo;</a>
-           </li>
-       </c:if>
-
-
-       <c:if test="${requestScope.pagemsg.currPage != requestScope.pagemsg.totalPage}">
-           <li>
-               <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}">&raquo;</a>
-           </li>
-           <li>
-               <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
-           </li>
-       </c:if>
-                <li>
-                    <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
-                    <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
-                </li>
-            </ul>
-        </div>
-
+    <!--分页-->
     <div class="container">
         <div class="row pad-15">
             <div class="col-md-12">
                 <nav class="pagination-outer" aria-label="Page navigation">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage-1}" class="page-link" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
+                        <c:if test="${requestScope.pagemsg.currPage!=1}">
+                            <li class="page-item" onclick="bbb(${requestScope.pagemsg.currPage-1})">
+                                <a href="javascript:void(0);" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                </a>
+                            </li>
+                        </c:if>
+                        <li id="page1" class="page-item" onclick="bbb(1)">
+                            <a class="page-link" href="javascript:void(0);">1</a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0);" onclick="aaa(1)">1</a></li>
                         <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage}" step="1">
-                            <li class="page-item">
-                                <a id="page" class="page-link" href="javascript:void(0);" onclick="aaa(${i})">${i}</a>
+                            <li class="page-item" onclick="bbb(${i})">
+                                <a class="page-link" href="javascript:void(0);">${i}</a>
                             </li>
                         </c:forEach>
-                        <li class="page-item">
-                            <a href="${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage=${requestScope.pagemsg.currPage+1}" class="page-link" aria-label="Next">
+                        <c:if test="${requestScope.pagemsg.currPage!=requestScope.pagemsg.totalPage}">
+                        <li class="page-item" onclick="bbb(${requestScope.pagemsg.currPage+1})">
+                            <a href="javascript:void(0);" class="page-link" aria-label="Next">
                                 <span aria-hidden="true">»</span>
                             </a>
                         </li>
+                        </c:if>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
     <script>
-        function aaa(path) {
-            var $contentWrapper = $('#center11')
-            var page=document.getElementById("page");
-            console.log(path);
+        function bbb(path) {
+            var that=$(this);
+            var $contentWrapper = $('#center11');
+            var $ul1=$('pagination');
             $.ajax({
                 url : "${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage="+path,
                 success : function(rst) {
-                    $contentWrapper.html(rst)
+                    $contentWrapper.html(rst);
+                    obj_li = document.getElementsByTagName("li");
+                    switch (path){
+                        case 1:
+                            obj_li[path + 42].className = 'page-item active';
+                            console.log("111");
+                            break;
+                        case ${requestScope.pagemsg.totalPage}:
+                            obj_li[path + 43].className = 'page-item active';
+                            console.log("222");
+                            break;
+                        default:
+                            obj_li[path + 45].className = 'page-item active';
+                            console.log("333");
+                    }
                 }
             })
         }
     </script>
-</div>
     <!--网页底部-->
     <jsp:include page="footer.jsp" />
-
-    <script>
-        $(document).ready(function(){
-            $('.pagination li').click(function(){
-                $(this).addClass('active').siblings().removeClass("active");
-                console.log("111");
-            });
-        })
-    </script>
-
 </div>
+
 </body>
 
 </html>

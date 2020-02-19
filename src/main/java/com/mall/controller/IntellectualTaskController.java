@@ -91,4 +91,11 @@ public class IntellectualTaskController {
         map.put("intellectualTask", intellectualTask);
         return "/proDetail";
     }
+
+    @RequestMapping("/findByIntellectualTask")
+    public String findByIntellectualTask(String str1,ModelMap map){
+        List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findByintellectualTask(str1,str1);
+        map.put("IntellectualTask",IntellectualTasklist);
+        return "/findpage";
+    }
 }
