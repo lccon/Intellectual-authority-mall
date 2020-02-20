@@ -3,15 +3,13 @@ package com.mall.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mall.constant.CommonConstants;
-import com.mall.domain.IntellectualTask;
-import com.mall.domain.RoofPlace;
-import com.mall.domain.TaskRelease;
-import com.mall.domain.pagebean;
+import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
 import com.mall.enums.RoofPlaceStateEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.TaskReleaseMapper;
+import com.mall.service.BusinessCollectedService;
 import com.mall.service.RoofPlaceService;
 import com.mall.service.TaskReleaseService;
 import com.mall.utils.StringUtil;
@@ -37,6 +35,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     private TaskReleaseMapper taskReleaseMapper;
     @Autowired
     private RoofPlaceService roofPlaceService;
+    @Autowired
+    private BusinessCollectedService businessCollectedService;
 
     @Override
     public TaskRelease addTaskRelease(TaskRelease taskRelease) {
@@ -181,6 +181,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     }
 
     private void handleTaskRelease(List<TaskRelease> taskReleaseList) {
+        BusinessCollected businessCollected = new BusinessCollected();
         RoofPlace roofPlace = new RoofPlace();
         roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
         for (TaskRelease taskRelease : taskReleaseList) {
@@ -189,6 +190,12 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
             if (roofPlaceInfo != null) {
                 taskRelease.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+            if (businessCollectedInfo != null) {
+                taskRelease.setHasCollectedState(CommonConstants.IS_COLLECTED);
+            } else {
+                taskRelease.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
             }
         }
     }

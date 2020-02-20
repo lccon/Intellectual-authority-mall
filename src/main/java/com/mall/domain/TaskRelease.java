@@ -33,6 +33,8 @@ public class TaskRelease extends BaseDomain{
     private Integer roofPlaceState;
     /** 置顶时长 天数*/
     private Integer topDuration;
+    /** 是否已经收藏 */
+    private Integer hasCollectedState;
 
     public Long getId() {
         return id;
@@ -120,5 +122,13 @@ public class TaskRelease extends BaseDomain{
 
     public void setTopDuration(Integer topDuration) {
         this.topDuration = topDuration;
+    }
+
+    public Integer getHasCollectedState() {
+        return hasCollectedState;
+    }
+
+    public void setHasCollectedState(Integer hasCollectedState) {
+        this.hasCollectedState = hasCollectedState;
     }
 }

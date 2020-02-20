@@ -3,15 +3,13 @@ package com.mall.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mall.constant.CommonConstants;
-import com.mall.domain.AuthorizeCompany;
-import com.mall.domain.RoofPlace;
-import com.mall.domain.TaskRelease;
-import com.mall.domain.pagebean;
+import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.AuthorizeCompanyMapper;
 import com.mall.service.AuthorizeCompanyService;
+import com.mall.service.BusinessCollectedService;
 import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
 import com.mall.vo.AuthorizeCompanyVO;
@@ -39,6 +37,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     private AuthorizeCompanyMapper authorizeCompanyMapper;
     @Autowired
     private RoofPlaceService roofPlaceService;
+    @Autowired
+    private BusinessCollectedService businessCollectedService;
 
     @Override
     public AuthorizeCompany addAuthorizeCompany(AuthorizeCompany authorizeCompany) {
@@ -194,14 +194,22 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     private void handleAuthorizeCompany(List<AuthorizeCompany> authorizeCompanyList) {
+        BusinessCollected businessCollected = new BusinessCollected();
         RoofPlace roofPlace = new RoofPlace();
         roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+        businessCollected.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
         for (AuthorizeCompany authorizeCompany : authorizeCompanyList) {
             roofPlace.setModuleTypeId(authorizeCompany.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
             if (roofPlaceInfo != null) {
                 authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+            if (businessCollectedInfo != null) {
+                authorizeCompany.setHasCollectedState(CommonConstants.IS_COLLECTED);
+            } else {
+                authorizeCompany.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
             }
         }
     }

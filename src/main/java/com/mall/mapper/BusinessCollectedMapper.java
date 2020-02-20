@@ -30,4 +30,11 @@ public interface BusinessCollectedMapper {
      * @return
      */
     List<BusinessCollected> findBusinessCollectedForList(BusinessCollectedVO businessCollectedVO);
+
+    /**
+     * 获取收藏信息
+     * @param businessCollected
+     * @return
+     */
+    BusinessCollected getBusinessCollected(BusinessCollected businessCollected);
 }

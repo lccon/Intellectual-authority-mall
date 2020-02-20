@@ -2,14 +2,14 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.component.ThreadVariable;
 import com.mall.constant.CommonConstants;
-import com.mall.domain.IntellectualTask;
-import com.mall.domain.PolicyAdvice;
-import com.mall.domain.RoofPlace;
+import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.IntellectualTaskMapper;
+import com.mall.service.BusinessCollectedService;
 import com.mall.service.IntellectualTaskService;
 import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
@@ -17,7 +17,6 @@ import com.mall.vo.IntellectualTaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import com.mall.domain.pagebean;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -38,6 +37,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     private IntellectualTaskMapper intellectualTaskMapper;
     @Autowired
     private RoofPlaceService roofPlaceService;
+    @Autowired
+    private BusinessCollectedService businessCollectedService;
 
     @Override
     public IntellectualTask addIntellectualTask(IntellectualTask intellectualTask) {
@@ -202,13 +203,23 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
 
     private void handleIntellectualTask(List<IntellectualTask> intellectualTaskList) {
         RoofPlace roofPlace = new RoofPlace();
+        BusinessCollected businessCollected = new BusinessCollected();
         roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+        businessCollected.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
         for (IntellectualTask intellectualTask:intellectualTaskList) {
             roofPlace.setModuleTypeId(intellectualTask.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
             if (roofPlaceInfo != null) {
                 intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            businessCollected.setModuleTypeId(intellectualTask.getId());
+            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
+            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+            if (businessCollectedInfo != null) {
+                intellectualTask.setHasCollectedState(CommonConstants.IS_COLLECTED);
+            } else {
+                intellectualTask.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
             }
         }
     }
