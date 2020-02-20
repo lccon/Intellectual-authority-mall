@@ -30,6 +30,10 @@ public class RoofPlaceServiceImpl implements RoofPlaceService {
         if (roofPlace == null) {
             throw new BusinessValidationException("参数不能为空!");
         }
+        RoofPlace roofPlaceInfo = this.getRoofPlaceInfo(roofPlace);
+        if (roofPlaceInfo != null) {
+            throw new BusinessValidationException("已存在置顶信息!");
+        }
         try {
             roofPlace.setTopStartTime(new Date());
             long currentTime = System.currentTimeMillis();
