@@ -45,12 +45,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             taskReleaseMapper.addTaskRelease(taskRelease);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
-            roofPlace.setModuleTypeId(taskRelease.getId());
-            roofPlace.setTopDuration(taskRelease.getTopDuration());
-            roofPlace.setAuthorizeState(taskRelease.getRoofPlaceState());
-            roofPlaceService.addRoofPlace(roofPlace);
+            if(taskRelease.getTopDuration() != null && taskRelease.getRoofPlaceState() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+                roofPlace.setModuleTypeId(taskRelease.getId());
+                roofPlace.setTopDuration(taskRelease.getTopDuration());
+                roofPlace.setAuthorizeState(taskRelease.getRoofPlaceState());
+                roofPlaceService.addRoofPlace(roofPlace);
+            }
             return taskRelease;
         } catch (Exception e) {
             throw new ServiceValidationException("新增需求任务出错!", e);
@@ -64,11 +66,13 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             taskReleaseMapper.updateTaskRelease(taskRelease);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
-            roofPlace.setModuleTypeId(taskRelease.getId());
-            roofPlace.setTopDuration(taskRelease.getTopDuration());
-            roofPlaceService.updateRoofPlace(roofPlace);
+            if(taskRelease.getTopDuration() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+                roofPlace.setModuleTypeId(taskRelease.getId());
+                roofPlace.setTopDuration(taskRelease.getTopDuration());
+                roofPlaceService.updateRoofPlace(roofPlace);
+            }
             return taskRelease;
         } catch (Exception e) {
             throw new ServiceValidationException("修改需求任务出错!", e);

@@ -47,12 +47,14 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             intellectualTaskMapper.addIntellectualTask(intellectualTask);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
-            roofPlace.setModuleTypeId(intellectualTask.getId());
-            roofPlace.setTopDuration(intellectualTask.getTopDuration());
-            roofPlace.setAuthorizeState(intellectualTask.getRoofPlaceState());
-            roofPlaceService.addRoofPlace(roofPlace);
+            if(intellectualTask.getTopDuration() != null && intellectualTask.getRoofPlaceState() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                roofPlace.setModuleTypeId(intellectualTask.getId());
+                roofPlace.setTopDuration(intellectualTask.getTopDuration());
+                roofPlace.setAuthorizeState(intellectualTask.getRoofPlaceState());
+                roofPlaceService.addRoofPlace(roofPlace);
+            }
             return intellectualTask;
         } catch (Exception e) {
             throw new ServiceValidationException("新增知识产权信息出错!", e);
@@ -66,11 +68,13 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             intellectualTaskMapper.updateIntellectualTask(intellectualTask);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
-            roofPlace.setModuleTypeId(intellectualTask.getId());
-            roofPlace.setTopDuration(intellectualTask.getTopDuration());
-            roofPlaceService.updateRoofPlace(roofPlace);
+            if(intellectualTask.getTopDuration() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                roofPlace.setModuleTypeId(intellectualTask.getId());
+                roofPlace.setTopDuration(intellectualTask.getTopDuration());
+                roofPlaceService.updateRoofPlace(roofPlace);
+            }
             return intellectualTask;
         } catch (Exception e) {
             throw new ServiceValidationException("修改知识产权信息出错!", e);

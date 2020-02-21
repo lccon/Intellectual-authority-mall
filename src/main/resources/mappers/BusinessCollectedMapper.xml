@@ -39,7 +39,7 @@
     </select>
 
     <select id="getBusinessCollected" parameterType="com.mall.domain.BusinessCollected" resultMap="businessCollectedMap">
-        ELECT <include refid="columns"/> FROM business_collected
+        SELECT <include refid="columns"/> FROM business_collected
         WHERE user_id = #{userId}
         AND module_type = #{moduleType}
         AND module_type_id = #{moduleTypeId}

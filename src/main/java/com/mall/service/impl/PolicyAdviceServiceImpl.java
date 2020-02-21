@@ -46,12 +46,14 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             policyAdviceMapper.addPolicyAdvice(policyAdvice);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
-            roofPlace.setModuleTypeId(policyAdvice.getId());
-            roofPlace.setTopDuration(policyAdvice.getTopDuration());
-            roofPlace.setAuthorizeState(policyAdvice.getRoofPlaceState());
-            roofPlaceService.addRoofPlace(roofPlace);
+            if(policyAdvice.getTopDuration() != null && policyAdvice.getRoofPlaceState() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+                roofPlace.setModuleTypeId(policyAdvice.getId());
+                roofPlace.setTopDuration(policyAdvice.getTopDuration());
+                roofPlace.setAuthorizeState(policyAdvice.getRoofPlaceState());
+                roofPlaceService.addRoofPlace(roofPlace);
+            }
             return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("新增消息出错!", e);
@@ -65,11 +67,13 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             policyAdviceMapper.updatePolicyAdvice(policyAdvice);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
-            roofPlace.setModuleTypeId(policyAdvice.getId());
-            roofPlace.setTopDuration(policyAdvice.getTopDuration());
-            roofPlaceService.updateRoofPlace(roofPlace);
+            if(policyAdvice.getTopDuration() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
+                roofPlace.setModuleTypeId(policyAdvice.getId());
+                roofPlace.setTopDuration(policyAdvice.getTopDuration());
+                roofPlaceService.updateRoofPlace(roofPlace);
+            }
             return policyAdvice;
         } catch (Exception e) {
             throw new ServiceValidationException("修改消息出错!", e);

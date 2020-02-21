@@ -47,12 +47,14 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
         try {
             authorizeCompanyMapper.addAuthorizeCompany(authorizeCompany);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
-            roofPlace.setModuleTypeId(authorizeCompany.getId());
-            roofPlace.setTopDuration(authorizeCompany.getTopDuration());
-            roofPlace.setAuthorizeState(authorizeCompany.getRoofPlaceState());
-            roofPlaceService.addRoofPlace(roofPlace);
+            if(authorizeCompany.getTopDuration() != null && authorizeCompany.getRoofPlaceState() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+                roofPlace.setModuleTypeId(authorizeCompany.getId());
+                roofPlace.setTopDuration(authorizeCompany.getTopDuration());
+                roofPlace.setAuthorizeState(authorizeCompany.getRoofPlaceState());
+                roofPlaceService.addRoofPlace(roofPlace);
+            }
             return authorizeCompany;
         } catch (Exception e) {
             throw new ServiceValidationException("新增代办公司信息出错", e);
@@ -66,11 +68,13 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
         try {
             authorizeCompanyMapper.updateAuthorizeCompany(authorizeCompany);
-            RoofPlace roofPlace = new RoofPlace();
-            roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
-            roofPlace.setModuleTypeId(authorizeCompany.getId());
-            roofPlace.setTopDuration(authorizeCompany.getTopDuration());
-            roofPlaceService.updateRoofPlace(roofPlace);
+            if(authorizeCompany.getTopDuration() != null) {
+                RoofPlace roofPlace = new RoofPlace();
+                roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+                roofPlace.setModuleTypeId(authorizeCompany.getId());
+                roofPlace.setTopDuration(authorizeCompany.getTopDuration());
+                roofPlaceService.updateRoofPlace(roofPlace);
+            }
             return authorizeCompany;
         } catch (Exception e) {
             throw new ServiceValidationException("修改代办公司信息出错", e);
