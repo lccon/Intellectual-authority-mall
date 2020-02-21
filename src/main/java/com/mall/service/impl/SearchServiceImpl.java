@@ -58,36 +58,32 @@ public class SearchServiceImpl implements SearchService{
             intellectualTaskList = intellectualTaskList.subList((page - 1) * rows, intellectualTaskList.size());
             searchBusinessVO.setIntellectualTaskList(intellectualTaskList);
             int alsoRecord = (rows - (totalTask - ((page - 1) * rows)));
-            if (authorizeCompanyList.size() >= alsoRecord) {
-                authorizeCompanyList = authorizeCompanyList.subList(0, alsoRecord);
-                searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
-                return searchBusinessVO;
-            } else {
-                authorizeCompanyList = authorizeCompanyList.subList(0, authorizeCompanyList.size());
-                searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
-                alsoRecord = alsoRecord - authorizeCompanyList.size();
-                taskReleaseList = taskReleaseList.subList(0, alsoRecord);
-                searchBusinessVO.setTaskReleaseList(taskReleaseList);
-                return searchBusinessVO;
-            }
+            return getSearchData(alsoRecord, authorizeCompanyList, taskReleaseList, searchBusinessVO);
         } else if (intellectualTaskList.size() <= ((page - 1) * rows)) {
             intellectualTaskList = intellectualTaskList.subList(0, intellectualTaskList.size());
             searchBusinessVO.setIntellectualTaskList(intellectualTaskList);
             int alsoRecord = record - intellectualTaskList.size();
-            if (authorizeCompanyList.size() >= alsoRecord) {
-                authorizeCompanyList = authorizeCompanyList.subList(0, alsoRecord);
-                searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
-                return searchBusinessVO;
-            } else {
-                authorizeCompanyList = authorizeCompanyList.subList(0, authorizeCompanyList.size());
-                searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
-                alsoRecord = alsoRecord - authorizeCompanyList.size();
-                taskReleaseList = taskReleaseList.subList(0, alsoRecord);
-                searchBusinessVO.setTaskReleaseList(taskReleaseList);
-                return searchBusinessVO;
-            }
+            return getSearchData(alsoRecord, authorizeCompanyList, taskReleaseList, searchBusinessVO);
         }
         return searchBusinessVO;
+    }
+
+    private SearchBusinessVO getSearchData(int alsoRecord, List<AuthorizeCompany> authorizeCompanyList,
+                               List<TaskRelease> taskReleaseList, SearchBusinessVO searchBusinessVO) {
+        if (authorizeCompanyList.size() >= alsoRecord) {
+            authorizeCompanyList = authorizeCompanyList.subList(0, alsoRecord);
+            searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
+            return searchBusinessVO;
+        } else {
+            authorizeCompanyList = authorizeCompanyList.subList(0, authorizeCompanyList.size());
+            searchBusinessVO.setAuthorizeCompanyList(authorizeCompanyList);
+            alsoRecord = alsoRecord - authorizeCompanyList.size();
+            if (taskReleaseList.size() >= alsoRecord) {
+                taskReleaseList = taskReleaseList.subList(0, alsoRecord);
+                searchBusinessVO.setTaskReleaseList(taskReleaseList);
+            }
+            return searchBusinessVO;
+        }
     }
 }
 
