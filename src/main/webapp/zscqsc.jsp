@@ -124,20 +124,25 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    <c:if test="${u.hasCollectedState==0}">
+                    <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    </c:if>
+                    <c:if test="${u.hasCollectedState==1}">
+                        <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    </c:if>
                     <script>
-                        function addcollect() {
+                        function addcollect(id) {
                             var a=document.getElementById("addcollect");
                             var abc=document.getElementById("abc");
                             $.ajax({
                                 type:"POST",
-                                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId=${u.id}",
+                                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
                                 cache:false,
                                 contentType: false,
                                 processData: false,
                                 success: function(result) {
                                     if(result){
-                                        a.class="glyphicon glyphicon-heart";
+                                        bbb(${requestScope.pagemsg.currPage});
                                         abc.innerText="收藏成功";
                                         console.log(a.class);
                                     }
@@ -163,34 +168,31 @@
             <div class="col-md-12">
                 <nav class="pagination-outer" aria-label="Page navigation">
                     <ul class="pagination">
-                        <c:if test="${requestScope.pagemsg.currPage!=1}">
-                            <li class="page-item" onclick="bbb(${requestScope.pagemsg.currPage-1})">
-                                <a href="javascript:void(0);" class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                </a>
-                            </li>
-                        </c:if>
-                        <li id="page1" class="page-item" onclick="bbb(1)">
-                            <a class="page-link" href="javascript:void(0);">1</a>
-                        </li>
-                        <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage}" step="1">
-                            <li class="page-item" onclick="bbb(${i})">
-                                <a class="page-link" href="javascript:void(0);">${i}</a>
-                            </li>
-                        </c:forEach>
-                        <c:if test="${requestScope.pagemsg.currPage!=requestScope.pagemsg.totalPage}">
-                        <li class="page-item" onclick="bbb(${requestScope.pagemsg.currPage+1})">
-                            <a href="javascript:void(0);" class="page-link" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                        </c:if>
+                        <div id="demo2-1"></div>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
     <script>
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            laypage.render({
+                elem: 'demo2-1',
+                count: ${requestScope.pagemsg.totalCount },
+                limit:${requestScope.pagemsg.pageSize},
+                theme: '#FF5722',
+                curr:${requestScope.pagemsg.currPage },
+                jump: function(obj, first){
+                    //首次不执行
+                    if(!first){
+                        bbb(obj.curr);
+                        //do something
+                    }
+                }
+            });
+        });
         function bbb(path) {
             var that=$(this);
             var $contentWrapper = $('#center11');
@@ -199,20 +201,6 @@
                 url : "${pageContext.request.contextPath }/intellectualTask/findpageIntellectualTaskForList?currentPage="+path,
                 success : function(rst) {
                     $contentWrapper.html(rst);
-                    obj_li = document.getElementsByTagName("li");
-                    switch (path){
-                        case 1:
-                            obj_li[path + 42].className = 'page-item active';
-                            console.log("111");
-                            break;
-                        case ${requestScope.pagemsg.totalPage}:
-                            obj_li[path + 43].className = 'page-item active';
-                            console.log("222");
-                            break;
-                        default:
-                            obj_li[path + 45].className = 'page-item active';
-                            console.log("333");
-                    }
                 }
             })
         }

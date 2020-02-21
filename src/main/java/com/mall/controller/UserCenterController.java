@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/userCenter")
 @Controller
 public class UserCenterController {
+
     @RequestMapping("/user_collect")
     public String collectpage() {
         return "/user_collect";

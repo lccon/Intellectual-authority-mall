@@ -60,4 +60,17 @@ public class UserController {
 		GridPage<User> gridPage = new GridPage<>(userPage);
 		return gridPage;
 	}
+
+	@RequestMapping("/getUserById")
+	public String getUserById(@RequestParam(value = "id", required = true) Long id, ModelMap map) {
+    	User user=userService.findUserById(id);
+    	map.put("user",user);
+    	return "myinfo";
+	}
+	@RequestMapping (value = "/updatemyinfo")
+	public String updatemyinfo(User user){
+    	userService.updateUser(user);
+    	return "usercenter";
+	}
+
 }

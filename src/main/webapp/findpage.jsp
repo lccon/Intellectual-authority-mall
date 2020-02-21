@@ -46,7 +46,8 @@
     <!--需求列表-->
     <div style="margin-top: 50px;">
         <div class="container">
-            <c:forEach items="${IntellectualTask}" var="u">
+            <c:forEach items="${SearchBusinessvO.intellectualTaskList}" var="u">
+
                 <div class="product">
                     <div class="row">
                         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
@@ -100,7 +101,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <c:forEach items="${AuthorizeCompanylist}" var="u">
+            <c:forEach items="${SearchBusinessvO.authorizeCompanyList}" var="u">
                 <div class="product">
                     <div class="row">
                         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
@@ -114,11 +115,10 @@
                                     <p id="desc">浏览量：100</p>
                                 </div>
                                 <script type="text/javascript">
-                                    function url1() {
+
                                         var url11="${u.companyPictureUrl}".split(",");
                                         var img1=document.getElementById("authimg${u.id}");
                                         img1.src="${pageContext.request.contextPath}"+url11[0];
-                                    }
                                 </script>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                 </div>
             </c:forEach>
 
-            <c:forEach items="${TaskRelease}" var="u">
+            <c:forEach items="${SearchBusinessvO.taskReleaseList}" var="u">
                 <div class="product">
                     <div class="row">
                         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
@@ -202,8 +202,10 @@
                 </div>
             </c:forEach>
         </div>
-
     </div>
+
+
+</div>
 
 
     <div class="container">

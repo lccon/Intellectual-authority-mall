@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 						function findpage() {
 							var a1=document.getElementById("button1");
 							var input1=document.getElementById("input1").value;
-							a1.href="/find?str1="+input1;
+							a1.href="/api/getSearchBusinessData?page=1&rows=5&productName="+input1+"&productBrief="+input1;
                         }
 					</script>
 					<a href="/post-message" class="btn btn-default" id="button2">免费发布信息</a>

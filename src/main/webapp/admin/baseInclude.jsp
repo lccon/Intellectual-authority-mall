@@ -6,6 +6,7 @@ request.setAttribute("path",path);
 request.setAttribute("currentSession","");
     if (ThreadVariable.getSession()!= null && ThreadVariable.getSession().getUserName() != null) {
         request.setAttribute("userRealName", ThreadVariable.getSession().getUserName());
+        request.setAttribute("UserId", ThreadVariable.getSession().getUserId());
     }
 %>
 
@@ -13,4 +14,5 @@ request.setAttribute("currentSession","");
 var PATH='${path}';
 var listUrl;
 var userRealName='${userRealName}';
+var UserId='${UserId}';
 </script>

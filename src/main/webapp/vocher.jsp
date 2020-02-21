@@ -15,6 +15,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="css/vocher.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="layui/layui.all.js"></script>
 
 </head>
 
@@ -60,66 +61,35 @@ pageEncoding="UTF-8"%>
             </li>
         </ul>
     </div>
-    <div class="col-lg-12 col-sm-12" style="margin-top: 40px;margin-left: 37px;">
-        <div class="panel1">
-            <div class="panel-body">
-                <dl class="dl-horizontal deep-blue large">
-                    <dt class="cap">充值方式：</dt>
-                    <dd>
-                        <div class="zfb">
-                            <input type="radio" name="pays" class="ds" checked>
-                            <img src="img/zhifubao.png">
-                        </div>
-                        <div class="wx">
-                            <input type="radio" name="pays" class="ds">
-                            <img src="img/weixin.png">
-                        </div>
-                    </dd>
-                    <div class="top_up_amount">
-                        <dt class="cap">充值金额：</dt>
-                        <dd class="top_up_amount">
-                            <ul class="list-group">
-                                <li class="col-lg-3 col-sm-3" data-value="2000" tabindex="1">
-                                    ￥10 
-                                    <i class="fa fa-check">
-                                    </i>
-                                </li>
-                                <li class="col-lg-3 col-sm-3" data-value="2000" tabindex="1">
-                                    ￥15 
-                                    <i class="fa fa-check">
-                                    </i>
-                                </li>
-                                <li class="col-lg-3 col-sm-3" data-value="2000" tabindex="1">
-                                    ￥20 
-                                    <i class="fa fa-check">
-                                    </i>
-                                </li>
-                                <li class="col-lg-3 col-sm-3" data-value="2000" tabindex="1"> 
-                                    ￥25 
-                                    <i class="fa fa-check">
-                                    </i>
-                                </li>
-                                <li class="col-lg-6 col-sm-6 other">
-                                    <div class="input-group col-lg-12 col-sm-12">
-                                        <span class="input-group-addon bg-white">￥</span>
-                                        <input type="text" id="top-up-number" maxlength="15" class="form-control" oninput="clearNoNum(this)" placeholder="请输入充值金额">
-                                    </div>
-                                </li>
-                            </ul>
-                        </dd>
-                        <dd>
-                            <cite style="font-size: 14px;">
-                                虚拟币充值比例为1元等于10虚拟币
-                            </cite>
-                        </dd>
-                        <dd>
-                            <button class="btn btn-default" id="btn">立即充值</button>
-                        </dd>   
-                    </div>
-                </dl>
-            </div>
-        </div>
-    </div>
+        <label>我要充值：</label>
+        <button id="vocher" type="button">充值</button>
+        <script type="text/javascript">
+            $('#vocher').on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: false,
+                    closeBtn: 0, //不显示关闭按钮
+                    shade: [0],
+                    area: ['340px', '215px'],
+                    offset: 'rb', //右下角弹出
+                    time: 2000, //2秒后自动关闭
+                    anim: 2,
+                    content: ['vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
+                    end: function () { //此处用于演示
+                        layer.open({
+                            type: 2,
+                            title: '充值中心',
+                            shadeClose: true,
+                            shade: false,
+                            maxmin: true, //开启最大化最小化按钮
+                            area: ['893px', '600px'],
+                            content: '/vouchercenter.jsp'
+                        });
+                    }
+                });
+
+            });
+        </script>
 </div>
 </body>
 

@@ -45,8 +45,8 @@
 						<input type="submit" id="loginButton" class="login-btn" value="登录" />
                     </div>
                     <div style="margin-top: 40px;">
-						<a href="index.jsp">返回首页</a>
-						<a href="register.jsp" style="float: right">没有帐号？去注册</a>
+						<a href="/">返回首页</a>
+						<a href="/register" style="float: right">没有帐号？去注册</a>
 					</div>
 				</form>
 			</div>

@@ -69,5 +69,9 @@ public class IndexController {
     public String postmessage(){
         return "/post-message";
     }
+    @RequestMapping("/register")
+    public String register(){
+        return "/register";
+    }
 
 }

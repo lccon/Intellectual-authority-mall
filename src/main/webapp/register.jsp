@@ -8,6 +8,7 @@ pageEncoding="UTF-8"%>
     <title>注册信息</title>
     <link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
     <style>
         #qr-code-register {
             height: 232px;
@@ -52,6 +53,16 @@ pageEncoding="UTF-8"%>
         .li_fr a {
             color: #60af00
         }
+
+        .code-btn {
+            color: #a07941;
+            font-size: 12px;
+            border: 1px solid #a07941;
+            border-radius: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
     </style>
 </head>
 <!--logo s-->
@@ -81,8 +92,7 @@ pageEncoding="UTF-8"%>
                 <div class="tab-cont" style="display:block;">
                     <div class="field clearfix">
                         <label class="field-tit" for="username">用户名：</label>
-                        <input value="" name="username" id="username" type="text" placeholder="请填写用户名"
-                            class="tab-input-text t_reg_username"/>
+                        <input value="" name="username" id="username" type="text" placeholder="请填写用户名"/>
                         <input value="2" type="hidden" name="identity"/>
                         <input value="3" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
                         &nbsp;<span class="msg-box" id="tip_username"></span>
@@ -95,35 +105,14 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="field clearfix">
                         <label class="field-tit" for="phone">手机号：</label>
-                        <input type="text" class="tab-input-text t_reg_phone" placeholder="请填写您的手机号" name="mobile" id="mobile"
+                        <input type="text" class="tab-input-text t_reg_phone" placeholder="请填写您的手机号" name="mobile" id="tel_num"
                             value="">
                         &nbsp;<span id="tip_phone" class="msg-box"></span>
                     </div>
-                    <div class="field checkcode clearfix" id="checkcode"
-                        data-widget="app/ms_v2/user/register.js#refleshPhoneRegImg">
-                        <label class="field-tit" for="password">验证码：</label>
-                        <input value="" name="checkphonecode" type="text" maxlength="4" class="input-text"
-                            id="checkcode_phone_input">
-                        <label class="fl">
-                            <img id="img_phone_checkcode" data-role="reflesh" align="absmiddle"
-                                src="js/ajax.php">
-                        </label>
-                        <a class="field-tips t_fts" data-role="reflesh" href="javascript:void(0);">看不清？换一个</a>
-                        <span id="tip_phone_checkcode" style="width:136px"></span>
-                        <p class="getcode clearfix">
-                            <input type="button" gjalog="/user/register/send_phone_auth_code@atype=click"
-                                class="time-buttom" value="获取手机确认码" name="sendCodeBtn"
-                                data-widget="app/ms_v2/user/register.js#sendPhoneCode" autocomplete="off">
-                            <span class="msg-box js-msg-box"><span class="validatorMsg"
-                                    id="tip_is_get_code"></span></span>
-                        </p>
-                    </div>
                     <div class="field clearfix">
-                        <label class="field-tit" for="phone_code">确认码：</label>
-                        <input type="text" class="tab-input-text t_phone_code" name="phone_code" maxlength="6"
-                            value=""><span id="tip_phone_code"></span>
-                        <input type="hidden" value="/" name="next">
-                        <input type="hidden" value="0" name="second">
+                        <label class="field-tit" for="phone">验证码：</label>
+                        <input type="text" name="" id="code_num" class="inp code-inp" value="" placeholder="请输入您的验证码">
+                        <span type="button" class="code-btn">获取验证码</span>
                     </div>
                     <div class="field clearfix">
                         <label class="field-tit" for="password">密码：</label>
@@ -427,6 +416,61 @@ pageEncoding="UTF-8"%>
         return;
     }
 </script>
+
+
+<script>
+
+    var code_time = 90;
+    function time_inter() {
+        $('.code-btn').addClass('code-btn-gray');
+        var timeflag = setInterval(function () {
+            $('.code-btn-gray').html("" + code_time + "s后获取").css({
+                "cursor": "no-",
+                "color": "#999"
+            });
+            code_time--;
+            if (code_time == 0) {
+                clearInterval(timeflag);
+                $('.code-btn-gray').html("获取验证码").css({
+                    "cursor": "pointer",
+                    "color": "#a07941"
+                });
+                $('.code-btn').removeClass('code-btn-gray');
+            }
+        }, 1000)
+
+    }
+    //获取验证码点击事件
+    $('.code-btn').on('click', function () {
+        if ($(this).hasClass('code-btn-gray')) {
+            return false;
+        }
+        var tel_num = $('#tel_num').val();
+        if (tel_num && tel_num.length == 11) {
+            time_inter();//按钮倒计时
+            $.ajax({
+                type:"POST",
+                url: "/api/userMobileLogin?mobile="+tel_num,
+                datatype:"JSON",
+                success: function(result) {
+                    if(result){
+                        var d = $.parseJSON(result);
+                        console.log(d);
+                        console.log(d.code);
+                        console.log(d.code.length());
+                    }
+                    else {
+
+                    }
+
+                },
+            })
+        } else {
+            alert('请输入正确手机号码')
+        }
+    })
+</script>
+
 </body>
 
 </html>

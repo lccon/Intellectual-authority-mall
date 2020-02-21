@@ -89,7 +89,7 @@
                 if(result){
                     console.log(userid,moduletype,moduletypeid);
                     console.log("删除成功");
-                    $("#product1").html("user_collect");
+                    $("#product1").html(loadContent("/businessCollected/findBusinessCollectedForPage?moduleType="+moduletype));
                 }
                 else {
                     console.log("删除失败");

@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/post-message.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/vocher.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.pagination.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/prodetail.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>

@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>项目实战</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/usercenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
 </head>
 
 <body style="background-color: #e5e5e5e5;">
@@ -52,7 +52,7 @@
                 <div class="media">
                     <div class="media-left" id="picture">
                         <a href="#">
-                            <img class="img-circle image-responsive" src="img/user.png" />
+                            <img id="img2" class="img-circle image-responsive" src="" />
                         </a>
                     </div>
                     <div class="media-body" id="head-text">
@@ -70,14 +70,14 @@
             <div class="span6">
                 <ul class="nav nav-list" id="userMenu">
                     <li class="nav-header" id="cap2">帐户管理</li>
-                    <li class="active" data-url="/userCenter/myinfo"><a class="item-inner" href="javascript:void(0);" >我的资料</a></li>
+                    <li class="active" data-url="/user/getUserById?id=${UserId}"><a class="item-inner" href="javascript:void(0);" >我的资料</a></li>
                     <li data-url="/userCenter/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
                     <li><a href="javascript:void(0);">帐户明细</a></li>
                     <li class="nav-header"  id="cap2">我的资金</li>
                     <li data-url="vocher"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
                     <li><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
-                    <li data-url="user_post"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
+                    <li data-url="/userCenter/userpost"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
                     <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">我的收藏</a></li>
                     <li><a href="javascript:void(0);">我看过谁</a></li>
                     <li><a href="javascript:void(0);">谁看过我</a></li>
@@ -103,10 +103,10 @@
 
             window.onload = function() {
                 $('#userMenu li').each(function(){
-                    if($(this).data('url') == '/userCenter/myinfo'){
+                    if($(this).data('url') == '/user/getUserById?id=${UserId}'){
                         $(this).addClass('checked');
-                        window.location.hash = '/userCenter/myinfo';
-                        loadContent('/userCenter/myinfo');
+                        window.location.hash = '/user/getUserById?id=${UserId}';
+                        loadContent('/user/getUserById?id=${UserId}');
                     }
                 })
             }
