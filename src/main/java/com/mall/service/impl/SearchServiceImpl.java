@@ -41,6 +41,8 @@ public class SearchServiceImpl implements SearchService{
         Integer totalRecord = intellectualTaskList.size() + authorizeCompanyList.size() + taskReleaseList.size();
 
         SearchBusinessVO searchBusinessVO = new SearchBusinessVO();
+        searchBusinessVO.setPage(page);
+        searchBusinessVO.setRows(rows);
         searchBusinessVO.setTotalRecord(totalRecord);
         int totalPage = totalRecord % rows;
         if (totalPage > 0) {

@@ -13,7 +13,10 @@ import java.util.List;
  * @Author:lc
  */
 public class SearchBusinessVO {
-
+    /** 当前页 */
+    private Integer page;
+    /** 每页记录数 */
+    private Integer rows;
     /** 总页数 */
     private Integer totalPage;
     /** 总记录数 */
@@ -63,5 +66,21 @@ public class SearchBusinessVO {
 
     public void setTaskReleaseList(List<TaskRelease> taskReleaseList) {
         this.taskReleaseList = taskReleaseList;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
     }
 }
