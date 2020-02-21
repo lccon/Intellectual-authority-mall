@@ -7,6 +7,7 @@
 
 <head>
     <jsp:include page="jsinclude.jsp"/>
+    <jsp:include page="admin/baseInclude.jsp"/>
 </head>
 
 <body>
@@ -128,9 +129,11 @@
                     <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
                     <c:if test="${u.hasCollectedState==1}">
-                        <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        <a id="abc" href="javascript:void(0);" onclick="deletecollect(userid,moduletype,moduletypeid)" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
                     <script>
+
+                        //填加收藏
                         function addcollect(id) {
                             var a=document.getElementById("addcollect");
                             var abc=document.getElementById("abc");
@@ -153,7 +156,30 @@
                                 },
                             })
                         }
+
+                        //删除收藏
+                        function deletecollect(userid,moduletype,moduletypeid) {
+                            $.ajax({
+                                type:"POST",
+                                url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+                                async : false,
+                                data:{type:1},
+                                timeout:1000,
+                                success: function(result) {
+                                    if(result){
+                                        console.log(userid,moduletype,moduletypeid);
+                                        console.log("删除成功");
+                                        $("#product1").html(loadContent("/businessCollected/findBusinessCollectedForPage?moduleType="+moduletype));
+                                    }
+                                    else {
+                                        console.log("删除失败");
+                                    }
+
+                                },
+                            })
+                        }
                     </script>
+
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
