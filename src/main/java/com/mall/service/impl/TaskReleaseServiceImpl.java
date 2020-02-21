@@ -2,6 +2,7 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.component.ThreadVariable;
 import com.mall.constant.CommonConstants;
 import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
@@ -188,6 +189,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         BusinessCollected businessCollected = new BusinessCollected();
         RoofPlace roofPlace = new RoofPlace();
         roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+        businessCollected.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
         for (TaskRelease taskRelease : taskReleaseList) {
             roofPlace.setModuleTypeId(taskRelease.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
@@ -195,6 +197,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
                 taskRelease.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
             }
+            businessCollected.setModuleTypeId(taskRelease.getId());
+            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
             BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
             if (businessCollectedInfo != null) {
                 taskRelease.setHasCollectedState(CommonConstants.IS_COLLECTED);

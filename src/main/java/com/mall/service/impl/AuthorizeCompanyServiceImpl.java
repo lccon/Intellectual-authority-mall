@@ -2,6 +2,7 @@ package com.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mall.component.ThreadVariable;
 import com.mall.constant.CommonConstants;
 import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
@@ -209,6 +210,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
                 authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
             }
+            businessCollected.setModuleTypeId(authorizeCompany.getId());
+            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
             BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
             if (businessCollectedInfo != null) {
                 authorizeCompany.setHasCollectedState(CommonConstants.IS_COLLECTED);
