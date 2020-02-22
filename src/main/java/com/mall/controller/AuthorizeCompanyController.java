@@ -81,8 +81,9 @@ public class AuthorizeCompanyController {
     }
 
     @RequestMapping("/findpageauthorizeCompanyForList")
-    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
-        model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage));//回显分页数据
+    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
+                        AuthorizeCompanyVO authorizeCompanyVO, ModelMap map){
+        model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage, authorizeCompanyVO));//回显分页数据
         return "/authorizecompany";
     }
 

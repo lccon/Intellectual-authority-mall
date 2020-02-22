@@ -50,9 +50,7 @@ public interface AuthorizeCompanyService {
 
     List<AuthorizeCompany> findAuthorizeCompanyForList();
 
-    int countnum();
-
-    pagebean<AuthorizeCompany> findByPage(int currentPage);
+    pagebean<AuthorizeCompany> findByPage(int currentPage, AuthorizeCompanyVO authorizeCompanyVO);
 
 
     List<AuthorizeCompany> findByAuthorizeCompany(String companyName,String companyDescribe);

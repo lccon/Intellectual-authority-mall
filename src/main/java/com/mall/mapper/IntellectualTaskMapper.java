@@ -1,6 +1,7 @@
 package com.mall.mapper;
 
 import com.mall.domain.IntellectualTask;
+import com.mall.vo.IntellectualTaskVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public interface IntellectualTaskMapper {
      * 查询所有信息
      * @return
      */
-    List<IntellectualTask> findIntellectualTaskForList();
+    List<IntellectualTask> findIntellectualTaskForList(IntellectualTaskVO intellectualTaskVO);
 
     /**
      * 获取知识商城单条信息

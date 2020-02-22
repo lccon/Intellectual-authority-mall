@@ -47,7 +47,7 @@ public interface IntellectualTaskService {
      */
     IntellectualTask getIntellectualTaskById(Long id);
 
-    List<IntellectualTask> findIntellectualTaskForList();
+    List<IntellectualTask> findIntellectualTaskForList(IntellectualTaskVO intellectualTaskVO);
     int countnum();
     pagebean<IntellectualTask> findByPage(int currentPage);
 

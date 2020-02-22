@@ -1,6 +1,7 @@
 package com.mall.mapper;
 
 import com.mall.domain.AuthorizeCompany;
+import com.mall.vo.AuthorizeCompanyVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
@@ -46,9 +47,9 @@ public interface AuthorizeCompanyMapper {
      */
     AuthorizeCompany getAuthorizeCompanyById(Long id);
 
-    int countnum();
+    int countnum(AuthorizeCompanyVO authorizeCompanyVO);
 
-    List<AuthorizeCompany>findByPage(HashMap<String,Object> map);
+    List<AuthorizeCompany> findByPage(HashMap<String,Object> map);
 
     List<AuthorizeCompany> findByAuthorizeCompany(@Param("companyName") String companyName, @Param("companyDescribe") String companyDescribe);
 

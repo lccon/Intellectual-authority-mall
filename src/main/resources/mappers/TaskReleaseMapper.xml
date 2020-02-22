@@ -94,16 +94,50 @@
     </select>
 
 
-    <select id="countnum" resultType="int">
+    <select id="countnum" parameterType="com.mall.vo.TaskReleaseVO" resultType="int">
         SELECT
         count(*)
         FROM task_release
+        <where>
+            <if test="purpose != null and purpose != ''">
+                purpose LIKE concat(#{purpose},'%')
+            </if>
+            <if test="detailedDesc != null and detailedDesc != ''">
+                OR detailed_desc LIKE concat(#{detailedDesc},'%')
+            </if>
+            <if test="taskCategory != null">
+                and task_category = #{taskCategory}
+            </if>
+            <if test="intellectualProperty != null">
+                and intellectual_property = #{intellectualProperty}
+            </if>
+            <if test="industryBelongs != null">
+                and industry_belongs = #{industryBelongs}
+            </if>
+        </where>
     </select>
 
     <select id="findByPage" parameterType="Map" resultMap="taskReleaseMap">
         select
         <include refid="columns" />
         from task_release
+        <where>
+            <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''">
+                purpose LIKE concat(#{taskReleaseVO.purpose},'%')
+            </if>
+            <if test="taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
+                OR detailed_desc LIKE concat(#{taskReleaseVO.detailedDesc},'%')
+            </if>
+            <if test="taskReleaseVO.taskCategory != null">
+                and task_category = #{taskReleaseVO.taskCategory}
+            </if>
+            <if test="taskReleaseVO.intellectualProperty != null">
+                and intellectual_property = #{taskReleaseVO.intellectualProperty}
+            </if>
+            <if test="taskReleaseVO.industryBelongs != null">
+                and industry_belongs = #{taskReleaseVO.industryBelongs}
+            </if>
+        </where>
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>

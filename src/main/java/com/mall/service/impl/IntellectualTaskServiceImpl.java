@@ -121,7 +121,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         try {
             PageHelper.startPage(intellectualTaskVO.getPage(), intellectualTaskVO.getRows(),
                     StringUtil.joinSortFieldOrder(intellectualTaskVO.getSidx(), intellectualTaskVO.getSord()));
-            List<IntellectualTask> intellectualTaskList = intellectualTaskMapper.findIntellectualTaskForList();
+            List<IntellectualTask> intellectualTaskList = intellectualTaskMapper.findIntellectualTaskForList(intellectualTaskVO);
             handleIntellectualTask(intellectualTaskList);
             return new PageInfo<>(intellectualTaskList);
         } catch (Exception e) {
@@ -151,8 +151,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     }
 
     @Override
-    public List<IntellectualTask> findIntellectualTaskForList() {
-        return intellectualTaskMapper.findIntellectualTaskForList();
+    public List<IntellectualTask> findIntellectualTaskForList(IntellectualTaskVO intellectualTaskVO) {
+        return intellectualTaskMapper.findIntellectualTaskForList(intellectualTaskVO);
     }
 
     @Override

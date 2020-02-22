@@ -72,8 +72,9 @@ public class TaskReleaseController {
     }
 
     @RequestMapping("/findpageTaskReleaseForList")
-    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
-        model.addAttribute("pagemsg", taskReleaseService.findByPage(currentPage));//回显分页数据
+    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
+                        TaskReleaseVO taskReleaseVO, ModelMap map){
+        model.addAttribute("pagemsg", taskReleaseService.findByPage(currentPage, taskReleaseVO));//回显分页数据
         return "/taskrelease";
     }
     @RequestMapping("/getTaskReleaseById")

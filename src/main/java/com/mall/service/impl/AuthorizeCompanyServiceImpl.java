@@ -154,11 +154,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
     }
 
-    public int countnum(){
-        return authorizeCompanyMapper.countnum();
-    }
     @Override
-    public pagebean<AuthorizeCompany> findByPage(int currentPage) {
+    public pagebean<AuthorizeCompany> findByPage(int currentPage, AuthorizeCompanyVO authorizeCompanyVO) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<AuthorizeCompany> pageBean = new pagebean<AuthorizeCompany>();
 
@@ -170,7 +167,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
-        int totalCount = authorizeCompanyMapper.countnum();
+        int totalCount = authorizeCompanyMapper.countnum(authorizeCompanyVO);
         pageBean.setTotalCount(totalCount);
 
         //封装总页数
@@ -180,6 +177,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
 
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
+        map.put("authorizeCompanyVO", authorizeCompanyVO);
         //封装每页显示的数据
         List<AuthorizeCompany> lists = authorizeCompanyMapper.findByPage(map);
         handleAuthorizeCompany(lists);

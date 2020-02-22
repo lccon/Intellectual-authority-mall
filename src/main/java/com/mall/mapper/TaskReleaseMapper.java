@@ -1,6 +1,7 @@
 package com.mall.mapper;
 
 import com.mall.domain.TaskRelease;
+import com.mall.vo.TaskReleaseVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
@@ -46,7 +47,7 @@ public interface TaskReleaseMapper {
      */
     TaskRelease getTaskReleaseById(Long id);
 
-    int countnum();
+    int countnum(TaskReleaseVO taskReleaseVO);
 
     List<TaskRelease> findByPage(HashMap<String,Object> map);
 

@@ -141,11 +141,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
     }
 
-    public int countnum(){
-        return taskReleaseMapper.countnum();
-    }
     @Override
-    public pagebean<TaskRelease> findByPage(int currentPage) {
+    public pagebean<TaskRelease> findByPage(int currentPage, TaskReleaseVO taskReleaseVO) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<TaskRelease> pageBean = new pagebean<TaskRelease>();
 
@@ -157,7 +154,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
-        int totalCount = taskReleaseMapper.countnum();
+        int totalCount = taskReleaseMapper.countnum(taskReleaseVO);
         pageBean.setTotalCount(totalCount);
 
         //封装总页数
@@ -167,6 +164,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
 
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
+        map.put("taskReleaseVO", taskReleaseVO);
         //封装每页显示的数据
         List<TaskRelease> lists = taskReleaseMapper.findByPage(map);
         handleTaskRelease(lists);

@@ -94,10 +94,25 @@
         </foreach>
     </delete>
 
-    <select id="findIntellectualTaskForList" resultMap="intellectualTaskMap">
+    <select id="findIntellectualTaskForList" parameterType="com.mall.vo.IntellectualTaskVO"
+            resultMap="intellectualTaskMap">
         select
         <include refid="columns"/>
         FROM intellectual_task
+        <where>
+            <if test="productName != null and productName != ''">
+                product_name LIKE concat(#{productName},'%')
+            </if>
+            <if test="productBrief != null and productBrief != ''">
+                OR product_brief LIKE concat(#{productBrief},'%')
+            </if>
+            <if test="productCategory != null">
+                and product_category = #{productCategory}
+            </if>
+            <if test="industryCategory != null">
+                and industry_category = #{industryCategory}
+            </if>
+        </where>
     </select>
 
     <select id="getIntellectualTaskById" parameterType="java.lang.Long" resultMap="intellectualTaskMap">
