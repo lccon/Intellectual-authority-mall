@@ -83,6 +83,9 @@ public class SearchServiceImpl implements SearchService{
             if (taskReleaseList.size() >= alsoRecord) {
                 taskReleaseList = taskReleaseList.subList(0, alsoRecord);
                 searchBusinessVO.setTaskReleaseList(taskReleaseList);
+            } else {
+                taskReleaseList = taskReleaseList.subList(0, taskReleaseList.size());
+                searchBusinessVO.setTaskReleaseList(taskReleaseList);
             }
             return searchBusinessVO;
         }
