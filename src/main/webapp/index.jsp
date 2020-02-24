@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 						function findpage() {
 							var a1=document.getElementById("button1");
 							var input1=document.getElementById("input1").value;
-							a1.href="/api/getSearchBusinessData?page=1&rows=5&productName="+input1+"&productBrief="+input1;
+							a1.href="/api/getSearchBusinessData?page=1&rows=1&productName="+input1+"&productBrief="+input1;
                         }
 					</script>
 					<a href="/post-message" class="btn btn-default" id="button2">免费发布信息</a>
@@ -359,7 +359,7 @@ pageEncoding="UTF-8"%>
 
 
 			<th>
-				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="5" step="1">
+				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="4" step="1">
 					<div class="pro-box">
 						<ul>
 							<li class="media" id="product">
@@ -389,7 +389,7 @@ pageEncoding="UTF-8"%>
 
 
 			<th>
-				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="5" step="1">
+				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="4" step="1">
 					<div class="pro-box">
 						<ul>
 							<li class="media" id="product">

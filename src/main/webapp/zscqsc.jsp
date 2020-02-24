@@ -106,7 +106,7 @@
                         <div class="media" style="width: 1150px;">
                             <div class="media-left">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">
-                                    <img  id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
+                                    <img  id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
                                     <script type="text/javascript">
                                         var url11="${u.productPictureUrl}".split(",");
                                         var img1=document.getElementById("img${u.id}");
@@ -117,7 +117,7 @@
                             <div class="media-body" id="caps">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                 <p id="desc">${u.productBrief }</p>
-                                <p id="price">1800元</p>
+                                <p id="price">价格面议</p>
                                 <p id="desc">浏览量：100</p>
                             </div>
 
@@ -129,57 +129,8 @@
                     <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
                     <c:if test="${u.hasCollectedState==1}">
-                        <a id="abc" href="javascript:void(0);" onclick="deletecollect(userid,moduletype,moduletypeid)" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},1,${u.id})" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
-                    <script>
-
-                        //填加收藏
-                        function addcollect(id) {
-                            var a=document.getElementById("addcollect");
-                            var abc=document.getElementById("abc");
-                            $.ajax({
-                                type:"POST",
-                                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
-                                cache:false,
-                                contentType: false,
-                                processData: false,
-                                success: function(result) {
-                                    if(result){
-                                        bbb(${requestScope.pagemsg.currPage});
-                                        abc.innerText="收藏成功";
-                                        console.log(a.class);
-                                    }
-                                    else {
-                                        console.log("456");
-                                    }
-
-                                },
-                            })
-                        }
-
-                        //删除收藏
-                        function deletecollect(userid,moduletype,moduletypeid) {
-                            $.ajax({
-                                type:"POST",
-                                url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
-                                async : false,
-                                data:{type:1},
-                                timeout:1000,
-                                success: function(result) {
-                                    if(result){
-                                        console.log(userid,moduletype,moduletypeid);
-                                        console.log("删除成功");
-                                        $("#product1").html(loadContent("/businessCollected/findBusinessCollectedForPage?moduleType="+moduletype));
-                                    }
-                                    else {
-                                        console.log("删除失败");
-                                    }
-
-                                },
-                            })
-                        }
-                    </script>
-
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
@@ -228,6 +179,52 @@
                 success : function(rst) {
                     $contentWrapper.html(rst);
                 }
+            })
+        }
+
+
+
+
+        //填加收藏
+        function addcollect(id) {
+            var a=document.getElementById("addcollect");
+            var abc=document.getElementById("abc");
+            $.ajax({
+                type:"POST",
+                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    if(result){
+                        bbb(${requestScope.pagemsg.currPage});
+                    }
+                    else {
+                        console.log("新增失败");
+                    }
+
+                },
+            })
+        }
+
+        //删除收藏
+        function deletecollect(userid,moduletype,moduletypeid) {
+            $.ajax({
+                type:"POST",
+                url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+                async : false,
+                data:{type:1},
+                timeout:1000,
+                success: function(result) {
+                    if(result){
+                        console.log("删除成功");
+                        bbb(${requestScope.pagemsg.currPage});
+                    }
+                    else {
+                        console.log("删除失败");
+                    }
+
+                },
             })
         }
     </script>

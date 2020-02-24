@@ -8,55 +8,22 @@ pageEncoding="UTF-8"%>
     <title>注册信息</title>
     <link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.all.js"></script>
     <script src="/js/jquery.min.js"></script>
     <style>
-        #qr-code-register {
-            height: 232px;
+        .layui-form-label{
+            width:100px;
         }
-
-        .reg-cont .cont-box2 {
-            height: 322px;
-            padding-top: 0;
+        .layui-input{
+            width:250px;
+            float: left;
         }
-
-        #qr-code-register .qr-code {
-            height: 120px;
-            width: 120px;
-            background: url(../img/register_qr.png);
-            margin: 0 auto;
-        }
-
-        #qr-code-register .title1 {
-            text-align: center;
-            margin: 0 auto;
-            font-size: 16px;
-            line-height: 56px;
-            font-family: arial, 宋体;
-            color: #010101;
-        }
-
-        #qr-code-register .title2 {
-            text-align: center;
-            margin: 0 auto;
-            font-size: 14px;
-            color: #4b4b4b;
-            line-height: 56px;
-            font-family: arial, 宋体;
-        }
-
-        .li_fr {
-            float: right;
-            background: none !important;
-            border: none !important;
-        }
-
-        .li_fr a {
-            color: #60af00
-        }
-
         .code-btn {
             color: #a07941;
-            font-size: 12px;
+            margin-left: 10px;
+            height: 28px;
+            font-size: 14px;
             border: 1px solid #a07941;
             border-radius: 5px;
             padding: 5px;
@@ -73,88 +40,110 @@ pageEncoding="UTF-8"%>
 <!--logo e-->
 <!--wrapper s-->
 <div id="wrapper">
-    <div class="clearfix reg-cont V5">
+    <div class="clearfix reg-cont">
         <p class="desc">注册只需10秒，发布、管理信息更轻松</p>
         <div class="login-tab" data-widget="app/ms_v2/user/register.js#switchTab">
             <ul>
                 <li data-role="switch" data-action="phone" class="active"><a href="javascript:void(0);">快速注册</a></li>
-                <li class="li_fr">已有账号?<span><a href="#">立即登录</a></span></li>
+                <li class="li_fr">已有账号?<span><a href="/login.jsp" style="color: #60af00;">立即登录</a></span></li>
                 <!--登录界面地址-->
-
             </ul>
         </div>
+        <div class="tab-con2">
+            <form id="maintainForm" class="layui-form" method="post" action="/user/addUser">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名：</label>
+                        <div class="layui-input-block">
+                            <input  type="text" name="username" id="username" placeholder="请填写用户名" lay-verify="title" autocomplete="off" class="layui-input" onblur="YHMonblus()" onfocus="YHMonfocu">
+                            <input value="2" type="hidden" name="identity"/>
+                            <input value="3" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
+                            &nbsp;<span class="msg-box" id="tip_username"><span id="tip_username1" class="msg-box1"></span></span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <label class="layui-form-label">手机号：</label>
+                            <div class="layui-input-block" >
+                                <input type="text" class="layui-input" placeholder="请填写您的手机号" name="mobile" id="tel_num" value="" onblur="LXDHonblus()" onfocus="LXDHonfocu()">
+                                <span  type="button" class="code-btn">获取验证码</span>
+                                &nbsp;<span id="tip_phone" class="msg-box"><span id="tip_phone1"></span></span>
+                            </div>
+                            <div class="layui-input-block" style="width:300px;">
+                            <input style="margin-top:20px; width:100px;" type="tel" name="" id="code_num" class="layui-input" lay-verify="required|phone" value="" onblur="YZMonblus()" onfocus="YZMonfou()">
+                            &nbsp;<span style="margin-top:17px; width:200px;" id="tip_code_num" class="msg-box"><span id="tip_code_num1"></span></span>
+                            </div>
+                    </div>
+                    <div class="layui-upload">
+                        <label class="layui-form-label">上传头像：</label>
+                        <div class="layui-input-block">
+                        <div class="layui-upload-list">
+                            <input type="file" id="test1" onchange="uploadImage(this)"/>
+                            <img class="layui-upload-img" id="demo1" style="background-color: #eeeeee;width:100px;height:100px;">
+                            <script>
+                                layui.use('upload', function(){
+                                    var $ = layui.jquery
+                                        ,upload = layui.upload;
 
-        <div class="tab-con2 js-tab js-phone">
-            <div class="error-box V5" id="reg_phone_error" style="display:none">
-                <span class="validatorMsg validatorError" id="reg_phone_error_content"></span>
-            </div>
-            <form id="maintainForm" method="post" action="/user/addUser">
-                <div class="tab-cont" style="display:block;">
-                    <div class="field clearfix">
-                        <label class="field-tit" for="username">用户名：</label>
-                        <input value="" name="username" id="username" type="text" placeholder="请填写用户名"/>
-                        <input value="2" type="hidden" name="identity"/>
-                        <input value="3" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
-                        &nbsp;<span class="msg-box" id="tip_username"></span>
-                    </div>
-                    <div class="clearLine"></div>
-                    <div class="field clearfix">
-                        <label class="field-tit">头像：</label>
-                        <input type="file" class="tab-input-text t_reg_phone" onchange="uploadImage(this);" class="text-input">
-                        <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
-                    </div>
-                    <div class="field clearfix">
-                        <label class="field-tit" for="phone">手机号：</label>
-                        <input type="text" class="tab-input-text t_reg_phone" placeholder="请填写您的手机号" name="mobile" id="tel_num"
-                            value="">
-                        &nbsp;<span id="tip_phone" class="msg-box"></span>
-                    </div>
-                    <div class="field clearfix">
-                        <label class="field-tit" for="phone">验证码：</label>
-                        <input type="text" name="" id="code_num" class="inp code-inp" value="" placeholder="请输入您的验证码">
-                        <span type="button" class="code-btn">获取验证码</span>
-                    </div>
-                    <div class="field clearfix">
-                        <label class="field-tit" for="password">密码：</label>
-                        <input value=""  name="password" id="password" onKeyUp=pwStrength(this.value) onBlur=pwStrength(this.value) type="password" class="tab-input-text t_phone_password"
-                            maxlength="16" data-widget="app/ms_v2/user/register.js#levelValid" />
-                        <span class="msg-box" id="tip_phone_password"></span>
-                        <div class="pw-strength" id="level">
-                            <div class="progress" style="width: 200px;">
-                                <div id="jian" class="progress-bar progress-bar-danger" >
-                                </div>
-                                <div id="yi" class="progress-bar progress-bar-warning progress-bar-striped" >
-                                </div>
-                                <div id="nan" class="progress-bar progress-bar-success">
-                                </div>
-                            </div>
-                            <div class="pw-txt clearfix">
-                                <span>危险</span>
-                                <span>一般</span>
-                                <span>安全</span>
-                            </div>
+                                    //普通图片上传
+                                    var uploadInst = upload.render({
+                                        elem: '#test1'
+                                        ,url: '/upload/uploadImg'
+                                        ,before: function(obj){
+                                            //预读本地文件示例，不支持ie8
+                                            obj.preview(function(index, file, result){
+                                                $('#demo1').attr('src', result); //图片链接（base64）
+                                            });
+                                        },
+                                    });
+                                    })
+                            </script>
+                            <span id="demoText"></span>
+                            <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
+                        </div>
                         </div>
                     </div>
-                    <div class="field clearfix">
-                        <label class="field-tit" for="confirm-password">确认密码：</label>
-                        <input value="" name="phone_password2" type="password" maxlength="16"
-                            class="tab-input-text t_phone_password2" />
-                        <span class="msg-box" id="tip_phone_password2"></span>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码：</label>
+                    <div class="layui-input-block">
+                        <input value=""  name="password" id="password" onKeyUp="pwStrength(this.value)" onBlur="pwStrength(this.value)" onfocus="MMonfocu()" type="password" class="layui-input"maxlength="16"/>
+                        <span class="msg-box" id="tip_phone_password"><span id="tip_phone_password1"></span></span>
                     </div>
-                    <div class="gj-agreement clearfix">
-                        <div class="gj-agreement-cont"><input value="14" checked name="phone_affirm" type="checkbox"
-                                class="chk-vm t_cvm" />
-                            <label for="stay-login">我已阅读并同意<a target="_blank"
-                                    href="#">&lt;&lt;服务条款&gt;&gt;</a>&nbsp;和&nbsp;<a target="_blank"
-                                    href="#">&lt;&lt;隐私政策&gt;&gt;</a></label>
-                            <span class="msg-box" id="tip_phone_affirm"></span>
+                    <div class="pw-strength" id="level">
+                        <div class="progress" style="width: 200px;">
+                            <div id="jian" class="progress-bar progress-bar-danger" >
+                            </div>
+                            <div id="yi" class="progress-bar progress-bar-warning progress-bar-striped" >
+                            </div>
+                            <div id="nan" class="progress-bar progress-bar-success">
+                            </div>
                         </div>
-                    </div>
-                    <div class="submit-box" data-widget="app/ms_v2/user/register.js#phoneRegisterIndex">
-                        <input class="btn-org js-submit-btn t_submit" type="submit" value="立即注册" data-role="reg_submit">
-                        <span class="msg-submit " style="display: none;">正在提交···</span>
+                        <div class="pw-txt clearfix">
+                            <span>危险</span>
+                            <span>一般</span>
+                            <span>安全</span>
+                        </div>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码：</label>
+                    <div class="layui-input-block">
+                    <input value="" name="phone_password2" id="password2" type="password" maxlength="16" class="layui-input" onblur="QRMMonblus()" onfocus="QRMMonfocu()"/>
+                        <span class="msg-box" id="tip_phone_password2"><span id="tip_phone_password21"></span></span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                        <div class="agreement-cont">
+                            <input id="check" type="checkbox" class="chk-vm" onclick="XY()" style="display: block;margin: 8px 5px 0 0;" checked/>
+                            <label style="float: left;">
+                            我已阅读并同意
+                                <a target="_blank" href="#">&lt;&lt;服务条款&gt;&gt;</a>
+                                &nbsp;和&nbsp;
+                                <a target="_blank" href="#">&lt;&lt;隐私政策&gt;&gt;</a></label>
+                            <span class="msg-box" id="tip_phone_affirm"><span id="tip_phone_affirm1"></span></span>
+                        </div>
+                </div>
+                    <div class="submit-box">
+                        <input type="submit" value="立即注册" data-role="reg_submit" class="btn-org">
+                    </div>
             </form>
         </div>
 
@@ -163,128 +152,11 @@ pageEncoding="UTF-8"%>
 <!--wrapper e-->
 <!--footer s-->
 <!-- footer s -->
-<jsp:include page="footer.jsp"/>
 <!-- footer e -->
 <!--footer e-->
 <script type="text/javascript">
-    window.PAGE_CONFIG = { "GOOGLE_ANA_CODE": "UA-479320-1", "logTracker": { "gjchNew": "\/user\/login\/register\/-\/op", "server": "https:\/\/analytics.ganji.com" }, "reqid": "30a26d05-3394-44bc-a3b1-74fc0e1f9e38", "__hash__": "Xyy9epSCmvHJszMcLxLVErYMZvfa9r6aVeZDb1SZToljYr7S37+ti1YqaDwoObew" } || {};
-    GJ.use(['app/ms_v2/common/base_page.js'], function (Page) {
-        Page.first();
-        Page.last();
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $("#maintainForm").formValidate({
-            rules:{
-                "username":{
-                    required:true,
-                    minlength:1,
-                    maxlength:32
-                },
-                "password":{
-                    required:true,
-                    minlength:1,
-                    maxlength:32,
-                    notChinese:true
-                },
-                "mobile":{
-                    required:true,
-                    minlength:1,
-                    maxlength:11,
-                    isMobile:true
-                },
-                "idCard":{
-                    required:true,
-                    minlength:1,
-                    maxlength:18,
-                    isIdCard:true
-                },
-                "accountYue":{
-                    required:true,
-                    minlength:1,
-                    maxlength:5,
-                    isNumber:true
-                },
-                "virtualCoin":{
-                    required:true,
-                    minlength:1,
-                    maxlength:5,
-                    isNumber:true
-                },
-                "freeMessageNum":{
-                    required:true,
-                    minlength:1,
-                    maxlength:5,
-                    isNumber:true
-                },
-            },
-            messages:{
-                "username":{
-                    required:"请输入用户名",
-                    minlength:$.format("用户名至少需要输入{0}个字符"),
-                    minlength:$.format("用户名最多需要输入{0}个字符"),
-                },
-                "password":{
-                    required:"请输入密码",
-                    notChinese:"请输入非中文密码",
-                    minlength:$.format("密码至少需要输入{0}个字符"),
-                    minlength:$.format("密码最多需要输入{0}个字符"),
-                },
-                "mobile":{
-                    required:"请输入手机号",
-                    isMobile:"手机号格式不正确",
-                    minlength:$.format("手机号至少需要输入{0}个字符"),
-                    minlength:$.format("手机号最多需要输入{0}个字符"),
-                },
-                "idCard":{
-                    required:"请输入身份证号",
-                    isIdCard:"身份证号格式不正确",
-                    minlength:$.format("身份证号至少需要输入{0}个字符"),
-                    minlength:$.format("身份证号最多需要输入{0}个字符"),
-                },
-                "accountYue":{
-                    required:"请输入账户余额",
-                    isNumber:"只能输入数字",
-                    minlength:$.format("账户余额至少需要输入{0}位数字"),
-                    minlength:$.format("账户余额最多需要输入{0}位数字"),
-                },
-                "virtualCoin":{
-                    required:"请输入虚拟币数量",
-                    isNumber:"只能输入数字",
-                    minlength:$.format("虚拟币数量至少需要输入{0}位数字"),
-                    minlength:$.format("虚拟币数量最多需要输入{0}位数字"),
-                },
-                "freeMessageNum":{
-                    required:"请输入可免费发布信息数量",
-                    isNumber:"只能输入数字",
-                    minlength:$.format("可免费发布信息数量至少需要输入{0}位数字"),
-                    minlength:$.format("可免费发布信息数量最多需要输入{0}位数字"),
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    success: function(data){
-                        if(data != null && !data.id){
-                            $.messageBox({
-                                message:"新增失败",
-                                level: "error"
-                            });
-                            return;
-                        }
-                        $("#userList").trigger("reloadGrid");
-                        $.messageBox({message:"新增成功!"});
-                        $("#userDialog").dialog("close");
-                    },
-                    error: function(data){
-                        alert("提交数据发生错误！");
-                    }
-                });
-            }
-        });
-
-    });
+    var code1;
+    var result1;
 
     function uploadImage(obj) {
         var f = $(obj).val();
@@ -311,46 +183,22 @@ pageEncoding="UTF-8"%>
             success: function(result) {
                 if (result.flag == true) {
                     $("#headPortrait").val(result.resultStr);
-                    $.messageBox({message:"上传成功"});
+                    document.getElementById("demoText").className="success";
+                    document.getElementById("demoText").innerText="上传成功";
+                    console.log("上传成功");
                 } else {
                     $.messageBox({message:result.resultStr});
                     $(obj).val('');
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("上传失败，请检查网络后重试");
+                document.getElementById("demoText").className="error2";
+                document.getElementById("demoText").innerText="上传失败，请检查网络后重试";
             }
         })
     }
 
-    jQuery.validator.addMethod("isNumber", function(value, element){
-        if(value==null||value==undefined||value=="" ){return true};
-        var patrn=/^[0-9]+$/;
-        if (!patrn.exec(value.replace(/[ ]/g,""))) return false
-        return true
-    });
 
-    jQuery.validator.addMethod("isMobile", function(value, element) {
-        var length = value.length;
-        var mobile = /^1[3|4|5|7|8]\d{9}$/;
-        return this.optional(element) || (length == 11 && mobile.test(value));
-    });
-
-    jQuery.validator.addMethod("isIdCard", function(value, element){
-        var length = value.length;
-        var idCard = /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-        return this.optional(element) || (length == 18 && idCard.test(value));
-    });
-
-    jQuery.validator.addMethod("notChinese", function(value, element) {
-        if(value==null||value==undefined||value=="" ){return true};
-        var patrn=/[^\u4e00-\u9fa5]+$/;
-        if (!patrn.exec(value)) return false;
-        return true
-    });
-
-</script>
-<script language=javascript>
     //判断输入密码的类型
     function CharMode(iN){
         if (iN>=48 && iN <=57) //数字
@@ -386,6 +234,30 @@ pageEncoding="UTF-8"%>
 
     //显示颜色
     function pwStrength(pwd){
+        var password=document.getElementById("password");
+        var passworderr=document.getElementById("tip_phone_password");
+        var re = /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z]{6,}$/;
+        // var reg=/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+
+        if(password.value==""){
+            passworderr.className="error1";
+            passworderr.innerText="请输入密码";
+        }
+        else if(password.value.length < 6){
+            passworderr.className="error2";
+            passworderr.innerText="格式错误,,密码长度至少为6位";
+        }
+
+        else if(!re.test(password.value)){
+            passworderr.className="error2";
+            passworderr.innerText="格式错误,必须包含英文字母大小写和数字";
+        }
+        else {
+            passworderr.className="success";
+            passworderr.innerText ="";
+        }
+
+
         O_color="";
         L_color="33%";
         M_color="33%";
@@ -415,10 +287,7 @@ pageEncoding="UTF-8"%>
         document.getElementById("nan").style.width=Hcolor;
         return;
     }
-</script>
 
-
-<script>
 
     var code_time = 90;
     function time_inter() {
@@ -455,9 +324,6 @@ pageEncoding="UTF-8"%>
                 success: function(result) {
                     if(result){
                         var d = $.parseJSON(result);
-                        console.log(d);
-                        console.log(d.code);
-                        console.log(d.code.length());
                     }
                     else {
 
@@ -466,9 +332,127 @@ pageEncoding="UTF-8"%>
                 },
             })
         } else {
-            alert('请输入正确手机号码')
+            phoneerr=document.getElementById("tip_phone");
+            phoneerr.className="error1";
+            phoneerr.innerText="请输入手机号";
         }
     })
+
+    //    用户名
+    function YHMonblus(){
+        var username=document.getElementById("username");
+        var usernameerr=document.getElementById('tip_username');
+        // var reN =/^\d{6,18}$/;
+        var re = /^[a-zA-Z0-9_]*$/;
+        if(username.value==""){
+            usernameerr.className="error1";
+            usernameerr.innerText="请输入用户名";
+        }
+        else if(username.value.length < 6 ||username.value.length > 18){
+            console.log(username.value);
+            usernameerr.className="error2";
+            usernameerr.innerText="格式错误,长度应为6-18个字符";
+        }
+        else if(!re.test(username.value)){
+            usernameerr.className="error2";
+            usernameerr.innerText="格式错误,只能包含英文字母和下划线";
+        }
+        else {
+            usernameerr.className="success";
+            usernameerr.innerText ="";
+        }
+    }
+    function YHMonfocu(){
+        var usernameerr=document.getElementById('tip_username');
+        usernameerr.className="msg-box";
+        usernameerr.innerText ="";
+    }
+    //   密码
+    function MMonfocu(){
+        var passworderr=document.getElementById("tip_phone_password");
+        passworderr.className="msg-box";
+        passworderr.innerText ="";
+    }
+
+    //    确认密码
+    function QRMMonblus(){
+        var password=document.getElementById("password");
+        var confirmPassword=document.getElementById("password2");
+        var password2err=document.getElementById('tip_phone_password2');
+        if(confirmPassword.value==""){
+            password2err.className="error1";
+            password2err.innerText="请输入确认密码";
+        }
+        else if(password.value != confirmPassword.value){
+            password2err.className="error2";
+            password2err.innerText="两次密码输入不一致";
+        }
+        else {
+            password2err.className="success";
+            password2err.innerText ="";
+        }
+    }
+    function QRMMonfocu(){
+        var password2err=document.getElementById('tip_phone_password2');
+        password2err.className="msg-box";
+        password2err.innerText ="";
+    }
+
+    //    联系电话
+    function LXDHonblus(){
+        var phone=document.getElementById("tel_num");
+        var phoneerr=document.getElementById('tip_phone');
+        var re =/^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+        if(phone.value==""){
+            phoneerr.className="error1";
+            phoneerr.innerText="请输入手机号";
+        }
+        else if(!re.test(phone.value)){
+            console.log(phone);
+            phoneerr.className="error2";
+            phoneerr.innerText="电话格式输入错误";
+        }
+        else {
+            phoneerr.className="success";
+            phoneerr.innerText ="";
+        }
+    }
+    function LXDHonfocu(){
+        var phoneerr=document.getElementById('tip_phone');
+        phoneerr.className="msg-box";
+        phoneerr.innerText ="";
+    }
+    //验证码
+    function YZMonblus() {
+        var code_num=document.getElementById("code_num");
+        var code_numerr=document.getElementById("tip_code_num");
+        if(code_num.value==code1 && result1){
+            code_numerr.className="success";
+        }
+        else{
+            code_numerr.className="error2";
+            code_numerr.innerText="验证码不正确";
+        }
+    }
+    function YZMonfou() {
+        var code_numerr=document.getElementById("tip_code_num");
+        code_numerr.className="msg-box";
+        code_numerr.innerText="";
+    }
+
+    function XY() {
+        var c=document.getElementById("check");
+        var cerr=document.getElementById("tip_phone_affirm");
+        if(!c.checked){
+            cerr.className="error2";
+            cerr.innerText="必须先接收网站的条款"
+        }
+        else{
+            cerr.className="msg-box";
+            cerr.innerText="";
+        }
+        console.log(c.checked);
+    }
 </script>
 
 </body>

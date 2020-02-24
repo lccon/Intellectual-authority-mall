@@ -93,32 +93,8 @@
                         <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
                     <c:if test="${u.hasCollectedState==1}">
-                        <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},2,${u.id});" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
-                    <script>
-                        function addcollect(id) {
-                            var a=document.getElementById("addcollect");
-                            var abc=document.getElementById("abc");
-                            $.ajax({
-                                type:"POST",
-                                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
-                                cache:false,
-                                contentType: false,
-                                processData: false,
-                                success: function(result) {
-                                    if(result){
-                                        bbb(${requestScope.pagemsg.currPage});
-                                        abc.innerText="收藏成功";
-                                        console.log(a.class);
-                                    }
-                                    else {
-                                        console.log("456");
-                                    }
-
-                                },
-                            })
-                        }
-                    </script>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
@@ -170,6 +146,52 @@
             }
         })
     }
+
+
+
+    //新增收藏
+    function addcollect(id) {
+        var a=document.getElementById("addcollect");
+        var abc=document.getElementById("abc");
+        $.ajax({
+            type:"POST",
+            url: "/businessCollected/addBusinessCollected?moduleType=2&moduleTypeId="+id,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: function(result) {
+                if(result){
+                    console.log(result);
+                    bbb(${requestScope.pagemsg.currPage});
+                }
+                else {
+                    console.log("新增失败");
+                }
+
+            },
+        })
+    }
+    //删除收藏
+    function deletecollect(userid,moduletype,moduletypeid) {
+        $.ajax({
+            type:"POST",
+            url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+            async : false,
+            data:{type:1},
+            timeout:1000,
+            success: function(result) {
+                if(result){
+                    console.log("删除成功");
+                    bbb(${requestScope.pagemsg.currPage});
+                }
+                else {
+                    console.log("删除失败");
+                }
+
+            },
+        })
+    }
+
 </script>
 <!--网页底部-->
 <jsp:include page="footer.jsp" />

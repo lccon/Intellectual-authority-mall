@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div id="center11">
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
@@ -129,31 +130,12 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
-                    <script>
-                        function addcollect() {
-                            var a=document.getElementById("addcollect");
-                            var abc=document.getElementById("abc");
-                            $.ajax({
-                                type:"POST",
-                                url: "/businessCollected/addBusinessCollected?moduleType=3&moduleTypeId=${u.id}",
-                                cache:false,
-                                contentType: false,
-                                processData: false,
-                                success: function(result) {
-                                    if(result){
-                                        a.class="glyphicon glyphicon-heart";
-                                        abc.innerText="收藏成功";
-                                        console.log(a.class);
-                                    }
-                                    else {
-                                        console.log("456");
-                                    }
-
-                                },
-                            })
-                        }
-                    </script>
+                    <c:if test="${u.hasCollectedState==0}">
+                        <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    </c:if>
+                    <c:if test="${u.hasCollectedState==1}">
+                        <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},3,${u.id});" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                    </c:if>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
@@ -164,50 +146,99 @@
 </div>
 
 
-<div>
-    <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
-    <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
-    <span>
-       <c:if test="${requestScope.pagemsg.currPage != 1}">
-           <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=1">[首页]</a>
-           <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=${requestScope.pagemsg.currPage-1}">[上一页]</a>
-       </c:if>
 
-       <c:if test="${requestScope.pagemsg.currPage != requestScope.pagemsg.totalPage}">
-           <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=${requestScope.pagemsg.currPage+1}">[下一页]</a>
-           <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
-       </c:if>
-   </span>
-
-</div>
+<!--分页-->
 <div class="container">
     <div class="row pad-15">
         <div class="col-md-12">
             <nav class="pagination-outer" aria-label="Page navigation">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=${requestScope.pagemsg.currPage-1}" class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=1">1</a></li>
-                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage }" step="1">
-                        <li class="page-item">
-                            <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
-                        </li>
-                    </c:forEach>
-                    <li class="page-item">
-                        <a href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage=${requestScope.pagemsg.currPage+1}" class="page-link" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
+                    <div id="demo2-1"></div>
                 </ul>
             </nav>
         </div>
     </div>
 </div>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        laypage.render({
+            elem: 'demo2-1',
+            count: ${requestScope.pagemsg.totalCount },
+            limit:${requestScope.pagemsg.pageSize},
+            theme: '#FF5722',
+            curr:${requestScope.pagemsg.currPage },
+            jump: function(obj, first){
+                //首次不执行
+                if(!first){
+                    bbb(obj.curr);
+                    //do something
+                }
+            }
+        });
+    });
+    function bbb(path) {
+        var that=$(this);
+        var $contentWrapper = $('#center11');
+        var $ul1=$('pagination');
+        $.ajax({
+            url : "${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage="+path,
+            success : function(rst) {
+                $contentWrapper.html(rst);
+            }
+        })
+    }
+
+
+
+    //新增收藏
+    function addcollect(id) {
+        var a=document.getElementById("addcollect");
+        var abc=document.getElementById("abc");
+        $.ajax({
+            type:"POST",
+            url: "/businessCollected/addBusinessCollected?moduleType=3&moduleTypeId="+id,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: function(result) {
+                if(result){
+                    console.log(result);
+                    bbb(${requestScope.pagemsg.currPage});
+                }
+                else {
+                    console.log("新增失败");
+                }
+
+            },
+        })
+    }
+    //删除收藏
+    function deletecollect(userid,moduletype,moduletypeid) {
+        $.ajax({
+            type:"POST",
+            url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+            async : false,
+            data:{type:1},
+            timeout:1000,
+            success: function(result) {
+                if(result){
+                    console.log("删除成功");
+                    bbb(${requestScope.pagemsg.currPage});
+                }
+                else {
+                    console.log("删除失败");
+                }
+
+            },
+        })
+    }
+
+</script>
 <!--网页底部-->
 <jsp:include page="footer.jsp" />
+</div>
 </body>
 
 </html>

@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 
 <body style="background-color: #e5e5e5e5;">
 
+<jsp:include page="/admin/baseInclude.jsp" />
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="login">
         <c:if test="${userRealName!=null}">
@@ -38,7 +39,12 @@ pageEncoding="UTF-8"%>
         </div>
     </div>
 </nav>
-    <div class="container" style="margin-top: 100px;">
+<div style="margin-top:100px;height: 40px;" >
+    <ol class="breadcrumb">
+        <li><a href="/">返回首页</a></li>
+    </ol>
+</div>
+    <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="top-title">

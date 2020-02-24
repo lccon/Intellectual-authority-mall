@@ -1,20 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: liuchao
-  Date: 2020/2/21
-  Time: 10:23
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>基于amazeui用户充值页面 - 源码之家</title>
-
-    <link rel="stylesheet" type="text/css" href="css/amazeui.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-
+    <title>充值中心</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+<jsp:include page="admin/baseInclude.jsp"/>
 </head>
 <body>
 <div class="pay">
@@ -25,16 +18,24 @@
             <p>1.提示信息。</p>
             <p>2.提示信息。</p>
         </div>
-        <form action="" class="am-form" id="doc-vld-msg">
+        <form action="/createPreOrder" class="am-form" id="doc-vld-msg">
+            <!--订单编号-->
+                <input id="WIDout_trade_no" name="orderid" type="hidden"/>
+            <!--订单名称-->
+                <input id="WIDsubject" name="ordername" type="hidden" value="测试"/>
+            <!--订单金额-->
+                <input id="orderprice" name="orderprice" type="hidden"/>
+            <!--用户id-->
+                <input id="userid" name="userid" type="" value="${UserId}"/>
             <div class="tr_rechbox">
                 <div class="tr_rechhead">
                     <img src="images/ys_head2.jpg" />
                     <p>充值帐号：
-                        <a>用户名</a>
+                        <a>${userRealName}</a>
                     </p>
                     <div class="tr_rechheadcion">
                         <img src="images/coin.png" alt="" />
-                        <span>当前余额：<span>1000虚拟币</span></span>
+                        <span>当前余额：<span>${virtualCoin}虚拟币</span></span>
                     </div>
                 </div>
                 <div class="tr_rechli am-form-group">
@@ -77,11 +78,11 @@
                 </div>
                 <div class="tr_rechnum">
                     <span>应付金额：</span>
-                    <p class="rechnum">0.00元</p>
+                    <p class="rechnum" id="price">0.00元</p>
                 </div>
             </div>
             <div class="tr_paybox">
-                <input type="submit" value="确认支付" class="tr_pay am-btn" />
+                <input type="submit" value="确认支付" class="tr_pay am-btn"/>
                 <span>温馨提示：。</span>
             </div>
         </form>
@@ -92,6 +93,7 @@
 <script type="text/javascript" src="js/amazeui.min.js"></script>
 <script type="text/javascript" src="js/ui-choose.js"></script>
 <script type="text/javascript">
+
     // 将所有.ui-choose实例化
     $('.ui-choose').ui_choose();
     // uc_01 ul 单选
@@ -107,26 +109,31 @@
             $('.tr_rechoth').show();
             $('.tr_rechoth').find("input").attr('required', 'true')
             $('.rechnum').text('10.00元');
+            document.getElementById("orderprice").value="10.00";
         })
         $('#uc_01 li:eq(0)').click(function() {
             $('.tr_rechoth').hide();
             $('.rechnum').text('10.00元');
             $('.othbox').val('');
+            document.getElementById("orderprice").value="10.00";
         })
         $('#uc_01 li:eq(1)').click(function() {
             $('.tr_rechoth').hide();
             $('.rechnum').text('20.00元');
             $('.othbox').val('');
+            document.getElementById("orderprice").value="20.00";
         })
         $('#uc_01 li:eq(2)').click(function() {
             $('.tr_rechoth').hide();
             $('.rechnum').text('50.00元');
             $('.othbox').val('');
+            document.getElementById("orderprice").value="50.00";
         })
         $(document).ready(function() {
             $('.othbox').on('input propertychange', function() {
                 var num = $(this).val();
                 $('.rechnum').html(num + ".00元");
+                document.getElementById("orderprice").value=num+".00";
             });
         });
     })
@@ -151,6 +158,24 @@
             }
         });
     });
+</script>
+<script>
+    function GetDateNow() {
+        var vNow = new Date();
+        var sNow = "";
+        sNow += String(vNow.getFullYear());
+        sNow += String(vNow.getMonth() + 1);
+        sNow += String(vNow.getDate());
+        sNow += String(vNow.getHours());
+        sNow += String(vNow.getMinutes());
+        sNow += String(vNow.getSeconds());
+        sNow += String(vNow.getMilliseconds());
+        document.getElementById("WIDout_trade_no").value=sNow;
+
+    }
+    GetDateNow();
+
+
 </script>
 </body>
 </html>

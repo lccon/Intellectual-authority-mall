@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
 </head>
 
 <body style="background-color: #e5e5e5e5;">
@@ -44,6 +45,12 @@
             </div>
         </div>
     </nav>
+    <div style="margin-top:120px;margin-left: 75px; height: 40px;" >
+        <ol class="breadcrumb">
+            <li><a href="/">返回首页</a></li>
+            <li class="active">个人中心</li>
+        </ol>
+    </div>
 
     <!--用户中心头部信息-->
     <div class="container" id="nav-head">
@@ -66,6 +73,7 @@
     </div>
     <!--侧边栏-->
     <div class="container" id="leftnav">
+
         <div class="row">
             <div class="span6">
                 <ul class="nav nav-list" id="userMenu">
@@ -74,7 +82,7 @@
                     <li data-url="/userCenter/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
                     <li><a href="javascript:void(0);">帐户明细</a></li>
                     <li class="nav-header"  id="cap2">我的资金</li>
-                    <li data-url="vocher"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
+                    <li data-url="/userCenter/vocher?id=${UserId}"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
                     <li><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
                     <li data-url="/userCenter/userpost"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>

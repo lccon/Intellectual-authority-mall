@@ -61,7 +61,10 @@
                             <a href="#">${u.collectedContent}</a>
                         </div>
                         <div style="width: 300px; float: left; margin-top: 50px;">
-                            <p id="desc">收藏于<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+                            <p id="desc">收藏于
+                                    ${gridPage.rows.size()}
+                                    ${gridPage.page}
+                                    ${gridPage.records}<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
                         </div>
                     </div>
 
