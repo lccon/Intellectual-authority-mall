@@ -120,6 +120,19 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     public List<TaskRelease> findBytaskRelease(String purpose,String detailedDesc) {
         return taskReleaseMapper.findBytaskRelease(purpose,detailedDesc);
     }
+
+    @Override
+    public List<TaskRelease> findTaskReleaseByIds(List<Long> releaseIds) {
+        if (releaseIds == null || releaseIds.size() <= 0) {
+            throw new BusinessValidationException("参数不能为空!");
+        }
+        try {
+            return taskReleaseMapper.findTaskReleaseByIds(releaseIds);
+        } catch (Exception e) {
+            throw new ServiceValidationException("获取需求任务信息出错", e);
+        }
+    }
+
     @Override
     public TaskRelease getTaskReleaseById(Long id) {
         if(id == null) {

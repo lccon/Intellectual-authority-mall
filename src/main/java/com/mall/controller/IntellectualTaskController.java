@@ -2,7 +2,9 @@ package com.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
+import com.mall.component.ThreadVariable;
 import com.mall.domain.IntellectualTask;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.IntellectualTaskService;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.ui.Model;
@@ -51,6 +53,10 @@ public class IntellectualTaskController {
     @RequestMapping("/addIntellectualTask")
     @ResponseBody
     public IntellectualTask addIntellectualTask(IntellectualTask intellectualTask) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        intellectualTask.setUserId(ThreadVariable.getSession().getUserId());
         return intellectualTaskService.addIntellectualTask(intellectualTask);
     }
 

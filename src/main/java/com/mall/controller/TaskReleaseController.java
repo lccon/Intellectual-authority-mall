@@ -2,7 +2,9 @@ package com.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
+import com.mall.component.ThreadVariable;
 import com.mall.domain.TaskRelease;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.TaskReleaseService;
 import com.mall.vo.TaskReleaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,10 @@ public class TaskReleaseController {
     @RequestMapping("/addTaskRelease")
     @ResponseBody
     public TaskRelease addTaskRelease(TaskRelease taskRelease) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        taskRelease.setUserId(ThreadVariable.getSession().getUserId());
         return taskReleaseService.addTaskRelease(taskRelease);
     }
 

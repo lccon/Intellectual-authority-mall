@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.BusinessBrowseMapper">
+    <resultMap id="businessBrowseMap" type="com.mall.domain.BusinessBrowse">
+        <id property="id" column="id"/>
+        <result property="moduleType" column="module_type"/>
+        <result property="moduleTypeId" column="module_type_id" />
+        <result property="visitorId" column="visitor_id"/>
+        <result property="publisherId" column="publisher_id" />
+    </resultMap>
+
+    <sql id="columns">
+        id, module_type, module_type_id, visitor_id, publisher_id
+    </sql>
+
+    <insert id="addBusinessBrowse" parameterType="com.mall.domain.BusinessBrowse">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO business_browse
+        (id, module_type, module_type_id, visitor_id, publisher_id)
+        VALUES
+        (#{id}, #{moduleType}, #{moduleTypeId}, #{visitorId}, #{publisherId})
+    </insert>
+
+    <select id="countBusinessBrowseNum" parameterType="com.mall.domain.BusinessBrowse" resultType="java.lang.Integer">
+        SELECT count(*) FROM business_browse
+        WHERE module_type = #{moduleType}
+        and module_type_id = #{moduleTypeId}
+        and visitor_id = #{visitorId}
+    </select>
+
+    <select id="findMeSeeWhoForList" parameterType="java.lang.Long" resultMap="businessBrowseMap">
+        SELECT <include refid="columns"/> FROM business_browse
+        WHERE visitor_id = #{visitorId}
+        order by create_date
+    </select>
+
+    <select id="findWhoSeeMeForList" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT visitor_id FROM business_browse
+        WHERE publisher_id = #{publisherId}
+    </select>
+</mapper>

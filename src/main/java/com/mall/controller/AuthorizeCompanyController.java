@@ -2,7 +2,9 @@ package com.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
+import com.mall.component.ThreadVariable;
 import com.mall.domain.AuthorizeCompany;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.AuthorizeCompanyService;
 import com.mall.vo.AuthorizeCompanyVO;
 import jdk.nashorn.internal.ir.annotations.Reference;
@@ -50,6 +52,10 @@ public class AuthorizeCompanyController {
     @RequestMapping("/addAuthorizeCompany")
     @ResponseBody
     public AuthorizeCompany addAuthorizeCompany(AuthorizeCompany authorizeCompany) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        authorizeCompany.setUserId(ThreadVariable.getSession().getUserId());
         return authorizeCompanyService.addAuthorizeCompany(authorizeCompany);
     }
 

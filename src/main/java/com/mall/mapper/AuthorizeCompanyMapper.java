@@ -53,5 +53,5 @@ public interface AuthorizeCompanyMapper {
 
     List<AuthorizeCompany> findByAuthorizeCompany(@Param("companyName") String companyName, @Param("companyDescribe") String companyDescribe);
 
-
+    List<AuthorizeCompany> findAuthorizeCompanyByIds(@Param("companyIds") List<Long> companyIds);
 }

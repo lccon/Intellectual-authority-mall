@@ -54,4 +54,6 @@ public interface TaskReleaseMapper {
     List<TaskRelease> getTaskReleaseByTask_category(Integer task_category);
 
     List<TaskRelease> findBytaskRelease(@Param("purpose") String purpose, @Param("detailedDesc") String detailedDesc);
+
+    List<TaskRelease> findTaskReleaseByIds(@Param("releaseIds") List<Long> releaseIds);
 }

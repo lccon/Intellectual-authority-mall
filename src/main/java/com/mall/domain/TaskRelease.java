@@ -35,6 +35,8 @@ public class TaskRelease extends BaseDomain{
     private Integer topDuration;
     /** 是否已经收藏 */
     private Integer hasCollectedState;
+    /** 用户id */
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -130,5 +132,13 @@ public class TaskRelease extends BaseDomain{
 
     public void setHasCollectedState(Integer hasCollectedState) {
         this.hasCollectedState = hasCollectedState;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

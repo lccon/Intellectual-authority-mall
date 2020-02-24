@@ -165,6 +165,18 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public List<User> getUserByIds(List<Long> userIdList) {
+		if (userIdList == null || userIdList.size() <= 0) {
+			throw new BusinessValidationException("参数不能为空!");
+		}
+		try {
+			return userMapper.getUserByIds(userIdList);
+		} catch (Exception e) {
+			throw new ServiceValidationException("获取用户信息失败", e);
+		}
+	}
+
 	private Session proccessLoginSuccess(User user, Session session) {
 		String sid = UUID.randomUUID().toString();
 		Session newSession = new Session();

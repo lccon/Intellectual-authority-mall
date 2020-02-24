@@ -161,6 +161,18 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     }
 
     @Override
+    public List<IntellectualTask> findIntellectualTaskByIds(List<Long> taskIds) {
+        if (taskIds == null || taskIds.size() <= 0) {
+            throw new BusinessValidationException("参数不能为空!");
+        }
+        try {
+            return intellectualTaskMapper.findIntellectualTaskByIds(taskIds);
+        } catch (Exception e) {
+            throw new ServiceValidationException("获取知识产权信息出错", e);
+        }
+    }
+
+    @Override
     public pagebean<IntellectualTask> findByPage(int currentPage, IntellectualTaskVO intellectualTaskVO) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<IntellectualTask> pageBean = new pagebean<IntellectualTask>();

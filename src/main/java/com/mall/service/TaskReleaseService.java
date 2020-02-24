@@ -52,4 +52,6 @@ public interface TaskReleaseService {
     pagebean<TaskRelease> findByPage(int currentPage, TaskReleaseVO taskReleaseVO);
 
     List<TaskRelease> findBytaskRelease(String purpose,String detailedDesc);
+
+    List<TaskRelease> findTaskReleaseByIds(List<Long> releaseIds);
 }

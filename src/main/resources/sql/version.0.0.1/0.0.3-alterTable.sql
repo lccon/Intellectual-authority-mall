@@ -20,3 +20,8 @@ ALTER TABLE authorize_company ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:�
 ALTER TABLE leave_message ADD COLUMN real_name VARCHAR(20) DEFAULT NULL comment '真实姓名' after message_state;
 ALTER TABLE leave_message ADD COLUMN mobile VARCHAR (11) DEFAULT NULL comment '联系方式' after real_name;
 ALTER TABLE leave_message ADD COLUMN mail_address VARCHAR (30) DEFAULT NULL comment '邮箱地址' after mobile;
+
+-- 添加用户id
+ALTER TABLE intellectual_task ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;
+ALTER TABLE task_release ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;
+ALTER TABLE authorize_company ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;

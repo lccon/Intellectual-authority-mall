@@ -14,6 +14,7 @@
         <result property="realName" column="real_name"/>
         <result property="mobile" column="mobile"/>
         <result property="state" column="state"/>
+        <result property="userId" column="user_id"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -23,7 +24,7 @@
     <sql id="columns">
         id, product_name, product_brief, product_details, patent_number,
         product_category, industry_category, product_picture_url, product_video_url,
-        real_name, mobile, state, create_user, create_date, update_user, update_date
+        real_name, mobile, state, user_id, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addIntellectualTask" parameterType="com.mall.domain.IntellectualTask">
@@ -33,11 +34,11 @@
         INSERT INTO intellectual_task
         (id, product_name, product_brief, product_details, patent_number,
         product_category, industry_category, product_picture_url, product_video_url,
-        real_name, mobile, state, create_user, create_date)
+        real_name, mobile, state, user_id, create_user, create_date)
         VALUES
         (#{id}, #{productName}, #{productBrief}, #{productDetails}, #{patentNumber},
         #{productCategory}, #{industryCategory}, #{productPictureUrl}, #{productVideoUrl},
-        #{realName}, #{mobile}, #{state}, #{createUser}, #{createDate})
+        #{realName}, #{mobile}, #{state}, #{userId}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateIntellectualTask" parameterType="com.mall.domain.IntellectualTask">
@@ -172,5 +173,14 @@
         OR product_brief LIKE concat(#{productBrief},'%')
     </select>
 
+    <select id="findIntellectualTaskByIds" resultMap="intellectualTaskMap">
+        SELECT 
+        <include refid="columns"/>
+        FROM intellectual_task
+        WHERE id in 
+        <foreach collection="taskIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

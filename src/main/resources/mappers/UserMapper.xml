@@ -113,4 +113,12 @@
       #{id}
     </foreach>
   </delete>
+
+  <select id="getUserByIds" resultMap="userMap">
+    SELECT <include refid="column"/> FROM user
+    WHERE id IN
+    <foreach collection="userIdList" index="ids" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </select>
 </mapper>

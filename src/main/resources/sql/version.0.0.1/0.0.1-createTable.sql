@@ -184,3 +184,13 @@ CREATE TABLE business_collected(
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 谁看过我，我看过谁
+CREATE TABLE business_browse(
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  module_type tinyint(1) NOT NULL COMMENT '模块类型，1:知识产权，2:代办公司，3:需求任务',
+  module_type_id bigint(20) NOT NULL COMMENT '模块id',
+  visitor_id bigint(20) NOT NULL COMMENT '访客id',
+  publisher_id bigint(20) NOT NULL COMMENT '发布id',
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

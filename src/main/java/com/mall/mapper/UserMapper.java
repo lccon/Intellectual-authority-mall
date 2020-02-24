@@ -20,4 +20,6 @@ public interface UserMapper {
     List<User> findUserForList(UserVO userVO);
 
     Integer deleteUser(Long[] ids);
+
+    List<User> getUserByIds(@Param("userIdList") List<Long> userIdList);
 }

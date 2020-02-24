@@ -24,4 +24,6 @@ public interface UserService {
 	Boolean deleteUser(Long[] ids);
 
     String getUserMobileLoginCheckInfo(String mobile);
+
+	List<User> getUserByIds(List<Long> userIdList);
 }

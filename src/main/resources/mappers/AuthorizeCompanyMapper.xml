@@ -11,6 +11,7 @@
         <result property="mobile" column="mobile"/>
         <result property="friendshipLink" column="friendship_link"/>
         <result property="state" column="state"/>
+        <result property="userId" column="user_id"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -19,7 +20,7 @@
 
     <sql id="columns">
         id, company_name, business_category, company_describe, company_picture_url,
-        real_name, mobile, friendship_link, state, create_user, create_date, update_user, update_date
+        real_name, mobile, friendship_link, state, user_id, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
@@ -28,10 +29,10 @@
         </selectKey>
         INSERT INTO authorize_company
         (id, company_name, business_category, company_describe, company_picture_url,
-        real_name, mobile, friendship_link, state, create_user, create_date)
+        real_name, mobile, friendship_link, state, user_id, create_user, create_date)
         VALUES
         (#{id}, #{companyName}, #{businessCategory}, #{companyDescribe}, #{companyPictureUrl},
-        #{realName}, #{mobile}, #{friendshipLink}, #{state}, #{createUser}, #{createDate})
+        #{realName}, #{mobile}, #{friendshipLink}, #{userId}, #{state}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
@@ -132,5 +133,15 @@
         FROM authorize_company
         WHERE company_name LIKE concat(#{companyName},'%')
         OR company_describe LIKE concat(#{companyDescribe},'%')
+    </select>
+
+    <select id="findAuthorizeCompanyByIds" resultMap="authorizeCompanyMap">
+        select
+        <include refid="columns" />
+        FROM authorize_company
+        WHERE id IN
+        <foreach collection="companyIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 </mapper>
