@@ -17,6 +17,12 @@ public class LeaveMessage extends BaseDomain {
     private Integer messageState;
     /** 留言日期 */
     private String messageDateStr;
+    /** 真实姓名 */
+    private String realName;
+    /** 手机号 */
+    private String mobile;
+    /** 邮箱地址 */
+    private String mailAddress;
 
     public Long getId() {
         return id;
@@ -50,6 +56,30 @@ public class LeaveMessage extends BaseDomain {
         this.messageDateStr = messageDateStr;
     }
 
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getMailAddress() {
+        return mailAddress;
+    }
+
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
+    }
+
     @Override
     public String toString() {
         return "LeaveMessage{" +
@@ -57,6 +87,9 @@ public class LeaveMessage extends BaseDomain {
                 ", message='" + message + '\'' +
                 ", messageState=" + messageState +
                 ", messageDateStr='" + messageDateStr + '\'' +
+                ", realName='" + realName + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", mailAddress='" + mailAddress + '\'' +
                 '}';
     }
 }

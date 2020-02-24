@@ -5,6 +5,9 @@
         <id property="id" column="id"/>
         <result property="message" column="message"/>
         <result property="messageState" column="message_state"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="mailAddress" column="mail_address"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -12,7 +15,8 @@
     </resultMap>
 
     <sql id="columns">
-        id, message, message_state, create_user, create_date, update_user, update_date
+        id, message, message_state, real_name, mobile, mail_address,
+        create_user, create_date, update_user, update_date
     </sql>
     
     <insert id="addLeaveMessage" parameterType="com.mall.domain.LeaveMessage">
@@ -20,9 +24,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO leave_message
-        (id, message, message_state, create_user, create_date)
+        (id, message, message_state, real_name, mobile, mail_address, create_user, create_date)
         VALUES
-        (#{id}, #{message}, #{messageState}, #{createUser}, #{createDate})
+        (#{id}, #{message}, #{messageState}, #{realName}, #{mobile}, #{mailAddress}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateLeaveMessage" parameterType="com.mall.domain.LeaveMessage">
@@ -33,6 +37,15 @@
             </if>
             <if test="messageState != null">
                 message_state = #{messageState},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="mailAddress != null and mailAddress != ''">
+                mail_address = #{mailAddress},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser},

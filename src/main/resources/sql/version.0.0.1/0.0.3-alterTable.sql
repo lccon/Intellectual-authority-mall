@@ -15,3 +15,8 @@ ALTER TABLE authorize_company ADD COLUMN friendship_link VARCHAR(11) DEFAULT nul
 ALTER TABLE intellectual_task ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after mobile;
 ALTER TABLE task_release ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after mobile;
 ALTER TABLE authorize_company ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:未办， 1:经办' after friendship_link;
+
+-- 留言添加字段
+ALTER TABLE leave_message ADD COLUMN real_name VARCHAR(20) DEFAULT NULL comment '真实姓名' after message_state;
+ALTER TABLE leave_message ADD COLUMN mobile VARCHAR (11) DEFAULT NULL comment '联系方式' after real_name;
+ALTER TABLE leave_message ADD COLUMN mail_address VARCHAR (30) DEFAULT NULL comment '邮箱地址' after mobile;

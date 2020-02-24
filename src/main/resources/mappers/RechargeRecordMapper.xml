@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.RechargeRecordMapper">
+    <resultMap id="rechargeRecordMap" type="com.mall.domain.RechargeRecord">
+        <id property="id" column="id"/>
+        <result property="rechargeAmount" column="recharge_amount"/>
+        <result property="consumeAmount" column="consume_amount"/>
+        <result property="alipayOrderNum" column="alipay_order_num"/>
+        <result property="alipayTradeNum" column="alipay_trade_num"/>
+        <result property="wechatOrderNum" column="wechat_order_num"/>
+        <result property="wechatTradeNum" column="wechat_trade_num"/>
+        <result property="accountYue" column="account_yue"/>
+        <result property="userId" column="user_id"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, recharge_amount, consume_amount, alipay_order_num, alipay_trade_num, wechat_order_num, wechat_trade_num,
+        account_yue, user_id, create_user, create_date, update_user, update_date
+    </sql>
+
+    <insert id="addRechargeRecord" parameterType="com.mall.domain.RechargeRecord">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO recharge_record
+        (id, recharge_amount, consume_amount, alipay_order_num, alipay_trade_num, wechat_order_num, wechat_trade_num,
+        account_yue, user_id, create_user, create_date)
+        VALUES 
+        (#{id}, #{rechargeAmount}, #{consumeAmount}, #{alipayOrderNum}, #{alipayTradeNum}, #{wechatOrderNum}, #{wechatTradeNum},
+        #{accountYue}, #{userId}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateRechargeRecord" parameterType="com.mall.domain.RechargeRecord">
+        UPDATE recharge_record
+        <set>
+            <if test="rechargeAmount != null">
+                recharge_amount = #{rechargeAmount},
+            </if>
+            <if test="consumeAmount != null">
+                consume_amount = #{consumeAmount},
+            </if>
+            <if test="alipayOrderNum != null and alipayOrderNum != ''">
+                alipay_order_num = #{alipayOrderNum},
+            </if>
+            <if test="alipayTradeNum != null and alipayTradeNum != ''">
+                alipay_trade_num = #{alipayTradeNum},
+            </if>
+            <if test="wechatOrderNum != null and wechatOrderNum != ''">
+                wechat_order_num = #{wechatOrderNum},
+            </if>
+            <if test="wechatTradeNum != null and wechatTradeNum != ''">
+                wechat_trade_num = #{wechatTradeNum},
+            </if>
+            <if test="accountYue != null">
+                account_yue = #{accountYue},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findRechargeRecordForList" parameterType="com.mall.vo.RechargeRecordVO" resultMap="rechargeRecordMap">
+        SELECT <include refid="columns"/>
+        FROM recharge_record
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>
