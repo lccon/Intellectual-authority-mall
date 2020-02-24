@@ -48,8 +48,8 @@ public interface IntellectualTaskService {
     IntellectualTask getIntellectualTaskById(Long id);
 
     List<IntellectualTask> findIntellectualTaskForList(IntellectualTaskVO intellectualTaskVO);
-    int countnum();
-    pagebean<IntellectualTask> findByPage(int currentPage);
+
+    pagebean<IntellectualTask> findByPage(int currentPage, IntellectualTaskVO intellectualTaskVO);
 
     List<IntellectualTask> findByintellectualTask(String productName,String productBrief);
 

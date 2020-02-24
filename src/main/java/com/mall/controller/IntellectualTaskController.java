@@ -78,7 +78,7 @@ public class IntellectualTaskController {
     @RequestMapping("/findpageIntellectualTaskForList")
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,
                         IntellectualTaskVO intellectualTaskVO, ModelMap map){
-        model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage));//回显分页数据
+        model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage, intellectualTaskVO));//回显分页数据
         List<IntellectualTask> list = intellectualTaskService.findIntellectualTaskForList(intellectualTaskVO);
         map.put("list", list);
         return "/zscqsc";

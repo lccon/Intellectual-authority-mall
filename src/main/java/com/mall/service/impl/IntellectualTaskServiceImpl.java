@@ -160,12 +160,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         return intellectualTaskMapper.findByintellectualTask(productName,productBrief);
     }
 
-
-    public int countnum(){
-        return intellectualTaskMapper.countnum();
-    }
     @Override
-    public pagebean<IntellectualTask> findByPage(int currentPage) {
+    public pagebean<IntellectualTask> findByPage(int currentPage, IntellectualTaskVO intellectualTaskVO) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<IntellectualTask> pageBean = new pagebean<IntellectualTask>();
 
@@ -177,7 +173,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
-        int totalCount = intellectualTaskMapper.countnum();
+        int totalCount = intellectualTaskMapper.countnum(intellectualTaskVO);
         pageBean.setTotalCount(totalCount);
 
         //封装总页数
@@ -187,6 +183,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
 
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
+        map.put("intellectualTaskVO", intellectualTaskVO);
         //封装每页显示的数据
         List<IntellectualTask> lists = intellectualTaskMapper.findByPage(map);
         handleIntellectualTask(lists);
@@ -218,12 +215,14 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
                 intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
             }
             businessCollected.setModuleTypeId(intellectualTask.getId());
-            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
-            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
-            if (businessCollectedInfo != null) {
-                intellectualTask.setHasCollectedState(CommonConstants.IS_COLLECTED);
-            } else {
-                intellectualTask.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+            if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
+                businessCollected.setUserId(ThreadVariable.getSession().getUserId());
+                BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+                if (businessCollectedInfo != null) {
+                    intellectualTask.setHasCollectedState(CommonConstants.IS_COLLECTED);
+                } else {
+                    intellectualTask.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+                }
             }
         }
     }

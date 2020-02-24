@@ -49,7 +49,7 @@ public interface IntellectualTaskMapper {
      */
     IntellectualTask getIntellectualTaskById(Long id);
 
-    int countnum();
+    int countnum(IntellectualTaskVO intellectualTaskVO);
 
     List<IntellectualTask> findByPage(HashMap<String,Object> map);
 

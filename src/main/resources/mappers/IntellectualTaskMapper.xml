@@ -121,16 +121,44 @@
         FROM intellectual_task
         WHERE id = #{id}
     </select>
-    <select id="countnum" resultType="int">
+    <select id="countnum" parameterType="com.mall.vo.IntellectualTaskVO" resultType="int">
         SELECT
         count(*)
         FROM intellectual_task
+        <where>
+            <if test="productName != null and productName != ''">
+                product_name LIKE concat(#{productName},'%')
+            </if>
+            <if test="productBrief != null and productBrief != ''">
+                OR product_brief LIKE concat(#{productBrief},'%')
+            </if>
+            <if test="productCategory != null">
+                and product_category = #{productCategory}
+            </if>
+            <if test="industryCategory != null">
+                and industry_category = #{industryCategory}
+            </if>
+        </where>
     </select>
 
     <select id="findByPage" parameterType="Map" resultMap="intellectualTaskMap">
         select
         <include refid="columns" />
         from intellectual_task
+        <where>
+            <if test="intellectualTaskVO.productName != null and intellectualTaskVO.productName != ''">
+                product_name LIKE concat(#{intellectualTaskVO.productName},'%')
+            </if>
+            <if test="intellectualTaskVO.productBrief != null and intellectualTaskVO.productBrief != ''">
+                OR product_brief LIKE concat(#{intellectualTaskVO.productBrief},'%')
+            </if>
+            <if test="intellectualTaskVO.productCategory != null">
+                and product_category = #{intellectualTaskVO.productCategory}
+            </if>
+            <if test="intellectualTaskVO.industryCategory != null">
+                and industry_category = #{intellectualTaskVO.industryCategory}
+            </if>
+        </where>
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>

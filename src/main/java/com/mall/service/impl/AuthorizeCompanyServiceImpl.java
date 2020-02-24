@@ -209,12 +209,14 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
                 authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
             }
             businessCollected.setModuleTypeId(authorizeCompany.getId());
-            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
-            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
-            if (businessCollectedInfo != null) {
-                authorizeCompany.setHasCollectedState(CommonConstants.IS_COLLECTED);
-            } else {
-                authorizeCompany.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+            if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
+                businessCollected.setUserId(ThreadVariable.getSession().getUserId());
+                BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+                if (businessCollectedInfo != null) {
+                    authorizeCompany.setHasCollectedState(CommonConstants.IS_COLLECTED);
+                } else {
+                    authorizeCompany.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+                }
             }
         }
     }

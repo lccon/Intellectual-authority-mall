@@ -196,12 +196,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
                 taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
             }
             businessCollected.setModuleTypeId(taskRelease.getId());
-            businessCollected.setUserId(ThreadVariable.getSession().getUserId());
-            BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
-            if (businessCollectedInfo != null) {
-                taskRelease.setHasCollectedState(CommonConstants.IS_COLLECTED);
-            } else {
-                taskRelease.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+            if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
+                businessCollected.setUserId(ThreadVariable.getSession().getUserId());
+                BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+                if (businessCollectedInfo != null) {
+                    taskRelease.setHasCollectedState(CommonConstants.IS_COLLECTED);
+                } else {
+                    taskRelease.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+                }
             }
         }
     }
