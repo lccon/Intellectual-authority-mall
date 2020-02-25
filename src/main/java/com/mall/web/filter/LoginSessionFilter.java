@@ -70,8 +70,9 @@ public class LoginSessionFilter implements Filter {
             response.setContentType("text/html");
             response.setCharacterEncoding("utf-8");
             response.getWriter().print("未登录或登录已失效，请登录后查看");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            CookieUtil.clearSessionsFromCookies(request, response);
             ThreadVariable.clearThreadVariable();
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
             return;
         }
     }
