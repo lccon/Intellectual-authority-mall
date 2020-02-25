@@ -70,7 +70,7 @@ public class LoginSessionFilter implements Filter {
             response.setContentType("text/html");
             response.setCharacterEncoding("utf-8");
             response.getWriter().print("未登录或登录已失效，请登录后查看");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
             ThreadVariable.clearThreadVariable();
             return;
         }
@@ -91,8 +91,7 @@ public class LoginSessionFilter implements Filter {
                 || "/taskRelease/getTaskReleaseById".equals(uri)
                 || "/policyAdvice/getPolicyAdviceById".equals(uri)
                 || "/post-message.jsp".equals(uri)
-                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
-                /*|| "/find".equals(uri)*/) {
+                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)) {
             return true;
         }
         return false;
