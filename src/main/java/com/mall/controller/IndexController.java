@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import com.mall.domain.*;
 import com.mall.service.*;
+import com.mall.vo.AuthorizeCompanyVO;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class IndexController {
         List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findIntellectualTaskForList(new IntellectualTaskVO());
         List<TaskRelease> TaskReleaselist=taskReleaseService.getTaskReleaseByTask_category(1);
         List<TaskRelease> TaskReleaselist1=taskReleaseService.getTaskReleaseByTask_category(2);
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList();
+        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList(new AuthorizeCompanyVO());
         List<PolicyAdvice> PolicyAdvicelist=policyAdviceService.findPolicyAdviceForList();
         List<AuthorizeSite> AuthorizeSitelist=authorizeSiteService.findAuthorizeSiteForList();
         map.put("AuthorizeSite",AuthorizeSitelist);

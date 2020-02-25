@@ -80,8 +80,13 @@
         </foreach>
     </delete>
 
-    <select id="findAuthorizeCompanyForList" resultMap="authorizeCompanyMap">
+    <select id="findAuthorizeCompanyForList" parameterType="com.mall.vo.AuthorizeCompanyVO" resultMap="authorizeCompanyMap">
         select <include refid="columns"/> FROM authorize_company
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+        </where>
     </select>
 
     <select id="getAuthorizeCompanyById" parameterType="java.lang.Long" resultMap="authorizeCompanyMap">

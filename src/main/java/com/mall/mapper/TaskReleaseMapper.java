@@ -38,7 +38,7 @@ public interface TaskReleaseMapper {
      * 获取需求任务列表信息
      * @return
      */
-    List<TaskRelease> findTaskReleaseForList();
+    List<TaskRelease> findTaskReleaseForList(TaskReleaseVO taskReleaseVO);
 
     /**
      * 获取单条需求任务信息

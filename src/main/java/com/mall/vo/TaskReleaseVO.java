@@ -20,6 +20,8 @@ public class TaskReleaseVO extends BaseVO {
     private String purpose;
     /** 详细说明 */
     private String detailedDesc;
+    /** 用户id */
+    private Long userId;
 
     public Integer getTaskCategory() {
         return taskCategory;
@@ -59,5 +61,13 @@ public class TaskReleaseVO extends BaseVO {
 
     public void setDetailedDesc(String detailedDesc) {
         this.detailedDesc = detailedDesc;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

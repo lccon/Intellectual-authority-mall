@@ -90,6 +90,19 @@ public class TaskReleaseController {
         return "taskrelease_Detail";
     }
 
+    @RequestMapping("/findTaskReleasePublishForPage")
+    public String findTaskReleasePublishForPage(ModelMap map) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        TaskReleaseVO taskReleaseVO = new TaskReleaseVO();
+        taskReleaseVO.setUserId(ThreadVariable.getSession().getUserId());
+        PageInfo<TaskRelease> taskRelease = taskReleaseService.findTaskReleaseForPage(taskReleaseVO);
+        GridPage<TaskRelease> gridPage = new GridPage<>(taskRelease);
+        map.put("gridPage", gridPage);
+        return "/user-post";
+    }
+
     @RequestMapping("/findByTaskRelease")
     public String findByIntellectualTask(String str1,ModelMap map){
         List<TaskRelease> TaskReleaselist = taskReleaseService.findBytaskRelease(str1,str1);

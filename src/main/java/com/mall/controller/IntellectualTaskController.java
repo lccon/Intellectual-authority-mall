@@ -90,7 +90,18 @@ public class IntellectualTaskController {
         return "/zscqsc";
     }
 
-
+    @RequestMapping("/findIntellectualTaskReleaseForPage")
+    public String findIntellectualTaskReleaseForPage(ModelMap map) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        IntellectualTaskVO intellectualTaskVO = new IntellectualTaskVO();
+        intellectualTaskVO.setUserId(ThreadVariable.getSession().getUserId());
+        PageInfo<IntellectualTask> intellectualTaskList = intellectualTaskService.findIntellectualTaskForPage(intellectualTaskVO);
+        GridPage<IntellectualTask> gridPage = new GridPage<>(intellectualTaskList);
+        map.put("gridPage", gridPage);
+        return "/user-post";
+    }
 
     @RequestMapping("/getIntellectualTaskById")
     public String getIntellectualTaskById(@RequestParam(value = "id", required = true) Long id, ModelMap map) {

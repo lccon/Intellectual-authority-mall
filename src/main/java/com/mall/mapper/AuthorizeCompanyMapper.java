@@ -38,7 +38,7 @@ public interface AuthorizeCompanyMapper {
      * 查询所有的代办公司信息
      * @return
      */
-    List<AuthorizeCompany> findAuthorizeCompanyForList();
+    List<AuthorizeCompany> findAuthorizeCompanyForList(AuthorizeCompanyVO authorizeCompanyVO);
 
     /**
      * 查询单条代办公司信息

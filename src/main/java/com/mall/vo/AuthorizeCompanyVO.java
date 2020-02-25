@@ -16,6 +16,8 @@ public class AuthorizeCompanyVO extends BaseVO {
     private String companyName;
     /** 商品简介 */
     private String companyDescribe;
+    /** 用户id */
+    private Long userId;
 
     public Integer getBusinessCategory() {
         return businessCategory;
@@ -39,5 +41,13 @@ public class AuthorizeCompanyVO extends BaseVO {
 
     public void setCompanyDescribe(String companyDescribe) {
         this.companyDescribe = companyDescribe;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

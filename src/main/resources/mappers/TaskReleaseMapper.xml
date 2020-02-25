@@ -80,8 +80,13 @@
         </foreach>
     </delete>
 
-    <select id="findTaskReleaseForList" resultMap="taskReleaseMap">
+    <select id="findTaskReleaseForList" parameterType="com.mall.vo.TaskReleaseVO" resultMap="taskReleaseMap">
         select <include refid="columns"/> FROM task_release
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+        </where>
     </select>
 
     <select id="getTaskReleaseByTask_category" parameterType="Map" resultMap="taskReleaseMap">

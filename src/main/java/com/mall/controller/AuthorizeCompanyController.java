@@ -86,6 +86,19 @@ public class AuthorizeCompanyController {
         return "authorizecompany_Detail";
     }
 
+    @RequestMapping("/findAuthorizeCompanyReleaseForPage")
+    public String findAuthorizeCompanyReleaseForPage(ModelMap map) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        AuthorizeCompanyVO authorizeCompanyVO = new AuthorizeCompanyVO();
+        authorizeCompanyVO.setUserId(ThreadVariable.getSession().getUserId());
+        PageInfo<AuthorizeCompany> authorizeCompanyPage = authorizeCompanyService.findAuthorizeCompanyForPage(authorizeCompanyVO);
+        GridPage<AuthorizeCompany> gridPage = new GridPage<>(authorizeCompanyPage);
+        map.put("gridPage", gridPage);
+        return "/user-post";
+    }
+
     @RequestMapping("/findpageauthorizeCompanyForList")
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         AuthorizeCompanyVO authorizeCompanyVO, ModelMap map){

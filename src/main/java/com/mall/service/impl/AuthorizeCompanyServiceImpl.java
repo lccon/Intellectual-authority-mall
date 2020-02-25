@@ -83,8 +83,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
-    public List<AuthorizeCompany> findAuthorizeCompanyForList() {
-        return authorizeCompanyMapper.findAuthorizeCompanyForList();
+    public List<AuthorizeCompany> findAuthorizeCompanyForList(AuthorizeCompanyVO authorizeCompanyVO) {
+        return authorizeCompanyMapper.findAuthorizeCompanyForList(authorizeCompanyVO);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         try {
             PageHelper.startPage(authorizeCompanyVO.getPage(), authorizeCompanyVO.getRows(),
                     StringUtil.joinSortFieldOrder(authorizeCompanyVO.getSidx(), authorizeCompanyVO.getSord()));
-            List<AuthorizeCompany> authorizeCompanyList = authorizeCompanyMapper.findAuthorizeCompanyForList();
+            List<AuthorizeCompany> authorizeCompanyList = authorizeCompanyMapper.findAuthorizeCompanyForList(authorizeCompanyVO);
             handleAuthorizeCompany(authorizeCompanyList);
             return new PageInfo<>(authorizeCompanyList);
         } catch (Exception e) {

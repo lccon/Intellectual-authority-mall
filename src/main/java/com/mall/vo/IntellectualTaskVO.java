@@ -18,6 +18,8 @@ public class IntellectualTaskVO extends BaseVO {
     private String productName;
     /** 商品简介 */
     private String productBrief;
+    /** 用户id */
+    private Long userId;
 
     public Integer getProductCategory() {
         return productCategory;
@@ -49,5 +51,13 @@ public class IntellectualTaskVO extends BaseVO {
 
     public void setProductBrief(String productBrief) {
         this.productBrief = productBrief;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -105,7 +105,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         try {
             PageHelper.startPage(taskReleaseVO.getPage(), taskReleaseVO.getRows(),
                     StringUtil.joinSortFieldOrder(taskReleaseVO.getSidx(), taskReleaseVO.getSord()));
-            List<TaskRelease> taskReleaseList = taskReleaseMapper.findTaskReleaseForList();
+            List<TaskRelease> taskReleaseList = taskReleaseMapper.findTaskReleaseForList(taskReleaseVO);
             handleTaskRelease(taskReleaseList);
             return new PageInfo<>(taskReleaseList);
         } catch (Exception e) {
