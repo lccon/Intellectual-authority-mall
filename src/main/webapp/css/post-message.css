@@ -48,11 +48,11 @@
     width:1200px;
 }
 
-.cap{
+.cap1{
     border-bottom: #ff6700 solid 1px;
     text-align: center;
 }
-.cap span{
+.cap1 span{
     font-size: 20px;
     font-weight: bold;
     line-height: 80px;
@@ -140,4 +140,46 @@ span.delx:hover{
     width:800px;
     height:300px;
     margin-left: 266px;
+}
+.code-btn {
+    color: #a07941;
+    margin-left: 10px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #a07941;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.error1{
+    background: url(../img/validatorinit.png) no-repeat 10px 4px;
+    color: #1188d3;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.error2 {
+    background: url(../img/validatorerror.png) no-repeat 10px 4px;
+    color: #f60;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.success{
+    background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
 }

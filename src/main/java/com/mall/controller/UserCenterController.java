@@ -33,4 +33,8 @@ public class UserCenterController {
         map.put("user",user);
         return "/vocher";
     }
+    @RequestMapping("/userpost")
+    public String userpost(){
+        return "user_post";
+    }
 }

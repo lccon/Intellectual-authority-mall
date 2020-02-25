@@ -19,10 +19,10 @@
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
                 <li>主办业务分类：</li>
-                <li><a href="#">申请专利</a></li>
-                <li><a href="#">证书买卖</a></li>
-                <li><a href="#">技术成果转让</a></li>
-                <li><a href="#">法律咨询</a></li>
+                <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=1"><a href="javascript:void(0);">申请专利</a></li>
+                <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=2"><a href="javascript:void(0);">证书买卖</a></li>
+                <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=3"><a href="javascript:void(0);">技术成果转让</a></li>
+                <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=4"><a href="javascript:void(0);">法律咨询</a></li>
             </ul>
         </div>
     </div>
@@ -33,24 +33,17 @@
         <div class="input-group">
             <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
             <div class="input-group-btn">
-                <a class="btn btn-default" id="button1" onclick="findpage()">搜索</a>
-                <script>
-                    function findpage() {
-                        var a1=document.getElementById("button1");
-                        var input1=document.getElementById("input1").value;
-                        a1.href="/intellectualTask/findByIntellectualTask?str1="+input1;
-                    }
-                </script>
-                <a class="btn btn-default" id="button2">免费发布信息</a>
+                <a class="btn btn-default" id="button1" href="javascript:void(0)">搜索</a>
+                <a class="btn btn-default" id="button2" href="/authorizeCompany/AuthorizeCompanyPost">免费发布信息</a>
             </div>
         </div>
 
         <div class="container" id="newline">
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
         </div>
     </div>
 </div>
@@ -62,6 +55,22 @@
 
 
 <!--需求列表-->
+    <c:if test="${requestScope.pagemsg.lists.size() == 0}">
+    <div style="margin-top: 50px;">
+    <div class="container" >
+        <div class="info">
+            <ul style="margin-left: 30px;">
+                <strong style="margin-left: 150px;">
+                    <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                    您搜索信息暂未找到
+                </strong>
+                <li style="margin-left: 174px;">你可以继续去<a style="color: #f46;" href="/authorizeCompany/findpageauthorizeCompanyForList">代办公司页面</a>随便逛逛，浏览其他信息</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </c:if>
+    <c:if test="${requestScope.pagemsg.lists.size()>0}">
 <div style="margin-top: 50px;">
     <div class="container">
         <c:forEach items="${requestScope.pagemsg.lists}" var="u">
@@ -116,7 +125,24 @@
         </div>
     </div>
 </div>
+    </c:if>
 <script>
+    $("#newline").on("click","a",function () {
+        window.location.href="${pageContext.request.contextPath }/authorizeCompany/findpageauthorizeCompanyForList?companyName="+$(this).text()+"&companyDescribe="+$(this).text();
+    })
+    $("#button1").on("click",function () {
+        var a1=document.getElementById("button1");
+        var input1=document.getElementById("input1").value;
+        window.location.href="${pageContext.request.contextPath }/authorizeCompany/findpageauthorizeCompanyForList?companyName="+input1+"&companyDescribe="+input1;
+        console.log("111");
+    })
+
+    $(".list-inline").on("click","li",function(){
+        window.location.href="${pageContext.request.contextPath }"+$(this).data('url');
+        console.log($(this).data('url'));
+    });
+    var d_url=document.location.href.substr(71);
+    console.log(d_url);
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage
             ,layer = layui.layer;
@@ -136,11 +162,9 @@
         });
     });
     function bbb(path) {
-        var that=$(this);
         var $contentWrapper = $('#center11');
-        var $ul1=$('pagination');
         $.ajax({
-            url : "${pageContext.request.contextPath }/authorizeCompany/findpageauthorizeCompanyForList?currentPage="+path,
+            url : "${pageContext.request.contextPath }/authorizeCompany/findpageauthorizeCompanyForList?currentPage="+path+"&"+d_url,
             success : function(rst) {
                 $contentWrapper.html(rst);
             }

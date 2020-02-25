@@ -23,18 +23,29 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
                 <div class="input-group-btn">
-                    <button class="btn btn-default" id="button1">搜索</button>
-                    <button class="btn btn-default" id="button2">免费发布信息</button>
+                    <a class="btn btn-default" id="button1" href="javascript:void(0);" onclick="findpage()">搜索</a>
+                    <script>
+                        function findpage() {
+                            var a1=document.getElementById("button1");
+                            var input1=document.getElementById("input1").value;
+                            a1.href="/api/getSearchBusinessData?page=1&rows=40&productName="+input1+"&productBrief="+input1;
+                        }
+                    </script>
                 </div>
             </div>
 
             <div class="container" id="newline">
-                <a href="#">关键词</a>
-                <a href="#">关键词</a>
-                <a href="#">关键词</a>
-                <a href="#">关键词</a>
-                <a href="#">关键词</a>
+                <a href="javascript:void(0);">关键词</a>
+                <a href="javascript:void(0);">关键词</a>
+                <a href="javascript:void(0);">关键词</a>
+                <a href="javascript:void(0);">关键词</a>
+                <a href="javascript:void(0);">关键词</a>
             </div>
+            <script>
+                $("#newline").on("click","a",function () {
+                    window.location.href="${pageContext.request.contextPath }/api/getSearchBusinessData?page=1&rows=40&productName="+$(this).text()+"&productBrief="+$(this).text();
+                })
+            </script>
         </div>
     </div>
 
@@ -44,6 +55,21 @@
 
 
     <!--需求列表-->
+    <c:if test="${SearchBusinessvO.intellectualTaskList.size()==0 && SearchBusinessvO.authorizeCompanyList.size()==0 && SearchBusinessvO.taskReleaseList.size()==0}">
+        <div style="margin-top: 50px;">
+            <div class="container" >
+                <div class="info">
+                    <ul style="margin-left: 30px;">
+                        <strong style="margin-left: 150px;">
+                            <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                            您搜索信息暂未找到
+                        </strong>
+                        <li style="margin-left: 174px;">你可以继续去<a style="color: #f46;" href="/">首页</a>随便逛逛，浏览其他信息</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <div style="margin-top: 50px;">
         <div class="container">
             <c:if test="${SearchBusinessvO.intellectualTaskList.size()>0}">
@@ -70,8 +96,12 @@
                         </div>
                     </div>
                     <div class="warp">
-                        <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
-                        <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
+                        <c:if test="${u.hasCollectedState==0}">
+                            <a id="abc" href="javascript:void(0);" onclick="addcollect(1,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
+                        <c:if test="${u.hasCollectedState==1}">
+                            <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},1,${u.id})" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>
@@ -100,8 +130,12 @@
                         </div>
                     </div>
                     <div class="warp">
-                        <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
-                        <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
+                        <c:if test="${u.hasCollectedState==0}">
+                            <a id="abc" href="javascript:void(0);" onclick="addcollect(2,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
+                        <c:if test="${u.hasCollectedState==1}">
+                            <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},1,${u.id})" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>
@@ -130,81 +164,35 @@
                         </div>
                     </div>
                     <div class="warp">
-                        <a id="abc" href="javascript:void(0);" onclick="addcollect();" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
-                        <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
+                        <c:if test="${u.hasCollectedState==0}">
+                            <a id="abc" href="javascript:void(0);" onclick="addcollect(3,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
+                        <c:if test="${u.hasCollectedState==1}">
+                            <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},1,${u.id})" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>
             </c:if>
         </div>
     </div>
-
-
 </div>
 
-<div class="container">
-    <div class="row pad-15">
-        <div class="col-md-12">
-            <nav class="pagination-outer" aria-label="Page navigation">
-                <ul class="pagination">
-                    <div id="demo2-2"></div>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
 <script>
-    var ss=${SearchBusinessvO.totalRecord}/${SearchBusinessvO.rows}
-    var ys=Math.ceil(ss);
-    console.log(${SearchBusinessvO.page});
-    console.log(${SearchBusinessvO.rows});
-    console.log(ys);
-    layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage
-            ,layer = layui.layer;
-        laypage.render({
-            elem: 'demo2-2',
-            count: ${SearchBusinessvO.totalRecord},
-            limit: ${SearchBusinessvO.rows},
-            theme: '#FF5722',
-            curr: ${SearchBusinessvO.page},
-            jump: function(obj, first){
-                //首次不执行
-                if(!first){
-                    bbb(obj.curr);
-                    //do something
-                }
-            }
-        });
-    });
-    function bbb(path) {
-        var that=$(this);
-        var $contentWrapper = $('#center11');
-        var $ul1=$('pagination');
-        $.ajax({
-            url : "/api/getSearchBusinessData?page="+path,
-            success : function(rst) {
-                $contentWrapper.html(rst);
-            }
-        })
-    }
-
-
-
-
+    var d_url=document.location.href.substr(21);
     //填加收藏
-    function addcollect(id) {
+    function addcollect(moduleType,id) {
         var a=document.getElementById("addcollect");
         var abc=document.getElementById("abc");
         $.ajax({
             type:"POST",
-            url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
+            url: "/businessCollected/addBusinessCollected?moduleType="+moduleType+"&moduleTypeId="+id,
             cache:false,
             contentType: false,
             processData: false,
             success: function(result) {
                 if(result){
-                    bbb(${requestScope.pagemsg.currPage});
+                    window.location.href=d_url;
                 }
                 else {
                     console.log("新增失败");
@@ -225,7 +213,7 @@
             success: function(result) {
                 if(result){
                     console.log("删除成功");
-                    bbb(${requestScope.pagemsg.currPage});
+                    window.location.href=d_url;
                 }
                 else {
                     console.log("删除失败");

@@ -100,5 +100,8 @@ public class AuthorizeCompanyController {
         map.put("AuthorizeCompany",AuthorizeCompanylist);
         return "/findpage";
     }
-
+    @RequestMapping("/AuthorizeCompanyPost")
+    public String AuthorizeCompanypost(){
+        return "dbgspost";
+    }
 }

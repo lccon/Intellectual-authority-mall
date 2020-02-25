@@ -18,54 +18,54 @@
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
-                <li>任务分类：</li>
-                <li><a href="#">申请</a></li>
-                <li><a href="#">购买</a></li>
+                <li>知识产权类型：</li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?intellectualProperty=1"><a href="javascript:void(0)">发明</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?intellectualProperty=2"><a href="javascript:void(0)">实用新型</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?intellectualProperty=3"><a href="javascript:void(0)">外观</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?intellectualProperty=4"><a href="javascript:void(0)">商标</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?intellectualProperty=5"><a href="javascript:void(0)">版权</a></li>
             </ul>
+
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
-                <li>知识产权类型：</li>
-                <li><a href="#">发明</a></li>
-                <li><a href="#">实用新型</a></li>
-                <li><a href="#">外观</a></li>
-                <li><a href="#">商标</a></li>
-                <li><a href="#">版权</a></li>
+                <li>任务分类：</li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?taskCategory=1"><a href="javascript:void(0)">申请</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?taskCategory=2"><a href="javascript:void(0)">购买</a></li>
             </ul>
-
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
             <ul class="list-inline">
                 <li>行业分类：</li>
-                <li><a href="#">生活需要</a></li>
-                <li><a href="#">交通运输</a></li>
-                <li><a href="#">化学化工</a></li>
-                <li><a href="#">轻工纺织</a></li>
-                <li><a href="#">建筑建材</a></li>
-                <li><a href="#">机械照明</a></li>
-                <li><a href="#">新能源</a></li>
-                <li><a href="#">电力电气</a></li>
-                <li><a href="#">武器爆破</a></li>
-                <li><a href="#" >农林牧业</a></li>
-                <li><a href="#">食品饮料</a></li>
-                <li><a href="#" style="margin-left: 82px;">家居用品</a></li>
-                <li><a href="#">教育休闲</a></li>
-                <li><a href="#">医药医疗</a></li>
-                <li><a href="#">电子信息源</a></li>
-                <li><a href="#">仪器仪表</a></li>
-                <li><a href="#">包装印刷</a></li>
-                <li><a href="#">新型材料</a></li>
-                <li><a href="#" >海洋开发</a></li>
-                <li><a href="#">航空航天</a></li>
-                <li><a href="#">采矿冶金</a></li>
-                <li><a href="#">橡胶塑料</a></li>
-                <li><a href="#" style="margin-left: 82px;">安全防护</a></li>
-                <li><a href="#">节能环保</a></li>
-                <li><a href="#">其他</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=1"><a href="javascript:void(0)">生活需要</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=2"><a href="javascript:void(0)">交通运输</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=3"><a href="javascript:void(0)">化学化工</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=4"><a href="javascript:void(0)">轻工纺织</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=5"><a href="javascript:void(0)">建筑建材</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=6"><a href="javascript:void(0)">机械照明</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=7"><a href="javascript:void(0)">新能源</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=8"><a href="javascript:void(0)">电力电气</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=9"><a href="javascript:void(0)">武器爆破</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=10"><a href="javascript:void(0)" >农林牧业</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=11"><a href="javascript:void(0)">食品饮料</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=12"><a href="javascript:void(0)" style="margin-left: 82px;">家居用品</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=13"><a href="javascript:void(0)">教育休闲</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=14"><a href="javascript:void(0)">医药医疗</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=15"><a href="javascript:void(0)">电子信息源</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=16"><a href="javascript:void(0)">仪器仪表</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=17"><a href="javascript:void(0)">包装印刷</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=18"><a href="javascript:void(0)">新型材料</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=19"><a href="javascript:void(0)" >海洋开发</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=20"><a href="javascript:void(0)">航空航天</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=21"><a href="javascript:void(0)">采矿冶金</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=22"><a href="javascript:void(0)">橡胶塑料</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=23"><a href="javascript:void(0)" style="margin-left: 82px;">安全防护</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=24"><a href="javascript:void(0)">节能环保</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=25"><a href="javascript:void(0)">其他</a></li>
             </ul>
         </div>
     </div>
@@ -77,24 +77,18 @@
         <div class="input-group">
             <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
             <div class="input-group-btn">
-                <a class="btn btn-default" id="button1" onclick="findpage()">搜索</a>
-                <script>
-                    function findpage() {
-                        var a1=document.getElementById("button1");
-                        var input1=document.getElementById("input1").value;
-                        a1.href="/taskRelease/findByTaskRelease?str1="+input1;
-                    }
-                </script>
-                <a class="btn btn-default" id="button2">免费发布信息</a>
+                <a class="btn btn-default" id="button1" href="javascript:void(0)">搜索</a>
+
+                <a class="btn btn-default" id="button2" href="/taskRelease/TaskReleasePost">免费发布信息</a>
             </div>
         </div>
 
         <div class="container" id="newline">
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
+            <a href="javascript:void(0)">关键词</a>
         </div>
     </div>
 </div>
@@ -106,6 +100,22 @@
 
 
 <!--需求列表-->
+    <c:if test="${requestScope.pagemsg.lists.size() == 0}">
+        <div style="margin-top: 50px;">
+            <div class="container" >
+                <div class="info">
+                    <ul style="margin-left: 30px;">
+                        <strong style="margin-left: 150px;">
+                            <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                            您搜索信息暂未找到
+                        </strong>
+                        <li style="margin-left: 174px;">你可以继续去<a style="color: #f46;" href="/taskRelease/findpageTaskReleaseForList">任务发布页面</a>随便逛逛，浏览其他信息</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </c:if>
+    <c:if test="${requestScope.pagemsg.lists.size()>0}">
 <div style="margin-top: 50px;">
     <div class="container">
         <c:forEach items="${requestScope.pagemsg.lists}" var="u">
@@ -115,10 +125,10 @@
                         <div class="media" style="width: 1150px;">
                             <div class="media-left" >
                                 <c:if test="${u.taskCategory==1}">
-                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="width:250px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
                                 </c:if>
                                 <c:if test="${u.taskCategory==2}">
-                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="max-width:450px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
+                                    <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="width:250px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
                                 </c:if>
                             </div>
                             <div class="media-body" id="caps">
@@ -159,7 +169,24 @@
         </div>
     </div>
 </div>
+    </c:if>
 <script>
+    var d_url=document.location.href.substr(61);
+    console.log(d_url);
+    $("#newline").on("click","a",function () {
+        window.location.href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?purpose="+$(this).text()+"&detailedDesc="+$(this).text();
+    })
+    $("#button1").on("click",function () {
+        var a1=document.getElementById("button1");
+        var input1=document.getElementById("input1").value;
+        window.location.href="${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?purpose="+input1+"&detailedDesc="+input1;
+        console.log("111");
+    })
+    $(".list-inline").on("click","li",function(){
+        window.location.href="${pageContext.request.contextPath }"+$(this).data('url');
+        console.log($(this).data('url'));
+    });
+
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage
             ,layer = layui.layer;
@@ -183,7 +210,7 @@
         var $contentWrapper = $('#center11');
         var $ul1=$('pagination');
         $.ajax({
-            url : "${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage="+path,
+            url : "${pageContext.request.contextPath }/taskRelease/findpageTaskReleaseForList?currentPage="+path+"&"+d_url,
             success : function(rst) {
                 $contentWrapper.html(rst);
             }

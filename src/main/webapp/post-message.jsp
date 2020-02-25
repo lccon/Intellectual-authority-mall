@@ -39,9 +39,10 @@ pageEncoding="UTF-8"%>
         </div>
     </div>
 </nav>
-<div style="margin-top:100px;height: 40px;" >
-    <ol class="breadcrumb">
+<div style="margin-top:100px;background-color: #e5e5e5e5;" >
+    <ol class="breadcrumb" style="background-color: #e5e5e5e5;" >
         <li><a href="/">返回首页</a></li>
+        <li>信息发布</li>
     </ol>
 </div>
     <div class="container">
@@ -66,9 +67,9 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div class="main">
                         <ul>
-                            <li><a href="zxcqpost.jsp" >知识产权信息（供方）</a></li>
-                            <li><a href="dbgspost.jsp">代办公司信息（中介方）</a></li>
-                            <li><a href="xqfbpost.jsp" >需求任务发布（需方）</a></li>
+                            <li><a href="/intellectualTask/IntellectualTaskPost" >知识产权信息（供方）</a></li>
+                            <li><a href="/taskRelease/TaskReleasePost">代办公司信息（中介方）</a></li>
+                            <li><a href="/authorizeCompany/AuthorizeCompanyPost" >需求任务发布（需方）</a></li>
                         </ul>
                     </div>
                 </div>

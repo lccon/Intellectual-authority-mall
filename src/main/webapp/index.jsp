@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 						function findpage() {
 							var a1=document.getElementById("button1");
 							var input1=document.getElementById("input1").value;
-							a1.href="/api/getSearchBusinessData?page=1&rows=1&productName="+input1+"&productBrief="+input1;
+							a1.href="/api/getSearchBusinessData?page=1&rows=40&productName="+input1+"&productBrief="+input1;
                         }
 					</script>
 					<a href="/post-message" class="btn btn-default" id="button2">免费发布信息</a>
@@ -74,12 +74,17 @@ pageEncoding="UTF-8"%>
 			</div>
 
 			<div class="container" id="newline">
-				<a href="#">关键词</a>
-				<a href="#">关键词</a>
-				<a href="#">关键词</a>
-				<a href="#">关键词</a>
-				<a href="#">关键词</a>
+				<a href="javascript:void(0);">关键词</a>
+				<a href="javascript:void(0);">关键词</a>
+				<a href="javascript:void(0);">关键词</a>
+				<a href="javascript:void(0);">关键词</a>
+				<a href="javascript:void(0);">关键词</a>
 			</div>
+			<script>
+                $("#newline").on("click","a",function () {
+                    window.location.href="${pageContext.request.contextPath }/api/getSearchBusinessData?page=1&rows=40&productName="+$(this).text()+"&productBrief="+$(this).text();
+                })
+			</script>
 		</div>
 	</div>
 

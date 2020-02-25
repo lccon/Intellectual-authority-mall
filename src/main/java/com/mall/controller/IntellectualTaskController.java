@@ -105,4 +105,8 @@ public class IntellectualTaskController {
         map.put("IntellectualTask",IntellectualTasklist);
         return "/findpage";
     }
+    @RequestMapping("/IntellectualTaskPost")
+    public String IntellectualTaskPost(){
+        return "zxcqpost";
+    }
 }

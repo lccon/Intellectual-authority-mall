@@ -324,6 +324,8 @@ pageEncoding="UTF-8"%>
                 success: function(result) {
                     if(result){
                         var d = $.parseJSON(result);
+                        code1=d.code;
+                        result1=d.result;
                     }
                     else {
 

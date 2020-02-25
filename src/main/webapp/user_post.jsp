@@ -17,11 +17,9 @@
         <li id="title">我的发布</li>
     </ul>
     <ul id="title2">
-        <li>所有信息</li>
-        <li>正常显示</li>
-        <li>待上线</li>
-        <li>未通过</li>
-
+        <li>知识产权商城</li>
+        <li>代办公司</li>
+        <li>需求发布</li>
     </ul>
 </div>
 <div class="info">
@@ -44,6 +42,7 @@
                             <div class="media-body" id="caps">
                                 <a style="width: 400px;" href="/taskRelease/getTaskReleaseById?id=${u.id}">中国移动中国移动中国移动中国移动中国移动中国移动中国移动中国移动中国移动中国移动中国移动中国移动</a>
                                 <p id="desc">浏览量：100</p>
+                                <p id="price">待审核</p>
                             </div>
                         </div>
                     </div>

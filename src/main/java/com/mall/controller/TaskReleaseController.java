@@ -96,4 +96,8 @@ public class TaskReleaseController {
         map.put("TaskRelease",TaskReleaselist);
         return "/findpage";
     }
+    @RequestMapping("/TaskReleasePost")
+    public String TaskReleasePost(){
+        return "xqfbpost";
+    }
 }

@@ -20,6 +20,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/prodetail.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/post-message.js"></script>
 
 
 

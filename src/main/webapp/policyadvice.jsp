@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div id="center11">
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
@@ -18,10 +19,10 @@
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
                 <li>资讯分类：</li>
-                <li><a href="#">政策法规</a></li>
-                <li><a href="#">平台动态</a></li>
-                <li><a href="#">新闻实事</a></li>
-                <li><a href="#">行业知识</a></li>
+                <li><a href="javascript:void(0)">政策法规</a></li>
+                <li><a href="javascript:void(0)">平台动态</a></li>
+                <li><a href="javascript:void(0)">新闻实事</a></li>
+                <li><a href="javascript:void(0)">行业知识</a></li>
             </ul>
 
         </div>
@@ -29,32 +30,6 @@
 
 
 </div>
-<!--搜索框-->
-<div class="span">
-    <div class="container">
-        <div class="input-group">
-            <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
-            <div class="input-group-btn">
-                <button class="btn btn-default" id="button1">搜索</button>
-                <button class="btn btn-default" id="button2">免费发布信息</button>
-            </div>
-        </div>
-
-        <div class="container" id="newline">
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-            <a href="#">关键词</a>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 
 <!--需求列表-->
 <div style="margin-top: 50px;">
@@ -83,7 +58,6 @@
                     </div>
                 </div>
                 <div class="warp">
-                    <a class="label label-primary bstreedit">收藏<span class="glyphicon glyphicon-heart-empty"></span></a>
                     <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
@@ -93,52 +67,53 @@
 
 </div>
 
-
-<div>
-    <span>第${requestScope.pagemsg.currPage }/ ${requestScope.pagemsg.totalPage}页</span>
-    <span>总记录数：${requestScope.pagemsg.totalCount }  每页显示:${requestScope.pagemsg.pageSize}</span>
-    <span>
-       <c:if test="${requestScope.pagemsg.currPage != 1}">
-           <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=1">[首页]</a>
-           <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=${requestScope.pagemsg.currPage-1}">[上一页]</a>
-       </c:if>
-
-       <c:if test="${requestScope.pagemsg.currPage != requestScope.pagemsg.totalPage}">
-           <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=${requestScope.pagemsg.currPage+1}">[下一页]</a>
-           <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=${requestScope.pagemsg.totalPage}">[尾页]</a>
-       </c:if>
-   </span>
-
-</div>
+<!--分页-->
 <div class="container">
     <div class="row pad-15">
         <div class="col-md-12">
             <nav class="pagination-outer" aria-label="Page navigation">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=${requestScope.pagemsg.currPage-1}" class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=1">1</a></li>
-                    <c:forEach var="i" begin="2" end="${requestScope.pagemsg.totalPage }" step="1">
-                        <li class="page-item">
-                            <a class="page-link" href="#" onclick="aaa(${i})">${i}</a>
-                        </li>
-                    </c:forEach>
-                    <li class="page-item">
-                        <a href="${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage=${requestScope.pagemsg.currPage+1}" class="page-link" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
+                    <div id="demo2-1"></div>
                 </ul>
             </nav>
         </div>
     </div>
 </div>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        laypage.render({
+            elem: 'demo2-1',
+            count: ${requestScope.pagemsg.totalCount },
+            limit:${requestScope.pagemsg.pageSize},
+            theme: '#FF5722',
+            curr:${requestScope.pagemsg.currPage },
+            jump: function(obj, first){
+                //首次不执行
+                if(!first){
+                    bbb(obj.curr);
+                    //do something
+                }
+            }
+        });
+    });
+    function bbb(path) {
+        var $contentWrapper = $('#center11');
+        $.ajax({
+            url : "${pageContext.request.contextPath }/policyAdvice/findpagepolicyAdviceForList?currentPage="+path,
+            success : function(rst) {
+                $contentWrapper.html(rst);
+            }
+        })
+    }
+
+
+</script>
 
 <!--网页底部-->
 <jsp:include page="footer.jsp" />
+</div>
 </body>
 
 </html>
