@@ -91,11 +91,10 @@ public class TaskReleaseController {
     }
 
     @RequestMapping("/findTaskReleasePublishForPage")
-    public String findTaskReleasePublishForPage(ModelMap map) {
+    public String findTaskReleasePublishForPage(TaskReleaseVO taskReleaseVO, ModelMap map) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        TaskReleaseVO taskReleaseVO = new TaskReleaseVO();
         taskReleaseVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<TaskRelease> taskRelease = taskReleaseService.findTaskReleaseForPage(taskReleaseVO);
         GridPage<TaskRelease> gridPage = new GridPage<>(taskRelease);

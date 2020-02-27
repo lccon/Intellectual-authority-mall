@@ -91,11 +91,10 @@ public class IntellectualTaskController {
     }
 
     @RequestMapping("/findIntellectualTaskReleaseForPage")
-    public String findIntellectualTaskReleaseForPage(ModelMap map) {
+    public String findIntellectualTaskReleaseForPage(IntellectualTaskVO intellectualTaskVO, ModelMap map) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        IntellectualTaskVO intellectualTaskVO = new IntellectualTaskVO();
         intellectualTaskVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<IntellectualTask> intellectualTaskList = intellectualTaskService.findIntellectualTaskForPage(intellectualTaskVO);
         GridPage<IntellectualTask> gridPage = new GridPage<>(intellectualTaskList);

@@ -87,11 +87,10 @@ public class AuthorizeCompanyController {
     }
 
     @RequestMapping("/findAuthorizeCompanyReleaseForPage")
-    public String findAuthorizeCompanyReleaseForPage(ModelMap map) {
+    public String findAuthorizeCompanyReleaseForPage(AuthorizeCompanyVO authorizeCompanyVO, ModelMap map) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        AuthorizeCompanyVO authorizeCompanyVO = new AuthorizeCompanyVO();
         authorizeCompanyVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<AuthorizeCompany> authorizeCompanyPage = authorizeCompanyService.findAuthorizeCompanyForPage(authorizeCompanyVO);
         GridPage<AuthorizeCompany> gridPage = new GridPage<>(authorizeCompanyPage);
