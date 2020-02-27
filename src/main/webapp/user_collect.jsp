@@ -50,9 +50,10 @@
     </c:if>
 <c:if test="${gridPage.rows.size() > 0}">
 
-<div style="margin-top: 50px;">
+<div style="margin-top: 50px;margin-left: 0;">
+    <div class="container">
     <c:forEach items="${gridPage.rows}" var="u">
-    <div id="product1" class="product" style="height: 100px;">
+    <div id="product1" class="product" style="width: 960px;height: 100px;">
         <div class="row">
             <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
                 <div class="media">
@@ -61,10 +62,7 @@
                             <a href="#">${u.collectedContent}</a>
                         </div>
                         <div style="width: 300px; float: left; margin-top: 50px;">
-                            <p id="desc">收藏于
-                                    ${gridPage.rows.size()}
-                                    ${gridPage.page}
-                                    ${gridPage.records}<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+                            <p id="desc">收藏于<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
                         </div>
                     </div>
 
@@ -77,7 +75,40 @@
         </div>
     </div>
     </c:forEach>
+    </div>
 </div>
+    <div class="container">
+        <div class="row pad-15">
+            <div class="col-md-12">
+                <nav class="pagination-outer" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <div id="demo2-1"></div>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            laypage.render({
+                elem: 'demo2-1',
+                count: ${gridPage.records},
+                limit:  15,
+                theme: '#FF5722',
+                curr:${gridPage.page},
+                jump: function(obj, first){
+                    //首次不执行
+                    if(!first){
+                        window.location.hash =link+"&page="+obj.curr;
+                        loadContent(link+"&page="+obj.curr);
+                        //do something
+                    }
+                }
+            });
+        });
+    </script>
 </c:if>
 </div>
 <script>
@@ -114,11 +145,10 @@
         })
     }
 
-
-
+    var link;
     $('#title2').on('click','li', function() {
         var $elmLink = $(this);
-        var link = $elmLink.data('url');
+        link = $elmLink.data('url');
         console.log($elmLink,link)
         if(!link || link == ''){
             return;

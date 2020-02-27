@@ -18,7 +18,7 @@
             <p>1.提示信息。</p>
             <p>2.提示信息。</p>
         </div>
-        <form action="/createPreOrder" class="am-form" id="doc-vld-msg">
+        <form action="/goAlipay" class="am-form" id="doc-vld-msg">
             <!--订单编号-->
                 <input id="WIDout_trade_no" name="orderid" type="hidden"/>
             <!--订单名称-->
@@ -89,9 +89,9 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/ui-choose.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
 <script type="text/javascript">
 
     // 将所有.ui-choose实例化

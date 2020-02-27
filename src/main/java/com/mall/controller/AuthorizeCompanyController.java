@@ -94,8 +94,8 @@ public class AuthorizeCompanyController {
         authorizeCompanyVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<AuthorizeCompany> authorizeCompanyPage = authorizeCompanyService.findAuthorizeCompanyForPage(authorizeCompanyVO);
         GridPage<AuthorizeCompany> gridPage = new GridPage<>(authorizeCompanyPage);
-        map.put("gridPage", gridPage);
-        return "/user-post";
+        map.put("gridPageauthorizeCompany", gridPage);
+        return "/user_post";
     }
 
     @RequestMapping("/findpageauthorizeCompanyForList")

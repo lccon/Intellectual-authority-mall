@@ -3,6 +3,12 @@ package com.mall.controller;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.mall.component.ThreadVariable;
+import com.mall.domain.RechargeRecord;
+import com.mall.domain.User;
+import com.mall.exception.base.BusinessValidationException;
+import com.mall.service.RechargeRecordService;
+import com.mall.service.UserService;
 import com.mall.utils.AlipayConfig;
 import com.mall.wx.entity.PayResult;
 import com.mall.wx.entity.PreOrderResult;
@@ -24,7 +30,10 @@ import java.util.Map;
 public class VoucherCenterController {
     @Autowired
     private WxOrderService wxOrderService;
-
+    @Autowired
+    private RechargeRecordService rechargeRecordService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/goAlipay",produces = "text/html;charset=UTF-8")
     @ResponseBody
@@ -70,7 +79,7 @@ public class VoucherCenterController {
                         : valueStr + values[i] + ",";
             }
         }
-        if(true) {
+
             //商户订单号
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
             //支付宝交易号
@@ -78,10 +87,24 @@ public class VoucherCenterController {
             //付款金额
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
             System.out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
-        }else {
-            System.out.println("验签失败");
-        }
-        //——请在这里编写您的程序（以上代码仅作参考）——
+            if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+                throw new BusinessValidationException("请重新登录");
+            }
+            Long userId = ThreadVariable.getSession().getUserId();
+            User user=userService.findUserById(userId);
+            Long AccountYue=user.getAccountYue();
+            String [] strs = total_amount.split("[.]");
+            Long RechargeAmount=Long.parseLong(strs[0]);
+            RechargeRecord rechargeRecord=new RechargeRecord();
+            Long newAccountyue=AccountYue+RechargeAmount;
+            user.setAccountYue(newAccountyue);
+            userService.updateUser(user);
+            rechargeRecord.setUserId(userId);
+            rechargeRecord.setRechargeAmount(RechargeAmount);
+            rechargeRecord.setAlipayOrderNum(out_trade_no);
+            rechargeRecord.setAlipayTradeNum(trade_no);
+            rechargeRecord.setAccountYue(newAccountyue);
+            rechargeRecordService.addRechargeRecord(rechargeRecord);
         return"/return_url";
     }
 

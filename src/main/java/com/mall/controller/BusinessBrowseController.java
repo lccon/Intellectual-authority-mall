@@ -7,6 +7,7 @@ import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.BusinessBrowseService;
 import com.mall.vo.MeSeeWhoVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * @Author:lc
  */
 @RequestMapping("/businessBrowse")
-@ResponseBody
+@Controller
 public class BusinessBrowseController {
 
     @Autowired

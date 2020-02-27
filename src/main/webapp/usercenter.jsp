@@ -12,39 +12,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script src="layui/layui.all.js"></script>
 </head>
 
 <body style="background-color: #e5e5e5e5;">
-<jsp:include page="/admin/baseInclude.jsp" />
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div id="login">
-            <c:if test="${userRealName!=null}">
-                <ul>
-                    <li>
-                        <a href="/usercenter.jsp">个人中心</a>
-                    </li>
-                </ul>
-            </c:if>
-            <ul>
-                <li>
-                    <c:if test="${userRealName!=null}">
-                        <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
-                        <a class="quit" href="/admin/userlogout">退出</a>
-                    </c:if>
-                    <c:if test="${userRealName==null}">
-                        <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                        <a href="/register.jsp">注册</a>
-                    </c:if>
-                </li>
-
-            </ul>
-        </div>
-        <div class="container">
-            <div class="navbar-header">
-                <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
-            </div>
-        </div>
-    </nav>
+<jsp:include page="head1.jsp"/>
     <div style="margin-top:120px;margin-left: 75px; height: 40px;" >
         <ol class="breadcrumb">
             <li><a href="/">返回首页</a></li>
@@ -85,7 +57,7 @@
                     <li data-url="/userCenter/vocher?id=${UserId}"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
                     <li><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
-                    <li data-url="/userCenter/userpost"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
+                    <li data-url="/intellectualTask/findIntellectualTaskReleaseForPage"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
                     <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">我的收藏</a></li>
                     <li><a href="javascript:void(0);">我看过谁</a></li>
                     <li><a href="javascript:void(0);">谁看过我</a></li>

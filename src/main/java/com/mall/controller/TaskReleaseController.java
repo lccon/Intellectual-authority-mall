@@ -98,8 +98,8 @@ public class TaskReleaseController {
         taskReleaseVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<TaskRelease> taskRelease = taskReleaseService.findTaskReleaseForPage(taskReleaseVO);
         GridPage<TaskRelease> gridPage = new GridPage<>(taskRelease);
-        map.put("gridPage", gridPage);
-        return "/user-post";
+        map.put("gridPagetaskRelease", gridPage);
+        return "/user_post";
     }
 
     @RequestMapping("/findByTaskRelease")

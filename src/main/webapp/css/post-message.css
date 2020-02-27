@@ -176,10 +176,14 @@ span.delx:hover{
 
 .success{
     background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    color: #1188d3;
     font-size: 14px;
-    display: inline-block;
+    display: none;
     height: 30px;
     line-height: 30px;
     padding-left: 36px;
     vertical-align: middle;
+}
+#zdmode{
+    display:none;
 }

@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
 </div>
    <div style="background-color: #fff;">
        <div style="margin-left: 50px;">
-    <div class="titleline">
+    <div class="titleline1">
         <div class="title">
             请进入个人认证或企业认证
             <hr>

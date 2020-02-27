@@ -98,8 +98,8 @@ public class IntellectualTaskController {
         intellectualTaskVO.setUserId(ThreadVariable.getSession().getUserId());
         PageInfo<IntellectualTask> intellectualTaskList = intellectualTaskService.findIntellectualTaskForPage(intellectualTaskVO);
         GridPage<IntellectualTask> gridPage = new GridPage<>(intellectualTaskList);
-        map.put("gridPage", gridPage);
-        return "/user-post";
+        map.put("gridPageintellectualTask", gridPage);
+        return "/user_post";
     }
 
     @RequestMapping("/getIntellectualTaskById")
