@@ -72,11 +72,11 @@ public class BusinessBrowseServiceImpl implements BusinessBrowseService {
             List<Long> companyIds = new ArrayList<>();
             List<Long> releaseIds = new ArrayList<>();
             for (BusinessBrowse businessBrowse : meSeeWhoList) {
-                if (ModuleTypeEnum.INTELLECTUAL_TASK.equals(businessBrowse.getModuleType())) {
+                if (ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode().equals(businessBrowse.getModuleType())) {
                     taskIds.add(businessBrowse.getModuleTypeId());
-                } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.equals(businessBrowse.getModuleType())) {
+                } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode().equals(businessBrowse.getModuleType())) {
                     companyIds.add(businessBrowse.getModuleTypeId());
-                } else if (ModuleTypeEnum.TASK_RELEASE.equals(businessBrowse.getModuleType())) {
+                } else if (ModuleTypeEnum.TASK_RELEASE.getModuleCode().equals(businessBrowse.getModuleType())) {
                     releaseIds.add(businessBrowse.getModuleTypeId());
                 }
             }
