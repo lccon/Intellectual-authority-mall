@@ -103,6 +103,31 @@
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
             <em class="form-red">*</em>
+            <label class="form-lb1">置顶状态：</label>
+        </div>
+        <div class="grid_7">
+            <select name="roofPlaceState" id="roofPlaceState">
+                <option value="1" <c:if test="${intellectualTask.roofPlaceState == 1}">selected</c:if>>待审核</option>
+                <option value="2" <c:if test="${intellectualTask.roofPlaceState == 2}">selected</c:if>>置顶</option>
+            </select>
+        </div>
+        <div id="topDurationStr">
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">发布状态：</label>
+        </div>
+        <div class="grid_7">
+            <select name="state">
+                <option value="1" <c:if test="${intellectualTask.state == 1}">selected</c:if>>待审核</option>
+                <option value="2" <c:if test="${intellectualTask.state == 2}">selected</c:if>>发布</option>
+                <option value="0" <c:if test="${intellectualTask.state == 0}">selected</c:if>>驳回</option>
+            </select>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <em class="form-red">*</em>
             <label class="form-lb1">图片上传：</label>
         </div>
         <div class="grid_1">
@@ -158,6 +183,12 @@
                     required:true,
                     minlength:1,
                     maxlength:200
+                },
+                "topDuration" : {
+                    required:true,
+                    positiveInteger:true,
+                    minlength:1,
+                    maxlength:10
                 }
             },
             messages:{
@@ -180,6 +211,12 @@
                     required:"请输入专利号",
                     minlength:$.format("专利号至少需要输入{0}个字符"),
                     minlength:$.format("专利号最多需要输入{0}个字符"),
+                },
+                "topDuration" : {
+                    required:"请输入置顶天数",
+                    positiveInteger:"只能输入数字",
+                    minlength:$.format("置顶天数至少需要输入{0}个字符"),
+                    minlength:$.format("置顶天数最多需要输入{0}个字符"),
                 }
             },
             submitHandler: function(form) {
@@ -279,4 +316,37 @@
         })
     }
 
+    var roofPlaceState = $('#roofPlaceState option:selected').val();
+    if(roofPlaceState == 2){
+        $("#topDurationStr").append('<div class="clearLine"></div>\n' +
+            '            <div class="grid_3 label-right">\n' +
+            '                <em class="form-red">*</em>\n' +
+            '                <label class="form-lb1">置顶天数：</label>\n' +
+            '            </div>\n' +
+            '            <div class="grid_7">\n' +
+            '                <input type="text" name="topDuration" id="topDuration" value="${intellectualTask.topDuration}"/>\n' +
+            '            </div>');
+    }
+
+    $("#roofPlaceState").change(function(){
+        var roofPlaceState = $('#roofPlaceState option:selected').val();
+        // 如果选择的是自定义上传
+        if(roofPlaceState == 2){
+            $("#topDurationStr").append('<div class="clearLine"></div>\n' +
+                '            <div class="grid_3 label-right">\n' +
+                '                <em class="form-red">*</em>\n' +
+                '                <label class="form-lb1">置顶天数：</label>\n' +
+                '            </div>\n' +
+                '            <div class="grid_7">\n' +
+                '                <input type="text" name="topDuration" id="topDuration" value="${intellectualTask.topDuration}"/>\n' +
+                '            </div>');
+        }else{
+            $("#topDurationStr").empty();
+        }
+    })
+
+    jQuery.validator.addMethod("positiveInteger", function(value, element) {
+        var positiveInteger = /^[0-9]*[1-9][0-9]*$/;
+        return this.optional(element) || (positiveInteger.test(value));
+    });
 </script>

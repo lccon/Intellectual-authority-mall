@@ -92,6 +92,31 @@
 
             </script>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_4 label-right" style="margin-top: 345px;">
+            <em class="form-red">*</em>
+            <label class="form-lb1">置顶状态：</label>
+        </div>
+        <div class="grid_7" style="margin-top: 345px;">
+            <select name="roofPlaceState" id="roofPlaceState">
+                <option value="1">待审核</option>
+                <option value="2">置顶</option>
+            </select>
+        </div>
+        <div id="topDurationStr">
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_4 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">发布状态：</label>
+        </div>
+        <div class="grid_7">
+            <select name="state">
+                <option value="1">待审核</option>
+                <option value="2">发布</option>
+                <option value="0">驳回</option>
+            </select>
+        </div>
     </div>
 </form>
 
@@ -115,6 +140,12 @@
                     required:true,
                     minlength:1,
                     maxlength:1000
+                },
+                "topDuration" : {
+                    required:true,
+                    positiveInteger:true,
+                    minlength:1,
+                    maxlength:10
                 }
             },
             messages:{
@@ -127,6 +158,12 @@
                     required:"请输入详细说明",
                     minlength:$.format("详细说明至少需要输入{0}个字符"),
                     minlength:$.format("详细说明最多需要输入{0}个字符"),
+                },
+                "topDuration" : {
+                    required:"请输入置顶天数",
+                    positiveInteger:"请输入正整数",
+                    minlength:$.format("置顶天数至少需要输入{0}个字符"),
+                    minlength:$.format("置顶天数最多需要输入{0}个字符"),
                 }
             },
             submitHandler: function(form) {
@@ -150,6 +187,28 @@
             }
         });
 
+    });
+
+    $("#roofPlaceState").change(function(){
+        var roofPlaceState = $('#roofPlaceState option:selected').val();
+        // 如果选择的是自定义上传
+        if(roofPlaceState == 2){
+            $("#topDurationStr").append('<div class="clearLine"></div>\n' +
+                '            <div class="grid_4 label-right">\n' +
+                '                <em class="form-red">*</em>\n' +
+                '                <label class="form-lb1">置顶天数：</label>\n' +
+                '            </div>\n' +
+                '            <div class="grid_7">\n' +
+                '                <input type="text" name="topDuration" id="topDuration" value=""/>\n' +
+                '            </div>');
+        }else{
+            $("#topDurationStr").empty();
+        }
+    })
+
+    jQuery.validator.addMethod("positiveInteger", function(value, element) {
+        var positiveInteger = /^[0-9]*[1-9][0-9]*$/;
+        return this.optional(element) || (positiveInteger.test(value));
     });
 
 </script>

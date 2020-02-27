@@ -28,6 +28,9 @@
                 {name : "patentNumber", index:"patentNumber", label:"专利号", align:'center', sortable:false, width:'170'},
                 {name : "productCategory", index:"productCategory", label:"商品分类", align:'center', sortable:false, width:'90', formatter:productCategoryFormatter},
                 {name : "industryCategory", index:"industryCategory", label:"行业分类", align:'center', sortable:false, width:'100', formatter:industryCategoryFormatter},
+                {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
+                {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
+                {name : "state", index:"state", label:"发布状态", align:'center', sortable:false, width:'100', formatter:stateFormatter},
                 {name : "productPictureUrl", index:"productPictureUrl", label:"图片", align:'center', sortable:false, width:'320', formatter:productPictureFormatter},
                 {name : "productVideoUrl", index:"productVideoUrl", label:"视频", align:'center', sortable:false, width:'170', formatter:productVideoFormatter},
             ],
@@ -49,6 +52,26 @@
                 return "商标"
             } else if (rowData.productCategory == 5) {
                 return "版权"
+            }
+            return "";
+        }
+
+        function roofPlaceStateFormatter(el, options, rowData) {
+            if(rowData.roofPlaceState == 1) {
+                return "待审核";
+            } else if (rowData.roofPlaceState == 2) {
+                return "置顶";
+            }
+            return "";
+        }
+
+        function stateFormatter(el, options, rowData) {
+            if(rowData.state == 0) {
+                return "驳回";
+            } else if(rowData.state == 1) {
+                return "待审核";
+            } else if (rowData.state == 2) {
+                return "发布";
             }
             return "";
         }

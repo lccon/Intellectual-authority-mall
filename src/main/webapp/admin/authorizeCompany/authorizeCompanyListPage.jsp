@@ -25,8 +25,10 @@
                 {name : "companyName",index : "companyName", label:'公司名称', sortable : false, width:'400'},
                 {name : "businessCategory",index : "businessCategory", label:'业务分类', align:'center', sortable : false, width:'170', formatter:businessCategoryFormatter},
                 {name : "companyDescribe", index:"companyDescribe", label:"公司介绍", align:'center', sortable:false, width:'170'},
+                {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
+                {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
+                {name : "state", index:"state", label:"发布状态", align:'center', sortable:false, width:'100', formatter:stateFormatter},
                 {name : "companyPictureUrl", index:"companyPictureUrl", label:"公司图片", align:'center', sortable:false, width:'170', formatter:companyPictureUrlFormatter},
-                {name : "createUser", index:"createUser", label:"代办人", align:'center', sortable:false, width:'170'},
             ],
             multiselect : true,
             height:"492px",
@@ -44,6 +46,26 @@
                 return "技术成果转让";
             } else if (rowData.businessCategory == 4) {
                 return "法律咨询";
+            }
+            return "";
+        }
+
+        function roofPlaceStateFormatter(el, options, rowData) {
+            if(rowData.roofPlaceState == 1) {
+                return "待审核";
+            } else if (rowData.roofPlaceState == 2) {
+                return "置顶";
+            }
+            return "";
+        }
+
+        function stateFormatter(el, options, rowData) {
+            if(rowData.state == 0) {
+                return "驳回";
+            } else if(rowData.state == 1) {
+                return "待审核";
+            } else if (rowData.state == 2) {
+                return "发布";
             }
             return "";
         }

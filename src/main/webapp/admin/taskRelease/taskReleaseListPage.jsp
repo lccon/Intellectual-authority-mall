@@ -27,7 +27,9 @@
                 {name : "industryBelongs", index:"industryBelongs", label:"行业所属", align:'center', sortable:false, width:'150', formatter:industryBelongsFormatter},
                 {name : "purpose", index:"purpose", label:"用途",  sortable:false, width:'270'},
                 {name : "detailedDesc", index:"detailedDesc", label:"详细说明", sortable:false, width:'270'},
-                {name : "createUser", index:"createUser", label:"发布人", align:'center', sortable:false, width:'100'},
+                {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
+                {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
+                {name : "state", index:"state", label:"发布状态", align:'center', sortable:false, width:'100', formatter:stateFormatter},
             ],
             multiselect : true,
             height:"492px",
@@ -35,6 +37,26 @@
             onSelectRow : function() {
             }
         });
+
+        function roofPlaceStateFormatter(el, options, rowData) {
+            if(rowData.roofPlaceState == 1) {
+                return "待审核";
+            } else if (rowData.roofPlaceState == 2) {
+                return "置顶";
+            }
+            return "";
+        }
+
+        function stateFormatter(el, options, rowData) {
+            if(rowData.state == 0) {
+                return "驳回";
+            } else if(rowData.state == 1) {
+                return "待审核";
+            } else if (rowData.state == 2) {
+                return "发布";
+            }
+            return "";
+        }
 
         function taskCategoryFormatter(el, options, rowData) {
             if(rowData.taskCategory == 1) {
