@@ -82,14 +82,14 @@
   </aop:config>
 
   <!-- quartz持久化到db 进行集群任务 -->
-  <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+  <!--<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
     <property name="dataSource">
-      <!--数据源引用-->
+      &lt;!&ndash;数据源引用&ndash;&gt;
       <ref bean="dataSource" />
     </property>
     <property name="overwriteExistingJobs" value="true" />
     <property name="applicationContextSchedulerContextKey" value="applicationContext" />
     <property name="configLocation" value="classpath:quartz.properties" />
-  </bean>
+  </bean>-->
 
 </beans>
