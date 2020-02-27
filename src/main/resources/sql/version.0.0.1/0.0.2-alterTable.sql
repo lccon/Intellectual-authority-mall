@@ -12,9 +12,9 @@ ALTER TABLE authorize_company ADD COLUMN mobile VARCHAR(11) DEFAULT null COMMENT
 ALTER TABLE authorize_company ADD COLUMN friendship_link VARCHAR(11) DEFAULT null COMMENT '友情链接' after mobile;
 
 -- 添加状态
-ALTER TABLE intellectual_task ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:驳回 1:待审核 2:已发布' after mobile;
-ALTER TABLE task_release ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:驳回 1:待审核 2:已发布' after mobile;
-ALTER TABLE authorize_company ADD COLUMN state tinyint(1) DEFAULT 0 COMMENT '0:驳回 1:待审核 2:已发布' after friendship_link;
+ALTER TABLE intellectual_task ADD COLUMN state tinyint(1) DEFAULT 1 COMMENT '0:驳回 1:待审核 2:已发布' after mobile;
+ALTER TABLE task_release ADD COLUMN state tinyint(1) DEFAULT 1 COMMENT '0:驳回 1:待审核 2:已发布' after mobile;
+ALTER TABLE authorize_company ADD COLUMN state tinyint(1) DEFAULT 1 COMMENT '0:驳回 1:待审核 2:已发布' after friendship_link;
 
 -- 留言添加字段
 ALTER TABLE leave_message ADD COLUMN real_name VARCHAR(20) DEFAULT NULL comment '真实姓名' after message_state;

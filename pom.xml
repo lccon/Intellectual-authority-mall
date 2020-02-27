@@ -385,6 +385,9 @@
         <directory>src/main/java</directory>
         <includes>
           <include>**/*.xml</include>
+          <include>**/*.woff</include>
+          <include>**/*.woff2</include>
+          <include>**/*.ttf</include>
         </includes>
         <filtering>true</filtering>
       </resource>
@@ -393,6 +396,9 @@
         <includes>
           <include>**/*.properties</include>
           <include>**/*.xml</include>
+          <include>**/*.woff</include>
+          <include>**/*.woff2</include>
+          <include>**/*.ttf</include>
         </includes>
         <filtering>false</filtering>
       </resource>
