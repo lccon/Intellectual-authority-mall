@@ -35,30 +35,15 @@ public class BusinessBrowseServiceImpl implements BusinessBrowseService {
 
     @Override
     public BusinessBrowse addBusinessBrowse(BusinessBrowse businessBrowse) {
-        if(businessBrowse == null) {
+        if (businessBrowse == null) {
             throw new BusinessValidationException("参数不能为空!");
         }
+        if (businessBrowse.getPublisherId() == null) {
+            throw new BusinessValidationException("发布信息主键不能为空!");
+        }
         try {
-            Long publisherId = null;
-            if (ModuleTypeEnum.INTELLECTUAL_TASK.equals(businessBrowse.getModuleType())) {
-                IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(businessBrowse.getModuleTypeId());
-                if (intellectualTask != null && intellectualTask.getUserId() != null) {
-                    publisherId = intellectualTask.getUserId();
-                }
-            } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.equals(businessBrowse.getModuleType())) {
-                AuthorizeCompany authorizeCompany = authorizeCompanyService.getAuthorizeCompanyById(businessBrowse.getModuleTypeId());
-                if (authorizeCompany != null && authorizeCompany.getUserId() != null) {
-                    publisherId = authorizeCompany.getUserId();
-                }
-            } else if (ModuleTypeEnum.TASK_RELEASE.equals(businessBrowse.getModuleType())) {
-                TaskRelease taskRelease = taskReleaseService.getTaskReleaseById(businessBrowse.getModuleTypeId());
-                if (taskRelease != null && taskRelease.getUserId() != null) {
-                    publisherId = taskRelease.getUserId();
-                }
-            }
             Integer count = this.countBusinessBrowseNum(businessBrowse);
-            if (count <= 0 && publisherId != null && !publisherId.equals(businessBrowse.getVisitorId())) {
-                businessBrowse.setPublisherId(publisherId);
+            if (count <= 0 && !businessBrowse.getPublisherId().equals(businessBrowse.getVisitorId())) {
                 businessBrowseMapper.addBusinessBrowse(businessBrowse);
             }
             return businessBrowse;

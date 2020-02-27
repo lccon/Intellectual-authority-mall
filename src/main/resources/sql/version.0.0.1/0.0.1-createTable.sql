@@ -192,5 +192,9 @@ CREATE TABLE business_browse(
   module_type_id bigint(20) NOT NULL COMMENT '模块id',
   visitor_id bigint(20) NOT NULL COMMENT '访客id',
   publisher_id bigint(20) NOT NULL COMMENT '发布id',
+  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
+  `create_date` datetime NOT NULL COMMENT '新增时间',
+  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
+  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
