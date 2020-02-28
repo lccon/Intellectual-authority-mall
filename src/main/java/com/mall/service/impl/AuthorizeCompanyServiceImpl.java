@@ -20,10 +20,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Description:
@@ -69,12 +66,22 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         }
         try {
             authorizeCompanyMapper.updateAuthorizeCompany(authorizeCompany);
-            if(authorizeCompany.getTopDuration() != null) {
+            if (authorizeCompany.getRoofPlaceState() != null) {
                 RoofPlace roofPlace = new RoofPlace();
                 roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
                 roofPlace.setModuleTypeId(authorizeCompany.getId());
                 roofPlace.setTopDuration(authorizeCompany.getTopDuration());
-                roofPlaceService.updateRoofPlace(roofPlace);
+                roofPlace.setAuthorizeState(authorizeCompany.getRoofPlaceState());
+                RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+                if (authorizeCompany.getTopDuration() != null) {
+                    if (roofPlaceInfo != null) {
+                        roofPlaceService.updateRoofPlace(roofPlace);
+                    } else {
+                        roofPlaceService.addRoofPlace(roofPlace);
+                    }
+                } else if (authorizeCompany.getTopDuration() == null && roofPlaceInfo != null) {
+                    roofPlaceService.updateRoofPlace(roofPlace);
+                }
             }
             return authorizeCompany;
         } catch (Exception e) {
@@ -217,8 +224,12 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
             roofPlace.setModuleTypeId(authorizeCompany.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
             if (roofPlaceInfo != null) {
-                authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
+                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
+                    roofPlaceService.deleteRoofPlace(roofPlace);
+                } else {
+                    authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                    authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
+                }
             }
             businessCollected.setModuleTypeId(authorizeCompany.getId());
             if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {

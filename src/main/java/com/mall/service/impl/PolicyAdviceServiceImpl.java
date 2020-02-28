@@ -20,10 +20,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Description:
@@ -67,12 +64,22 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
         try {
             policyAdviceMapper.updatePolicyAdvice(policyAdvice);
-            if(policyAdvice.getTopDuration() != null) {
+            if (policyAdvice.getRoofPlaceState() != null) {
                 RoofPlace roofPlace = new RoofPlace();
                 roofPlace.setModuleType(ModuleTypeEnum.POLICY_ADVICE.getModuleCode());
                 roofPlace.setModuleTypeId(policyAdvice.getId());
                 roofPlace.setTopDuration(policyAdvice.getTopDuration());
-                roofPlaceService.updateRoofPlace(roofPlace);
+                roofPlace.setAuthorizeState(policyAdvice.getRoofPlaceState());
+                RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+                if(policyAdvice.getTopDuration() != null) {
+                    if (roofPlaceInfo != null) {
+                        roofPlaceService.updateRoofPlace(roofPlace);
+                    } else {
+                        roofPlaceService.addRoofPlace(roofPlace);
+                    }
+                } else if (policyAdvice.getTopDuration() == null && roofPlaceInfo != null) {
+                    roofPlaceService.updateRoofPlace(roofPlace);
+                }
             }
             return policyAdvice;
         } catch (Exception e) {
@@ -198,8 +205,12 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
             roofPlace.setModuleTypeId(policyAdvice.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
             if (roofPlaceInfo != null) {
-                policyAdvice.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                policyAdvice.setTopDuration(roofPlaceInfo.getTopDuration());
+                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
+                    roofPlaceService.deleteRoofPlace(roofPlace);
+                } else {
+                    policyAdvice.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                    policyAdvice.setTopDuration(roofPlaceInfo.getTopDuration());
+                }
             }
         }
     }

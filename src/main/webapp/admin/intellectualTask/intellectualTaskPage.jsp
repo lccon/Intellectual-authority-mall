@@ -58,11 +58,11 @@
 
         function roofPlaceStateFormatter(el, options, rowData) {
             if(rowData.roofPlaceState == 1) {
-                return "待审核";
+                return "<div style='color:#FF7F24'>待审核</div>";
             } else if (rowData.roofPlaceState == 2) {
-                return "置顶";
+                return "<div style='color:#FF4040'>置顶</div>";
             }
-            return "";
+            return "不置顶";
         }
 
         function stateFormatter(el, options, rowData) {

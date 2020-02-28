@@ -20,10 +20,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.HashMap;
+import java.util.*;
+
 /**
  * Description:
  *
@@ -68,12 +66,22 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             intellectualTaskMapper.updateIntellectualTask(intellectualTask);
-            if(intellectualTask.getTopDuration() != null) {
+            if(intellectualTask.getRoofPlaceState() != null) {
                 RoofPlace roofPlace = new RoofPlace();
                 roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
                 roofPlace.setModuleTypeId(intellectualTask.getId());
                 roofPlace.setTopDuration(intellectualTask.getTopDuration());
-                roofPlaceService.updateRoofPlace(roofPlace);
+                roofPlace.setAuthorizeState(intellectualTask.getRoofPlaceState());
+                RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
+                if (intellectualTask.getTopDuration() != null) {
+                    if (roofPlaceInfo != null) {
+                        roofPlaceService.updateRoofPlace(roofPlace);
+                    } else {
+                        roofPlaceService.addRoofPlace(roofPlace);
+                    }
+                } else if (intellectualTask.getTopDuration() == null && roofPlaceInfo != null) {
+                    roofPlaceService.updateRoofPlace(roofPlace);
+                }
             }
             return intellectualTask;
         } catch (Exception e) {
@@ -223,8 +231,12 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
             roofPlace.setModuleTypeId(intellectualTask.getId());
             RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
             if (roofPlaceInfo != null) {
-                intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
+                    roofPlaceService.deleteRoofPlace(roofPlace);
+                } else {
+                    intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
+                    intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+                }
             }
             businessCollected.setModuleTypeId(intellectualTask.getId());
             if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {

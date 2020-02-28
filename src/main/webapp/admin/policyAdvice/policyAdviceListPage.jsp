@@ -26,6 +26,8 @@
                 {name : "adviceTitle",index : "adviceTitle", label:'标题', align:'center', sortable : false, width:'170'},
                 {name : "adviceSubtitle", index:"adviceSubtitle", label:"副标题", align:'center', sortable:false, width:'170'},
                 {name : "adviceContent", index:"adviceContent", label:"资讯内容", align:'center', sortable:false, width:'170'},
+                {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
+                {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
                 {name : "advicePictureUrl", index:"advicePictureUrl", label:"图片", align:'center', sortable:false, width:'170', formatter:advicePictureUrlFormatter},
                 {name : "createUser", index:"createUser", label:"创建人", align:'center', sortable:false, width:'170'},
             ],
@@ -47,6 +49,15 @@
                 return "行业知识";
             }
             return "";
+        }
+
+        function roofPlaceStateFormatter(el, options, rowData) {
+            if(rowData.roofPlaceState == 1) {
+                return "<div style='color:#FF7F24'>待审核</div>";
+            } else if (rowData.roofPlaceState == 2) {
+                return "<div style='color:#FF4040'>置顶</div>";
+            }
+            return "不置顶";
         }
 
         function advicePictureUrlFormatter(el, options, rowData) {

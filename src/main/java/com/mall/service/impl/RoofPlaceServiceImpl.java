@@ -54,12 +54,14 @@ public class RoofPlaceServiceImpl implements RoofPlaceService {
             throw new BusinessValidationException("参数不能为空！");
         }
         try {
-            roofPlace.setTopStartTime(new Date());
-            long currentTime = System.currentTimeMillis();
-            long topDurationLong = roofPlace.getTopDuration()*24*60*60*1000;
-            long newTime = currentTime + topDurationLong;
-            Date topEndDate = new Date(newTime);
-            roofPlace.setTopEndTime(topEndDate);
+            if (roofPlace.getTopDuration() != null) {
+                roofPlace.setTopStartTime(new Date());
+                long currentTime = System.currentTimeMillis();
+                long topDurationLong = roofPlace.getTopDuration() * 24 * 60 * 60 * 1000;
+                long newTime = currentTime + topDurationLong;
+                Date topEndDate = new Date(newTime);
+                roofPlace.setTopEndTime(topEndDate);
+            }
             roofPlaceMapper.updateRoofPlace(roofPlace);
             return roofPlace;
         } catch (Exception e) {
