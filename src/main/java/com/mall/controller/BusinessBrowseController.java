@@ -8,6 +8,7 @@ import com.mall.service.BusinessBrowseService;
 import com.mall.vo.MeSeeWhoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,21 +38,23 @@ public class BusinessBrowseController {
     }
 
     @RequestMapping("/getMeSeeWho")
-    @ResponseBody
-    public MeSeeWhoVO getMeSeeWho() {
+    public String getMeSeeWho(ModelMap map) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        return businessBrowseService.getMeSeeWho(ThreadVariable.getSession().getUserId());
+        MeSeeWhoVO meSeeWhoVO=businessBrowseService.getMeSeeWho(ThreadVariable.getSession().getUserId());
+        map.put("meSeeWhoVO",meSeeWhoVO);
+        return "meseewho";
     }
 
     @RequestMapping("/getWhoSeeMe")
-    @ResponseBody
-    public List<User> getWhoSeeMe() {
+    public String getWhoSeeMe(ModelMap map) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        return businessBrowseService.getWhoSeeMe(ThreadVariable.getSession().getUserId());
+        List<User> userList=businessBrowseService.getWhoSeeMe(ThreadVariable.getSession().getUserId());
+        map.put("userList",userList);
+        return "whoseeme";
     }
 
 }

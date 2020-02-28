@@ -11,12 +11,6 @@
 <body style="background-color: #e5e5e5e5;">
 
 <jsp:include page="head1.jsp"/>
-<div style="margin-top:100px;background-color: #e5e5e5e5;" >
-    <ol class="breadcrumb" style="background-color: #e5e5e5e5;" >
-        <li><a href="/">返回首页</a></li>
-        <li>信息发布</li>
-    </ol>
-</div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">

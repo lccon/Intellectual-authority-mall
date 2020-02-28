@@ -293,9 +293,6 @@ pageEncoding="UTF-8"%>
 			<th class="top-cap-new">
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp新闻模块
 			</th>
-			<th>
-
-			</th>
 		</tr>
 
 <!--复制的数据后期可删除-->

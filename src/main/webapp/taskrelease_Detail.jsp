@@ -133,7 +133,19 @@
 <!--商品详情结束-->
 <!--网页底部-->
 <jsp:include page="footer.jsp"/>
-
+<script>
+    window.onload=function () {
+        $.ajax({
+            type:"POST",
+            url: "/businessBrowse/addBusinessBrowse?moduleType=3&moduleTypeId=${taskRelease.id}&publisherId=${taskRelease.userId}",
+            async : false,
+            data:{type:1},
+            success: function(result) {
+                console.log(result);
+            },
+        })
+    }
+</script>
 
 
 </body>

@@ -103,7 +103,7 @@ public class VoucherCenterController {
             rechargeRecord.setRechargeAmount(RechargeAmount);
             rechargeRecord.setAlipayOrderNum(out_trade_no);
             rechargeRecord.setAlipayTradeNum(trade_no);
-            rechargeRecord.setAccountYue(newAccountyue);
+            rechargeRecord.setAccountYue(newAccountyue*10);
             rechargeRecordService.addRechargeRecord(rechargeRecord);
         return"/return_url";
     }
@@ -123,7 +123,7 @@ public class VoucherCenterController {
     // TODO 实际情况需要自己业务订单的状态，此处仅仅用于测试
     public static boolean isOrderPaid = false;
 
-    @RequestMapping(value = "/createPreOrder")
+    @RequestMapping(value = "/goweixinpay")
     public ModelAndView createPreOrder(String orderid, String orderprice,String ordername,Long userid, HttpServletRequest request, HttpServletResponse response) throws Exception {
         int num1 =Double.valueOf(orderprice).intValue();
         Integer num2=num1*100;

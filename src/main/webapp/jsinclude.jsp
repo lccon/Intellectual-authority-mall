@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>项目实战</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/spro.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/prodetail.css">
@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/vocher.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
     <script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/prodetail.js"></script>

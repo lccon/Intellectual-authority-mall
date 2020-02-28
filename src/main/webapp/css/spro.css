@@ -19,7 +19,7 @@
     color:#00c3f5;
 }
 .product{
-    margin-top: 10px;
+    margin-top: 40px;
     border-top-width: 1px;
     border-top-style:solid;
 	border-color: #ff6700;
@@ -33,10 +33,9 @@
 }
 
 .warp{
+    margin-top:0;
     float:right;
     border:1px solid white;
-    width:250px;
-    height:20px;
     margin-left: 3px;
 }
 .product:hover .warp a{

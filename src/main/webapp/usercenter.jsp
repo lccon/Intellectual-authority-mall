@@ -5,24 +5,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <title>项目实战</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
-    <script src="layui/layui.all.js"></script>
+    <jsp:include page="jsinclude.jsp"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
+    <link href="${pageContext.request.contextPath}/css/whoseeme.css" rel='stylesheet' type='text/css' />
+
 </head>
 
 <body style="background-color: #e5e5e5e5;">
 <jsp:include page="head1.jsp"/>
-    <div style="margin-top:120px;margin-left: 75px; height: 40px;" >
-        <ol class="breadcrumb">
-            <li><a href="/">返回首页</a></li>
-            <li class="active">个人中心</li>
-        </ol>
-    </div>
 
     <!--用户中心头部信息-->
     <div class="container" id="nav-head">
@@ -51,16 +44,15 @@
                 <ul class="nav nav-list" id="userMenu">
                     <li class="nav-header" id="cap2">帐户管理</li>
                     <li class="active" data-url="/user/getUserById?id=${UserId}"><a class="item-inner" href="javascript:void(0);" >我的资料</a></li>
-                    <li data-url="/userCenter/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
-                    <li><a href="javascript:void(0);">帐户明细</a></li>
+                    <li data-url="/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
                     <li class="nav-header"  id="cap2">我的资金</li>
-                    <li data-url="/userCenter/vocher?id=${UserId}"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
+                    <li data-url="/vocher"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
                     <li><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
                     <li data-url="/intellectualTask/findIntellectualTaskReleaseForPage"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
                     <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">我的收藏</a></li>
-                    <li><a href="javascript:void(0);">我看过谁</a></li>
-                    <li><a href="javascript:void(0);">谁看过我</a></li>
+                    <li data-url="/businessBrowse/getMeSeeWho"><a href="javascript:void(0);">我看过谁</a></li>
+                    <li data-url="/businessBrowse/getWhoSeeMe"><a href="javascript:void(0);">谁看过我</a></li>
                 </ul>
             </div>
         </div>

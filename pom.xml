@@ -398,6 +398,15 @@
       </resource>
       <resource>
         <directory>src/main/webapp</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.woff</include>
+          <include>**/*.woff2</include>
+          <include>**/*.ttf</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/webapp</directory>
         <filtering>false</filtering>
         <includes>
           <include>**/*.woff</include>

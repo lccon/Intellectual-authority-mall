@@ -4,7 +4,9 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<jsp:include page="jsinclude.jsp"/>
+    <jsp:include page="jsinclude.jsp"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
 </head>
 <body>
 <style>
@@ -94,7 +96,7 @@
                                     </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd" id="test1" href="javascript:void(0);">置顶</a>
+                            <a class="zd" href="javascript:void(0);" onclick="qwe()">置顶</a>
                         </div>
                     </div>
                 </div>
@@ -155,7 +157,7 @@
                             </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd" id="test1" href="javascript:void(0);">置顶</a>
+                            <a class="zd" href="javascript:void(0);" onclick="qwe()">置顶</a>
                         </div>
                     </div>
                 </div>
@@ -215,7 +217,7 @@
                             </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd" id="test1" href="javascript:void(0);">置顶</a>
+                            <a class="zd"  href="javascript:void(0);" onclick="qwe()">置顶</a>
                         </div>
                     </div>
                 </div>
@@ -257,34 +259,6 @@
 </c:if>
 </div>
 <script>
-    $('#test1').on('click', function () {
-        //多窗口模式，层叠置顶
-        layer.open({
-            type: 2 //此处以iframe举例
-            ,title: '当你选择该窗体时，即会在最顶端'
-            ,area: ['893px', '600px']
-            ,shade: 0
-            ,offset: [ //为了演示，随机坐标
-                Math.random()*($(window).height()-300)
-                ,Math.random()*($(window).width()-390)
-            ]
-            ,maxmin: true
-            ,content: '/roofplace.jsp'
-            ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-            ,yes: function(){
-                $(that).click(); //此处只是为了演示，实际使用可以剔除
-            }
-            ,btn2: function(){
-                layer.closeAll();
-            }
-
-            ,zIndex: layer.zIndex //重点1
-            ,success: function(layero){
-                layer.setTop(layero); //重点2
-            }
-        });
-    });
-
     var $contentWrapper = $('#center11')
 
     var loadContent = function(path) {
@@ -311,6 +285,33 @@
         loadContent(link);
     })
 
+</script>
+<script>
+    function qwe() {
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            shade: [0],
+            area: ['340px', '215px'],
+            offset: 'rb', //右下角弹出
+            time: 2000, //2秒后自动关闭
+            anim: 2,
+            content: ['/roofplace.jsp', 'no'], //iframe的url，no代表不显示滚动条
+            end: function () { //此处用于演示
+                layer.open({
+                    type: 2,
+                    title: '置顶',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/roofplace.jsp'
+                });
+            }
+        });
+
+    };
 </script>
 </body>
 

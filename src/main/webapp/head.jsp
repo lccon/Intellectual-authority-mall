@@ -21,19 +21,19 @@
 <c:if test="${userRealName!=null}">
         <ul>
             <li>
-                <a href="/usercenter.jsp">个人中心</a>
+                <a href="/userCenter">个人中心</a>
             </li>
         </ul>
 </c:if>
         <ul>
             <li>
                 <c:if test="${userRealName!=null}">
-                    <a href="/usercenter.jsp"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
+                    <a href="/userCenter"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
                         <a class="quit" href="/admin/userlogout">退出</a>
                 </c:if>
                 <c:if test="${userRealName==null}">
-                    <a href="/login.jsp"><span class="glyphicon glyphicon-user"></span>登录</a>/
-                    <a href="/register.jsp">注册</a>
+                    <a href="/login"><span class="glyphicon glyphicon-user"></span>登录</a>/
+                    <a href="/register">注册</a>
                 </c:if>
             </li>
 

@@ -18,7 +18,7 @@
             <!--用户id-->
             <input id="userid" name="userid" type="hidden" value="${UserId}" />
             <input type="hidden" name="topDuration" id="topDuration"/>
-            <input type="hidden" name="authorizeState" value="0"/>
+            <input type="hidden" name="authorizeState" value="1"/>
             <div class="tr_rechbox">
                 <div class="tr_rechhead">
                     <div class="tr_rechheadcion" style="float: left;">
@@ -65,6 +65,139 @@
             </div>
     </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
+<script type="text/javascript">
+    //页面层-自定义
+    function zzz() {
+        console.log("zzz");
+        var price=document.getElementById("price");
+        var accountyue=parseFloat(price.innerText);
+        var accountyue1=parseFloat(document.getElementById("AccountYue").innerText);
+        console.log(accountyue<accountyue1);
+        if(accountyue>accountyue1){
+            console.log(accountyue,accountyue1);
+            layer.msg('您的余额不足请先进行充值', {
+                time: 5000, //5s后自动关闭
+            });
+        }
+        else{
+            $.ajax({
+                type:"POST",
+                url: "/roofPlace/roofplaceconsume?consume="+accountyue,
+                success: function(result) {
+                    console.log(result);
+                },
+            })
 
+        }
+    }
+
+
+
+
+
+    window.onload=function () {
+        $.ajax({
+            type:"POST",
+            url: "/roofPlace/getUseraccountYue",
+            success: function(result) {
+                document.getElementById("AccountYue").innerText=result+"虚拟币";
+            },
+        })
+    }
+    // 将所有.ui-choose实例化
+    $('.ui-choose').ui_choose();
+    // uc_01 ul 单选
+    var uc_01 = $('#uc_01').data('ui-choose'); // 取回已实例化的对象
+    uc_01.click = function(index, item) {
+        console.log('click', index, item.text())
+    }
+    uc_01.change = function(index, item) {
+        console.log('change', index, item.text())
+    }
+    $(function() {
+        $('#uc_01 li:eq(3)').click(function() {
+            $('.tr_rechoth').show();
+            $('.tr_rechoth').find("input").attr('required', 'true')
+            $('.rechnum').text('100.00');
+            document.getElementById("topDuration").value="10";
+        })
+        $('#uc_01 li:eq(0)').click(function() {
+            $('.tr_rechoth').hide();
+            $('.rechnum').text('100.00');
+            $('.othbox').val('');
+            document.getElementById("topDuration").value="10";
+        })
+        $('#uc_01 li:eq(1)').click(function() {
+            $('.tr_rechoth').hide();
+            $('.rechnum').text('200.00');
+            $('.othbox').val('');
+            document.getElementById("topDuration").value="20";
+        })
+        $('#uc_01 li:eq(2)').click(function() {
+            $('.tr_rechoth').hide();
+            $('.rechnum').text('500.00');
+            $('.othbox').val('');
+            document.getElementById("topDuration").value="50";
+        })
+        $(document).ready(function() {
+            $('.othbox').on('input propertychange', function() {
+                var num = $(this).val();
+                $('.rechnum').html(num + "0.00");
+                document.getElementById("topDuration").value=num;
+            });
+        });
+    })
+
+    $(function() {
+        $('#doc-vld-msg').validator({
+            onValid: function(validity) {
+                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+            },
+            onInValid: function(validity) {
+                var $field = $(validity.field);
+                var $group = $field.closest('.am-form-group');
+                var $alert = $group.find('.am-alert');
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+                if(!$alert.length) {
+                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
+                    appendTo($group);
+                }
+                $alert.html(msg).show();
+            }
+        });
+    });
+</script>
+<script>
+    $('#test1').on('click', function () {
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            shade: [0],
+            area: ['340px', '215px'],
+            offset: 'rb', //右下角弹出
+            time: 2000, //2秒后自动关闭
+            anim: 2,
+            content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
+            end: function () { //此处用于演示
+                layer.open({
+                    type: 2,
+                    title: '充值中心',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/vouchercenter.jsp'
+                });
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

@@ -18,7 +18,7 @@
             <p>1.提示信息。</p>
             <p>2.提示信息。</p>
         </div>
-        <form action="/goAlipay" class="am-form" id="doc-vld-msg">
+        <form action="/goAlipay" class="am-form" id="payform">
             <!--订单编号-->
                 <input id="WIDout_trade_no" name="orderid" type="hidden"/>
             <!--订单名称-->
@@ -26,7 +26,7 @@
             <!--订单金额-->
                 <input id="orderprice" name="orderprice" type="hidden"/>
             <!--用户id-->
-                <input id="userid" name="userid" type="" value="${UserId}"/>
+                <input id="userid" name="userid" type="hidden" value="${UserId}"/>
             <div class="tr_rechbox">
                 <div class="tr_rechhead">
                     <img src="images/ys_head2.jpg" />
@@ -35,7 +35,7 @@
                     </p>
                     <div class="tr_rechheadcion">
                         <img src="images/coin.png" alt="" />
-                        <span>当前余额：<span>${virtualCoin}虚拟币</span></span>
+                        <span>当前余额：<span id="AccountYue"></span></span>
                     </div>
                 </div>
                 <div class="tr_rechli am-form-group">
@@ -70,10 +70,10 @@
                 <div class="tr_rechcho am-form-group">
                     <span>充值方式：</span>
                     <label class="am-radio">
-                        <input type="radio" name="radio1" value="" data-am-ucheck required data-validation-message="请选择一种充值方式"><img src="images/wechatpay.png">
+                        <input type="radio" name="radio1" value="" data-am-ucheck required data-validation-message="请选择一种充值方式" onclick="weixinvouc()"><img src="images/wechatpay.png">
                     </label>
                     <label class="am-radio" style="margin-right:30px;">
-                        <input type="radio" name="radio1" value="" data-am-ucheck data-validation-message="请选择一种充值方式"><img src="images/zfbpay.png">
+                        <input type="radio" name="radio1" value="" data-am-ucheck data-validation-message="请选择一种充值方式" onclick="zfbvouc()"><img src="images/zfbpay.png">
                     </label>
                 </div>
                 <div class="tr_rechnum">
@@ -93,6 +93,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
 <script type="text/javascript">
+    function weixinvouc() {
+        document.getElementById("payform").action = "/goweixinpay";
+    }
+    function zfbvouc() {
+        document.getElementById("payform").action = "/goAlipay";
+    }
+    window.onload=function () {
+        $.ajax({
+            type:"POST",
+            url: "/roofPlace/getUseraccountYue",
+            success: function(result) {
+                document.getElementById("AccountYue").innerText=result*10+"虚拟币";
+            },
+        })
+    }
 
     // 将所有.ui-choose实例化
     $('.ui-choose').ui_choose();

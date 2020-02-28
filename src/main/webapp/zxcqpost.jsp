@@ -10,12 +10,6 @@
 
 <body style="background-color: #e5e5e5e5;">
 <jsp:include page="head1.jsp"/>
-<div style="margin-top:100px;background-color: #e5e5e5e5;" >
-    <ol class="breadcrumb" style="background-color: #e5e5e5e5;" >
-        <li><a href="/">返回首页</a></li>
-        <li>信息发布</li>
-    </ol>
-</div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
@@ -182,6 +176,8 @@
                             <input style="margin-top:20px; width:100px;" type="tel" name="" id="code_num" class="input-60 input" lay-verify="required|phone" value="" onblur="YZMonblus()" onfocus="YZMonfou()"/>
                             &nbsp;<span style="margin-top:17px; width:200px;" id="tip_code_num" class="msg-box"><span id="tip_code_num1"></span></span>
                         </div>
+                            <input type="hidden" value="1" name="state"/>
+                            <input type="hidden" value="0" name="hasCollectedState"/>
                         <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;">提交</button>
                        </form>
                     </div>
@@ -212,8 +208,8 @@
                 type:"POST",
                 url: "/roofPlace/getUseraccountYue",
                 success: function(result) {
-                    document.getElementById("acountyue").value=result*10+"虚拟币";
-                    document.getElementById("AccountYue").innerText=result*10+"虚拟币";
+                    document.getElementById("acountyue").value=result+"虚拟币";
+                    document.getElementById("AccountYue").innerText=result+"虚拟币";
                 },
             })
         }

@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;">
-                            <div class="media-left">
+                            <div class="media-left" style="width: 250px;">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">
                                     <img  id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
                                     <script>
@@ -56,9 +56,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="warp">
-                    <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
         </c:forEach>

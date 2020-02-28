@@ -83,6 +83,15 @@
         var url1="${authorizeCompany.companyPictureUrl}".split(",");
         var img1=document.getElementById("bigimg");
         img1.src="${pageContext.request.contextPath}"+url1[0];
+        $.ajax({
+            type:"POST",
+            url: "/businessBrowse/addBusinessBrowse?moduleType=2&moduleTypeId=${authorizeCompany.id}&publisherId=${authorizeCompany.userId}",
+            async : false,
+            data:{type:1},
+            success: function(result) {
+                console.log(result);
+            },
+        })
     }
 </script>
 

@@ -113,8 +113,8 @@
             <div class="product">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                        <div class="media" style="width: 1150px;">
-                            <div class="media-left">
+                        <div class="media" style="width: 1150px; height: 200px;">
+                            <div class="media-left" style="width: 250px;">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">
                                     <img  id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
                                     <script type="text/javascript">
@@ -141,7 +141,6 @@
                     <c:if test="${u.hasCollectedState==1}">
                         <a id="abc" href="javascript:void(0);" onclick="deletecollect(${UserId},1,${u.id})" class="label label-primary bstreedit">已收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
                     </c:if>
-                    <a class="label label-primary bstreedit">置顶<span class="glyphicon glyphicon-chevron-up"></span></a>
                 </div>
             </div>
             </c:forEach>

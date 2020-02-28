@@ -44,7 +44,7 @@
                                 </dl>
                             </div>
                         </div>
-                        <div class="preview">
+                        <div class="preview" style="float: left;">
                             <div class="preview-box">
                                 <a href="#">
                                     <img id="bigimg" class="media-object" alt="" src="" />
@@ -68,7 +68,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="pro-service" >
+                        <div class="pro-service" style="width: 450px;float: left;">
                             <dl class="clearfix" style="margin-top:40px;">
                                 <dd>
                                     <span>商品分类: </span>
@@ -114,45 +114,30 @@
                                     <span>专利号&nbsp;&nbsp;: </span><span style="letter-spacing: 0;">${intellectualTask.patentNumber}</span>
                                 </dd>
                                 <dd>
-                                    <span>发明人&nbsp;&nbsp;: </span><span>${intellectualTask.productBrief}</span>
+                                    <span>发明人&nbsp;&nbsp;: </span><span>${intellectualTask.realName}</span>
                                 </dd>
                                 <dd>
                                     <span>联系方式: </span>
-                                    <a href="javascript:;" class="addcart" id="info">
-                                        查看联系方式
-                                    </a>
+                                    <span id="mobile"></span>
+                                    <br>
+                                </dd>
+                                <dd>
+                                    <span style="margin-left:120px;">
+                                        <input type="hidden" id="accountYue"/>
+                                        <a href="javascript:;" class="addcart" id="info">
+                                        付费查看完整联系方式
+                                        </a>
+                                    </span>
+                                </dd>
+                                <dd>
+
+                                        <cite style="font-size: xx-small">温馨提示：如果想要查看完整的付费方式需要支付50虚拟币</cite>
+                                        <cite  style="font-size: xx-small" id="accountYue1">你当前的虚拟币余额为：</cite>
+                                        <cite  style="font-size: xx-small">如果余额不足请先
+                                        <a id="test1" href="javascript:void(0)" style="color:#f46;">充值</a>。
+                                        </cite>
                                 </dd>
                             </dl>
-
-                        </div>
-                        <div class="pro-buy">
-                            
-                            <div id="box">
-                                <div class="close">
-                                    <a href="#" id="close"><span class="glyphicon glyphicon-remove"></span></a>
-                                </div>
-                                <div>
-                                    <div class="cap">
-                                        付费查看完整信息
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="p1">
-                                            <div class="icon">
-                                                <p><span class="glyphicon glyphicon-earphone"></span>&nbsp&nbsp手机号：</p>
-                                            </div>
-                                            <div class="desc">
-                                                <p>1312032****</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="butt">
-                                        <a href="#" class="wzinfo">查看完整信息</a>
-                                    </div>
-
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,9 +164,9 @@
 
                   </div>
                   <div class="infopicture">
-                    <img id="img1" class="img-responsive" src="" alt="">
-                    <img id="img2" class="img-responsive" src="" alt="">
-                    <img id="img3" class="img-responsive" src="" alt="">
+                    <img id="img1" class="img-responsive" src="" alt="" style="width:1000px;">
+                    <img id="img2" class="img-responsive" src="" alt="" style="width:1000px;">
+                    <img id="img3" class="img-responsive" src="" alt="" style="width:1000px;">
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video width="320" height="240" controls>
@@ -197,20 +182,34 @@
 
 <!--商品详情结束-->
     <script>
-        var info = document.getElementById("info");
-        var box = document.getElementById("box");
-        var close = document.getElementById("close");
-        var cover=document.getElementById("cover");
-        info.onclick = function () {
-            box.style.display = "block";
-            cover.style.height=document.body.clientHeight;
-            cover.style.display="block";
-        }
-        close.onclick = function () {
-            box.style.display = "none";
-            cover.style.display="none";
-        }
+        $('#info').on('click',function () {
+            if(document.getElementById("accountYue").value <50){
+                layer.msg('您的余额不足请先进行充值', {
+                    time: 5000, //5s后自动关闭
+                });
+            }else {
+                $.ajax({
+                    type:"POST",
+                    url: "/roofPlace/roofplaceconsume?consume=50",
+                    success: function(result) {
+                        console.log("111");
+                        //eg2
+                        layer.open({
+                            content: '${intellectualTask.mobile}'
+                            ,btn: ['确定']
+                            ,yes: function(index, layero){
+                                document.getElementById("mobile").innerText="${intellectualTask.mobile}";
+                            }
+                            ,cancel: function(){
+                                //右上角关闭回调
+                                //return false //开启该代码可禁止点击该按钮关闭
+                            }
+                        });
+                    },
+                })
 
+            }
+        })
     </script>
     <script type="text/javascript">
         function aaa()//用window的onload事件，窗体加载完毕的时候
@@ -230,6 +229,26 @@
             img11.src="${pageContext.request.contextPath}"+url1[0];
             img22.src="${pageContext.request.contextPath}"+url1[1];
             img33.src="${pageContext.request.contextPath}"+url1[2];
+            $.ajax({
+                type:"POST",
+                url: "/businessBrowse/addBusinessBrowse?moduleType=1&moduleTypeId=${intellectualTask.id}&publisherId=${intellectualTask.userId}",
+                async : false,
+                data:{type:1},
+                success: function(result) {
+                    console.log(result);
+                },
+            })
+            $.ajax({
+                type:"POST",
+                url: "/roofPlace/getUseraccountYue",
+                success: function(result) {
+                    document.getElementById("accountYue").value=result;
+                    document.getElementById("accountYue1").innerText+=result;
+                },
+            })
+                var phNum="${intellectualTask.mobile}";
+                var phnumAfter = phNum.substring(0,3) + "****" + phNum.substring(7);
+                document.getElementById("mobile").innerText=phnumAfter;
         }
         $(function() {
             /* 小图控制大图*/
@@ -240,6 +259,33 @@
                 bigimg.src="${pageContext.request.contextPath}"+url1[index];
                 console.log(url1[0]);
             })
+        });
+    </script>
+    <script>
+        $('#test1').on('click', function () {
+            layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 0, //不显示关闭按钮
+                shade: [0],
+                area: ['340px', '215px'],
+                offset: 'rb', //右下角弹出
+                time: 2000, //2秒后自动关闭
+                anim: 2,
+                content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
+                end: function () { //此处用于演示
+                    layer.open({
+                        type: 2,
+                        title: '充值中心',
+                        shadeClose: true,
+                        shade: false,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['893px', '600px'],
+                        content: '/vouchercenter.jsp'
+                    });
+                }
+            });
+
         });
     </script>
     <!--网页底部-->
