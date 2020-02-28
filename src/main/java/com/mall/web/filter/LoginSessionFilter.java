@@ -81,18 +81,13 @@ public class LoginSessionFilter implements Filter {
         if("/".equals(uri) || "/api/login".equals(uri) || "/admin/login".equals(uri)
                 || "/api/userMobileLogin".equals(uri)
                 || "/intellectualTask/findIntellectualTaskForList".equals(uri)
-                || "/about.jsp".equals(uri) || "/post-message.jsp".equals(uri)
-                || "/login".equals(uri)|| "/register".equals(uri)
-                || "/taskrelease.jsp".equals(uri) || "/proDetail.jsp".equals(uri)
+                || "/about.jsp".equals(uri) || "/login".equals(uri)
                 || "/taskRelease/findpageTaskReleaseForList".equals(uri)
                 || "/policyAdvice/findpagepolicyAdviceForList".equals(uri)
                 || "/authorizeCompany/findpageauthorizeCompanyForList".equals(uri)
-                || "/intellectualTask/getIntellectualTaskById".equals(uri)
-                || "/authorizeCompany/getAuthorizeCompanyById".equals(uri)
-                || "/taskRelease/getTaskReleaseById".equals(uri)
-                || "/policyAdvice/getPolicyAdviceById".equals(uri)
-                || "/post-message.jsp".equals(uri)
-                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)) {
+                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
+                || "/upload/uploadImg".equals(uri) || "/register".equals(uri)
+                || "/user/addUser".equals(uri)) {
             return true;
         }
         return false;
