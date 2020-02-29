@@ -22,12 +22,13 @@ public class TradeAuthorizeController {
     private TradeAuthorizeService tradeAuthorizeService;
 
     @RequestMapping("/addTradeAuthorize")
-    public TradeAuthorize addTradeAuthorize(TradeAuthorize tradeAuthorize) {
+    public String  addTradeAuthorize(TradeAuthorize tradeAuthorize) {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
         Long userId = ThreadVariable.getSession().getUserId();
-        return tradeAuthorizeService.addTradeAuthorize(userId, tradeAuthorize);
+        tradeAuthorizeService.addTradeAuthorize(userId, tradeAuthorize);
+        return "usercenter";
     }
 
 }

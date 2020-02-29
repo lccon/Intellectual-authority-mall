@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
             </ul>
         </div>
         <div class="tab-con2">
-            <form id="maintainForm" class="layui-form" method="post" action="/user/addUser" onsubmit="return checkform();">
+            <form id="maintainForm" class="layui-form" method="post" action="/user/addcommonuser" onsubmit="return checkform();">
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户名：</label>
                         <div class="layui-input-block">

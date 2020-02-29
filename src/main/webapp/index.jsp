@@ -126,7 +126,7 @@ pageEncoding="UTF-8"%>
 					<div class="media-body" id="cap">
 						<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
 						<p id="desc">${u.productBrief}</p>
-						<p id="price">1800元</p>
+						<p id="price">价格面议</p>
 					</div>
 				</div>
 				</li>
@@ -248,7 +248,7 @@ pageEncoding="UTF-8"%>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
 										<p id="desc">${u.productBrief}</p>
-										<p id="price">1800</p>
+										<p id="price">价格面议</p>
 									</div>
 								</div>
 							</li>
@@ -319,7 +319,7 @@ pageEncoding="UTF-8"%>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
 										<p id="desc">${u.productBrief}</p>
-										<p id="price">1800元</p>
+										<p id="price">价格面议</p>
 									</div>
 								</div>
 							</li>

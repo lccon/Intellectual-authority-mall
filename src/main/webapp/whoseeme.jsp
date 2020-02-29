@@ -21,69 +21,28 @@
                     谁看过我
                 </header>
                 <div class="notify-w3ls">
-                    <div class="alert alert-info clearfix">
-                        <span class="alert-icon"><img src="images/1.png"></span>
-                        <div class="notification-info">
-                            <ul class="clearfix notification-meta">
-                                <li class="pull-left notification-sender"><span><a href="#">admin</a></span>查看了您发布的信息</li>
-                                <li class="pull-right notification-time">查看时间</li>
-                            </ul>
-                            <p>
-                                <a href="#">信息标题</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="alert alert-danger">
-                        <span class="alert-icon"><i class="fa fa-facebook"></i></span>
-                        <div class="notification-info">
-                            <ul class="clearfix notification-meta">
-                                <li class="pull-left notification-sender"><span><a href="#">Jonathan Smith</a></span> mentioned you in a post </li>
-                                <li class="pull-right notification-time">7 Hours Ago</li>
-                            </ul>
-                            <p>
-                                Very cool photo jack
-                            </p>
-                        </div>
-                    </div>
-                    <div class="alert alert-success ">
-                        <span class="alert-icon"><i class="fa fa-comments-o"></i></span>
-                        <div class="notification-info">
-                            <ul class="clearfix notification-meta">
-                                <li class="pull-left notification-sender">You have 5 message unread</li>
-                                <li class="pull-right notification-time">1 min ago</li>
-                            </ul>
-                            <p>
-                                <a href="#">Anjelina Mewlo, Jack Flip</a> and <a href="#">3 others</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="alert alert-warning ">
-                        <span class="alert-icon"><i class="fa fa-bell-o"></i></span>
-                        <div class="notification-info">
-                            <ul class="clearfix notification-meta">
-                                <li class="pull-left notification-sender">Domain Renew Deadline 7 days ahead</li>
-                                <li class="pull-right notification-time">5 Days Ago</li>
-                            </ul>
-                            <p>
-                                Next 5 July Thursday is the last day
-                            </p>
-                        </div>
-                    </div>
-                    <div class="alert alert-info clearfix">
-                        <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
-                        <div class="notification-info">
-                            <ul class="clearfix notification-meta">
-                                <li class="pull-left notification-sender"><span><a href="#">Jonathan Smith</a></span> send you a mail </li>
-                                <li class="pull-right notification-time">1 min ago</li>
-                            </ul>
-                            <p>
-                                Urgent meeting for next proposal
-                            </p>
-                        </div>
-                    </div>
-
+                    <c:if test="${whoSeeMeVOList.size()>0}">
+                        <c:forEach items="${whoSeeMeVOList}" var="u">
+                            <div class="alert alert-success">
+                                <span class="alert-icon" style="border-radius: 50%;"><img style="width: 40px;height: 40px;border-radius: 50%;" id="${u.createDate}"></span>
+                                <script>
+                                    var url11="${u.headPortrait}".split(",");
+                                    var img1=document.getElementById("${u.createDate}");
+                                    img1.src="${pageContext.request.contextPath}"+url11[0];
+                                </script>
+                                <div class="notification-info">
+                                    <ul class="clearfix notification-meta">
+                                        <li class="pull-left notification-sender"><span><a href="javascript:void(0);">${u.userName}</a></span> 查看了您发布的信息 </li>
+                                        <li class="pull-right notification-time"><fmt:formatDate value="${u.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                                    </ul>
+                                    <p>
+                                       ${u.businessContent}
+                                    </p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
-
                 <!--notification end-->
             </div>
         </div>

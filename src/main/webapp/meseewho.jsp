@@ -49,7 +49,7 @@
                                     <a style="width:300px;" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                     <p class="desc">${u.productBrief }</p>
                                     <p id="price">价格面议</p>
-                                    <p class="desc">浏览量：100</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                             </div>
                             <c:if test="${u.hasCollectedState!=1}">
@@ -78,7 +78,7 @@
                                 <div class="media-body" id="caps">
                                     <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
                                     <p id="desc">${u.companyDescribe }</p>
-                                    <p class="desc">浏览量：100</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                             </div>
                             <c:if test="${u.hasCollectedState!=1}">
@@ -107,7 +107,7 @@
                                 <div class="media-body" id="caps">
                                     <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
                                     <p id="desc">${u.detailedDesc }</p>
-                                    <p class="desc">浏览量：100${u.hasCollectedState}</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                             </div>
                             <c:if test="${u.hasCollectedState!=1}">

@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
         <input type="hidden" name="id" value="${user.id}"/>
         <input type="hidden" name="password" value="${user.password}"/>
     <div class="name">
-        <label class="username" style="margin-top:20px;">
+        <label class="layui-form-label" style="width: 120px;">
             <span style="color:#ec5524;">*</span>
             <span >用户名：</span>
         </label>
@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
     <br>
     <br>
     <div class="name" style="margin-top:20px;">
-        <label class="username">
+        <label class="layui-form-label" style="width: 120px;">
             <span style="color:#ec5524;">*</span>
             <span>手机号：</span>
         </label>
@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
     <br>
     <br>
     <div class="id_img">
-        <label class="img_cap">
+        <label class="layui-form-label" style="width: 120px;">
             <span style="font-size: 16px;">上传头像：</span>
         </label>
         <div class="media-left"id="picture">
@@ -57,12 +57,15 @@ pageEncoding="UTF-8"%>
         <div class="btn-group" role="group" aria-label="..." id="btn" >
             <input type="file" onchange="uploadImage(this);" class="text-input">
             <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
-        </div> 
+        </div>
     </div>
     <div class="renzheng">
-        <label>
+        <label class="layui-form-label" style="width: 120px;">
             <span>认证类型：</span>
         </label>
+        <c:if test="${user.authorizeType==0}">
+            尚未认证，请前往我的认证进行认证
+        </c:if>
         <c:if test="${user.authorizeType==1}">
         <div class="media-left"id="picture">
             <img class="img-circle image-responsive" style="margin-left: 20px;"  src="${pageContext.request.contextPath}/img/qiye.png"/>

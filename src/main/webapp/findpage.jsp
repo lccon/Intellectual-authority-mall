@@ -85,7 +85,7 @@
                                     <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                     <p id="desc">${u.productBrief }</p>
                                     <p id="price">价格面议</p>
-                                    <p id="desc">浏览量：100</p>
+                                    <p id="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                                 <script type="text/javascript">
                                         var url11="${u.productPictureUrl}".split(",");
@@ -118,7 +118,7 @@
                                 <div class="media-body" id="caps">
                                     <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
                                     <p id="desc">${u.companyDescribe }</p>
-                                    <p id="desc">浏览量：100</p>
+                                    <p id="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                                 <script type="text/javascript">
 
@@ -157,7 +157,7 @@
                                 <div class="media-body" id="caps">
                                     <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
                                     <p id="desc">${u.detailedDesc }</p>
-                                    <p id="desc">浏览量：100</p>
+                                    <p id="desc">浏览量：${u.browseVolume}</p>
                                 </div>
 
                             </div>

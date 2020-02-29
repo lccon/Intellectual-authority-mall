@@ -54,7 +54,7 @@ public class BusinessBrowseController {
             throw new BusinessValidationException("请重新登录");
         }
         List<WhoSeeMeVO> whoSeeMeVOList=businessBrowseService.getWhoSeeMe(ThreadVariable.getSession().getUserId());
-        map.put("userList",whoSeeMeVOList);
+        map.put("whoSeeMeVOList",whoSeeMeVOList);
         return "whoseeme";
     }
 

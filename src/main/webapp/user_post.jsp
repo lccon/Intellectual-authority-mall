@@ -92,7 +92,7 @@
                                         <c:if test="${u.state==1}">
                                             <p class="state">已发布</p>
                                         </c:if>
-                                        <p class="desc">浏览量：100</p>
+                                        <p class="desc">浏览量：${u.browseVolume}</p>
                                     </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">
@@ -153,7 +153,7 @@
                                 <c:if test="${u.state==1}">
                                     <p class="state">已发布</p>
                                 </c:if>
-                                <p class="desc">浏览量：100</p>
+                                <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">
@@ -213,7 +213,10 @@
                                 <c:if test="${u.state==1}">
                                     <p class="state">已发布</p>
                                 </c:if>
-                                <p class="desc">浏览量：100</p>
+                                <c:if test="${u.state==2}">
+                                    <p class="state">已驳回</p>
+                                </c:if>
+                                <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                         <div style="margin: 95px 20px 20px 20px;">

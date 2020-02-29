@@ -18,7 +18,13 @@ public class UserCenterController {
     }
 
     @RequestMapping("/renzheng")
-    public String renzhengpage() {
+    public String renzhengpage(ModelMap map) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long id=ThreadVariable.getSession().getUserId();
+        User user=userService.findUserById(id);
+        map.put("user",user);
         return "/renzheng";
     }
     @RequestMapping("/vocher")

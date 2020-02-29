@@ -65,6 +65,7 @@
     height:22px;
 }
 .username span{
+    height: 40px;
     font-size: 16px;
 }
 .inp{
@@ -170,6 +171,9 @@
     margin-top: 10px;
     font-weight: 400;
     line-height: 1.42857143;
+}
+#caps p{
+    height: 30px;
 }
 /*我的发布页面结束*/
 

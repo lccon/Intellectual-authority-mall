@@ -23,9 +23,7 @@
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="media">
                     <div class="media-left" id="picture">
-                        <a href="#">
                             <img id="img2" class="img-circle image-responsive" src="" />
-                        </a>
                     </div>
                     <div class="media-body" id="head-text">
                         <p>

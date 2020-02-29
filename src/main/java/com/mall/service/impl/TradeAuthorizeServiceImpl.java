@@ -31,8 +31,7 @@ public class TradeAuthorizeServiceImpl implements TradeAuthorizeService {
         }
         try {
             if (tradeAuthorize.getAuthorizeStyle() != null) {
-                User user = new User();
-                user.setId(userId);
+                User user=userService.findUserById(userId);
                 user.setAuthorizeType(tradeAuthorize.getAuthorizeStyle());
                 userService.updateUser(user);
             }

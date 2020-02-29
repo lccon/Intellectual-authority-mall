@@ -73,4 +73,9 @@ public class UserController {
     	return "usercenter";
 	}
 
+	@RequestMapping (value = "/addcommonuser")
+	public String addusertologin(User user) {
+		userService.addUser(user);
+        return "login";
+	}
 }

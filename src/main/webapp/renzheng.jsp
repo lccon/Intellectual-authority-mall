@@ -14,6 +14,27 @@ pageEncoding="UTF-8"%>
         <li id="title">我的认证</li>
     </ul>
 </div>
+<c:if test="${user.authorizeType==1}">
+    <div class="info">
+        <ul style="margin-left: 30px;">
+            <strong style="margin-left: 150px;">
+                <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                    您已经进行过企业认证，不可以再进行其他认证了
+            </strong>
+        </ul>
+    </div>
+</c:if>
+<c:if test="${user.authorizeType==2}">
+    <div class="info">
+        <ul style="margin-left: 30px;">
+            <strong style="margin-left: 150px;">
+                <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                您已经进行过个人认证，不可以再进行其他认证了
+            </strong>
+        </ul>
+    </div>
+</c:if>
+<c:if test="${user.authorizeType==0}">
    <div style="background-color: #fff;">
        <div style="margin-left: 50px;">
     <div class="titleline1">
@@ -26,8 +47,9 @@ pageEncoding="UTF-8"%>
             <label><input name="f1" id="geren" type="radio" value="" checked/>个人认证 </label> 
             <label style="margin-left: 20px;"><input name="f1" id="qiye" type="radio" value="" />企业认证 </label>         
     </div>
-
+ <form  class="layui-form" method="post" action="/tradeAuthorize/addTradeAuthorize">
     <div class="container1" id="grmodel">
+        <input name="authorizeStyle" value="2" type="hidden"/>
         <div class="into" style="margin-top: 20px;">
             <p>
                 请输入真实姓名和身份证号，并上传证明图片，我们不会泄露您的个人信息。
@@ -36,18 +58,20 @@ pageEncoding="UTF-8"%>
         <div class="lab">
             <label>
                 <span>真实姓名</span>
-                <input style="margin-left: 20px; margin-top: 20px;" type="text">        
+                <input style="margin-left: 20px; margin-top: 20px;" type="text" name="name">
             </label>
             
         </div>
         <div class="lab">
             <label>
                 <span>身份证号</span>
-                <input style="margin-left: 20px; margin-top: 20px;" type="text">        
+                <input style="margin-left: 20px; margin-top: 20px;" type="text" name="idCard">
             </label>
         </div>
-            <button type="button" id="button2" style="margin-left: 50px; margin-bottom: 100px;">提交绑定</button>
+            <button type="submit" id="button2" style="margin-left: 50px; margin-bottom: 100px;">提交绑定</button>
 </div>
+ </form>
+           <form class="layui-form" method="post" action="/tradeAuthorize/addTradeAuthorize">
 <div class="container" id="qymodel" style="display: none;">
     <div class="into" style="margin-top: 20px;">
         <p>
@@ -57,14 +81,21 @@ pageEncoding="UTF-8"%>
     <div class="lab">
         <label>
             <span>工商注册号</span>
-            <input style="margin-left: 20px; margin-top: 20px;" type="text">        
+            <input name="authorizeStyle" value="1" type="hidden"/>
+            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="businessLicense">
         </label>
         
     </div>
     <div class="lab">
         <label>
             <span>公司名称&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <input style="margin-left: 20px; margin-top: 20px;" type="text">        
+            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="companyName">
+        </label>
+    </div>
+    <div class="lab">
+        <label>
+            <span>企业联系人&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="companyPerson">
         </label>
     </div>
 
@@ -72,8 +103,18 @@ pageEncoding="UTF-8"%>
         <label>
             <span>上传营业执照：</span>
         </label>
-        <div class="btn-group" role="group" aria-label="...">          
-            <input type="file" name="file" multiple="multiple" accpt="image/jgeg,image/jpg,image/png">
+        <div class="btn-group" role="group" aria-label="...">
+            <div class="chuans">
+                <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
+                <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
+                <span class="delx glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="chuans">
+                <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
+                <input class="uploadImg file1" type="file"onchange="uploadImage(this);" name="file1" >
+                <span class="delx glyphicon glyphicon-remove"></span>
+            </div>
+            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
         </div> 
     </div>
 
@@ -101,11 +142,15 @@ pageEncoding="UTF-8"%>
         <p style="margin-left: 15px;">加盖公司彩章的执照复印件图样</p>
     </div>
     <div style="margin-top: 400px; margin-bottom: 100px;">
-        <button type="button" id="button2">提交绑定</button>
+        <button type="submit" id="button2">提交绑定</button>
     </div>
 </div>
+           </form>
        </div>
    </div>
+</c:if>
+<script src="${pageContext.request.contextPath}/js/post-message.js"></script>
+
 <script>
     var geren = document.getElementById("geren");
     var qiye=document.getElementById("qiye");
@@ -116,6 +161,46 @@ pageEncoding="UTF-8"%>
     qiye.onclick = function () {
         grmodel.style.display = "none";
         qymodel.style.display="block";
+    }
+
+    function uploadImage(obj) {
+        var f = $(obj).val();
+        if(f == null || f == undefined || f == '') {
+            return false;
+        }
+        if (!/\.(?:png|jpg|PNG|JPG)$/.test(f)) {
+            $.messageBox({message:"类型必须是图片(.png|jpg|PNG|JPG)"});
+            $(obj).val('');
+            return false;
+        }
+        var data = new FormData();
+        $.each($(obj)[0].files, function(i, file) {
+            data.append('img', file);
+        })
+        $.ajax({
+            type:"POST",
+            url: "/upload/uploadImg",
+            data: data,
+            cache:false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(result) {
+                if (result.flag == true) {
+                    $("#headPortrait").val(result.resultStr);
+                    document.getElementById("demoText").className="success";
+                    document.getElementById("demoText").innerText="上传成功";
+                    console.log("上传成功");
+                } else {
+                    $.messageBox({message:result.resultStr});
+                    $(obj).val('');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                document.getElementById("demoText").className="error2";
+                document.getElementById("demoText").innerText="上传失败，请检查网络后重试";
+            }
+        })
     }
 </script>
 
