@@ -10,7 +10,7 @@
         <result property="companyPerson" column="company_person"/>
         <result property="businessLicense" column="business_license"/>
         <result property="idCard" column="id_card"/>
-        <result property="mobile" column="mobile"/>
+        <result property="licensePicture" column="license_picture"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -19,7 +19,7 @@
 
     <sql id="columns">
         id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
-        mobile, create_user, create_date
+        license_picture, create_user, create_date
     </sql>
 
     <insert id="addTradeAuthorize" parameterType="com.mall.domain.TradeAuthorize">
@@ -28,9 +28,9 @@
         </selectKey>
         INSERT INTO trade_authorize
         (id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
-        mobile, create_user, create_date)
+        license_picture, create_user, create_date)
         VALUES
         (#{id}, #{authorizeStyle}, #{authorizeResult}, #{name}, #{companyName}, #{companyPerson}, #{businessLicense}, #{idCard},
-        #{mobile}, #{createUser}, #{createDate})
+        #{licensePicture}, #{createUser}, #{createDate})
     </insert>
 </mapper>

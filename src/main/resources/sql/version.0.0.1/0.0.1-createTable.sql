@@ -40,7 +40,7 @@ CREATE TABLE trade_authorize(
   company_person VARCHAR (32) DEFAULT NULL COMMENT '企业联系人',
   business_license VARCHAR (50) DEFAULT NULL COMMENT '营业执照编码',
   id_card VARCHAR(18) DEFAULT NULL COMMENT '身份证号',
-   mobile varchar(32) DEFAULT NULL COMMENT '联系方式',
+   license_picture VARCHAR(200) DEFAULT NULL COMMENT '营业执照图',
   `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
   `create_date` datetime NOT NULL COMMENT '新增时间',
   `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',

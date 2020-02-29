@@ -26,7 +26,7 @@ public class TradeAuthorize extends BaseDomain {
     /** 身份证号 */
     private String idCard;
     /** 联系方式 */
-    private String mobile;
+    private String licensePicture;
 
     public Long getId() {
         return id;
@@ -92,11 +92,11 @@ public class TradeAuthorize extends BaseDomain {
         this.idCard = idCard;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getLicensePicture() {
+        return licensePicture;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setLicensePicture(String licensePicture) {
+        this.licensePicture = licensePicture;
     }
 }
