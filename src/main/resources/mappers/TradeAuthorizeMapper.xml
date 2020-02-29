@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.TradeAuthorizeMapper">
+    <resultMap id="tradeAuthorizeMap" type="com.mall.domain.TradeAuthorize">
+        <id property="id" column="id"/>
+        <result property="authorizeStyle" column="authorize_style"/>
+        <result property="authorizeResult" column="authorize_result"/>
+        <result property="name" column="name"/>
+        <result property="companyName" column="company_name"/>
+        <result property="companyPerson" column="company_person"/>
+        <result property="businessLicense" column="business_license"/>
+        <result property="idCard" column="id_card"/>
+        <result property="mobile" column="mobile"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
+        mobile, create_user, create_date
+    </sql>
+
+    <insert id="addTradeAuthorize" parameterType="com.mall.domain.TradeAuthorize">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO trade_authorize
+        (id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
+        mobile, create_user, create_date)
+        VALUES
+        (#{id}, #{authorizeStyle}, #{authorizeResult}, #{name}, #{companyName}, #{companyPerson}, #{businessLicense}, #{idCard},
+        #{mobile}, #{createUser}, #{createDate})
+    </insert>
+</mapper>

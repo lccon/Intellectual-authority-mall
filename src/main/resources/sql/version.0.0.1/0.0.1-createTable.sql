@@ -31,9 +31,9 @@ CREATE TABLE `user_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 个人/企业认证
-CREATE TABLE user_authorize(
+CREATE TABLE trade_authorize(
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  authorize_style tinyint(1) DEFAULT NULL COMMENT '认证样式 1，企业认证 2，个人认证',
+  authorize_style tinyint(1) DEFAULT NULL COMMENT '认证样式 0，不认证 1，企业认证 2，个人认证',
   authorize_result tinyint(1) DEFAULT NULL COMMENT '认证结果 0，未认证  1，已认证',
   name varchar(32) DEFAULT NULL COMMENT '姓名',
   company_name varchar(50) DEFAULT NULL COMMENT '企业名称',
