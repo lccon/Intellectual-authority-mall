@@ -43,6 +43,8 @@ public class IntellectualTask extends BaseDomain {
     private Integer hasCollectedState;
     /** 用户id */
     private Long userId;
+    /** 浏览量 */
+    private Integer browseVolume;
 
     public Long getId() {
         return id;
@@ -170,5 +172,13 @@ public class IntellectualTask extends BaseDomain {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getBrowseVolume() {
+        return browseVolume;
+    }
+
+    public void setBrowseVolume(Integer browseVolume) {
+        this.browseVolume = browseVolume;
     }
 }

@@ -54,4 +54,6 @@ public interface IntellectualTaskService {
     List<IntellectualTask> findByintellectualTask(String productName,String productBrief);
 
     List<IntellectualTask> findIntellectualTaskByIds(List<Long> taskIds);
+
+    void updateBrowseVolume(Long id, Long userId);
 }

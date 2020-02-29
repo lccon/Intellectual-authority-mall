@@ -15,6 +15,7 @@
         <result property="mobile" column="mobile"/>
         <result property="state" column="state"/>
         <result property="userId" column="user_id"/>
+        <result property="browseVolume" column="browse_volume"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -185,5 +186,9 @@
             #{id}
         </foreach>
     </select>
+
+    <update id="updateBrowseVolume" parameterType="java.lang.Long">
+        UPDATE authorize_company SET browse_volume = browse_volume+1 where id = #{id}
+    </update>
 
 </mapper>

@@ -8,6 +8,8 @@
         <result property="adviceSubtitle" column="advice_subtitle"/>
         <result property="adviceContent" column="advice_content"/>
         <result property="advicePictureUrl" column="advice_picture_url"/>
+        <result property="browseVolume" column="browse_volume"/>
+        <result property="userId" column="user_id"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -16,7 +18,7 @@
 
     <sql id="columns">
         id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url,
-        create_user, create_date, update_user, update_date
+        browse_volume, user_id, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addPolicyAdvice" parameterType="com.mall.domain.PolicyAdvice">
@@ -24,9 +26,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO policy_advice
-        (id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url, create_user, create_date)
+        (id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url, user_id, create_user, create_date)
         VALUES
-        (#{id}, #{adviceCategory}, #{adviceTitle}, #{adviceSubtitle}, #{adviceContent}, #{advicePictureUrl}, #{createUser}, #{createDate})
+        (#{id}, #{adviceCategory}, #{adviceTitle}, #{adviceSubtitle}, #{adviceContent}, #{advicePictureUrl}, #{userId}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updatePolicyAdvice" parameterType="com.mall.domain.PolicyAdvice">
@@ -55,6 +57,10 @@
             </if>
         </set>
         where id = #{id}
+    </update>
+
+    <update id="updateBrowseVolume" parameterType="java.lang.Long">
+        UPDATE policy_advice SET browse_volume = browse_volume+1 where id = #{id}
     </update>
 
     <delete id="deletePolicyAdvice">

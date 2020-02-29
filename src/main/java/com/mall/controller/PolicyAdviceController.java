@@ -2,7 +2,9 @@ package com.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
+import com.mall.component.ThreadVariable;
 import com.mall.domain.PolicyAdvice;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.PolicyAdviceService;
 import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,10 @@ public class PolicyAdviceController {
     @RequestMapping("/addPolicyAdvice")
     @ResponseBody
     public PolicyAdvice addPolicyAdvice(PolicyAdvice policyAdvice) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        policyAdvice.setUserId(ThreadVariable.getSession().getUserId());
         return policyAdviceService.addPolicyAdvice(policyAdvice);
     }
 
@@ -55,6 +61,16 @@ public class PolicyAdviceController {
     @ResponseBody
     public PolicyAdvice updatePolicyAdvice(PolicyAdvice policyAdvice) {
         return policyAdviceService.updatePolicyAdvice(policyAdvice);
+    }
+
+    @RequestMapping("/updateBrowseVolume")
+    @ResponseBody
+    public void updateBrowseVolume(@RequestParam(value = "id", required = true) Long id) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long userId = ThreadVariable.getSession().getUserId();
+        policyAdviceService.updateBrowseVolume(id, userId);
     }
 
     @RequestMapping("/deletePolicyAdvice")

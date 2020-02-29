@@ -112,6 +112,21 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     }
 
     @Override
+    public void updateBrowseVolume(Long id, Long userId) {
+        if (id == null) {
+            throw new BusinessValidationException("主键不能为空!");
+        }
+        try {
+            AuthorizeCompany authorizeCompany = authorizeCompanyMapper.getAuthorizeCompanyById(id);
+            if (authorizeCompany != null && authorizeCompany.getUserId() != null && !userId.equals(authorizeCompany.getUserId())) {
+                authorizeCompanyMapper.updateBrowseVolume(id);
+            }
+        } catch (Exception e) {
+            throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
     public Boolean deleteAuthorizeCompany(Long[] ids, HttpServletRequest request) {
         if (ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空");

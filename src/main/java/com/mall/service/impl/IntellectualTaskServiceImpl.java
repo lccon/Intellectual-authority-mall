@@ -181,6 +181,21 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     }
 
     @Override
+    public void updateBrowseVolume(Long id, Long userId) {
+        if (id == null) {
+            throw new BusinessValidationException("主键不能为空!");
+        }
+        try {
+            IntellectualTask intellectualTask = intellectualTaskMapper.getIntellectualTaskById(id);
+            if (intellectualTask != null && intellectualTask.getUserId() != null && !userId.equals(intellectualTask.getUserId())) {
+                intellectualTaskMapper.updateBrowseVolume(id);
+            }
+        } catch (Exception e) {
+            throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
     public pagebean<IntellectualTask> findByPage(int currentPage, IntellectualTaskVO intellectualTaskVO) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<IntellectualTask> pageBean = new pagebean<IntellectualTask>();

@@ -31,6 +31,12 @@ public interface PolicyAdviceService {
     PolicyAdvice updatePolicyAdvice(PolicyAdvice freeMessage);
 
     /**
+     * 修改浏览量
+     * @param id
+     */
+    void updateBrowseVolume(Long id, Long userId);
+
+    /**
      * 删除消息
      * @param ids
      * @return

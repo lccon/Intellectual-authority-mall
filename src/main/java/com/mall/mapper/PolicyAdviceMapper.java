@@ -25,6 +25,12 @@ public interface PolicyAdviceMapper {
     void updatePolicyAdvice(PolicyAdvice policyAdvice);
 
     /**
+     * 修改浏览量
+     * @param id
+     */
+    void updateBrowseVolume(Long id);
+
+    /**
      * 删除发布的信息
      * @param ids
      * @returnl

@@ -25,3 +25,10 @@ ALTER TABLE leave_message ADD COLUMN mail_address VARCHAR (30) DEFAULT NULL comm
 ALTER TABLE intellectual_task ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;
 ALTER TABLE task_release ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;
 ALTER TABLE authorize_company ADD COLUMN user_id bigint(20) DEFAULT null COMMENT '用户id' after state;
+
+-- 浏览量
+ALTER TABLE intellectual_task ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after user_id;
+ALTER TABLE task_release ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after user_id;
+ALTER TABLE authorize_company ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after user_id;
+ALTER TABLE policy_advice ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after advice_picture_url;
+ALTER TABLE policy_advice ADD COLUMN user_id int(11) DEFAULT 0 COMMENT '用户id' after browse_volume;

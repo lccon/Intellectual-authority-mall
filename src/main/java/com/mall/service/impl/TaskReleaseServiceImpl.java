@@ -141,6 +141,21 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     }
 
     @Override
+    public void updateBrowseVolume(Long id, Long userId) {
+        if (id == null) {
+            throw new BusinessValidationException("主键不能为空!");
+        }
+        try {
+            TaskRelease taskRelease = taskReleaseMapper.getTaskReleaseById(id);
+            if (taskRelease != null && taskRelease.getUserId() != null && !userId.equals(taskRelease.getUserId())) {
+                taskReleaseMapper.updateBrowseVolume(id);
+            }
+        } catch (Exception e) {
+            throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
     public TaskRelease getTaskReleaseById(Long id) {
         if(id == null) {
             throw new BusinessValidationException("参数不能为空!");

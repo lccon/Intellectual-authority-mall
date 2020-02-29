@@ -65,6 +65,16 @@ public class AuthorizeCompanyController {
         return authorizeCompanyService.updateAuthorizeCompany(authorizeCompany);
     }
 
+    @RequestMapping("/updateBrowseVolume")
+    @ResponseBody
+    public void updateBrowseVolume(@RequestParam(value = "id", required = true) Long id) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long userId = ThreadVariable.getSession().getUserId();
+        authorizeCompanyService.updateBrowseVolume(id, userId);
+    }
+
     @RequestMapping("/deleteAuthorizeCompany")
     @ResponseBody
     public Boolean deleteAuthorizeCompany(@RequestParam(value="ids[]", required = true) Long[] ids, HttpServletRequest request) {

@@ -88,6 +88,21 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
     }
 
     @Override
+    public void updateBrowseVolume(Long id, Long userId) {
+        if (id == null) {
+            throw new BusinessValidationException("主键不能为空!");
+        }
+        try {
+            PolicyAdvice policyAdvice = policyAdviceMapper.getPolicyAdviceById(id);
+            if (policyAdvice != null && policyAdvice.getUserId() != null && !userId.equals(policyAdvice.getUserId())) {
+                policyAdviceMapper.updateBrowseVolume(id);
+            }
+        } catch (Exception e) {
+            throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
     public Boolean deletePolicyAdvice(Long[] ids, HttpServletRequest request) {
         if(ids == null || ids.length <= 0) {
             throw new BusinessValidationException("参数不能为空!");

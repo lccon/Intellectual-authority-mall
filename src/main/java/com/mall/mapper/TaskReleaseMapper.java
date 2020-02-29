@@ -56,4 +56,6 @@ public interface TaskReleaseMapper {
     List<TaskRelease> findBytaskRelease(@Param("purpose") String purpose, @Param("detailedDesc") String detailedDesc);
 
     List<TaskRelease> findTaskReleaseByIds(@Param("releaseIds") List<Long> releaseIds);
+
+    void updateBrowseVolume(Long id);
 }

@@ -27,6 +27,10 @@ public class PolicyAdvice extends BaseDomain {
     private Integer roofPlaceState;
     /** 置顶时长 天数*/
     private Integer topDuration;
+    /** 浏览量 */
+    private Integer browseVolume;
+    /** 用户id */
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -90,5 +94,21 @@ public class PolicyAdvice extends BaseDomain {
 
     public void setTopDuration(Integer topDuration) {
         this.topDuration = topDuration;
+    }
+
+    public Integer getBrowseVolume() {
+        return browseVolume;
+    }
+
+    public void setBrowseVolume(Integer browseVolume) {
+        this.browseVolume = browseVolume;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

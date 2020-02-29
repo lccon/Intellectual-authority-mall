@@ -56,4 +56,6 @@ public interface IntellectualTaskMapper {
     List<IntellectualTask> findByintellectualTask(@Param("productName") String productName, @Param("productBrief") String productBrief);
 
     List<IntellectualTask> findIntellectualTaskByIds(@Param("taskIds") List<Long> taskIds);
+
+    void updateBrowseVolume(Long id);
 }

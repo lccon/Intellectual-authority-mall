@@ -54,4 +54,6 @@ public interface TaskReleaseService {
     List<TaskRelease> findBytaskRelease(String purpose,String detailedDesc);
 
     List<TaskRelease> findTaskReleaseByIds(List<Long> releaseIds);
+
+    void updateBrowseVolume(Long id, Long userId);
 }

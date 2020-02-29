@@ -55,4 +55,6 @@ public interface AuthorizeCompanyService {
     List<AuthorizeCompany> findByAuthorizeCompany(String companyName,String companyDescribe);
 
     List<AuthorizeCompany> findAuthorizeCompanyByIds(List<Long> companyIds);
+
+    void updateBrowseVolume(Long id, Long userId);
 }
