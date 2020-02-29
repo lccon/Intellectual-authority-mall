@@ -127,8 +127,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     @Override
     public PageInfo<IntellectualTask> findIntellectualTaskForPage(IntellectualTaskVO intellectualTaskVO) {
         try {
-            PageHelper.startPage(intellectualTaskVO.getPage(), intellectualTaskVO.getRows(),
-                    StringUtil.joinSortFieldOrder(intellectualTaskVO.getSidx(), intellectualTaskVO.getSord()));
+            PageHelper.startPage(intellectualTaskVO.getPage(), intellectualTaskVO.getRows());
             List<IntellectualTask> intellectualTaskList = intellectualTaskMapper.findIntellectualTaskForList(intellectualTaskVO);
             handleIntellectualTask(intellectualTaskList);
             return new PageInfo<>(intellectualTaskList);
@@ -235,37 +234,14 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         //封装每页显示的数据
         List<IntellectualTask> lists = intellectualTaskMapper.findByPage(map);
         handleIntellectualTask(lists);
-        Collections.sort(lists, new Comparator<IntellectualTask>() {
-            @Override
-            public int compare(IntellectualTask o1, IntellectualTask o2) {
-                if (o1.getRoofPlaceState()!= null && o2.getRoofPlaceState() != null &&
-                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
-                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
-                } else {
-                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
-                }
-            }
-        });
         pageBean.setLists(lists);
         return pageBean;
     }
 
     private void handleIntellectualTask(List<IntellectualTask> intellectualTaskList) {
-        RoofPlace roofPlace = new RoofPlace();
         BusinessCollected businessCollected = new BusinessCollected();
-        roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
         businessCollected.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
         for (IntellectualTask intellectualTask:intellectualTaskList) {
-            roofPlace.setModuleTypeId(intellectualTask.getId());
-            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
-            if (roofPlaceInfo != null) {
-                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
-                    roofPlaceService.deleteRoofPlace(roofPlace);
-                } else {
-                    intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                    intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
-                }
-            }
             businessCollected.setModuleTypeId(intellectualTask.getId());
             if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
                 businessCollected.setUserId(ThreadVariable.getSession().getUserId());

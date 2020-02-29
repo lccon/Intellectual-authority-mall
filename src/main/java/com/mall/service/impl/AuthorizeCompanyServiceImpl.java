@@ -157,8 +157,7 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     @Override
     public PageInfo<AuthorizeCompany> findAuthorizeCompanyForPage(AuthorizeCompanyVO authorizeCompanyVO) {
         try {
-            PageHelper.startPage(authorizeCompanyVO.getPage(), authorizeCompanyVO.getRows(),
-                    StringUtil.joinSortFieldOrder(authorizeCompanyVO.getSidx(), authorizeCompanyVO.getSord()));
+            PageHelper.startPage(authorizeCompanyVO.getPage(), authorizeCompanyVO.getRows());
             List<AuthorizeCompany> authorizeCompanyList = authorizeCompanyMapper.findAuthorizeCompanyForList(authorizeCompanyVO);
             handleAuthorizeCompany(authorizeCompanyList);
             return new PageInfo<>(authorizeCompanyList);
@@ -215,37 +214,14 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
         //封装每页显示的数据
         List<AuthorizeCompany> lists = authorizeCompanyMapper.findByPage(map);
         handleAuthorizeCompany(lists);
-        Collections.sort(lists, new Comparator<AuthorizeCompany>() {
-            @Override
-            public int compare(AuthorizeCompany o1, AuthorizeCompany o2) {
-                if (o1.getRoofPlaceState() != null && o2.getRoofPlaceState() != null &&
-                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
-                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
-                } else {
-                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
-                }
-            }
-        });
         pageBean.setLists(lists);
         return pageBean;
     }
 
     private void handleAuthorizeCompany(List<AuthorizeCompany> authorizeCompanyList) {
         BusinessCollected businessCollected = new BusinessCollected();
-        RoofPlace roofPlace = new RoofPlace();
-        roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
         businessCollected.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
         for (AuthorizeCompany authorizeCompany : authorizeCompanyList) {
-            roofPlace.setModuleTypeId(authorizeCompany.getId());
-            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
-            if (roofPlaceInfo != null) {
-                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
-                    roofPlaceService.deleteRoofPlace(roofPlace);
-                } else {
-                    authorizeCompany.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                    authorizeCompany.setTopDuration(roofPlaceInfo.getTopDuration());
-                }
-            }
             businessCollected.setModuleTypeId(authorizeCompany.getId());
             if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
                 businessCollected.setUserId(ThreadVariable.getSession().getUserId());

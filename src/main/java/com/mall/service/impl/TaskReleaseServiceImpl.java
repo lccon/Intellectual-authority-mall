@@ -110,8 +110,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     @Override
     public PageInfo<TaskRelease> findTaskReleaseForPage(TaskReleaseVO taskReleaseVO) {
         try {
-            PageHelper.startPage(taskReleaseVO.getPage(), taskReleaseVO.getRows(),
-                    StringUtil.joinSortFieldOrder(taskReleaseVO.getSidx(), taskReleaseVO.getSord()));
+            PageHelper.startPage(taskReleaseVO.getPage(), taskReleaseVO.getRows());
             List<TaskRelease> taskReleaseList = taskReleaseMapper.findTaskReleaseForList(taskReleaseVO);
             handleTaskRelease(taskReleaseList);
             return new PageInfo<>(taskReleaseList);
@@ -185,7 +184,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         pageBean.setCurrPage(currentPage);
 
         //每页显示的数据
-        int pageSize=20;
+        int pageSize=3;
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
@@ -203,37 +202,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         //封装每页显示的数据
         List<TaskRelease> lists = taskReleaseMapper.findByPage(map);
         handleTaskRelease(lists);
-        Collections.sort(lists, new Comparator<TaskRelease>() {
-            @Override
-            public int compare(TaskRelease o1, TaskRelease o2) {
-                if (o1.getRoofPlaceState() != null && o2.getRoofPlaceState() != null &&
-                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
-                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
-                } else {
-                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
-                }
-            }
-        });
         pageBean.setLists(lists);
         return pageBean;
     }
 
     private void handleTaskRelease(List<TaskRelease> taskReleaseList) {
         BusinessCollected businessCollected = new BusinessCollected();
-        RoofPlace roofPlace = new RoofPlace();
-        roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
         businessCollected.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
         for (TaskRelease taskRelease : taskReleaseList) {
-            roofPlace.setModuleTypeId(taskRelease.getId());
-            RoofPlace roofPlaceInfo = roofPlaceService.getRoofPlaceInfo(roofPlace);
-            if (roofPlaceInfo != null) {
-                if (roofPlaceInfo.getTopEndTime().before(new Date())) {
-                    roofPlaceService.deleteRoofPlace(roofPlace);
-                } else {
-                    taskRelease.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
-                    taskRelease.setTopDuration(roofPlaceInfo.getTopDuration());
-                }
-            }
             businessCollected.setModuleTypeId(taskRelease.getId());
             if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
                 businessCollected.setUserId(ThreadVariable.getSession().getUserId());

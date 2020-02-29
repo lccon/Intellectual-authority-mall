@@ -13,6 +13,8 @@
         <result property="state" column="state"/>
         <result property="userId" column="user_id"/>
         <result property="browseVolume" column="browse_volume"/>
+        <result property="roofPlaceState" column="authorize_state"/>
+        <result property="topDuration" column="top_duration"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -21,7 +23,14 @@
 
     <sql id="columns">
         id, company_name, business_category, company_describe, company_picture_url,
-        real_name, mobile, friendship_link, state, user_id, browse_volume, create_user, create_date, update_user, update_date
+        real_name, mobile, friendship_link, state, user_id, browse_volume,
+        create_user, create_date, update_user, update_date
+    </sql>
+
+    <sql id="baseColumns">
+        id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, state, user_id, browse_volume,
+        c.create_user, c.create_date, c.update_user, c.update_date, t.authorize_state, t.top_duration
     </sql>
 
     <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
@@ -86,12 +95,21 @@
     </delete>
 
     <select id="findAuthorizeCompanyForList" parameterType="com.mall.vo.AuthorizeCompanyVO" resultMap="authorizeCompanyMap">
-        select <include refid="columns"/> FROM authorize_company
+        select <include refid="baseColumns"/> FROM authorize_company c
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on c.id = t.module_type_id
         <where>
             <if test="userId != null">
                 user_id = #{userId}
             </if>
         </where>
+        order by t.authorize_state desc, t.create_date desc, c.create_date desc
     </select>
 
     <select id="getAuthorizeCompanyById" parameterType="java.lang.Long" resultMap="authorizeCompanyMap">
@@ -118,8 +136,17 @@
 
     <select id="findByPage" parameterType="Map" resultMap="authorizeCompanyMap">
         select
-        <include refid="columns" />
-        from authorize_company
+        <include refid="baseColumns" />
+        from authorize_company c
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 2
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on c.id = t.module_type_id
         <where>
             <if test="authorizeCompanyVO.companyName != null and authorizeCompanyVO.companyName != ''">
                 company_name LIKE concat(#{authorizeCompanyVO.companyName},'%')
@@ -131,6 +158,7 @@
                 and business_category = #{authorizeCompanyVO.businessCategory}
             </if>
         </where>
+        order by t.create_date desc, c.create_date desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>

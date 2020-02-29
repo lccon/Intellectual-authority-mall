@@ -9,6 +9,8 @@
         <result property="adviceContent" column="advice_content"/>
         <result property="advicePictureUrl" column="advice_picture_url"/>
         <result property="browseVolume" column="browse_volume"/>
+        <result property="roofPlaceState" column="authorize_state"/>
+        <result property="topDuration" column="top_duration"/>
         <result property="userId" column="user_id"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
@@ -19,6 +21,12 @@
     <sql id="columns">
         id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url,
         browse_volume, user_id, create_user, create_date, update_user, update_date
+    </sql>
+
+    <sql id="baseColumns">
+        id, advice_category, advice_title, advice_subtitle, advice_content, advice_picture_url,
+        browse_volume, user_id, a.create_user, a.create_date,
+        a.update_user, a.update_date, t.authorize_state, t.top_duration
     </sql>
 
     <insert id="addPolicyAdvice" parameterType="com.mall.domain.PolicyAdvice">
@@ -73,8 +81,17 @@
 
     <select id="findPolicyAdviceForList" resultMap="policyAdviceMap">
         SELECT
-        <include refid="columns"/>
-        FROM policy_advice
+        <include refid="baseColumns"/>
+        FROM policy_advice a
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 4
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on a.id = t.module_type_id
+        order by t.authorize_state desc, t.create_date desc, a.create_date desc
     </select>
 
     <select id="getPolicyAdviceById" parameterType="java.lang.Long" resultMap="policyAdviceMap">
@@ -92,8 +109,18 @@
 
     <select id="findByPage" parameterType="Map" resultMap="policyAdviceMap">
         select
-        <include refid="columns" />
-        from policy_advice
+        <include refid="baseColumns" />
+        from policy_advice a
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on a.id = t.module_type_id
+        order by t.create_date desc, a.create_date desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>

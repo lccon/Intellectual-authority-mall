@@ -13,6 +13,8 @@
         <result property="state" column="state"/>
         <result property="userId" column="user_id"/>
         <result property="browseVolume" column="browse_volume"/>
+        <result property="roofPlaceState" column="authorize_state"/>
+        <result property="topDuration" column="top_duration"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -22,6 +24,12 @@
     <sql id="columns">
         id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
         real_name, mobile, state, user_id, browse_volume, create_user, create_date, update_user, update_date
+    </sql>
+
+    <sql id="baseColumns">
+        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, state, user_id, browse_volume, r.create_user, r.create_date,
+        r.update_user, r.update_date, t.authorize_state, t.top_duration
     </sql>
 
     <insert id="addTaskRelease" parameterType="com.mall.domain.TaskRelease">
@@ -82,12 +90,21 @@
     </delete>
 
     <select id="findTaskReleaseForList" parameterType="com.mall.vo.TaskReleaseVO" resultMap="taskReleaseMap">
-        select <include refid="columns"/> FROM task_release
+        select <include refid="baseColumns"/> FROM task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
         <where>
             <if test="userId != null">
                 user_id = #{userId}
             </if>
         </where>
+        order by t.authorize_state desc, t.create_date desc, r.create_date desc
     </select>
 
     <select id="getTaskReleaseByTask_category" parameterType="Map" resultMap="taskReleaseMap">
@@ -126,11 +143,20 @@
 
     <select id="findByPage" parameterType="Map" resultMap="taskReleaseMap">
         select
-        <include refid="columns" />
-        from task_release
+        <include refid="baseColumns" />
+        from task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
         <where>
             <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''">
-                purpose LIKE concat(#{taskReleaseVO.purpose},'%')
+                and purpose LIKE concat(#{taskReleaseVO.purpose},'%')
             </if>
             <if test="taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
                 OR detailed_desc LIKE concat(#{taskReleaseVO.detailedDesc},'%')
@@ -145,6 +171,7 @@
                 and industry_belongs = #{taskReleaseVO.industryBelongs}
             </if>
         </where>
+        order by t.create_date desc, r.create_date desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
