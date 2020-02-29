@@ -21,7 +21,7 @@
 
     <sql id="columns">
         id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
-        real_name, mobile, state, user_id, create_user, create_date, update_user, update_date
+        real_name, mobile, state, user_id, browse_volume, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addTaskRelease" parameterType="com.mall.domain.TaskRelease">

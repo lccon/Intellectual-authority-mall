@@ -25,7 +25,7 @@
     <sql id="columns">
         id, product_name, product_brief, product_details, patent_number,
         product_category, industry_category, product_picture_url, product_video_url,
-        real_name, mobile, state, user_id, create_user, create_date, update_user, update_date
+        real_name, mobile, state, user_id, browse_volume, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addIntellectualTask" parameterType="com.mall.domain.IntellectualTask">

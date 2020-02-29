@@ -21,7 +21,7 @@
 
     <sql id="columns">
         id, company_name, business_category, company_describe, company_picture_url,
-        real_name, mobile, friendship_link, state, user_id, create_user, create_date, update_user, update_date
+        real_name, mobile, friendship_link, state, user_id, browse_volume, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
