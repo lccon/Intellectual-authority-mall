@@ -160,7 +160,20 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
 
     @Override
     public List<IntellectualTask> findIntellectualTaskForList(IntellectualTaskVO intellectualTaskVO) {
-        return intellectualTaskMapper.findIntellectualTaskForList(intellectualTaskVO);
+        List<IntellectualTask> intellectualTaskList = intellectualTaskMapper.findIntellectualTaskForList(intellectualTaskVO);
+        handleIntellectualTask(intellectualTaskList);
+        Collections.sort(intellectualTaskList, new Comparator<IntellectualTask>() {
+            @Override
+            public int compare(IntellectualTask o1, IntellectualTask o2) {
+                if (o1.getRoofPlaceState()!= null && o2.getRoofPlaceState() != null &&
+                        !o1.getRoofPlaceState().equals(o2.getRoofPlaceState())) {
+                    return o2.getRoofPlaceState()-o1.getRoofPlaceState();
+                } else {
+                    return (int) (o2.getCreateDate().getTime()-o1.getCreateDate().getTime());
+                }
+            }
+        });
+        return intellectualTaskList;
     }
 
     @Override

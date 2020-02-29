@@ -1,8 +1,8 @@
 package com.mall.domain;
 
-import com.mall.base.BaseDomain;
+import java.io.Serializable;
 
-public class User extends BaseDomain {
+public class User implements Serializable {
     /** 主键id */
     private Long id;
     /** 用户名 */

@@ -13,15 +13,11 @@
     <result property="accountYue" column="account_yue" />
     <result property="virtualCoin" column="virtual_coin" />
     <result property="freeMessageNum" column="free_message_num"/>
-    <result property="createDate" column="create_date"/>
-    <result property="createUser" column="create_user"/>
-    <result property="updateDate" column="update_date"/>
-    <result property="updateUser" column="update_user"/>
   </resultMap>
 
   <sql id="column">
     id, user_name, pass_word, identity, mobile, id_card, head_portrait, authorize_type, account_yue, virtual_coin,
-    free_message_num, create_date, create_user, update_date, update_user
+    free_message_num
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="userMap">
@@ -38,10 +34,10 @@
     </selectKey>
     insert into user
     (id, user_name, pass_word, identity, mobile, id_card, head_portrait, authorize_type, account_yue, virtual_coin,
-    free_message_num, create_date, create_user)
+    free_message_num)
     values
     (#{id}, #{username}, #{password}, #{identity}, #{mobile}, #{idCard}, #{headPortrait}, #{authorizeType}, #{accountYue}, #{virtualCoin},
-    #{freeMessageNum}, #{createDate}, #{createUser})
+    #{freeMessageNum})
   </insert>
 
   <update id="updateByPrimaryKeySelective" parameterType="com.mall.domain.User">
@@ -76,12 +72,6 @@
       </if>
       <if test="freeMessageNum != null">
         free_message_num = #{freeMessageNum},
-      </if>
-      <if test="updateDate != null">
-        update_date = #{updateDate},
-      </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser}
       </if>
     </set>
     where id = #{id}

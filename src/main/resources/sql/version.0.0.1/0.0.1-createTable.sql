@@ -11,10 +11,6 @@ CREATE TABLE `user` (
    virtual_coin bigint(20) DEFAULT 0 COMMENT '虚拟币数量',
    account_yue bigint(20) DEFAULT 0 COMMENT '账户余额',
    free_message_num int(10) DEFAULT 0 COMMENT '可发布免费信息数量',
-  `create_user` varchar(32) NOT NULL COMMENT '新增人名称',
-  `create_date` datetime NOT NULL COMMENT '新增时间',
-  `update_user` varchar(32) DEFAULT NULL COMMENT '修改人名称',
-  `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
