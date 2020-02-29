@@ -40,8 +40,8 @@
         order by create_date
     </select>
 
-    <select id="findWhoSeeMeForList" parameterType="java.lang.Long" resultType="java.lang.Long">
-        SELECT visitor_id FROM business_browse
+    <select id="findWhoSeeMeForList" parameterType="java.lang.Long" resultMap="businessBrowseMap">
+        SELECT <include refid="columns"/> FROM business_browse
         WHERE publisher_id = #{publisherId}
     </select>
 </mapper>

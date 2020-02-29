@@ -18,5 +18,5 @@ public interface BusinessBrowseMapper {
 
     List<BusinessBrowse> findMeSeeWhoForList(Long visitorId);
 
-    List<Long> findWhoSeeMeForList(Long userId);
+    List<BusinessBrowse> findWhoSeeMeForList(Long userId);
 }

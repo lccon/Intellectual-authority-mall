@@ -6,6 +6,7 @@ import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.BusinessBrowseService;
 import com.mall.vo.MeSeeWhoVO;
+import com.mall.vo.WhoSeeMeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -52,8 +53,8 @@ public class BusinessBrowseController {
         if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
             throw new BusinessValidationException("请重新登录");
         }
-        List<User> userList=businessBrowseService.getWhoSeeMe(ThreadVariable.getSession().getUserId());
-        map.put("userList",userList);
+        List<WhoSeeMeVO> whoSeeMeVOList=businessBrowseService.getWhoSeeMe(ThreadVariable.getSession().getUserId());
+        map.put("userList",whoSeeMeVOList);
         return "whoseeme";
     }
 

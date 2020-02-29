@@ -7,11 +7,14 @@ import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.BusinessBrowseMapper;
 import com.mall.service.*;
 import com.mall.vo.MeSeeWhoVO;
+import com.mall.vo.WhoSeeMeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Description:
@@ -100,16 +103,40 @@ public class BusinessBrowseServiceImpl implements BusinessBrowseService {
     }
 
     @Override
-    public List<User> getWhoSeeMe(Long userId) {
+    public List<WhoSeeMeVO> getWhoSeeMe(Long userId) {
         try {
-            List<Long> userIds = businessBrowseMapper.findWhoSeeMeForList(userId);
-            List<Long> userIdList = new ArrayList<>();
-            for (Long id : userIds) {
-                if (!userIdList.contains(id)) {
-                    userIdList.add(id);
+            List<BusinessBrowse> businessBrowseList = businessBrowseMapper.findWhoSeeMeForList(userId);
+            if (businessBrowseList != null && businessBrowseList.size() > 0) {
+                List<WhoSeeMeVO> whoSeeMeVOList = new ArrayList<>();
+                for (BusinessBrowse businessBrowse : businessBrowseList) {
+                    WhoSeeMeVO whoSeeMeVO = new WhoSeeMeVO();
+                    User user = userService.findUserById(businessBrowse.getVisitorId());
+                    if(user != null) {
+                        if(!StringUtils.isEmpty(user.getUsername())) {
+                            whoSeeMeVO.setUserName(user.getUsername());
+                        }
+                        if (!StringUtils.isEmpty(user.getHeadPortrait())) {
+                            whoSeeMeVO.setHeadPortrait(user.getHeadPortrait());
+                        }
+                    }
+                    String businessContent = null;
+                    if (ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode().equals(businessBrowse.getModuleType())) {
+                        IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(businessBrowse.getModuleTypeId());
+                        businessContent = intellectualTask.getProductName();
+                    } else if (ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode().equals(businessBrowse.getModuleType())) {
+                        AuthorizeCompany authorizeCompany = authorizeCompanyService.getAuthorizeCompanyById(businessBrowse.getModuleTypeId());
+                        businessContent = authorizeCompany.getCompanyName();
+                    } else if (ModuleTypeEnum.TASK_RELEASE.getModuleCode().equals(businessBrowse.getModuleType())) {
+                        TaskRelease taskRelease = taskReleaseService.getTaskReleaseById(businessBrowse.getModuleTypeId());
+                        businessContent = taskRelease.getPurpose();
+                    }
+                    whoSeeMeVO.setBusinessContent(businessContent);
+                    whoSeeMeVO.setCreateDate(businessBrowse.getCreateDate());
+                    whoSeeMeVOList.add(whoSeeMeVO);
                 }
+                return whoSeeMeVOList;
             }
-            return userService.getUserByIds(userIdList);
+            return null;
         } catch (Exception e) {
             throw new ServiceValidationException("查询谁看过我出错!", e);
         }

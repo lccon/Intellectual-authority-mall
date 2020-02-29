@@ -3,6 +3,7 @@ package com.mall.service;
 import com.mall.domain.BusinessBrowse;
 import com.mall.domain.User;
 import com.mall.vo.MeSeeWhoVO;
+import com.mall.vo.WhoSeeMeVO;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface BusinessBrowseService {
 
     MeSeeWhoVO getMeSeeWho(Long userId);
 
-    List<User> getWhoSeeMe(Long userId);
+    List<WhoSeeMeVO> getWhoSeeMe(Long userId);
 }
