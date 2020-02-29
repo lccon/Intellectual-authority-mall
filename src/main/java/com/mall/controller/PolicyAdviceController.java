@@ -63,15 +63,6 @@ public class PolicyAdviceController {
         return policyAdviceService.updatePolicyAdvice(policyAdvice);
     }
 
-    @RequestMapping("/updateBrowseVolume")
-    @ResponseBody
-    public void updateBrowseVolume(@RequestParam(value = "id", required = true) Long id) {
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        Long userId = ThreadVariable.getSession().getUserId();
-        policyAdviceService.updateBrowseVolume(id, userId);
-    }
 
     @RequestMapping("/deletePolicyAdvice")
     @ResponseBody
@@ -91,6 +82,11 @@ public class PolicyAdviceController {
     public String getPolicyAdviceById(@RequestParam(value = "id", required = true) Long id,ModelMap map) {
         PolicyAdvice policyAdvice= policyAdviceService.getPolicyAdviceById(id);
         map.put("policyAdvice",policyAdvice);
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long userId = ThreadVariable.getSession().getUserId();
+        policyAdviceService.updateBrowseVolume(id, userId);
         return "policyadvice_Detail";
     }
 

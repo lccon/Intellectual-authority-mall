@@ -66,16 +66,6 @@ public class IntellectualTaskController {
         return intellectualTaskService.updateIntellectualTask(intellectualTask);
     }
 
-    @RequestMapping("/updateBrowseVolume")
-    @ResponseBody
-    public void updateBrowseVolume(@RequestParam(value = "id", required = true) Long id) {
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        Long userId = ThreadVariable.getSession().getUserId();
-        intellectualTaskService.updateBrowseVolume(id, userId);
-    }
-
     @RequestMapping("/deleteIntellectualTask")
     @ResponseBody
     public Boolean deleteIntellectualTask(@RequestParam(value = "ids[]", required= true) Long[] ids, HttpServletRequest request) {
@@ -116,6 +106,11 @@ public class IntellectualTaskController {
     public String getIntellectualTaskById(@RequestParam(value = "id", required = true) Long id, ModelMap map) {
         IntellectualTask intellectualTask = intellectualTaskService.getIntellectualTaskById(id);
         map.put("intellectualTask", intellectualTask);
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long userId = ThreadVariable.getSession().getUserId();
+        intellectualTaskService.updateBrowseVolume(id, userId);
         return "/proDetail";
     }
 

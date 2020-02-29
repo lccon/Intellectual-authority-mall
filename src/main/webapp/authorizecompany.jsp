@@ -92,7 +92,7 @@
                             <div class="media-body" id="caps">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
                                 <p id="desc">${u.companyDescribe }</p>
-                                <p id="desc">浏览量：100</p>
+                                <p id="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                     </div>

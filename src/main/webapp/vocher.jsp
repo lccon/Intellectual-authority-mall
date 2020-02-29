@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
                     <div class="card-body">
                         <p class="card-body-des mart large">账户余额（虚拟币）<span><a id="test1" href="javascript:void(0)" style="color:#FF5722; float: right;">充值</a></span></p>
 
-                        <p class="card-body-content"><span class="balance account-balance deep-orange fb super">${user.virtualCoin*10}</span>
+                        <p class="card-body-content"><span class="balance account-balance deep-orange fb super">${user.accountYue}</span>
                         </p>
                         <span class="icon">
                         </span>

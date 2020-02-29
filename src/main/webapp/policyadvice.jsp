@@ -52,7 +52,7 @@
                             <div class="media-body" id="caps">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle }</a>
                                 <p id="desc">${u.adviceSubtitle }</p>
-                                <p id="desc">浏览量：100</p>
+                                <p id="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                     </div>

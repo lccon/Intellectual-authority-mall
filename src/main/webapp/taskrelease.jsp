@@ -134,7 +134,7 @@
                             <div class="media-body" id="caps">
                                 <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
                                 <p id="desc">${u.detailedDesc }</p>
-                                <p id="desc">浏览量：100</p>
+                                <p id="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                     </div>

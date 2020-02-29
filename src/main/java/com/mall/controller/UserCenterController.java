@@ -31,4 +31,8 @@ public class UserCenterController {
         map.put("user",user);
         return "/vocher";
     }
+    @RequestMapping("/payrank")
+    public String payrank(){
+        return "payrank";
+    }
 }

@@ -47,7 +47,7 @@
                     <li data-url="/renzheng"><a class="item-inner" href="javascript:void(0);">我的认证</a></li>
                     <li class="nav-header"  id="cap2">我的资金</li>
                     <li data-url="/vocher"><a  class="item-inner" href="javascript:void(0);">帐户余额</a></li>
-                    <li><a href="javascript:void(0);">充值记录</a></li>
+                    <li data-url="/payrank"><a href="javascript:void(0);">充值记录</a></li>
                     <li class="nav-header"  id="cap2">我的动态</li>
                     <li data-url="/intellectualTask/findIntellectualTaskReleaseForPage"><a   class="item-inner" href="javascript:void(0);">我发布的</a></li>
                     <li data-url="/businessCollected/findBusinessCollectedForPage?moduleType=1" ><a  class="item-inner" href="javascript:void(0);">我的收藏</a></li>

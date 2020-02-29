@@ -63,16 +63,6 @@ public class TaskReleaseController {
         return taskReleaseService.updateTaskRelease(taskRelease);
     }
 
-    @RequestMapping("/updateBrowseVolume")
-    @ResponseBody
-    public void updateBrowseVolume(@RequestParam(value = "id", required = true) Long id) {
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        Long userId = ThreadVariable.getSession().getUserId();
-        taskReleaseService.updateBrowseVolume(id, userId);
-    }
-
     @RequestMapping("/deleteTaskRelease")
     @ResponseBody
     public Boolean deleteTaskRelease(@RequestParam(value = "ids[]") Long[] ids) {
@@ -97,6 +87,11 @@ public class TaskReleaseController {
     public String getTaskReleaseById(@RequestParam(value = "id", required = true) Long id,ModelMap map) {
         TaskRelease taskRelease= taskReleaseService.getTaskReleaseById(id);
         map.put("taskRelease",taskRelease);
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        Long userId = ThreadVariable.getSession().getUserId();
+        taskReleaseService.updateBrowseVolume(id, userId);
         return "taskrelease_Detail";
     }
 

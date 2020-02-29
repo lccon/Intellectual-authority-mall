@@ -45,18 +45,20 @@ pageEncoding="UTF-8"%>
         <div class="login-tab" data-widget="app/ms_v2/user/register.js#switchTab">
             <ul>
                 <li data-role="switch" data-action="phone" class="active"><a href="javascript:void(0);">快速注册</a></li>
-                <li class="li_fr">已有账号?<span><a href="/login.jsp" style="color: #60af00;">立即登录</a></span></li>
+                <li class="li_fr">已有账号?<span><a href="/login" style="color: #60af00;">立即登录</a></span></li>
                 <!--登录界面地址-->
             </ul>
         </div>
         <div class="tab-con2">
-            <form id="maintainForm" class="layui-form" method="post" action="/user/addUser">
+            <form id="maintainForm" class="layui-form" method="post" action="/user/addUser" onsubmit="return checkform();">
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户名：</label>
                         <div class="layui-input-block">
                             <input  type="text" name="username" id="username" placeholder="请填写用户名" lay-verify="title" autocomplete="off" class="layui-input" onblur="YHMonblus()" onfocus="YHMonfocu">
                             <input value="2" type="hidden" name="identity"/>
                             <input value="3" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
+                            <input value="0" type="hidden" name="authorizeType" id="authorizeType" />
+                            <input type="hidden" name="accountYue" id="accountYue" value="0"/>
                             &nbsp;<span class="msg-box" id="tip_username"><span id="tip_username1" class="msg-box1"></span></span>
                         </div>
                     </div>
@@ -454,6 +456,24 @@ pageEncoding="UTF-8"%>
             cerr.innerText="";
         }
         console.log(c.checked);
+    }
+    function checkform() {
+        var usernameerr=document.getElementById('tip_username');
+        var pictureerr=document.getElementById("demoText");
+        var passworderr=document.getElementById("tip_phone_password");
+        var password2err=document.getElementById('tip_phone_password2');
+        var phoneerr=document.getElementById('tip_phone');
+        var code_numerr=document.getElementById("tip_code_num");
+        var cerr=document.getElementById("tip_phone_affirm");
+        if(usernameerr.className!="success" || pictureerr.className!="success" || passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2")
+        {
+            console.log("111");
+            return false;
+        }else {
+            console.log("222");
+            return true;
+        }
+
     }
 </script>
 

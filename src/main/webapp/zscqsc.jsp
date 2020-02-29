@@ -128,7 +128,7 @@
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                 <p id="desc">${u.productBrief }</p>
                                 <p id="price">价格面议</p>
-                                <p id="desc">浏览量：100</p>
+                                <p id="desc">浏览量：${u.browseVolume}</p>
                             </div>
 
                         </div>
