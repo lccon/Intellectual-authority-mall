@@ -188,7 +188,7 @@
     </select>
 
     <update id="updateBrowseVolume" parameterType="java.lang.Long">
-        UPDATE authorize_company SET browse_volume = browse_volume+1 where id = #{id}
+        UPDATE intellectual_task SET browse_volume = browse_volume+1 where id = #{id}
     </update>
 
 </mapper>
