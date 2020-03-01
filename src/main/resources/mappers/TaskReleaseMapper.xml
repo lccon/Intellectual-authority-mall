@@ -108,8 +108,18 @@
     </select>
 
     <select id="getTaskReleaseByTask_category" parameterType="Map" resultMap="taskReleaseMap">
-        SELECT <include refid="columns"/> FROM task_release
+        SELECT <include refid="baseColumns"/> FROM task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
         where task_category = #{task_category}
+        order by t.create_date desc, r.create_date desc
     </select>
 
     <select id="getTaskReleaseById" parameterType="java.lang.Long" resultMap="taskReleaseMap">
