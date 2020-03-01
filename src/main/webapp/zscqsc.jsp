@@ -70,7 +70,21 @@
                 <div class="input-group-btn">
                     <a class="btn btn-default" id="button1" href="javascript:void(0)">搜索</a>
 
-                    <a class="btn btn-default" id="button2" href="/intellectualTask/IntellectualTaskPost">免费发布信息</a>
+                    <a class="btn btn-default" id="button2" href="/intellectualTask/IntellectualTaskPost" onclick="return checkFreeMessageNum();">免费发布信息</a>
+                    <script>
+                        var FreeMessageNum="${FreeMessageNum}";
+                        function checkFreeMessageNum(){
+                            if(FreeMessageNum>0){
+                                return true;
+                            }
+                            else{
+                                layer.msg('您可以发布的信息数量已经为：0，请先前往个人中心我的资料页面购买信息发布数量再来发布信息吧', {
+                                    time: 5000, //5s后自动关闭
+                                });
+                                return false;
+                            }
+                        }
+                    </script>
                 </div>
             </div>
 
@@ -126,9 +140,9 @@
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
-                                <p id="desc">${u.productBrief }</p>
+                                <p class="desc">${u.productBrief }</p>
                                 <p id="price">价格面议</p>
-                                <p id="desc">浏览量：${u.browseVolume}</p>
+                                <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
 
                         </div>

@@ -4,8 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.AuthorizeCompany;
+import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.AuthorizeCompanyService;
+import com.mall.service.UserService;
 import com.mall.vo.AuthorizeCompanyVO;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ public class AuthorizeCompanyController {
 
     @Autowired
     private AuthorizeCompanyService authorizeCompanyService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -89,7 +93,7 @@ public class AuthorizeCompanyController {
         }
         Long userId = ThreadVariable.getSession().getUserId();
         authorizeCompanyService.updateBrowseVolume(id, userId);
-        return "authorizecompany_Detail";
+        return "/authorizecompany_Detail";
     }
 
     @RequestMapping("/findAuthorizeCompanyReleaseForPage")
@@ -108,6 +112,12 @@ public class AuthorizeCompanyController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         AuthorizeCompanyVO authorizeCompanyVO, ModelMap map){
         model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage, authorizeCompanyVO));//回显分页数据
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum();
+        map.put("FreeMessageNum",FreeMessageNum);
         return "/authorizecompany";
     }
 
@@ -120,6 +130,20 @@ public class AuthorizeCompanyController {
     }
     @RequestMapping("/AuthorizeCompanyPost")
     public String AuthorizeCompanypost(){
-        return "dbgspost";
+        return "/dbgspost";
+    }
+
+    @RequestMapping("/useraddAuthorizeCompany")
+    public String useraddAuthorizeCompany(AuthorizeCompany authorizeCompany) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum()-1;
+        user.setFreeMessageNum(FreeMessageNum);
+        userService.updateUser(user);
+        authorizeCompany.setUserId(ThreadVariable.getSession().getUserId());
+        authorizeCompanyService.addAuthorizeCompany(authorizeCompany);
+        return "/usercenter";
     }
 }

@@ -22,66 +22,75 @@ pageEncoding="UTF-8"%>
 </div>
 <div id="center11" style="background-color:#fff;">
 <div style="margin-left:50px;">
-    <form id="maintainForm" method="post" action="/user/updatemyinfo">
+    <form method="post" action="/user/updatemyinfo" class="form-horizontal">
         <input type="hidden" name="id" value="${user.id}"/>
         <input type="hidden" name="password" value="${user.password}"/>
-    <div class="name">
-        <label class="layui-form-label" style="width: 120px;">
-            <span style="color:#ec5524;">*</span>
-            <span >用户名：</span>
-        </label>
-        <div class="inp">
-            <input type="text" name="username" id="username" class="form-control" value="${user.username}">
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="name" style="margin-top:20px;">
-        <label class="layui-form-label" style="width: 120px;">
-            <span style="color:#ec5524;">*</span>
-            <span>手机号：</span>
-        </label>
-        <div class="inp">
-            <input type="text" name="mobile" id="mobile" class="form-control" value="${user.mobile}">
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="id_img">
-        <label class="layui-form-label" style="width: 120px;">
-            <span style="font-size: 16px;">上传头像：</span>
-        </label>
-        <div class="media-left"id="picture">
-            <img id="img1" src="" class="img-circle image-responsive"/>
-        </div>
-        <div class="btn-group" role="group" aria-label="..." id="btn" >
-            <input type="file" onchange="uploadImage(this);" class="text-input">
-            <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
-        </div>
-    </div>
-    <div class="renzheng">
-        <label class="layui-form-label" style="width: 120px;">
-            <span>认证类型：</span>
-        </label>
-        <c:if test="${user.authorizeType==0}">
-            尚未认证，请前往我的认证进行认证
-        </c:if>
-        <c:if test="${user.authorizeType==1}">
-        <div class="media-left"id="picture">
-            <img class="img-circle image-responsive" style="margin-left: 20px;"  src="${pageContext.request.contextPath}/img/qiye.png"/>
-        </div>
-        </c:if>
-        <c:if test="${user.authorizeType==2}">
-        <div class="media-left"id="picture">
-            <img class="img-circle image-responsive" style="margin-left: 20px;"  src="${pageContext.request.contextPath}/img/geren.png"/>
-        </div>
-        </c:if>
-    </div>
-        <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;">确认保存</button>
-    </form>
+            <div class="form-group" style="height: 60px;">
+                <label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
+                <div class="col-sm-3">
+                    <input type="email" class="form-control" name="username" id="username"  value="${user.username}">
+                </div>
+            </div>
+            <div class="form-group" style="height: 60px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">手机号：</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="mobile" id="mobile" value="${user.mobile}">
+                </div>
+            </div>
+            <div class="form-group" style="height: 60px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">帐户余额：</label>
+                <div class="col-sm-6">
+                    <p class="help-block" style="float: left;">${user.accountYue}</p>
+                    <p class="help-block">
+                        <a href="javascript:void(0);" id="voucher" style="margin-left: 20px;margin-top:10px; color: #FF5722;" role="button" >充值</a>
+                    </p>
+                </div>
+            </div>
+            <p class="help-block" style="margin-left: 70px;">温馨提示：虚拟币比例为1：10，若想使用虚拟币请先充值。</p>
+            <div class="form-group" style="height: 60px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">可发布信息数量：</label>
+                <div class="col-sm-7">
+                    <p class="help-block" style="float: left;">${user.freeMessageNum}</p>
+                    <p class="help-block">
+                        <a href="javascript:void(0);" id="consume" style="margin-left: 20px; margin-top:10px;color: #FF5722;" role="button" >购买发布信息数量</a>
+                    </p>
+                </div>
+            </div>
+            <p class="help-block" style="margin-left: 70px;">温馨提示：免费发布信息数量初始值为5条，若为0请先购买发布信息数量，否则不可发布信息。</p>
+            <div class="form-group" style="height: 120px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">上传头像：</label>
+                <div class="col-sm-7">
+                    <input type="file" id="exampleInputFile" onchange="uploadImage(this);">
+                    <img style="width:80px;height: 80px;" id="img1" alt="" class="img-circle">
+                    <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
+                </div>
+            </div>
+            <div class="form-group" style="height: 120px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">认证类型：</label>
+                <div class="col-sm-7">
+                    <c:if test="${user.authorizeType==0}">
+                        <p class="help-block">尚未认证，请前往我的认证进行认证</p>
+                    </c:if>
+                    <c:if test="${user.authorizeType==1}">
+                        <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/qiye.png"  class="img-circle">
+                    </c:if>
+                    <c:if test="${user.authorizeType==2}">
+                        <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/geren.png" class="img-circle">
+                    </c:if>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" id="button2">确认保存</button>
+                </div>
+            </div>
+        </form>
 </div>
 </div>
 <script>
+
+
 
     function uploadImage(obj) {
         var f = $(obj).val();
@@ -108,9 +117,9 @@ pageEncoding="UTF-8"%>
             success: function(result) {
                 if (result.flag == true) {
                     $("#headPortrait").val(result.resultStr);
-                    $.messageBox({message:"上传成功"});
+                    console.log("上传成功")
                 } else {
-                    $.messageBox({message:result.resultStr});
+                    console.log("上传失败")
                     $(obj).val('');
                 }
             },
@@ -119,6 +128,55 @@ pageEncoding="UTF-8"%>
             }
         })
     }
+    $("#voucher").on("click",function () {
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            shade: [0],
+            area: ['340px', '215px'],
+            offset: 'rb', //右下角弹出
+            time: 2000, //2秒后自动关闭
+            anim: 2,
+            content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
+            end: function () { //此处用于演示
+                layer.open({
+                    type: 2,
+                    title: '充值中心',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/vouchercenter.jsp'
+                });
+            }
+        });
+    })
+    $("#consume").on("click",function () {
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            shade: [0],
+            area: ['340px', '215px'],
+            offset: 'rb', //右下角弹出
+            time: 2000, //2秒后自动关闭
+            anim: 2,
+            content: ['/consumemessage.jsp', 'no'], //iframe的url，no代表不显示滚动条
+            end: function () { //此处用于演示
+                layer.open({
+                    type: 2,
+                    title: '购买发布信息数量',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: '/consumemessage.jsp'
+                });
+            }
+        });
+
+    })
 </script>
 </body>
 

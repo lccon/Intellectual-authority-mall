@@ -38,10 +38,10 @@
             <div class="product">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                        <div class="media" style="width: 1150px;">
+                        <div class="media" style="width: 1150px;height: 200px;">
                             <div class="media-left" style="width: 250px;">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">
-                                    <img  id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
+                                    <img  id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
                                     <script>
                                             var url1="${u.advicePictureUrl}".split(",");
                                             var img1=document.getElementById("img${u.id}");
@@ -51,8 +51,8 @@
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle }</a>
-                                <p id="desc">${u.adviceSubtitle }</p>
-                                <p id="desc">浏览量：${u.browseVolume}</p>
+                                <p class="desc1" style="height: 20px;">${u.adviceSubtitle }</p>
+                                <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                     </div>

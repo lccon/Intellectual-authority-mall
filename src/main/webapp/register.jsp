@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
                         <div class="layui-input-block">
                             <input  type="text" name="username" id="username" placeholder="请填写用户名" lay-verify="title" autocomplete="off" class="layui-input" onblur="YHMonblus()" onfocus="YHMonfocu">
                             <input value="2" type="hidden" name="identity"/>
-                            <input value="3" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
+                            <input value="5" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
                             <input value="0" type="hidden" name="authorizeType" id="authorizeType" />
                             <input type="hidden" name="accountYue" id="accountYue" value="0"/>
                             &nbsp;<span class="msg-box" id="tip_username"><span id="tip_username1" class="msg-box1"></span></span>

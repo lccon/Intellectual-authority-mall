@@ -95,9 +95,6 @@
                                         <p class="desc">浏览量：${u.browseVolume}</p>
                                     </div>
                         </div>
-                        <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd" href="javascript:void(0);" onclick="qwe()">置顶</a>
-                        </div>
                     </div>
                 </div>
             </c:forEach>
@@ -146,7 +143,7 @@
                         <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
                             <div class="media-body" id="caps">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
-                                <p id="desc">${u.companyDescribe }</p>
+                                <p class="desc">${u.companyDescribe }</p>
                                 <c:if test="${u.state==0}">
                                     <p class="state">待审核</p>
                                 </c:if>
@@ -156,9 +153,7 @@
                                 <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
-                        <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd" href="javascript:void(0);" onclick="qwe()">置顶</a>
-                        </div>
+
                     </div>
                 </div>
             </c:forEach>
@@ -198,7 +193,7 @@
     </script>
 </c:if>
 <c:if test="${gridPagetaskRelease.rows.size()>0}">
-    <div style="margin-top: 50px;">
+    <div style="margin-top: 30px;">
         <div class="container">
             <c:forEach items="${gridPagetaskRelease.rows}" var="u">
                 <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
@@ -206,7 +201,7 @@
                         <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
                             <div class="media-body" id="caps">
                                 <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
-                                <p id="desc">${u.detailedDesc }</p>
+                                <p class="desc">${u.detailedDesc }</p>
                                 <c:if test="${u.state==0}">
                                     <p class="state">待审核</p>
                                 </c:if>
@@ -219,9 +214,7 @@
                                 <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
-                        <div style="margin: 95px 20px 20px 20px;">
-                            <a class="zd"  href="javascript:void(0);" onclick="qwe()">置顶</a>
-                        </div>
+
                     </div>
                 </div>
             </c:forEach>
@@ -289,33 +282,7 @@
     })
 
 </script>
-<script>
-    function qwe() {
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0, //不显示关闭按钮
-            shade: [0],
-            area: ['340px', '215px'],
-            offset: 'rb', //右下角弹出
-            time: 2000, //2秒后自动关闭
-            anim: 2,
-            content: ['/roofplace.jsp', 'no'], //iframe的url，no代表不显示滚动条
-            end: function () { //此处用于演示
-                layer.open({
-                    type: 2,
-                    title: '置顶',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/roofplace.jsp'
-                });
-            }
-        });
 
-    };
-</script>
 </body>
 
 </html>

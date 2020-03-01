@@ -32,11 +32,16 @@ pageEncoding="UTF-8"%>
                         <span>请选择你的个体身份类别</span>
                     </div>
                     <div class="main">
+                        <c:if test="${FreeMessageNum>0}">
                         <ul>
                             <li><a href="/intellectualTask/IntellectualTaskPost" >知识产权信息（供方）</a></li>
                             <li><a href="/taskRelease/TaskReleasePost">代办公司信息（中介方）</a></li>
                             <li><a href="/authorizeCompany/AuthorizeCompanyPost" >需求任务发布（需方）</a></li>
                         </ul>
+                        </c:if>
+                        <c:if test="${FreeMessageNum==0}">
+                            <p>您可以发布的信息数量已经为：0，请先前往个人中心我的资料页面购买信息发布数量再来发布信息吧</p>
+                        </c:if>
                     </div>
                 </div>
             

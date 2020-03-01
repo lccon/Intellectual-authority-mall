@@ -39,7 +39,7 @@
     </c:if>
     <c:if test="${meSeeWhoVO.intellectualTaskList.size() > 0}">
 
-        <div style="margin-top: 50px;margin-left: 0;">
+        <div style="margin-top: 30px;margin-left: 0;">
             <div class="container">
                 <c:forEach items="${meSeeWhoVO.intellectualTaskList}" var="u">
                     <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
@@ -49,19 +49,9 @@
                                     <a style="width:300px;" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                     <p class="desc">${u.productBrief }</p>
                                     <p id="price">价格面议</p>
-                                    <p class="desc">浏览量：${u.browseVolume}</p>
+                                    <p class="desc">浏览量：${u.browseVolume}${u.hasCollectedState}</p>
                                 </div>
                             </div>
-                            <c:if test="${u.hasCollectedState!=1}">
-                            <div style="margin: 95px 20px 20px 20px;">
-                                <a class="collect" href="javascript:void(0);" onclick="addcollect(1,${u.id})">收藏</a>
-                            </div>
-                            </c:if>
-                            <c:if test="${u.hasCollectedState==1}">
-                                <div style="margin: 95px 20px 20px 20px;">
-                                    <span class="collect" href="javascript:void(0);">已收藏</span>
-                                </div>
-                            </c:if>
                         </div>
                     </div>
                 </c:forEach>
@@ -69,7 +59,7 @@
         </div>
     </c:if>
     <c:if test="${meSeeWhoVO.authorizeCompanyList.size()>0}">
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 30px;">
             <div class="container">
                 <c:forEach items="${meSeeWhoVO.authorizeCompanyList}" var="u">
                     <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
@@ -98,7 +88,7 @@
         </div>
     </c:if>
     <c:if test="${meSeeWhoVO.taskReleaseList.size()>0}">
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 30px;">
             <div class="container">
                 <c:forEach items="${meSeeWhoVO.taskReleaseList}" var="u">
                     <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">

@@ -33,7 +33,7 @@
                        <div class="cap1">
                            <span>基本信息</span>
                        </div>
-                        <form id="maintainForm" method="post" action="/authorizeCompany/addAuthorizeCompany">                           <div class="p-cap">
+                        <form id="maintainForm" method="post" action="/authorizeCompany/useraddAuthorizeCompany">                           <div class="p-cap">
                                <label class="p-lab" style="margin-left: 160px;">
                                    <em class="form-req">*</em>
                                    公司名称：

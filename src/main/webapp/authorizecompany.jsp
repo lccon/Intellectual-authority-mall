@@ -34,7 +34,21 @@
             <input type="text" class="form-control" id="input1" placeholder="默认搜索项">
             <div class="input-group-btn">
                 <a class="btn btn-default" id="button1" href="javascript:void(0)">搜索</a>
-                <a class="btn btn-default" id="button2" href="/authorizeCompany/AuthorizeCompanyPost">免费发布信息</a>
+                <a class="btn btn-default" id="button2" href="/authorizeCompany/AuthorizeCompanyPost" onclick="return checkFreeMessageNum();">免费发布信息</a>
+                <script>
+                    var FreeMessageNum="${FreeMessageNum}";
+                    function checkFreeMessageNum(){
+                        if(FreeMessageNum>0){
+                            return true;
+                        }
+                        else{
+                            layer.msg('您可以发布的信息数量已经为：0，请先前往个人中心我的资料页面购买信息发布数量再来发布信息吧', {
+                                time: 5000, //5s后自动关闭
+                            });
+                            return false;
+                        }
+                    }
+                </script>
             </div>
         </div>
 
@@ -77,11 +91,11 @@
             <div class="product">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                        <div class="media" style="width: 1150px;">
+                        <div class="media" style="width: 1150px; height: 200px;">
 
                             <div class="media-left" style="width: 250px;">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">
-                                    <img id="img${u.id}" style="max-width:450px;height: 170px;" src="" class="media-object" alt="">
+                                    <img id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
                                     <script>
                                     var url1="${u.companyPictureUrl}".split(",");
                                     var img1=document.getElementById("img${u.id}");
@@ -91,8 +105,8 @@
                             </div>
                             <div class="media-body" id="caps">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
-                                <p id="desc">${u.companyDescribe }</p>
-                                <p id="desc">浏览量：${u.browseVolume}</p>
+                                <p class="desc1" style="height: 20px;">${u.companyDescribe }</p>
+                                <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
                     </div>

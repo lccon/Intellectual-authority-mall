@@ -1,6 +1,8 @@
 package com.mall.controller;
 
+import com.mall.component.ThreadVariable;
 import com.mall.domain.*;
+import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.*;
 import com.mall.vo.AuthorizeCompanyVO;
 import com.mall.vo.IntellectualTaskVO;
@@ -33,6 +35,8 @@ public class IndexController {
     private AuthorizeSiteService authorizeSiteService;
     @Autowired
     private LeaveMessageService leaveMessageService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String main(ModelMap map) {
@@ -68,7 +72,13 @@ public class IndexController {
     }
 
     @RequestMapping("/post-message")
-    public String postmessage(){
+    public String postmessage(ModelMap map){
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum();
+        map.put("FreeMessageNum",FreeMessageNum);
         return "/post-message";
     }
     @RequestMapping("/register")

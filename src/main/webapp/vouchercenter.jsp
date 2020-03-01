@@ -42,18 +42,18 @@
                     <ul class="ui-choose am-form-group" id="uc_01">
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 10￥
+                                <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 20￥
                             </label>
                         </li>
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 20￥
+                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 50￥
                             </label>
                         </li>
 
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 50￥
+                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 100￥
                             </label>
                         </li>
                         <li>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="tr_rechoth am-form-group">
                     <span>其他金额：</span>
-                    <input type="number" min="10" max="10000" value="10.00元" class="othbox" data-validation-message="充值金额范围：10-10000元" />
+                    <input type="number" min="20" max="10000" value="20.00元" class="othbox" data-validation-message="充值金额范围：20-10000元" />
                 </div>
                 <div class="tr_rechcho am-form-group">
                     <span>充值方式：</span>
@@ -123,26 +123,26 @@
         $('#uc_01 li:eq(3)').click(function() {
             $('.tr_rechoth').show();
             $('.tr_rechoth').find("input").attr('required', 'true')
-            $('.rechnum').text('10.00元');
-            document.getElementById("orderprice").value="10.00";
+            $('.rechnum').text('20.00元');
+            document.getElementById("orderprice").value="20.00";
         })
         $('#uc_01 li:eq(0)').click(function() {
-            $('.tr_rechoth').hide();
-            $('.rechnum').text('10.00元');
-            $('.othbox').val('');
-            document.getElementById("orderprice").value="10.00";
-        })
-        $('#uc_01 li:eq(1)').click(function() {
             $('.tr_rechoth').hide();
             $('.rechnum').text('20.00元');
             $('.othbox').val('');
             document.getElementById("orderprice").value="20.00";
         })
-        $('#uc_01 li:eq(2)').click(function() {
+        $('#uc_01 li:eq(1)').click(function() {
             $('.tr_rechoth').hide();
             $('.rechnum').text('50.00元');
             $('.othbox').val('');
             document.getElementById("orderprice").value="50.00";
+        })
+        $('#uc_01 li:eq(2)').click(function() {
+            $('.tr_rechoth').hide();
+            $('.rechnum').text('100.00元');
+            $('.othbox').val('');
+            document.getElementById("orderprice").value="100.00";
         })
         $(document).ready(function() {
             $('.othbox').on('input propertychange', function() {

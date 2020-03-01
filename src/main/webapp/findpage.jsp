@@ -83,9 +83,9 @@
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
-                                    <p id="desc">${u.productBrief }</p>
+                                    <p class="desc">${u.productBrief }</p>
                                     <p id="price">价格面议</p>
-                                    <p id="desc">浏览量：${u.browseVolume}</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                                 <script type="text/javascript">
                                         var url11="${u.productPictureUrl}".split(",");
@@ -117,8 +117,8 @@
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
-                                    <p id="desc">${u.companyDescribe }</p>
-                                    <p id="desc">浏览量：${u.browseVolume}</p>
+                                    <p class="desc1" style="height: 20px;">${u.companyDescribe }</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
                                 <script type="text/javascript">
 
@@ -156,8 +156,8 @@
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
-                                    <p id="desc">${u.detailedDesc }</p>
-                                    <p id="desc">浏览量：${u.browseVolume}</p>
+                                    <p class="desc1" style="height: 20px;">${u.detailedDesc }</p>
+                                    <p class="desc">浏览量：${u.browseVolume}</p>
                                 </div>
 
                             </div>

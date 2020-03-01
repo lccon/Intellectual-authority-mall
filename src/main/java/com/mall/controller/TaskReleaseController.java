@@ -4,8 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.TaskRelease;
+import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.TaskReleaseService;
+import com.mall.service.UserService;
 import com.mall.vo.TaskReleaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,8 @@ public class TaskReleaseController {
 
     @Autowired
     private TaskReleaseService taskReleaseService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -81,6 +85,12 @@ public class TaskReleaseController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         TaskReleaseVO taskReleaseVO, ModelMap map){
         model.addAttribute("pagemsg", taskReleaseService.findByPage(currentPage, taskReleaseVO));//回显分页数据
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum();
+        map.put("FreeMessageNum",FreeMessageNum);
         return "/taskrelease";
     }
     @RequestMapping("/getTaskReleaseById")
@@ -92,7 +102,7 @@ public class TaskReleaseController {
         }
         Long userId = ThreadVariable.getSession().getUserId();
         taskReleaseService.updateBrowseVolume(id, userId);
-        return "taskrelease_Detail";
+        return "/taskrelease_Detail";
     }
 
     @RequestMapping("/findTaskReleasePublishForPage")
@@ -115,6 +125,19 @@ public class TaskReleaseController {
     }
     @RequestMapping("/TaskReleasePost")
     public String TaskReleasePost(){
-        return "xqfbpost";
+        return "/xqfbpost";
+    }
+    @RequestMapping("/useraddTaskRelease")
+    public String useraddTaskRelease(TaskRelease taskRelease) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum()-1;
+        user.setFreeMessageNum(FreeMessageNum);
+        userService.updateUser(user);
+        taskRelease.setUserId(ThreadVariable.getSession().getUserId());
+        taskReleaseService.addTaskRelease(taskRelease);
+        return "/usercenter";
     }
 }

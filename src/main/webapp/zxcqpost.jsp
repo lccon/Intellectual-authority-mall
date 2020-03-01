@@ -31,7 +31,7 @@
                        <div class="cap1">
                            <span>基本信息</span>
                        </div>
-                        <form id="maintainForm" method="post" action="/intellectualTask/addIntellectualTask">
+                        <form id="maintainForm" method="post" action="/intellectualTask/useraddIntellectualTask">
                            <div class="p-cap">
                                <label class="p-lab" style="margin-left: 160px;">
                                    <em class="form-req">*</em>

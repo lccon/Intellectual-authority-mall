@@ -44,7 +44,7 @@
     </c:if>
 <c:if test="${gridPage.rows.size() > 0}">
 
-<div style="margin-top: 50px;margin-left: 0;">
+<div style="margin-top: 30px;margin-left: 0;">
     <div class="container">
     <c:forEach items="${gridPage.rows}" var="u">
     <div id="product1" class="product" style="width: 960px;height: 100px;">

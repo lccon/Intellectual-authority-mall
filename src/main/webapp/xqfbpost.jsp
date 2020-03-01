@@ -34,7 +34,7 @@
                        <div class="cap1">
                            <span>基本信息</span>
                        </div>
-                        <form id="maintainForm" method="post" action="/taskRelease/addTaskRelease">
+                        <form id="maintainForm" method="post" action="/taskRelease/useraddTaskRelease">
                         <div class="p-zd">
                             <label class="p-lab" style="margin-left: 176px;">
                                 <em class="form-req">*</em>

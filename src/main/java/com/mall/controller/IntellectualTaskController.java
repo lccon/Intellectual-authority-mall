@@ -4,8 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.IntellectualTask;
+import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.IntellectualTaskService;
+import com.mall.service.UserService;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class IntellectualTaskController {
 
     @Autowired
     private IntellectualTaskService intellectualTaskService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -85,8 +89,12 @@ public class IntellectualTaskController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,
                         IntellectualTaskVO intellectualTaskVO, ModelMap map){
         model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage, intellectualTaskVO));//回显分页数据
-        List<IntellectualTask> list = intellectualTaskService.findIntellectualTaskForList(intellectualTaskVO);
-        map.put("list", list);
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum();
+        map.put("FreeMessageNum",FreeMessageNum);
         return "/zscqsc";
     }
 
@@ -123,5 +131,19 @@ public class IntellectualTaskController {
     @RequestMapping("/IntellectualTaskPost")
     public String IntellectualTaskPost(){
         return "zxcqpost";
+    }
+
+    @RequestMapping("/useraddIntellectualTask")
+    public String useraddIntellectualTask(IntellectualTask intellectualTask) {
+        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+            throw new BusinessValidationException("请重新登录");
+        }
+        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
+        Integer FreeMessageNum=user.getFreeMessageNum()-1;
+        user.setFreeMessageNum(FreeMessageNum);
+        userService.updateUser(user);
+        intellectualTask.setUserId(ThreadVariable.getSession().getUserId());
+        intellectualTaskService.addIntellectualTask(intellectualTask);
+        return "/usercenter";
     }
 }
