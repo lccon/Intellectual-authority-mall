@@ -11,9 +11,7 @@ pageEncoding="UTF-8"%>
 <script>
         var url11="${user.headPortrait}".split(",");
         var img1=document.getElementById("img1");
-        var img2=document.getElementById("img2");
         img1.src="${pageContext.request.contextPath}"+url11[0];
-        img2.src="${pageContext.request.contextPath}"+url11[0];
 </script>
 <div style="width:80px;">
     <ul>

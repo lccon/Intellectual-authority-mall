@@ -122,11 +122,14 @@ pageEncoding="UTF-8"%>
                                 var img1=document.getElementById("cap${u.id}");
                                 img1.src="${pageContext.request.contextPath}"+url1[0];
 							</script>
+							<c:if test="${u.roofPlaceState==2}">
+								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+							</c:if>
 						</div>
 					<div class="media-body" id="cap">
 						<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
 						<p id="desc">${u.productBrief}</p>
-						<p id="price">价格面议</p>
+						<p class="price">价格面议</p>
 					</div>
 				</div>
 				</li>
@@ -153,6 +156,9 @@ pageEncoding="UTF-8"%>
                                         img2.src="${pageContext.request.contextPath}"+url2[0];
 								</script>
 							</a>
+							<c:if test="${i.roofPlaceState==2}">
+								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+							</c:if>
 						</div>
 					<div class="media-body" id="cap">
 						<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
@@ -178,6 +184,9 @@ pageEncoding="UTF-8"%>
 							<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
 								<img src="img/tab1-1.png" alt="" id="cap" style="width: 153px;height: 153px;"></img>
 							</a>
+							<c:if test="${o.roofPlaceState==2}">
+								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+							</c:if>
 						</div>
 					<div class="media-body" id="cap">
 						<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
@@ -203,6 +212,9 @@ pageEncoding="UTF-8"%>
 										<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
 											<img src="img/tab1-2.jpg" alt="" id="cap" style="width: 153px;height: 153px;"></img>
 										</a>
+										<c:if test="${o.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
@@ -244,6 +256,9 @@ pageEncoding="UTF-8"%>
                                             var img1=document.getElementById("cap${u.id}");
                                             img1.src="${pageContext.request.contextPath}"+url1[0];
 										</script>
+										<c:if test="${u.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
@@ -275,6 +290,9 @@ pageEncoding="UTF-8"%>
                                                 img2.src="${pageContext.request.contextPath}"+url2[0];
 											</script>
 										</a>
+										<c:if test="${i.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
@@ -315,6 +333,9 @@ pageEncoding="UTF-8"%>
                                             var img1=document.getElementById("cap${u.id}");
                                             img1.src="${pageContext.request.contextPath}"+url1[0];
 										</script>
+										<c:if test="${u.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
@@ -346,6 +367,9 @@ pageEncoding="UTF-8"%>
                                                 img2.src="${pageContext.request.contextPath}"+url2[0];
 											</script>
 										</a>
+										<c:if test="${i.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
@@ -376,6 +400,9 @@ pageEncoding="UTF-8"%>
                                                 img3.src="${pageContext.request.contextPath}"+url3[0];
 											</script>
 										</a>
+										<c:if test="${p.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>
@@ -406,6 +433,9 @@ pageEncoding="UTF-8"%>
                                                 img3.src="${pageContext.request.contextPath}"+url3[0];
 											</script>
 										</a>
+										<c:if test="${p.roofPlaceState==2}">
+											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
+										</c:if>
 									</div>
 									<div class="media-body" id="cap">
 										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>

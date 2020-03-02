@@ -112,12 +112,6 @@ public class AuthorizeCompanyController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         AuthorizeCompanyVO authorizeCompanyVO, ModelMap map){
         model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage, authorizeCompanyVO));//回显分页数据
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
-        Integer FreeMessageNum=user.getFreeMessageNum();
-        map.put("FreeMessageNum",FreeMessageNum);
         return "/authorizecompany";
     }
 
@@ -129,7 +123,7 @@ public class AuthorizeCompanyController {
         return "/findpage";
     }
     @RequestMapping("/AuthorizeCompanyPost")
-    public String AuthorizeCompanypost(){
+    public String AuthorizeCompanypost(ModelMap map){
         return "/dbgspost";
     }
 

@@ -24,6 +24,11 @@
                 <div class="media">
                     <div class="media-left" id="picture">
                             <img id="img2" class="img-circle image-responsive" src="" />
+                        <script>
+                            var url11="${HeadPortrait}".split(",");
+                            var img2=document.getElementById("img2");
+                            img2.src="${pageContext.request.contextPath}"+url11[0];
+                        </script>
                     </div>
                     <div class="media-body" id="head-text">
                         <p>

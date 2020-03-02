@@ -74,6 +74,30 @@ body a:hover{
     margin: 0;
     font-size: 14px;
 }
+.new-item-badge {
+	position: absolute;
+	background: #92b7bd;
+	z-index: 999;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 20px;
+	padding: 2px 4px 0;
+	top: -17px;
+	left: -10px;
+	line-height: 1.4;
+	-ms-transform: rotate(-7deg);
+	-webkit-transform: rotate(-7deg);
+	transform: rotate(-7deg);
+	-webkit-transition: 0 0.1s ease-in;
+	-moz-transition: 0 0.1s ease-in;
+	-o-transition: 0 0.1s ease-in;
+	transition: transform 0.1s ease-in;
+}
+.product:hover .new-item-badge {
+	transform: rotate(-14deg);
+	-ms-transform: rotate(-14deg);
+	-webkit-transform: rotate(-14deg);
+}
 .top-cap {
 	font-size: 18px;
 	color:inherit;

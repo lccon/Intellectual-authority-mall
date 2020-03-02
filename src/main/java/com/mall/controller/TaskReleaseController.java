@@ -85,12 +85,6 @@ public class TaskReleaseController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         TaskReleaseVO taskReleaseVO, ModelMap map){
         model.addAttribute("pagemsg", taskReleaseService.findByPage(currentPage, taskReleaseVO));//回显分页数据
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
-        Integer FreeMessageNum=user.getFreeMessageNum();
-        map.put("FreeMessageNum",FreeMessageNum);
         return "/taskrelease";
     }
     @RequestMapping("/getTaskReleaseById")

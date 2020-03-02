@@ -86,11 +86,14 @@
                                     <div class="media-body" id="caps">
                                         <a style="width:300px;" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
                                         <p class="desc">${u.productBrief }</p>
-                                        <c:if test="${u.state==0}">
+                                        <c:if test="${u.state==1}">
                                             <p class="state">待审核</p>
                                         </c:if>
-                                        <c:if test="${u.state==1}">
+                                        <c:if test="${u.state==2}">
                                             <p class="state">已发布</p>
+                                        </c:if>
+                                        <c:if test="${u.state==0}">
+                                            <p class="state">待审核</p>
                                         </c:if>
                                         <p class="desc">浏览量：${u.browseVolume}</p>
                                     </div>
@@ -144,11 +147,14 @@
                             <div class="media-body" id="caps">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
                                 <p class="desc">${u.companyDescribe }</p>
-                                <c:if test="${u.state==0}">
+                                <c:if test="${u.state==1}">
                                     <p class="state">待审核</p>
                                 </c:if>
-                                <c:if test="${u.state==1}">
+                                <c:if test="${u.state==2}">
                                     <p class="state">已发布</p>
+                                </c:if>
+                                <c:if test="${u.state==0}">
+                                    <p class="state">已驳回</p>
                                 </c:if>
                                 <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
@@ -202,13 +208,13 @@
                             <div class="media-body" id="caps">
                                 <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
                                 <p class="desc">${u.detailedDesc }</p>
-                                <c:if test="${u.state==0}">
+                                <c:if test="${u.state==1}">
                                     <p class="state">待审核</p>
                                 </c:if>
-                                <c:if test="${u.state==1}">
+                                <c:if test="${u.state==2}">
                                     <p class="state">已发布</p>
                                 </c:if>
-                                <c:if test="${u.state==2}">
+                                <c:if test="${u.state==0}">
                                     <p class="state">已驳回</p>
                                 </c:if>
                                 <p class="desc">浏览量：${u.browseVolume}</p>

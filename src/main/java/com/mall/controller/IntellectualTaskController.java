@@ -89,12 +89,6 @@ public class IntellectualTaskController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,
                         IntellectualTaskVO intellectualTaskVO, ModelMap map){
         model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage, intellectualTaskVO));//回显分页数据
-        if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
-            throw new BusinessValidationException("请重新登录");
-        }
-        User user=userService.findUserById(ThreadVariable.getSession().getUserId());
-        Integer FreeMessageNum=user.getFreeMessageNum();
-        map.put("FreeMessageNum",FreeMessageNum);
         return "/zscqsc";
     }
 
@@ -129,7 +123,7 @@ public class IntellectualTaskController {
         return "/findpage";
     }
     @RequestMapping("/IntellectualTaskPost")
-    public String IntellectualTaskPost(){
+    public String IntellectualTaskPost(ModelMap map){
         return "zxcqpost";
     }
 

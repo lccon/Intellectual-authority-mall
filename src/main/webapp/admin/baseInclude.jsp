@@ -7,6 +7,8 @@ request.setAttribute("currentSession","");
     if (ThreadVariable.getSession()!= null && ThreadVariable.getSession().getUserName() != null) {
         request.setAttribute("userRealName", ThreadVariable.getSession().getUserName());
         request.setAttribute("UserId", ThreadVariable.getSession().getUserId());
+        request.setAttribute("FreeMessageNum", ThreadVariable.getSession().getFreeMessageNum());
+        request.setAttribute("HeadPortrait", ThreadVariable.getSession().getHeadPortrait());
     }
 %>
 
@@ -15,4 +17,6 @@ var PATH='${path}';
 var listUrl;
 var userRealName='${userRealName}';
 var UserId='${UserId}';
+var FreeMessageNum='${FreeMessageNum}'
+    var HeadPortrait='${HeadPortrait}'
 </script>

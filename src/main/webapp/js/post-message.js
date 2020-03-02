@@ -59,8 +59,41 @@ $(function(){
     });
 
 })
+//发布表单验证
 var code1;
 var result1;
+function productNameonblus() {
+    var productName=document.getElementById("productName").value;
+    var productNameerr=document.getElementById("tip_productName");
+    if(productName==""){
+        productNameerr.className="error1";
+        productNameerr.innerText="名称不能为空！";
+    }
+    else {
+        productNameerr.className="success";
+        console.log(111);
+    }
+}
+function productNamonfocu() {
+    document.getElementById("tip_productName").className="msg-box";
+    document.getElementById("tip_productName").innerText="";
+}
+
+function productBriefonblus() {
+    var productBrief=document.getElementById("productBrief").value;
+    var productBrieferr=document.getElementById("tip_productBrief");
+    if(productBrief!=""){
+        productBrieferr.className="success";
+    }
+    else{
+        productBrieferr.className="error1";
+        productBrieferr.innerText="简介不能为空！";
+    }
+}
+function productBriefonfocu() {
+    document.getElementById("tip_productBrief").className="msg-box";
+    document.getElementById("tip_productBrief").innerText="";
+}
 function uploadImage(obj) {
     var f = $(obj).val();
     if(f == null || f == undefined || f == '') {
@@ -92,9 +125,11 @@ function uploadImage(obj) {
                 } else {
                     $("#productPictureUrl").val(result.resultStr);
                 }
-                console.log("上传成功");
+                document.getElementById("tip_picture").className="success";
+                document.getElementById("tip_picture").innerText="上传成功";
             } else {
-                console.log(result.resultStr);
+                document.getElementById("tip_picture").className="error1";
+                document.getElementById("tip_picture").innerText="上传失败";
                 $(obj).val('');
             }
         },

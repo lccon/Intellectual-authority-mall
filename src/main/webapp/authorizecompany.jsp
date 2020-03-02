@@ -109,6 +109,9 @@
                                 <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
                         </div>
+                        <c:if test="${u.roofPlaceState==2}">
+                            <div class="new-item-badge">置顶信息</div>
+                        </c:if>
                     </div>
                 </div>
                 <div class="warp">

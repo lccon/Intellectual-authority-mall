@@ -37,7 +37,8 @@
                                    <em class="form-req">*</em>
                                    商品名称：
                                </label>
-                               <input type="text" name="productName" id="productName" value="" maxlength="20" class="input"/>
+                               <input type="text" name="productName" id="productName" value="" maxlength="20" class="input" onblur="productNameonblus()" onfocus="productNamonfocu()"/>
+                               &nbsp;<span id="tip_productName" class="msg-box"></span>
                            </div>
                             <div class="p-wzxq">
                                 <label class="p-lab"style="margin-left: 160px;">
@@ -46,7 +47,8 @@
                                 </label>
                             </div>
                             <div style="margin-left: 266px;">
-                                <textarea class="input" name="productBrief" maxlength="5000" size="5" style="overflow:hidden;resize:horizontal; width:390px;height: 115px;"></textarea>
+                                <textarea class="input" name="productBrief" id="productBrief" maxlength="5000" size="5" style="overflow:hidden;resize:horizontal; width:390px;height: 115px;" onblur="productBriefonblus()" onfocus="productBriefonfocu()"></textarea>
+                                <span calss="msg-box" id="tip_productBrief"></span>
                             </div>
                             <div class="p-wzxq">
                                 <label class="p-lab"style="margin-left: 160px;">
@@ -56,7 +58,7 @@
                                 </label>
                             </div>
                             <div>
-                                <script id="container" name="productDetails" type="text/plain">
+                                <script id="container" name="productDetails" id="productDetails" type="text/plain">
 
                                 </script>
                             </div>
@@ -67,7 +69,6 @@
                                    选择商品分类：
                                </label>
                                <select class="input" name="productCategory">
-                                   <option value></option>
                                    <option value="1">发明</option>
                                    <option value="2">实用新型</option>
                                    <option value="3">外观</option>
@@ -81,7 +82,6 @@
                                 选择行业分类：
                             </label>
                             <select class="input" name="industryCategory">
-                                <option value></option>
                                 <option value="1">生活需要</option>
                                 <option value="2">交通运输</option>
                                 <option value="3">化学化工</option>
@@ -132,6 +132,7 @@
                                      <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
                                      <span class="delx glyphicon glyphicon-remove"></span>
                                 </div>
+                            <span class="msg-box" id="tip_picture"></span>
                             <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
                             <span class="cite">
                                 <cite >
@@ -144,6 +145,7 @@
                             <label class="p-lab" style="margin-left: 176px;">短视频：</label>
                             <input type="file" class="video" style="margin-left: 250px;"  onchange="uploadVideo(this);">
                             <input type="hidden" name="productVideoUrl" id="productVideoUrl" value="">
+                            <span class="msg-box" id="tip_video"></span>
                             <span class="cite">
                                 <cite>
                                     视频格式必须为：mp4。视频时长须在30秒以内，否则会影响上传时长。
@@ -163,7 +165,8 @@
                         </div>
                         <div class="p-cap">
                             <label class="p-lab" style="margin-left: 144px;">发布人姓名：</label>
-                            <input type="text" name="realName" maxlength="25" class="input-60 input"/>
+                            <input type="text" name="realName" id="realName" maxlength="25" class="input-60 input"/>
+                            <span class="msg-box" id="tip_realName"></span>
                         </div>
                         <div class="p-cap">
                             <label class="p-lab"style="margin-left: 176px;">手机号：</label>
@@ -178,7 +181,7 @@
                         </div>
                             <input type="hidden" value="1" name="state"/>
                             <input type="hidden" value="0" name="hasCollectedState"/>
-                        <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;">提交</button>
+                        <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;" type="submit">提交</button>
                        </form>
                     </div>
                 </div>
