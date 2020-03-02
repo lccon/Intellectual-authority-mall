@@ -189,6 +189,8 @@ public class UserServiceImpl implements UserService {
 		newSession.setAccessIp(session.getSessionId());
 		newSession.setUserId(user.getId());
 		newSession.setMobile(user.getMobile());
+		newSession.setFreeMessageNum(user.getFreeMessageNum());
+		newSession.setHeadPortrait(user.getHeadPortrait());
 		logger.error("session信息[{}]", newSession);
 		newSession = sessionService.addSession(newSession);
 		ThreadVariable.setSession(newSession);

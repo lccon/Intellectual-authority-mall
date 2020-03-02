@@ -23,6 +23,8 @@ public class Session implements Serializable {
     private Date loginDate;
     private String lastUrl;
     private String mobile;
+    private Integer freeMessageNum;
+    private String headPortrait;
 
     public Long getId() {
         return id;
@@ -110,5 +112,21 @@ public class Session implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Integer getFreeMessageNum() {
+        return freeMessageNum;
+    }
+
+    public void setFreeMessageNum(Integer freeMessageNum) {
+        this.freeMessageNum = freeMessageNum;
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
     }
 }
