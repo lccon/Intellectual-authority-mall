@@ -91,8 +91,10 @@ public class PolicyAdviceController {
     }
 
     @RequestMapping("/findpagepolicyAdviceForList")
-    public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model, ModelMap map){
-        model.addAttribute("pagemsg", policyAdviceService.findByPage(currentPage));//回显分页数据
+    public String  main(@RequestParam(value="currentPage", defaultValue="1", required=false) int currentPage,
+                        @RequestParam(value = "adviceCategory", required = false) Integer adviceCategory,
+                        Model model){
+        model.addAttribute("pagemsg", policyAdviceService.findByPage(currentPage, adviceCategory));//回显分页数据
         return "/policyadvice";
     }
 }

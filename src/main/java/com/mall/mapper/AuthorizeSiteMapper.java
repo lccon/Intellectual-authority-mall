@@ -43,4 +43,16 @@ public interface AuthorizeSiteMapper {
      * @return
      */
     AuthorizeSite getAuthorizeSiteById(Long id);
+
+    /**
+     * 前端：查询注册站点
+     * @return
+     */
+    List<AuthorizeSite> findUserAuthorizeSiteForList();
+
+    /**
+     * 删除过期的站点
+     * @return
+     */
+    Integer deleteUserAuthorizeSite();
 }

@@ -60,7 +60,8 @@ public class AuthorizeSiteServiceImpl implements AuthorizeSiteService {
 
     @Override
     public List<AuthorizeSite> findAuthorizeSiteForList() {
-        return authorizeSiteMapper.findAuthorizeSiteForList();
+        authorizeSiteMapper.deleteUserAuthorizeSite();
+        return authorizeSiteMapper.findUserAuthorizeSiteForList();
     }
 
     @Override
@@ -90,6 +91,7 @@ public class AuthorizeSiteServiceImpl implements AuthorizeSiteService {
     @Override
     public PageInfo<AuthorizeSite> findAuthorizeSiteForPage(AuthorizeSiteVO authorizeSiteVO) {
         try {
+            authorizeSiteMapper.deleteUserAuthorizeSite();
             PageHelper.startPage(authorizeSiteVO.getPage(), authorizeSiteVO.getRows(),
                     StringUtil.joinSortFieldOrder(authorizeSiteVO.getSidx(), authorizeSiteVO.getSord()));
             List<AuthorizeSite> authorizeSiteList = authorizeSiteMapper.findAuthorizeSiteForList();

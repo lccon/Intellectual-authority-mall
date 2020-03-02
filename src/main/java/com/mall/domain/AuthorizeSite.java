@@ -2,6 +2,8 @@ package com.mall.domain;
 
 import com.mall.base.BaseDomain;
 
+import java.util.Date;
+
 /**
  * Description:
  *
@@ -15,6 +17,8 @@ public class AuthorizeSite extends BaseDomain{
     private String sitePictureUrl;
     /** 连接地址 */
     private String addressUrl;
+    /** 结束时间 */
+    private String endTime;
 
     public Long getId() {
         return id;
@@ -38,5 +42,13 @@ public class AuthorizeSite extends BaseDomain{
 
     public void setAddressUrl(String addressUrl) {
         this.addressUrl = addressUrl;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

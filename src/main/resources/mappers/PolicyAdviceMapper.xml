@@ -105,6 +105,11 @@
         SELECT
         count(*)
         FROM policy_advice
+        <where>
+            <if test="adviceCategory != null">
+                advice_category = #{adviceCategory}
+            </if>
+        </where>
     </select>
 
     <select id="findByPage" parameterType="Map" resultMap="policyAdviceMap">
@@ -120,6 +125,11 @@
         and p.top_end_time <![CDATA[>]]> now()
         )t
         on a.id = t.module_type_id
+        <where>
+            <if test="adviceCategory != null">
+                advice_category = #{adviceCategory}
+            </if>
+        </where>
         order by t.create_date desc, a.create_date desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}

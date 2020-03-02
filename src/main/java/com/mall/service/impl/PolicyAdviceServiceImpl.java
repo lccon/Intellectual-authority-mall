@@ -167,11 +167,8 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         }
     }
 
-    public int countnum(){
-        return policyAdviceMapper.countnum();
-    }
     @Override
-    public pagebean<PolicyAdvice> findByPage(int currentPage) {
+    public pagebean<PolicyAdvice> findByPage(int currentPage, Integer adviceCategory) {
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<PolicyAdvice> pageBean = new pagebean<PolicyAdvice>();
 
@@ -183,7 +180,7 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
         pageBean.setPageSize(pageSize);
 
         //封装总记录数
-        int totalCount = policyAdviceMapper.countnum();
+        int totalCount = policyAdviceMapper.countnum(adviceCategory);
         pageBean.setTotalCount(totalCount);
 
         //封装总页数
@@ -193,6 +190,7 @@ public class PolicyAdviceServiceImpl implements PolicyAdviceService {
 
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
+        map.put("adviceCategory", adviceCategory);
         //封装每页显示的数据
         List<PolicyAdvice> lists = policyAdviceMapper.findByPage(map);
         pageBean.setLists(lists);

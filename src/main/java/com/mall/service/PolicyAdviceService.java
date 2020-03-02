@@ -56,7 +56,8 @@ public interface PolicyAdviceService {
      * @return
      */
     PolicyAdvice getPolicyAdviceById(Long id);
+
     List<PolicyAdvice> findPolicyAdviceForList();
-    int countnum();
-    pagebean<PolicyAdvice> findByPage(int currentPage);
+
+    pagebean<PolicyAdvice> findByPage(int currentPage, Integer adviceCategory);
 }

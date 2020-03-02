@@ -32,3 +32,6 @@ ALTER TABLE task_release ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏
 ALTER TABLE authorize_company ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after user_id;
 ALTER TABLE policy_advice ADD COLUMN browse_volume int(11) DEFAULT 0 COMMENT '浏览量' after advice_picture_url;
 ALTER TABLE policy_advice ADD COLUMN user_id int(11) DEFAULT 0 COMMENT '用户id' after browse_volume;
+
+-- 轮播图结束时间
+ALTER TABLE authorize_site ADD COLUMN end_time datetime DEFAULT NULL COMMENT '结束时间' after site_picture_url;

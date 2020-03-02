@@ -2,6 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-ui-timepicker-addon.js"></script>
+
 <form id="maintainForm" method="post" action="/authorizeSite/updateAuthorizeSite">
     <input type="hidden" name="id" value="${authorizeSite.id}"/>
     <div class="container_24 cf">
@@ -21,11 +24,22 @@
         <div class="grid_14">
             <input type="text" name="addressUrl" id="addressUrl" value="${authorizeSite.addressUrl}"/>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_5 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">结束时间：</label>
+        </div>
+        <div class="grid_14">
+            <input type="text" name="endTime" id="datepicker" value="${authorizeSite.endTime}"/>
+        </div>
     </div>
 </form>
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#datepicker").prop("readonly", true).datetimepicker({
+            timeFormat:"HH:mm:ss",
+        });
 
         $("#maintainForm").formValidate({
             rules:{

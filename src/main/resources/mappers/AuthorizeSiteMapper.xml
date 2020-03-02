@@ -5,6 +5,7 @@
         <id property="id" column="id"/>
         <result property="sitePictureUrl" column="site_picture_url"/>
         <result property="addressUrl" column="address_url" />
+        <result property="endTime" column="end_time" />
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -12,7 +13,7 @@
     </resultMap>
 
     <sql id="columns">
-        id, site_picture_url, address_url, create_user, create_date, update_user, update_date
+        id, site_picture_url, address_url, end_time, create_user, create_date, update_user, update_date
     </sql>
 
     <insert id="addAuthorizeSite" parameterType="com.mall.domain.AuthorizeSite">
@@ -20,9 +21,9 @@
             select LAST_INSERT_ID()
         </selectKey>
         INSERT INTO authorize_site
-        (id, site_picture_url, address_url, create_user, create_date)
+        (id, site_picture_url, address_url, end_time, create_user, create_date)
         VALUES
-        (#{id}, #{sitePictureUrl}, #{addressUrl}, #{createUser}, #{createDate})
+        (#{id}, #{sitePictureUrl}, #{addressUrl}, #{endTime}, #{createUser}, #{createDate})
     </insert>
 
     <update id="updateAuthorizeSite" parameterType="com.mall.domain.AuthorizeSite">
@@ -33,6 +34,9 @@
             </if>
             <if test="addressUrl != null and addressUrl != ''">
                 address_url = #{addressUrl},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser},
@@ -52,6 +56,11 @@
         </foreach>
     </delete>
 
+    <delete id="deleteUserAuthorizeSite">
+        DELETE FROM authorize_site
+        WHERE end_time <![CDATA[<=]]> now()
+    </delete>
+
     <select id="findAuthorizeSiteForList" resultMap="authorizeSiteMap">
         SELECT <include refid="columns"/> FROM authorize_site
     </select>
@@ -60,4 +69,11 @@
         SELECT <include refid="columns"/> FROM authorize_site
         WHERE id = #{id}
     </select>
+
+    <select id="findUserAuthorizeSiteForList" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+        ORDER BY create_date desc
+        limit 6
+    </select>
+
 </mapper>

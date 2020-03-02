@@ -2,6 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-ui-timepicker-addon.js"></script>
+
 <form id="maintainForm" method="post" action="/authorizeSite/addAuthorizeSite">
     <div class="container_24 cf">
         <div class="grid_5 label-right">
@@ -20,11 +23,22 @@
         <div class="grid_14">
             <input type="text" name="addressUrl" id="addressUrl" value=""/>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_5 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">结束时间：</label>
+        </div>
+        <div class="grid_14">
+            <input type="text" name="endTime" id="datepicker" value=""/>
+        </div>
     </div>
 </form>
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#datepicker").prop("readonly", true).datetimepicker({
+            timeFormat:"HH:mm:ss",
+        });
 
         $("#maintainForm").formValidate({
             rules:{
@@ -32,13 +46,19 @@
                     required:true,
                     minlength:1,
                     maxlength:200
+                },
+                "endTime": {
+                    required:true,
                 }
             },
             messages:{
                 "addressUrl":{
-                    required:"请输入连接地址",
+                    required:"请输入链接地址",
                     minlength:$.format("连接地址至少需要输入{0}个字符"),
                     minlength:$.format("连接地址最多需要输入{0}个字符"),
+                },
+                "endTime":{
+                    required:"请输入结束时间",
                 }
             },
             submitHandler: function(form) {

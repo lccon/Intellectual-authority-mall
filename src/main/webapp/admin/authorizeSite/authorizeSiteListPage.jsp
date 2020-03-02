@@ -24,6 +24,7 @@
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
                 {name : "sitePictureUrl", index:"sitePictureUrl", label:"图片", align:'center', sortable:false, width:'400', formatter:sitePictureUrlFormatter},
                 {name : "addressUrl",index : "addressUrl", label:'链接地址', sortable : false, width:'400'},
+                {name : "endTime",index : "endTime", label:'结束时间', sortable : false, width:'200'},
             ],
             multiselect : true,
             height:"492px",
@@ -58,7 +59,7 @@
         $("#addAuthorizeSite").click(function(){
             $('#authorizeSiteDialog').createDialog({
                 width: 650,
-                height: 300,
+                height: 460,
                 title:'新增站点信息',
                 url:'${path}/authorizeSite/gotoAddAuthorizeSitePage',
                 buttons: {
@@ -84,7 +85,7 @@
 
             $('#authorizeSiteDialog').createDialog({
                 width: 650,
-                height: 300,
+                height: 460,
                 title:'修改站点信息',
                 url:'${path}/authorizeSite/gotoUpdateAuthorizeSitePage?id='+selectedIds,
                 buttons: {

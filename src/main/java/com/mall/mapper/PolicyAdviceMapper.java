@@ -49,6 +49,8 @@ public interface PolicyAdviceMapper {
      * @return
      */
     PolicyAdvice getPolicyAdviceById(Long id);
-    int countnum();
-    List<PolicyAdvice>findByPage(HashMap<String,Object> map);
+
+    int countnum(Integer adviceCategory);
+
+    List<PolicyAdvice> findByPage(HashMap<String,Object> map);
 }
