@@ -108,6 +108,9 @@
             <if test="userId != null">
                 user_id = #{userId}
             </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
         </where>
         order by t.authorize_state desc, t.create_date desc, c.create_date desc
     </select>
@@ -122,15 +125,14 @@
         count(*)
         FROM authorize_company
         <where>
-            <if test="companyName != null and companyName != ''">
-                company_name LIKE concat(#{companyName},'%')
-            </if>
-            <if test="companyDescribe != null and companyDescribe != ''">
-                OR company_describe LIKE concat(#{companyDescribe},'%')
+            <if test="companyName != null and companyName != '' and companyDescribe != null and companyDescribe != ''">
+                (company_name LIKE concat(#{companyName},'%')
+                OR company_describe LIKE concat(#{companyDescribe},'%'))
             </if>
             <if test="businessCategory != null">
                 and business_category = #{businessCategory}
             </if>
+            and state = 2
         </where>
     </select>
 
@@ -148,15 +150,15 @@
         )t
         on c.id = t.module_type_id
         <where>
-            <if test="authorizeCompanyVO.companyName != null and authorizeCompanyVO.companyName != ''">
-                company_name LIKE concat(#{authorizeCompanyVO.companyName},'%')
-            </if>
-            <if test="authorizeCompanyVO.companyDescribe != null and authorizeCompanyVO.companyDescribe != ''">
-                OR company_describe LIKE concat(#{authorizeCompanyVO.companyDescribe},'%')
+            <if test="authorizeCompanyVO.companyName != null and authorizeCompanyVO.companyName != ''
+            and authorizeCompanyVO.companyDescribe != null and authorizeCompanyVO.companyDescribe != ''">
+                (company_name LIKE concat(#{authorizeCompanyVO.companyName},'%')
+                OR company_describe LIKE concat(#{authorizeCompanyVO.companyDescribe},'%'))
             </if>
             <if test="authorizeCompanyVO.businessCategory != null">
                 and business_category = #{authorizeCompanyVO.businessCategory}
             </if>
+            and state = 2
         </where>
         order by t.create_date desc, c.create_date desc
         <if test="start!=null and size!=null">
@@ -169,8 +171,9 @@
         select
         <include refid="columns" />
         FROM authorize_company
-        WHERE company_name LIKE concat(#{companyName},'%')
-        OR company_describe LIKE concat(#{companyDescribe},'%')
+        WHERE state = 2
+        AND (company_name LIKE concat(#{companyName},'%')
+        OR company_describe LIKE concat(#{companyDescribe},'%'))
     </select>
 
     <select id="findAuthorizeCompanyByIds" resultMap="authorizeCompanyMap">

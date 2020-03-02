@@ -18,6 +18,8 @@ public class AuthorizeCompanyVO extends BaseVO {
     private String companyDescribe;
     /** 用户id */
     private Long userId;
+    /** 状态 */
+    private Integer state;
 
     public Integer getBusinessCategory() {
         return businessCategory;
@@ -49,5 +51,13 @@ public class AuthorizeCompanyVO extends BaseVO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

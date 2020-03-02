@@ -21,6 +21,8 @@ public class IntellectualTaskVO extends BaseVO {
     /** 用户id */
     private Long userId;
 
+    private Integer state;
+
     public Integer getProductCategory() {
         return productCategory;
     }
@@ -59,5 +61,13 @@ public class IntellectualTaskVO extends BaseVO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

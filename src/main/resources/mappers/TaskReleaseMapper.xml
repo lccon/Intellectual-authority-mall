@@ -119,6 +119,7 @@
         )t
         on r.id = t.module_type_id
         where task_category = #{task_category}
+        AND state = 2
         order by t.create_date desc, r.create_date desc
     </select>
 
@@ -133,11 +134,9 @@
         count(*)
         FROM task_release
         <where>
-            <if test="purpose != null and purpose != ''">
-                purpose LIKE concat(#{purpose},'%')
-            </if>
-            <if test="detailedDesc != null and detailedDesc != ''">
-                OR detailed_desc LIKE concat(#{detailedDesc},'%')
+            <if test="purpose != null and purpose != '' and detailedDesc != null and detailedDesc != ''">
+                (purpose LIKE concat(#{purpose},'%')
+                OR detailed_desc LIKE concat(#{detailedDesc},'%'))
             </if>
             <if test="taskCategory != null">
                 and task_category = #{taskCategory}
@@ -148,6 +147,7 @@
             <if test="industryBelongs != null">
                 and industry_belongs = #{industryBelongs}
             </if>
+            and state = 2
         </where>
     </select>
 
@@ -165,11 +165,10 @@
         )t
         on r.id = t.module_type_id
         <where>
-            <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''">
-                and purpose LIKE concat(#{taskReleaseVO.purpose},'%')
-            </if>
-            <if test="taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
-                OR detailed_desc LIKE concat(#{taskReleaseVO.detailedDesc},'%')
+            <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''
+                and taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
+                (purpose LIKE concat(#{taskReleaseVO.purpose},'%')
+                OR detailed_desc LIKE concat(#{taskReleaseVO.detailedDesc},'%'))
             </if>
             <if test="taskReleaseVO.taskCategory != null">
                 and task_category = #{taskReleaseVO.taskCategory}
@@ -180,6 +179,7 @@
             <if test="taskReleaseVO.industryBelongs != null">
                 and industry_belongs = #{taskReleaseVO.industryBelongs}
             </if>
+            and state = 2
         </where>
         order by t.create_date desc, r.create_date desc
         <if test="start!=null and size!=null">
@@ -191,8 +191,9 @@
         select
         <include refid="columns" />
         FROM task_release
-        WHERE purpose LIKE concat(#{purpose},'%')
-        OR detailed_desc LIKE concat(#{detailedDesc},'%')
+        WHERE state = 2
+        AND (purpose LIKE concat(#{purpose},'%')
+        OR detailed_desc LIKE concat(#{detailedDesc},'%'))
     </select>
 
     <select id="findTaskReleaseByIds" resultMap="taskReleaseMap">

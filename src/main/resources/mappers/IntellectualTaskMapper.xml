@@ -119,11 +119,9 @@
         )t
         on it.id = t.module_type_id
         <where>
-            <if test="productName != null and productName != ''">
-                product_name LIKE concat(#{productName},'%')
-            </if>
-            <if test="productBrief != null and productBrief != ''">
-                OR product_brief LIKE concat(#{productBrief},'%')
+            <if test="productName != null and productName != '' and productBrief != null and productBrief != ''">
+                (product_name LIKE concat(#{productName},'%')
+                OR product_brief LIKE concat(#{productBrief},'%'))
             </if>
             <if test="productCategory != null">
                 and product_category = #{productCategory}
@@ -133,6 +131,9 @@
             </if>
             <if test="userId != null">
                 and user_id = #{userId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
             </if>
         </where>
         order by t.authorize_state desc, t.create_date desc, it.create_date desc
@@ -149,11 +150,9 @@
         count(*)
         FROM intellectual_task
         <where>
-            <if test="productName != null and productName != ''">
-                product_name LIKE concat(#{productName},'%')
-            </if>
-            <if test="productBrief != null and productBrief != ''">
-                OR product_brief LIKE concat(#{productBrief},'%')
+            <if test="productName != null and productName != '' and productBrief != null and productBrief != ''">
+                (product_name LIKE concat(#{productName},'%')
+                OR product_brief LIKE concat(#{productBrief},'%'))
             </if>
             <if test="productCategory != null">
                 and product_category = #{productCategory}
@@ -161,6 +160,7 @@
             <if test="industryCategory != null">
                 and industry_category = #{industryCategory}
             </if>
+            and state = 2
         </where>
     </select>
 
@@ -178,11 +178,10 @@
         )t
         on it.id = t.module_type_id
         <where>
-            <if test="intellectualTaskVO.productName != null and intellectualTaskVO.productName != ''">
-                product_name LIKE concat(#{intellectualTaskVO.productName},'%')
-            </if>
-            <if test="intellectualTaskVO.productBrief != null and intellectualTaskVO.productBrief != ''">
-                OR product_brief LIKE concat(#{intellectualTaskVO.productBrief},'%')
+            <if test="intellectualTaskVO.productName != null and intellectualTaskVO.productName != ''
+                and intellectualTaskVO.productBrief != null and intellectualTaskVO.productBrief != ''">
+                (product_name LIKE concat(#{intellectualTaskVO.productName},'%')
+                OR product_brief LIKE concat(#{intellectualTaskVO.productBrief},'%'))
             </if>
             <if test="intellectualTaskVO.productCategory != null">
                 and product_category = #{intellectualTaskVO.productCategory}
@@ -190,6 +189,7 @@
             <if test="intellectualTaskVO.industryCategory != null">
                 and industry_category = #{intellectualTaskVO.industryCategory}
             </if>
+            and state = 2
         </where>
         order by t.create_date desc, it.create_date desc
         <if test="start!=null and size!=null">
@@ -201,8 +201,9 @@
         select
         <include refid="columns" />
         FROM intellectual_task
-        WHERE product_name LIKE concat(#{productName},'%')
-        OR product_brief LIKE concat(#{productBrief},'%')
+        WHERE state = 2
+        AND (product_name LIKE concat(#{productName},'%')
+        OR product_brief LIKE concat(#{productBrief},'%'))
     </select>
 
     <select id="findIntellectualTaskByIds" resultMap="intellectualTaskMap">

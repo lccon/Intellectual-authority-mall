@@ -40,10 +40,14 @@ public class IndexController {
 
     @RequestMapping("/")
     public String main(ModelMap map) {
-        List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findIntellectualTaskForList(new IntellectualTaskVO());
+        IntellectualTaskVO intellectualTaskVO = new IntellectualTaskVO();
+        intellectualTaskVO.setState(2);
+        List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findIntellectualTaskForList(intellectualTaskVO);
         List<TaskRelease> TaskReleaselist=taskReleaseService.getTaskReleaseByTask_category(1);
         List<TaskRelease> TaskReleaselist1=taskReleaseService.getTaskReleaseByTask_category(2);
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList(new AuthorizeCompanyVO());
+        AuthorizeCompanyVO authorizeCompanyVO = new AuthorizeCompanyVO();
+        authorizeCompanyVO.setState(2);
+        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList(authorizeCompanyVO);
         List<PolicyAdvice> PolicyAdvicelist=policyAdviceService.findPolicyAdviceForList();
         List<AuthorizeSite> AuthorizeSitelist=authorizeSiteService.findAuthorizeSiteForList();
         map.put("AuthorizeSite",AuthorizeSitelist);
@@ -55,16 +59,6 @@ public class IndexController {
         return "/index";
     }
 
-    @RequestMapping("/find")
-    public String find(String str1,ModelMap map){
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findByAuthorizeCompany(str1,str1);
-        List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findByintellectualTask(str1,str1);
-        List<TaskRelease> TaskReleaselist=taskReleaseService.findBytaskRelease(str1,str1);
-        map.put("IntellectualTask",IntellectualTasklist);
-        map.put("TaskRelease",TaskReleaselist);
-        map.put("AuthorizeCompany",AuthorizeCompanylist);
-        return "/findpage";
-    }
     @RequestMapping("/addLeaveMessage")
     @ResponseBody
     public LeaveMessage addLeaveMessage(LeaveMessage leaveMessage) {
