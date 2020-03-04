@@ -53,7 +53,7 @@
                 <li id="li1"><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                 <li id="li1"><a href="/intellectualTask/findpageIntellectualTaskForList"> 知识产权商城</a></li>
                 <li id="li1"><a href="/authorizeCompany/findpageauthorizeCompanyForList"> 代办公司</a></li>
-                <li id="li1"><a href="/taskRelease/findpageTaskReleaseForList"> 任务发布</a></li>
+                <li id="li1"><a href="/post-message"> 任务发布</a></li>
                 <li id="li1"><a href="/policyAdvice/findpagepolicyAdviceForList"> 政策资讯</a></li>
                 <li id="li1"><a href="/about.jsp"><span class="glyphicon glyphicon-question-sign"></span> 关于我们</a></li>
             </ul>

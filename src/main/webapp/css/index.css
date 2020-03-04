@@ -1,0 +1,89 @@
+.model {
+    height: 500px;
+    background-color: #fff;
+}
+
+.board h2 {
+    border-bottom: 1px solid #f3f3f3;
+    height: 37px;
+    padding-top: 8px;
+    margin: 2px 20px 4px 0;
+    font-size: 16px;
+    color: #ff552e;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.board h2 a {
+    color: #ff552e;
+    font-weight: 700;
+}
+
+.tubiao {
+    width: 40px;
+    height: 40px;
+}
+
+.bt {
+    line-height: 30px;
+    font-size: 14px;
+    display: inline-block;
+    color: #0E8ED8;
+}
+
+.shu {
+    width: 20px;
+    height: 120px;
+    float: left;
+}
+
+.shu a {
+    color: #f46;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tit {
+    background-color: #008dff;
+    padding: 0 20px 0 30px;
+    height: 62px;
+    line-height: 62px;
+}
+
+.tit a {
+    font-size: 20px;
+    color: #fff;
+}
+
+.com-title {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.com-title span em {
+    font-size: 36px;
+    vertical-align: middle;
+}
+
+.com-title span:before {
+    left: -180px;
+    background: url(../img/bg_tl.png) no-repeat;
+}
+
+.com-title span:after {
+    right: -180px;
+    background: url(./img/bg_tr.png) no-repeat;
+}
+
+.leftguanggao {
+    position: fixed;
+    left: 0px;
+    top: 30%;
+    z-index: 999;
+}
+.rightguanggao{
+    position: fixed;
+    right: 0px;
+    top:30%;
+    z-index: 999;
+}

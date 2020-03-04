@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 
 <body>
     <jsp:include page="head.jsp"/>
+	<div class="container">
 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -19,7 +20,7 @@ pageEncoding="UTF-8"%>
 			<li data-target="#myCarousel" data-slide-to="5"></li>
 		</ol>
 		<div class="carousel-inner">
-			<c:forEach items="${AuthorizeSite}" var="u" begin="0" end="0" step="1">
+			<c:forEach items="${AuthorizeSite}" var="u" begin="1" end="1" step="1">
 				<div class="item active" style="background:#223240">
 					<a href="http://${u.addressUrl}" target="_blank">
 						<img id="zauthimg${u.id}" src="" alt="第一张">
@@ -31,7 +32,7 @@ pageEncoding="UTF-8"%>
 					</a>
 				</div>
 			</c:forEach>
-			<c:forEach items="${AuthorizeSite}" var="u" begin="1" end="5" step="1">
+			<c:forEach items="${AuthorizeSite}" var="u" begin="2" end="6" step="1">
 				<div class="item" style="background:#223240">
 					<a href="http://${u.addressUrl}" target="_blank">
 						<img id="authimg${u.id}" src="" alt="">
@@ -54,7 +55,7 @@ pageEncoding="UTF-8"%>
 			<span class="glyphicon glyphicon-chevron-right"></span>
 		</a>
 	</div>
-
+	</div>
 
 	<div class="span">
 		<div class="container">
@@ -88,396 +89,413 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 
-
-
-
-
-	<table>
+	<!--中心显示区域-->
+	<div class="leftguanggao">
 		<div class="row">
-			<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-			<tr class="top-cap">
-				<th>&nbsp&nbsp&nbsp&nbsp&nbsp买卖</th>
-				<th>&nbsp&nbsp&nbsp&nbsp&nbsp代办</th>
-				<th>&nbsp&nbsp&nbsp&nbsp&nbsp买方最新</th>
-				<th>&nbsp&nbsp&nbsp&nbsp&nbsp卖方最新</th>
-			</tr>
-		</div>
-		</div>
-		<tr>
-			<th>
-				<c:forEach items="${IntellectualTask}" var="u" begin="0" end="4" step="1">
-
-				<div class="pro-box">
-
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-							<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
-								<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
-							</a>
-							<script>
-                                var url1="${u.productPictureUrl}".split(",");
-                                var img1=document.getElementById("cap${u.id}");
-                                img1.src="${pageContext.request.contextPath}"+url1[0];
-							</script>
-							<c:if test="${u.roofPlaceState==2}">
-								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-							</c:if>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
-						<p id="desc">${u.productBrief}</p>
-						<p class="price">价格面议</p>
-					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
-				</c:forEach>
-
-			</th>
-
-
-			<th>
-				<c:forEach items="${AuthorizeCompany}" var="i" begin="0" end="4" step="1">
-				<div class="pro-box">
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-							<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
-								<img src="" alt="" id="zzz${i.id}" style="width: 153px;height: 153px;"></img>
-								<script>
-                                        var url2="${i.companyPictureUrl}".split(",");
-                                        var img2=document.getElementById("zzz${i.id}");
-                                        img2.src="${pageContext.request.contextPath}"+url2[0];
-								</script>
-							</a>
-							<c:if test="${i.roofPlaceState==2}">
-								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-							</c:if>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
-						<p id="desc">${i.companyDescribe}</p>
-					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
-				</c:forEach>
-			</th>
-
-
-
-			<th>
-				<c:forEach items="${TaskRelease}" var="o" begin="0" end="4" step="1">
-					<div class="pro-box">
-				<ul>
-				<li class="media" id="product">
-					<div class="row">
-						<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-							<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
-								<img src="img/tab1-1.png" alt="" id="cap" style="width: 153px;height: 153px;"></img>
-							</a>
-							<c:if test="${o.roofPlaceState==2}">
-								<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-							</c:if>
-						</div>
-					<div class="media-body" id="cap">
-						<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
-						<p id="desc">${o.detailedDesc}</p>
-					</div>
-				</div>
-				</li>
-			</ul>
-		</div>
-				</c:forEach>
-
-			</th>
-
-
-
-			<th>
-				<c:forEach items="${TaskRelease1}" var="o" begin="0" end="4" step="1">
-					<div class="pro-box">
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-										<a href="/taskRelease/getTaskReleaseById?id=${o.id}" class="thumbnail">
-											<img src="img/tab1-2.jpg" alt="" id="cap" style="width: 153px;height: 153px;"></img>
-										</a>
-										<c:if test="${o.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/taskRelease/getTaskReleaseById?id=${o.id}">${o.purpose}</a>
-										<p id="desc">${o.detailedDesc}</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-
-			</th>
-		</tr>
-
-
-
-
-
-<!--复制的数据后期可删除-->
-
-
-<!--加入新闻模块-->
-		<tr>
-			<th>
-				<c:forEach items="${IntellectualTask}" var="u" begin="5" end="5" step="1">
-
-					<div class="pro-box">
-
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
-											<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
-										</a>
-										<script>
-                                            var url1="${u.productPictureUrl}".split(",");
-                                            var img1=document.getElementById("cap${u.id}");
-                                            img1.src="${pageContext.request.contextPath}"+url1[0];
-										</script>
-										<c:if test="${u.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
-										<p id="desc">${u.productBrief}</p>
-										<p id="price">价格面议</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-
-			</th>
-
-
-			<th>
-				<c:forEach items="${AuthorizeCompany}" var="i" begin="0" end="0" step="1">
-					<div class="pro-box">
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
-											<img src="" alt="" id="bza${i.id}" style="width: 153px;height: 153px;"></img>
-											<script>
-                                                var url2="${i.companyPictureUrl}".split(",");
-                                                var img2=document.getElementById("bza${i.id}");
-                                                img2.src="${pageContext.request.contextPath}"+url2[0];
-											</script>
-										</a>
-										<c:if test="${i.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
-										<p id="desc">${i.companyDescribe}</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-			</th>
-
-
-
-			
-			<th class="top-cap-new">
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp新闻模块
-			</th>
-		</tr>
-
-<!--复制的数据后期可删除-->
-		<tr>
-			<th>
-				<c:forEach items="${IntellectualTask}" var="u" begin="6" end="10" step="1">
-
-					<div class="pro-box">
-
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/intellectualTask/getIntellectualTaskById?id=${u.id}" class="thumbnail">
-											<img src="" alt="" id="cap${u.id}" style="width: 153px;height: 153px;"></img>
-										</a>
-										<script>
-                                            var url1="${u.productPictureUrl}".split(",");
-                                            var img1=document.getElementById("cap${u.id}");
-                                            img1.src="${pageContext.request.contextPath}"+url1[0];
-										</script>
-										<c:if test="${u.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName}</a>
-										<p id="desc">${u.productBrief}</p>
-										<p id="price">价格面议</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-
-			</th>
-
-
-			<th>
-				<c:forEach items="${AuthorizeCompany}" var="i" begin="1" end="5" step="1">
-					<div class="pro-box">
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}" class="thumbnail">
-											<img src="" alt="" id="boc${i.id}" style="width: 153px;height: 153px;"></img>
-											<script>
-                                                var url2="${i.companyPictureUrl}".split(",");
-                                                var img2=document.getElementById("boc${i.id}");
-                                                img2.src="${pageContext.request.contextPath}"+url2[0];
-											</script>
-										</a>
-										<c:if test="${i.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/authorizeCompany/getAuthorizeCompanyById?id=${i.id}">${i.companyName}</a>
-										<p id="desc">${i.companyDescribe}</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-			</th>
-
-
-
-			<th>
-				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="4" step="1">
-					<div class="pro-box">
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/policyAdvice/getPolicyAdviceById?id=${p.id}" class="thumbnail">
-											<img src="" alt="" id="zpolicy${p.id}" style="width: 153px;height: 153px;"></img>
-											<script>
-                                                var url3="${p.advicePictureUrl}".split(",");
-                                                var img3=document.getElementById("zpolicy${p.id}");
-                                                img3.src="${pageContext.request.contextPath}"+url3[0];
-											</script>
-										</a>
-										<c:if test="${p.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>
-										<p id="desc">${p.adviceSubtitle}</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-			</th>
-
-
-
-			<th>
-				<c:forEach items="${PolicyAdvice}" var="p" begin="0" end="4" step="1">
-					<div class="pro-box">
-						<ul>
-							<li class="media" id="product">
-								<div class="row">
-									<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-
-										<a href="/policyAdvice/getPolicyAdviceById?id=${p.id}" class="thumbnail">
-											<img src="" alt="" id="policy${p.id}" style="width: 153px;height: 153px;"></img>
-											<script>
-                                                var url3="${p.advicePictureUrl}".split(",");
-                                                var img3=document.getElementById("policy${p.id}");
-                                                img3.src="${pageContext.request.contextPath}"+url3[0];
-											</script>
-										</a>
-										<c:if test="${p.roofPlaceState==2}">
-											<div class="new-item-badge" style="top:14px; left: 12px;">置顶信息</div>
-										</c:if>
-									</div>
-									<div class="media-body" id="cap">
-										<a class="media-heading"  href="/policyAdvice/getPolicyAdviceById?id=${p.id}">${p.adviceTitle}</a>
-										<p id="desc">${p.adviceSubtitle}</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
-			</th>
-		</tr>
-
-
-
-		
-
-
-
-
-		
-	</table>
-
-
-
-
-
-<div class="tab3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6">
-				<img src="img/tab3.png" class="auto img-responsive center-block" alt="">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+				<a href="#" class="thumbnail">
+					<img src="img/left1.gif" alt="" >
+				</a>
 			</div>
-			<div class="text col-md-6 col-sm-6">
-				<h3>公司介绍</h3>
-				<p>公司公司公司公司</p>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+				<a href="#" class="thumbnail">
+					<img src="img/left1.gif" alt="" >
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+				<a href="#" class="thumbnail">
+					<img src="img/left1.gif" alt="" >
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+				<a href="#" class="thumbnail">
+					<img src="img/left1.gif" alt="" >
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+				<a href="#" class="thumbnail">
+					<img src="img/left1.gif" alt="" >
+				</a>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!--返回顶部和反馈意见按钮-->
+	<div class="container">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			<div class="model">
+				<div class="board">
+					<h2>
+						<a href="#">知识产权商城</a>
+					</h2>
+				</div>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">发明</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">实用新型</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">外观</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">商标</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">版权</a></span>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			<div class="model">
+				<div class="board">
+					<h2>
+						<a href="#">代办机构</a>
+					</h2>
+				</div>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">申请服务</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">证书交易</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">技术成果转移</a></span><br>
+				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">法律咨询</a></span><br>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			<div class="model">
+				<div class="board">
+					<h2>
+						<a href="#">最新发布卖</a>
+					</h2>
+				</div>
+				<div class="shu"><a href="javascript:void(0);">今日最新</a></div>
+				<div class="layui-carousel" id="test1" style="float: right;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本周最新</a></div>
+				<div class="layui-carousel" id="test2" style="float: right;margin-top: 20px;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本月最新</a></div>
+				<div class="layui-carousel" id="test3" style="float: right;margin-top: 20px;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+
+				<script>
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test1'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test2'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+
+
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test3'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+				</script>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			<div class="model">
+				<div class="board">
+					<h2>
+						<a href="#">最新需求买</a>
+					</h2>
+				</div>
+				<div class="shu"><a href="javascript:void(0);">今日最新</a></div>
+				<div class="layui-carousel" id="test4" style="float: right;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本周最新</a></div>
+				<div class="layui-carousel" id="test5" style="float: right;margin-top: 20px;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本月最新</a></div>
+				<div class="layui-carousel" id="test6" style="float: right;margin-top: 20px;">
+					<div carousel-item>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+						<div>
+							<span><a class="bt" href="#">申请服务</a></span><br>
+							<span><a class="bt" href="#">证书交易</a></span><br>
+							<span><a class="bt" href="#">技术成果转移</a></span><br>
+						</div>
+					</div>
+				</div>
+				<!-- 条目中可以是任意内容，如：<img src=""> -->
+
+				<script>
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test4'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test5'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+
+
+                    layui.use('carousel', function () {
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test6'
+                            , width: '90%'
+                            , height: '130px'
+                            , arrow: 'none' //始终显示箭头
+                            , anim: 'updown' //切换动画方式
+                        });
+                    });
+				</script>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="margin-top: 20px">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<a href="#" class="thumbnail">
+					<img src="img/guanggao1.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<a href="#" class="thumbnail">
+					<img src="img/guangao4.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<a href="#" class="thumbnail">
+					<img src="img/guanggao3.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<a href="#" class="thumbnail">
+					<img src="img/guanggao3.jpg">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="margin-top:30px;">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="model">
+					<div class="tit">
+						<h2>
+							<a href="#"><strong>新闻资讯</strong></a>
+						</h2>
+					</div>
+					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">发明</a></span><br>
+					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">实用新型</a></span><br>
+					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">外观</a></span><br>
+					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">商标</a></span><br>
+					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">版权</a></span>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="model">
+					<div class="tit" style="background-color: #5367af;">
+						<h2>
+							<a href="#"><strong>关于我们</strong></a>
+						</h2>
+					</div>
+					<div>
+						<h3 style="text-align: center;margin-top:20px;">公司介绍</h3>
+
+						<p style="margin-top:20px;">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司
+							公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司
+							公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司
+							公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司公司
+							公司公司公司公司公司公司公司公司公司公司公司公司
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="margin-top:30px;">
+		<div class="com-title">
+			<span>
+				<em>友情链接</em>
+			</span>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+				<a href="#" class="thumbnail">
+					<img src="img/youqing.jpg">
+				</a>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	<!--返回顶部和反馈意见按钮-->
 <div id='sidebar-buttons'>
 	<a id='iede' href='javascript:;' title='意见反馈' ><span class="glyphicon glyphicon-edit"></span></a>
 	<a id='back-to-top' href='#' title='返回顶部'><span class="glyphicon glyphicon-menu-up"></span></a>

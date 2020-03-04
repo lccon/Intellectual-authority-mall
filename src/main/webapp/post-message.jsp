@@ -35,8 +35,8 @@ pageEncoding="UTF-8"%>
                         <c:if test="${FreeMessageNum>0}">
                         <ul>
                             <li><a href="/intellectualTask/IntellectualTaskPost" >知识产权信息（供方）</a></li>
-                            <li><a href="/taskRelease/TaskReleasePost">代办公司信息（中介方）</a></li>
-                            <li><a href="/authorizeCompany/AuthorizeCompanyPost" >需求任务发布（需方）</a></li>
+                            <li><a href="/authorizeCompany/AuthorizeCompanyPost">代办公司信息（中介方）</a></li>
+                            <li><a href="/taskRelease/TaskReleasePost" >需求任务发布（需方）</a></li>
                         </ul>
                         </c:if>
                         <c:if test="${FreeMessageNum==0}">
