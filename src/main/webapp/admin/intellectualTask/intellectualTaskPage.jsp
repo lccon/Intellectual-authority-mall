@@ -134,9 +134,17 @@
         function productPictureFormatter(el, options, rowData) {
             if(rowData.productPictureUrl != null) {
                 var imgs = rowData.productPictureUrl.split(",");
-                return '<c:forEach begin="0" end="2" step="1" var="img">'+
-                            '<img src="'+imgs[${img}]+'" width="100" height="100">'+' '+
-                        '</c:forEach>';
+                var imgInfo = '';
+                $.each(imgs,function(i,j){
+                    if (j != '') {
+                        imgInfo = imgInfo + '<img src="' + j + '" width="100" height="100"/>' + ' '
+                    }
+                });
+                if (imgInfo != '') {
+                    return imgInfo;
+                } else {
+                    return "";
+                }
             }
             return "";
         }

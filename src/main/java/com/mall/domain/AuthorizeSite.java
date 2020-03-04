@@ -19,6 +19,8 @@ public class AuthorizeSite extends BaseDomain{
     private String addressUrl;
     /** 结束时间 */
     private String endTime;
+    /** 站点类型 */
+    private Integer siteType;
 
     public Long getId() {
         return id;
@@ -50,5 +52,13 @@ public class AuthorizeSite extends BaseDomain{
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public Integer getSiteType() {
+        return siteType;
+    }
+
+    public void setSiteType(Integer siteType) {
+        this.siteType = siteType;
     }
 }

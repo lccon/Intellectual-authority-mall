@@ -130,7 +130,7 @@
             <label class="form-lb1">图片上传：</label>
         </div>
         <div class="grid_1">
-            <input type="file" multiple="multiple" onchange="uploadImage(this);" class="text-input">
+            <input type="file" multiple="multiple" name="myFile" onchange="uploadImage(this);" class="text-input">
             <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
         </div>
         <div class="clearLine"></div>
@@ -181,7 +181,10 @@
                     positiveInteger:true,
                     minlength:1,
                     maxlength:10
-                }
+                }/*,
+                "myFile": {
+                    required:true,
+                }*/
             },
             messages:{
                 "productName":{
@@ -209,21 +212,27 @@
                     positiveInteger:"请输入正整数",
                     minlength:$.format("置顶天数至少需要输入{0}个字符"),
                     minlength:$.format("置顶天数最多需要输入{0}个字符"),
-                }
+                }/*,
+                "myFile": {
+                    required:"请上传图片",
+                }*/
             },
             submitHandler: function(form) {
                 $(form).ajaxSubmit({
                     success: function(data){
-                        if(data != null && !data.id){
+                        var reg = /<pre.+?>(.+)<\/pre>/g;
+                        var result = data.match(reg);
+                        data = RegExp.$1;
+                        if(data != null && data){
+                            $("#intellectualTaskList").trigger("reloadGrid");
+                            $.messageBox({message:"新增成功!"});
+                            $("#intellectualTaskDialog").dialog("close");
+                        } else {
                             $.messageBox({
                                 message:"新增失败",
                                 level: "error"
                             });
-                            return;
                         }
-                        $("#intellectualTaskList").trigger("reloadGrid");
-                        $.messageBox({message:"新增成功!"});
-                        $("#intellectualTaskDialog").dialog("close");
                     },
                     error: function(data){
                         alert("提交数据发生错误！");
