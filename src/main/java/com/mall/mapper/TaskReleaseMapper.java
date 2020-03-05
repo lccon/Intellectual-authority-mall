@@ -4,6 +4,7 @@ import com.mall.domain.TaskRelease;
 import com.mall.vo.TaskReleaseVO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,4 +59,6 @@ public interface TaskReleaseMapper {
     List<TaskRelease> findTaskReleaseByIds(@Param("releaseIds") List<Long> releaseIds);
 
     void updateBrowseVolume(Long id);
+
+    List<TaskRelease> findTaskPeriodDataForList(@Param("taskCategory") Integer taskCategory, @Param("startTime") Date startTime, @Param("endTime") Date endTime);
 }

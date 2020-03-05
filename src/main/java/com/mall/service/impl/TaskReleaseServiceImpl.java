@@ -6,14 +6,13 @@ import com.mall.component.ThreadVariable;
 import com.mall.constant.CommonConstants;
 import com.mall.domain.*;
 import com.mall.enums.ModuleTypeEnum;
-import com.mall.enums.RoofPlaceStateEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.TaskReleaseMapper;
 import com.mall.service.BusinessCollectedService;
 import com.mall.service.RoofPlaceService;
 import com.mall.service.TaskReleaseService;
-import com.mall.utils.StringUtil;
+import com.mall.utils.DateUtil;
 import com.mall.vo.TaskReleaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,6 +150,29 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
             }
         } catch (Exception e) {
             throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
+    public List<TaskRelease> findTaskPeriodDataForList(Integer taskCategory, Integer periodType) {
+        if (taskCategory == null) {
+            throw new BusinessValidationException("任务分类不能为空!");
+        }
+        if (periodType == null) {
+            throw new BusinessValidationException("时间区间类型不能为空!");
+        }
+        try {
+            Date startTime = null;
+            if (CommonConstants.ONE_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+            } else if (CommonConstants.SEVEN_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.SEVEN);
+            } else if (CommonConstants.MONTH_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH);
+            }
+            return taskReleaseMapper.findTaskPeriodDataForList(taskCategory, startTime, new Date());
+        } catch (Exception e) {
+            throw new ServiceValidationException("获取任务发布列表出错!", e);
         }
     }
 

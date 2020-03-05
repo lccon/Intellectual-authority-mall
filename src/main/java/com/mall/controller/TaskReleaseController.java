@@ -134,4 +134,13 @@ public class TaskReleaseController {
         taskReleaseService.addTaskRelease(taskRelease);
         return "/usercenter";
     }
+
+    @RequestMapping("/findTaskPeriodDataForList")
+    public String findTaskPeriodDataForList(@RequestParam(value = "taskCategory") Integer taskCategory,
+                                            @RequestParam(value = "periodType") Integer periodType,
+                                            ModelMap modelMap) {
+        List<TaskRelease> taskReleases = taskReleaseService.findTaskPeriodDataForList(taskCategory, periodType);
+        modelMap.put("taskReleases", taskReleases);
+        return "";
+    }
 }

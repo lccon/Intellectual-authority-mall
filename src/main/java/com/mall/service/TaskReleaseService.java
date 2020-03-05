@@ -56,4 +56,6 @@ public interface TaskReleaseService {
     List<TaskRelease> findTaskReleaseByIds(List<Long> releaseIds);
 
     void updateBrowseVolume(Long id, Long userId);
+
+    List<TaskRelease> findTaskPeriodDataForList(Integer taskCategory, Integer periodType);
 }
