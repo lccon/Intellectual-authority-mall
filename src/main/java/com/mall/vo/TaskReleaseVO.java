@@ -23,6 +23,8 @@ public class TaskReleaseVO extends BaseVO {
     /** 用户id */
     private Long userId;
 
+    private Integer periodType;
+
     public Integer getTaskCategory() {
         return taskCategory;
     }
@@ -69,5 +71,13 @@ public class TaskReleaseVO extends BaseVO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getPeriodType() {
+        return periodType;
+    }
+
+    public void setPeriodType(Integer periodType) {
+        this.periodType = periodType;
     }
 }

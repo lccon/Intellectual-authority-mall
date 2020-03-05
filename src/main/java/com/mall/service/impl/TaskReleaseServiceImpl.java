@@ -199,6 +199,18 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
 
     @Override
     public pagebean<TaskRelease> findByPage(int currentPage, TaskReleaseVO taskReleaseVO) {
+        Date startTime = null;
+        Date endTime = null;
+        if (taskReleaseVO.getPeriodType() != null) {
+            if (CommonConstants.ONE_PERIOD.equals(taskReleaseVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+            } else if (CommonConstants.SEVEN_PERIOD.equals(taskReleaseVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.SEVEN);
+            } else if (CommonConstants.MONTH_PERIOD.equals(taskReleaseVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH);
+            }
+            endTime = new Date();
+        }
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<TaskRelease> pageBean = new pagebean<TaskRelease>();
 
@@ -221,6 +233,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
         map.put("taskReleaseVO", taskReleaseVO);
+        map.put("startTime", startTime);
+        map.put("endTime", endTime);
         //封装每页显示的数据
         List<TaskRelease> lists = taskReleaseMapper.findByPage(map);
         handleTaskRelease(lists);

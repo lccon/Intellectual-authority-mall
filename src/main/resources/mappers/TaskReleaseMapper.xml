@@ -179,6 +179,12 @@
             <if test="taskReleaseVO.industryBelongs != null">
                 and industry_belongs = #{taskReleaseVO.industryBelongs}
             </if>
+            <if test="startTime != null">
+                and create_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                and create_date <![CDATA[<=]]> #{endTime}
+            </if>
             and state = 2
         </where>
         order by t.create_date desc, r.create_date desc
