@@ -35,3 +35,4 @@ ALTER TABLE policy_advice ADD COLUMN user_id int(11) DEFAULT 0 COMMENT '用户id
 
 -- 轮播图结束时间
 ALTER TABLE authorize_site ADD COLUMN end_time datetime DEFAULT NULL COMMENT '结束时间' after site_picture_url;
+ALTER TABLE authorize_site ADD COLUMN site_type tinyint(1) DEFAULT NULL COMMENT '站点类型' after end_time;

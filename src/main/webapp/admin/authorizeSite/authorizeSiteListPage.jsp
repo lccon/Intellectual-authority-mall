@@ -22,7 +22,8 @@
             datatype : "local",
             colModel : [
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
-                {name : "sitePictureUrl", index:"sitePictureUrl", label:"图片", align:'center', sortable:false, width:'400', formatter:sitePictureUrlFormatter},
+                {name : "siteType",index : "siteType", label:'广告所属分类', sortable : false, align:'center', width:'200', formatter:siteTypeFormatter},
+                {name : "sitePictureUrl", index:"sitePictureUrl", label:"图片", align:'center', sortable:false, width:'200', formatter:sitePictureUrlFormatter},
                 {name : "addressUrl",index : "addressUrl", label:'链接地址', sortable : false, width:'400'},
                 {name : "endTime",index : "endTime", label:'结束时间', sortable : false, width:'200'},
             ],
@@ -32,6 +33,21 @@
             onSelectRow : function() {
             }
         });
+
+        function siteTypeFormatter(el, options, rowData) {
+            if(rowData.siteType == 1) {
+                return "轮播图广告位";
+            } else if (rowData.siteType == 2) {
+                return "中部图片广告位";
+            } else if (rowData.siteType == 3) {
+                return "左侧滚动广告位";
+            } else if (rowData.siteType == 4) {
+                return "右侧固定广告位";
+            } else if (rowData.siteType == 5) {
+                return "友情链接广告位";
+            }
+            return "";
+        }
 
         function sitePictureUrlFormatter(el, options, rowData) {
             if(rowData.sitePictureUrl != null) {
@@ -64,7 +80,8 @@
                 url:'${path}/authorizeSite/gotoAddAuthorizeSitePage',
                 buttons: {
                     "保存" : function(){
-                        $("#maintainForm").submit();
+                        var model = $("#model").val();
+                        $("#maintainForm" + model).submit();
                     },
                     "关闭" : function(){
                         $(this).dialog("close");
