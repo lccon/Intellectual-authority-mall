@@ -22,7 +22,7 @@
             datatype : "local",
             colModel : [
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
-                {name : "siteType",index : "siteType", label:'广告所属分类', sortable : false, align:'center', width:'200', formatter:siteTypeFormatter},
+                {name : "siteType",index : "site_type", label:'广告所属分类', sortable : true, align:'center', width:'200', formatter:siteTypeFormatter},
                 {name : "sitePictureUrl", index:"sitePictureUrl", label:"图片", align:'center', sortable:false, width:'200', formatter:sitePictureUrlFormatter},
                 {name : "addressUrl",index : "addressUrl", label:'链接地址', sortable : false, width:'400'},
                 {name : "endTime",index : "endTime", label:'结束时间', sortable : false, width:'200'},
