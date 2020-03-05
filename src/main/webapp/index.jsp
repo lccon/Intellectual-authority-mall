@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
 			<li data-target="#myCarousel" data-slide-to="5"></li>
 		</ol>
 		<div class="carousel-inner">
-			<c:forEach items="${AuthorizeSite}" var="u" begin="1" end="1" step="1">
+			<c:forEach items="${carouseAuthllist}" var="u" begin="0" end="0" step="1">
 				<div class="item active" style="background:#223240">
 					<a href="http://${u.addressUrl}" target="_blank">
 						<img id="zauthimg${u.id}" src="" alt="第一张">
@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
 					</a>
 				</div>
 			</c:forEach>
-			<c:forEach items="${AuthorizeSite}" var="u" begin="2" end="6" step="1">
+			<c:forEach items="${carouseAuthllist}" var="u" begin="1" end="5" step="1">
 				<div class="item" style="background:#223240">
 					<a href="http://${u.addressUrl}" target="_blank">
 						<img id="authimg${u.id}" src="" alt="">
@@ -91,39 +91,33 @@ pageEncoding="UTF-8"%>
 
 	<!--中心显示区域-->
 	<div class="leftguanggao">
-		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<a href="#" class="thumbnail">
-					<img src="img/left1.gif" alt="" >
+				<c:forEach items="${leftAuthllist}" var="u">
+				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+					<img src="" id="leftimg${u.id}">
+					<script>
+                        var leftimg1="${u.sitePictureUrl}".split(",");
+                        var leftimg2=document.getElementById("leftimg${u.id}");
+                        leftimg2.src="${pageContext.request.contextPath}"+leftimg1[0];
+					</script>
 				</a>
+				</c:forEach>
 			</div>
-		</div>
+	</div>
+	<!--右侧广告位-->
+	<div class="rightguanggao">
 		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<a href="#" class="thumbnail">
-					<img src="img/left1.gif" alt="" >
-				</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<a href="#" class="thumbnail">
-					<img src="img/left1.gif" alt="" >
-				</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<a href="#" class="thumbnail">
-					<img src="img/left1.gif" alt="" >
-				</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<a href="#" class="thumbnail">
-					<img src="img/left1.gif" alt="" >
-				</a>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+				<c:forEach items="${rightAuthllist}" var="u">
+					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+						<img src="" id="rightimg${u.id}">
+						<script>
+                            var rightimg1="${u.sitePictureUrl}".split(",");
+                            var rightimg2=document.getElementById("rightimg${u.id}");
+                            rightimg2.src="${pageContext.request.contextPath}"+rightimg1[0];
+						</script>
+					</a>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -136,7 +130,11 @@ pageEncoding="UTF-8"%>
 						<a href="#">知识产权商城</a>
 					</h2>
 				</div>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">发明</a></span><br>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<a href="#" class="thumbnail">
+					<img src="img/zhuanli.png">
+				</a>
+				</div>
 				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">实用新型</a></span><br>
 				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">外观</a></span><br>
 				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">商标</a></span><br>
@@ -350,28 +348,39 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 
+	<!--右侧广告位-->
+	<div class="rightguanggao">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+				<c:forEach items="${rightAuthllist}" var="u">
+					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+						<img src="" id="zrightimg${u.id}">
+						<script>
+                            var rightimg1="${u.sitePictureUrl}".split(",");
+                            var rightimg2=document.getElementById("zrightimg${u.id}");
+                            rightimg2.src="${pageContext.request.contextPath}"+rightimg1[0];
+						</script>
+					</a>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+
+
 	<div class="container" style="margin-top: 20px">
 		<div class="row">
+			<c:forEach items="${centerAuthllist}" var="u">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<a href="#" class="thumbnail">
-					<img src="img/guanggao1.jpg">
+				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+					<img src="" id="centerimg${u.id}"/>
+					<script>
+                        var centerimg1="${u.sitePictureUrl}".split(",");
+                        var centerimg2=document.getElementById("centerimg${u.id}");
+                        centerimg2.src="${pageContext.request.contextPath}"+centerimg1[0];
+					</script>
 				</a>
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<a href="#" class="thumbnail">
-					<img src="img/guangao4.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<a href="#" class="thumbnail">
-					<img src="img/guanggao3.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<a href="#" class="thumbnail">
-					<img src="img/guanggao3.jpg">
-				</a>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<div class="container" style="margin-top:30px;">
@@ -420,71 +429,20 @@ pageEncoding="UTF-8"%>
 			</span>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-
+			<c:forEach items="${yqAuthlist}" var="u">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+						<img src="" id="yqimg${u.id}">
+						<script>
+                            var yqimg1="${u.sitePictureUrl}".split(",");
+                            var yqimg2=document.getElementById("yqimg${u.id}");
+                            yqimg2.src="${pageContext.request.contextPath}"+yqimg1[0];
+						</script>
+					</a>
+				</div>
+			</c:forEach>
 		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-				<a href="#" class="thumbnail">
-					<img src="img/youqing.jpg">
-				</a>
-			</div>
 
-		</div>
 	</div>
 
 

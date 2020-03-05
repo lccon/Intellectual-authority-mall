@@ -187,3 +187,17 @@ span.delx:hover{
 #zdmode{
     display:none;
 }
+#top-title11{
+    margin-left:300px;
+    background-color: #e5e5e5e5;
+}
+/*超小屏幕 小于等于500px*/
+@media (max-width: 500px) {
+    #footer{
+        width:1040px;
+    }
+    #top-title11{
+        margin-left:0px;
+        background-color: #e5e5e5e5;
+    }
+}

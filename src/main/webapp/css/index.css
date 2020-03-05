@@ -82,8 +82,7 @@
     z-index: 999;
 }
 .rightguanggao{
-    position: fixed;
-    right: 0px;
-    top:30%;
+    float: right;
+    width: 6%;
     z-index: 999;
 }

@@ -63,6 +63,10 @@ public class AuthorizeSiteServiceImpl implements AuthorizeSiteService {
         authorizeSiteMapper.deleteUserAuthorizeSite();
         return authorizeSiteMapper.findUserAuthorizeSiteForList();
     }
+    @Override
+    public List<AuthorizeSite> findAuthorizeSiteBysiteType(Integer siteType) {
+        return authorizeSiteMapper.findAuthorizeSiteBysiteType(siteType);
+    }
 
     @Override
     public Boolean deleteAuthorizeSite(Long[] ids, HttpServletRequest request) {

@@ -47,5 +47,6 @@ public interface AuthorizeSiteService {
      */
     AuthorizeSite getAuthorizeSiteById(Long id);
     List<AuthorizeSite>findAuthorizeSiteForList();
+    List<AuthorizeSite> findAuthorizeSiteBysiteType(Integer siteType);
 
 }

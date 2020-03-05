@@ -5,7 +5,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <jsp:include page="jsinclude.jsp"/>
+    <meta charset="UTF-8">
+    <title>项目实战</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/spro.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/prodetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/post-message.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/vocher.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
@@ -15,6 +30,7 @@
 </head>
 
 <body style="background-color: #e5e5e5e5;">
+<div class="suofang">
 <jsp:include page="head1.jsp"/>
 
     <!--用户中心头部信息-->
@@ -63,7 +79,7 @@
     <!--中央显示区域-->
     <div class="container" id="center">
         <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
+            <div class="col-xs-6 col-sm-7 col-md-6 col-lg-10">
                 <div id="content"></div>
             </div>
 
@@ -118,8 +134,8 @@
 
         })
     </script>
-
 <jsp:include page="footer.jsp"/>
+</div>
 </body>
 
 </html>

@@ -15,17 +15,17 @@ pageEncoding="UTF-8"%>
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="top-title">
-                    <ol class="breadcrumb" style="margin-left:300px; background-color: #e5e5e5e5;">
+                    <ol class="breadcrumb" id="top-title11">
                         <li> <label class="num">1</label>
                             选择身份类别
                         </li>
                         <span class="glyphicon glyphicon-menu-right"></span>
                         <li> <label class="num" style="background-color: #666;">2</label>
-                            选择身份类别
+                            填写信息
                         </li>
                         <span class="glyphicon glyphicon-menu-right"></span>
                         <li> <label class="num"  style="background-color: #666;">3</label>
-                            选择身份类别
+                            完成发布
                         </li>
                     </ol>
                     <div class="choose-lb">

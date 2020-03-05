@@ -43,7 +43,6 @@
 <div style="margin-top:100px;background-color: #e5e5e5e5; margin-top:130px;" >
     <ol class="breadcrumb" style="background-color: #e5e5e5e5;" >
         <li><a href="/">返回首页</a></li>
-        <li>信息发布</li>
     </ol>
 </div>
 </body>

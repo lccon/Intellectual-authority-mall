@@ -49,8 +49,16 @@ public class IndexController {
         authorizeCompanyVO.setState(2);
         List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList(authorizeCompanyVO);
         List<PolicyAdvice> PolicyAdvicelist=policyAdviceService.findPolicyAdviceForList();
-        List<AuthorizeSite> AuthorizeSitelist=authorizeSiteService.findAuthorizeSiteForList();
-        map.put("AuthorizeSite",AuthorizeSitelist);
+        List<AuthorizeSite> carouseAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(1);
+        List<AuthorizeSite> centerAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(2);
+        List<AuthorizeSite> leftAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        List<AuthorizeSite> rightAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> yqAuthlist=authorizeSiteService.findAuthorizeSiteBysiteType(5);
+        map.put("carouseAuthllist",carouseAuthllist);
+        map.put("centerAuthllist",centerAuthllist);
+        map.put("leftAuthllist",leftAuthllist);
+        map.put("rightAuthllist",rightAuthllist);
+        map.put("yqAuthlist",yqAuthlist);
         map.put("IntellectualTask",IntellectualTasklist);
         map.put("TaskRelease",TaskReleaselist);
         map.put("TaskRelease1",TaskReleaselist1);

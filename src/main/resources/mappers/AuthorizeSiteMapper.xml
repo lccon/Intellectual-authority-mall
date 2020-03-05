@@ -77,4 +77,9 @@
         limit 6
     </select>
 
+    <select id="findAuthorizeSiteBysiteType" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+        WHERE site_type = #{siteType}
+    </select>
+
 </mapper>

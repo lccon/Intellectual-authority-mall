@@ -741,7 +741,19 @@ footer {
 /*--/responsive--*/
 
 
-/*超小屏幕 小于等于768px*/
+/*小于等于768*/
+@media (max-width: 768px) {
+	.rightguanggao{
+		display: none;
+	}
+}
+/*小于等于1024*/
+@media (max-width: 1024px) {
+	.rightguanggao{
+		display: none;
+	}
+}
+/*超小屏幕 小于等于500px*/
 @media (max-width: 500px) {
 	#button1 {
 		height: 40px;
@@ -777,6 +789,8 @@ footer {
 		background: #efefef;
 		color: #666;
 	}
+	.rightguanggao{
+		display: none;
+	}
 
 }
-

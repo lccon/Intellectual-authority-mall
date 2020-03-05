@@ -4,19 +4,37 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-    <jsp:include page="jsinclude.jsp"/>
+    <meta charset="UTF-8">
+    <title>项目实战</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/spro.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/prodetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/post-message.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/vocher.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/prodetail.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/post-message.js"></script>
     <jsp:include page="/admin/baseInclude.jsp"/>
 </head>
 
 <body style="background-color: #e5e5e5e5;">
-
+<div class="suofang">
 <jsp:include page="head1.jsp"/>
 
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                <div class="top-title">
-                    <ol class="breadcrumb" style="margin-left:300px; background-color: #e5e5e5e5;">
+                <div class="top-title" style="width:1040px;">
+                    <ol class="breadcrumb" id="top-title11">
                         <li> <label class="num"  style="background-color: #666;">1</label>
                             选择身份类别（需求任务发布<a href="/post-message" style="color:#f46">重选</a>）
                         </li>
@@ -29,8 +47,9 @@
                             完成发布
                         </li>
                     </ol>
-                   
-                    <div class="main1">
+                </div>
+
+                <div class="main1">
                        <div class="cap1">
                            <span>基本信息</span>
                        </div>
@@ -142,13 +161,12 @@
                         </form>
                     </div>
                 </div>
-                </div>
-            
+
             </div>
         </div>
     </div>
+</div>
 <jsp:include page="footer.jsp"/>
-</body>
 <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
@@ -314,5 +332,7 @@
 
     });
 </script>
+</body>
+
 
 </html>

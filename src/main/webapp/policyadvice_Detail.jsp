@@ -5,11 +5,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-    <jsp:include page="jsinclude.jsp"/>
+    <meta charset="UTF-8">
+    <title>项目实战</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/spro.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/prodetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/post-message.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usercenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/vocher.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/prodetail.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/post-message.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/zerogrid.css">
 </head>
 
 <body onload="aaa();">
+<div class="suofang">
+
+
 <div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
 
 </div>
@@ -57,6 +78,7 @@
             </div>
         </div>
     </section>
+</div>
 </div>
 <!--网页底部-->
 <jsp:include page="footer.jsp"/>

@@ -55,4 +55,5 @@ public interface AuthorizeSiteMapper {
      * @return
      */
     Integer deleteUserAuthorizeSite();
+    List<AuthorizeSite> findAuthorizeSiteBysiteType(Integer siteType);
 }
