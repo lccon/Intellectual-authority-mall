@@ -218,17 +218,8 @@
 
     <select id="findTaskPeriodDataForList" resultMap="taskReleaseMap">
         select
-        <include refid="baseColumns" />
+        <include refid="columns" />
         from task_release r
-        LEFT JOIN
-        (
-        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
-        from roof_place p
-        where p.module_type = 3
-        and p.authorize_state = 2
-        and p.top_end_time <![CDATA[>]]> now()
-        )t
-        on r.id = t.module_type_id
         <where>
             state = 2
             <if test="taskCategory != null">
@@ -241,6 +232,5 @@
                 and create_date <![CDATA[<=]]> #{endTime}
             </if>
         </where>
-        order by t.create_date desc, r.create_date desc
     </select>
 </mapper>
