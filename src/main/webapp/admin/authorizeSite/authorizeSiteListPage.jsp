@@ -75,7 +75,7 @@
         $("#addAuthorizeSite").click(function(){
             $('#authorizeSiteDialog').createDialog({
                 width: 650,
-                height: 460,
+                height: 550,
                 title:'新增站点信息',
                 url:'${path}/authorizeSite/gotoAddAuthorizeSitePage',
                 buttons: {
