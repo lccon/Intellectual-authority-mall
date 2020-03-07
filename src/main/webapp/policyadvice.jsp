@@ -30,18 +30,18 @@
 
 
 </div>
-
+<jsp:include page="advertising.jsp"/>
 <!--需求列表-->
 <div style="margin-top: 50px;">
     <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <c:forEach items="${requestScope.pagemsg.lists}" var="u">
             <div class="product">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px;height: 200px;">
                             <div class="media-left" style="width: 250px;">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">
-                                    <img  id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
+                                    <img  id="img${u.id}" src="" class="media-object" alt="">
                                     <script>
                                             var url1="${u.advicePictureUrl}".split(",");
                                             var img1=document.getElementById("img${u.id}");
@@ -56,16 +56,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </c:forEach>
-
+            </div>
+        </div>
     </div>
 
 </div>
 
 <!--分页-->
-<div class="container">
+<div class="container" style="margin-top:40px;">
     <div class="row pad-15">
         <div class="col-md-12">
             <nav class="pagination-outer" aria-label="Page navigation">

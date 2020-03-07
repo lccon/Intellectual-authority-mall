@@ -40,32 +40,33 @@ public class IndexController {
 
     @RequestMapping("/")
     public String main(ModelMap map) {
-        IntellectualTaskVO intellectualTaskVO = new IntellectualTaskVO();
-        intellectualTaskVO.setState(2);
-        List<IntellectualTask> IntellectualTasklist = intellectualTaskService.findIntellectualTaskForList(intellectualTaskVO);
-        List<TaskRelease> TaskReleaselist=taskReleaseService.getTaskReleaseByTask_category(1);
-        List<TaskRelease> TaskReleaselist1=taskReleaseService.getTaskReleaseByTask_category(2);
-        AuthorizeCompanyVO authorizeCompanyVO = new AuthorizeCompanyVO();
-        authorizeCompanyVO.setState(2);
-        List<AuthorizeCompany> AuthorizeCompanylist=authorizeCompanyService.findAuthorizeCompanyForList(authorizeCompanyVO);
         List<PolicyAdvice> PolicyAdvicelist=policyAdviceService.findPolicyAdviceForList();
         List<AuthorizeSite> carouseAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(1);
         List<AuthorizeSite> centerAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(2);
         List<AuthorizeSite> leftAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(3);
         List<AuthorizeSite> rightAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(4);
         List<AuthorizeSite> yqAuthlist=authorizeSiteService.findAuthorizeSiteBysiteType(5);
+        List<TaskRelease> daytaskReleases1 = taskReleaseService.findTaskPeriodDataForList(1, 1);
+        List<TaskRelease> weektaskReleases1 = taskReleaseService.findTaskPeriodDataForList(1, 2);
+        List<TaskRelease> monthtaskReleases1 = taskReleaseService.findTaskPeriodDataForList(1, 3);
+        List<TaskRelease> daytaskReleases2 = taskReleaseService.findTaskPeriodDataForList(2, 1);
+        List<TaskRelease> weektaskReleases2 = taskReleaseService.findTaskPeriodDataForList(2, 2);
+        List<TaskRelease> monthtaskReleases2 = taskReleaseService.findTaskPeriodDataForList(2, 3);
+        map.put("daytaskReleases1",daytaskReleases1);
+        map.put("weektaskReleases1",weektaskReleases1);
+        map.put("monthtaskReleases1",monthtaskReleases1);
+        map.put("daytaskReleases2",daytaskReleases2);
+        map.put("weektaskReleases2",weektaskReleases2);
+        map.put("monthtaskReleases2",monthtaskReleases2);
         map.put("carouseAuthllist",carouseAuthllist);
         map.put("centerAuthllist",centerAuthllist);
         map.put("leftAuthllist",leftAuthllist);
         map.put("rightAuthllist",rightAuthllist);
         map.put("yqAuthlist",yqAuthlist);
-        map.put("IntellectualTask",IntellectualTasklist);
-        map.put("TaskRelease",TaskReleaselist);
-        map.put("TaskRelease1",TaskReleaselist1);
-        map.put("AuthorizeCompany",AuthorizeCompanylist);
         map.put("PolicyAdvice",PolicyAdvicelist);
         return "/index";
     }
+
 
     @RequestMapping("/addLeaveMessage")
     @ResponseBody
@@ -90,5 +91,10 @@ public class IndexController {
     @RequestMapping("/login")
     public String login(){
         return "login";
+    }
+    @RequestMapping("/advertising")
+    @ResponseBody
+    public List<AuthorizeSite> advertising(Integer siteType){
+        return authorizeSiteService.findAuthorizeSiteBysiteType(siteType);
     }
 }

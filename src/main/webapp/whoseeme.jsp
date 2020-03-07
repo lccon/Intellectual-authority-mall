@@ -5,15 +5,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
-    <jsp:include page="jsinclude.jsp"/>
     <link href="${pageContext.request.contextPath}/css/whoseeme.css" rel='stylesheet' type='text/css' />
-
 </head>
 <body>
 <div id="center11">
     <div class="agil-info-calendar">
         <!-- //calendar -->
-        <div class="col-md-10 w3agile-notifications">
+        <div class="col-xs-12 w3agile-notifications">
             <div class="notifications">
                 <!--notification start-->
 

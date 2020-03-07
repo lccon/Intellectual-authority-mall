@@ -16,6 +16,7 @@
         text-decoration: none;
         -webkit-transition: all 217ms ease;
         transition: all 217ms ease;
+        margin-right:220px;
     }
 
 </style>
@@ -33,51 +34,43 @@
 </div>
     <c:if test="${gridPage.rows.size() == 0}">
 <div class="info">
-    <ul style="margin-left: 30px;">
-        <strong style="margin-left: 150px;">
+    <ul>
+        <strong>
             <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
             您还没有收藏信息
         </strong>
-        <li style="margin-left: 174px;">去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
+        <li>去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
     </ul>
 </div>
     </c:if>
 <c:if test="${gridPage.rows.size() > 0}">
 
 <div style="margin-top: 30px;margin-left: 0;">
-    <div class="container">
     <c:forEach items="${gridPage.rows}" var="u">
-    <div id="product1" class="product" style="width: 960px;height: 100px;">
-        <div class="row">
-            <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
+    <div id="product1" class="product" style="width: 960px;height: 100px;margin-left:20px;">
                 <div class="media">
-                    <div class="media-body" id="caps" >
-                        <div style="width: 360px; float: left;">
+                    <div class="collectcap">
+                        <div style="float: left;">
                             <c:if test="${u.moduleType==1}">
-                            <a href="/intellectualTask/getIntellectualTaskById?id=${u.moduleTypeId}">${u.collectedContent}</a>
+                            <a style="width:230px;" href="/intellectualTask/getIntellectualTaskById?id=${u.moduleTypeId}">${u.collectedContent}</a>
                             </c:if>
                             <c:if test="${u.moduleType==2}">
-                                <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.moduleTypeId}">${u.collectedContent}</a>
+                                <a style="width:230px;" href="/authorizeCompany/getAuthorizeCompanyById?id=${u.moduleTypeId}">${u.collectedContent}</a>
                             </c:if>
                             <c:if test="${u.moduleType==3}">
-                                <a href="/taskRelease/getTaskReleaseById?id=${u.moduleTypeId}">${u.collectedContent}</a>
+                                <a style="width:230px;" href="/taskRelease/getTaskReleaseById?id=${u.moduleTypeId}">${u.collectedContent}</a>
                             </c:if>
                         </div>
-                        <div style="width: 300px; float: left; margin-top: 50px;">
-                            <p id="desc">收藏于<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+                        <div style="float: left; margin-top: 50px;">
+                            <p class="collecttime" style="width:200px;">收藏于<fmt:formatDate value="${u.collectedDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
                         </div>
                     </div>
-
-                </div>
-
-            </div>
-            <div style="margin: 50px 20px 20px 20px;">
+            <div style="margin: 30px 30px 20px 70px;">
                 <a class="collect" href="javascript:void(0);" onclick="deletecollect(${u.userId},${u.moduleType},${u.moduleTypeId})">取消收藏</a>
             </div>
         </div>
     </div>
     </c:forEach>
-    </div>
 </div>
     <div class="container">
         <div class="row pad-15">

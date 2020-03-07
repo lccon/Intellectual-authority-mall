@@ -41,7 +41,7 @@ public class TradeAuthorizeServiceImpl implements TradeAuthorizeService {
             throw new BusinessValidationException("参数不能为空!");
         }
         try {
-            if (tradeAuthorize.getAuthorizeStyle() != null) {
+            if (tradeAuthorize.getAuthorizeStyle() != null && tradeAuthorize.getAuthorizeStyle() != 1) {
                 User user=userService.findUserById(userId);
                 if (tradeAuthorize.getAuthorizeStyle() == 1) {
                     user.setAuthorizeType(REGISTERED_COMPANY);

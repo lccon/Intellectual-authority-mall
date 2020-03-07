@@ -70,9 +70,18 @@ pageEncoding="UTF-8"%>
                         <p class="help-block">尚未认证，请前往我的认证进行认证</p>
                     </c:if>
                     <c:if test="${user.authorizeType==1}">
-                        <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/qiye.png"  class="img-circle">
+                        <p class="help-block">企业认证失败，请前往我的认证页面重新上传</p>
+                    </c:if>
+                    <c:if test="${user.authorizeType==5}">
+                        <p class="help-block">正在认证请等待管理员审核</p>
                     </c:if>
                     <c:if test="${user.authorizeType==2}">
+                        <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/yinzhang.png"  class="img-circle">
+                    </c:if>
+                    <c:if test="${user.authorizeType==3}">
+                        <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/qiye.png"  class="img-circle">
+                    </c:if>
+                    <c:if test="${user.authorizeType==4}">
                         <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/geren.png" class="img-circle">
                     </c:if>
                 </div>

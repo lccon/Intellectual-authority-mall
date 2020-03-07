@@ -4,7 +4,7 @@
 
 </head>
 <body>
-<footer id="footer" style="margin-top: 50px;width:100%;">
+<footer id="footer" style="margin-top: 50px;">
     <div class="container">
         <div><span><span class='copy-icon'>&copy;</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></div>
         <div><span>

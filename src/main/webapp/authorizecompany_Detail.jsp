@@ -15,6 +15,7 @@
 <!--网页头部-->
 <jsp:include page="head.jsp"/>
 
+<jsp:include page="advertising.jsp"/>
 
 <!--商品详情-->
 <div class="container" style="margin-top: 80px;background-color: #fff;">
@@ -44,8 +45,19 @@
                                         <c:if test="${authorizeCompany.businessCategory==4}">法律咨询</c:if>
                                     </span>
                             </dd>
+                            <dd>
+                                <span>友情链接: </span>
+                                <span>
+                                   ${authorizeCompany.friendshipLink}
+                                </span>
+                            </dd>
                         </dl>
                     </div>
+                    <c:if test="${authorizeType==2}">
+                        <span style="float: right;">
+                            <img src="${pageContext.request.contextPath}/img/yinzhang.png" style="width:130px;height:130px;">
+                        </span>
+                    </c:if>
                 </div>
             </div>
         </div>

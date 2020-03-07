@@ -82,7 +82,7 @@ body a:hover{
 	color: #fff;
 	font-size: 20px;
 	padding: 2px 4px 0;
-	top: -17px;
+	top: 17px;
 	left: -10px;
 	line-height: 1.4;
 	-ms-transform: rotate(-7deg);
@@ -792,5 +792,4 @@ footer {
 	.rightguanggao{
 		display: none;
 	}
-
 }

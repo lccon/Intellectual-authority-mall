@@ -102,20 +102,21 @@
 
 
 
-
-
+    <jsp:include page="advertising.jsp"/>
     <!--需求列表-->
     <c:if test="${requestScope.pagemsg.lists.size() == 0}">
         <div style="margin-top: 50px;">
             <div class="container" >
-                <div class="info">
-                    <ul style="margin-left: 30px;">
-                        <strong style="margin-left: 150px;">
-                            <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
-                            您搜索信息暂未找到
-                        </strong>
-                        <li style="margin-left: 174px;">你可以继续去<a style="color: #f46;" href="/intellectualTask/findpageIntellectualTaskForList">知识产权商城页面</a>随便逛逛，浏览其他信息</li>
-                    </ul>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="info">
+                        <ul>
+                            <strong>
+                                <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                                    您搜索信息暂未找到
+                            </strong>
+                            <li>你可以继续去<a style="color: #f46;" href="/intellectualTask/findpageIntellectualTaskForList">知识产权商城页面</a>随便逛逛，浏览其他信息</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,14 +124,14 @@
     <c:if test="${requestScope.pagemsg.lists.size()>0}">
     <div style="margin-top: 50px;">
         <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <c:forEach items="${requestScope.pagemsg.lists}" var="u">
             <div class="product">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                         <div class="media" style="width: 1150px; height: 200px;">
                             <div class="media-left" style="width: 250px;">
                                 <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">
-                                    <img  id="img${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt="">
+                                    <img  id="img${u.id}" src="" class="media-object" alt="">
                                     <script type="text/javascript">
                                         var url11="${u.productPictureUrl}".split(",");
                                         var img1=document.getElementById("img${u.id}");
@@ -148,8 +149,6 @@
                         <c:if test="${u.roofPlaceState==2}">
                             <div class="new-item-badge">置顶信息</div>
                         </c:if>
-                    </div>
-                </div>
                 <div class="warp">
                     <c:if test="${u.hasCollectedState==0}">
                     <a id="abc" href="javascript:void(0);" onclick="addcollect(${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
@@ -160,12 +159,13 @@
                 </div>
             </div>
             </c:forEach>
-
+                </div>
+            </div>
         </div>
 
     </div>
     <!--分页-->
-    <div class="container">
+    <div class="container" style="margin-top:40px;">
         <div class="row pad-15">
             <div class="col-md-12">
                 <nav class="pagination-outer" aria-label="Page navigation">

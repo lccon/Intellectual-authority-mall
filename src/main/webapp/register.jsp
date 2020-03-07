@@ -465,12 +465,10 @@ pageEncoding="UTF-8"%>
         var phoneerr=document.getElementById('tip_phone');
         var code_numerr=document.getElementById("tip_code_num");
         var cerr=document.getElementById("tip_phone_affirm");
-        if(usernameerr.className!="success" || pictureerr.className!="success" || passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2")
+        if(usernameerr.className!="success" || pictureerr.className!="success" || passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
         {
-            console.log("111");
             return false;
         }else {
-            console.log("222");
             return true;
         }
 

@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <style>
+        .rightguanggao{
+            float: right;
+            padding-right: 4px;
+        }
+    </style>
 <div id="center11">
     <!--网页头部-->
     <jsp:include page="head.jsp" />
@@ -17,6 +23,7 @@
     <div class="container" id="kind1" style="margin-top:100px;">
 
     </div>
+
     <!--搜索框-->
     <div class="span"  >
         <div class="container">
@@ -52,34 +59,35 @@
 
 
 
-
-
+<jsp:include page="advertising.jsp"/>
     <!--需求列表-->
     <c:if test="${SearchBusinessvO.intellectualTaskList.size()==0 && SearchBusinessvO.authorizeCompanyList.size()==0 && SearchBusinessvO.taskReleaseList.size()==0}">
         <div style="margin-top: 50px;">
             <div class="container" >
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="info">
-                    <ul style="margin-left: 30px;">
-                        <strong style="margin-left: 150px;">
+                    <ul>
+                        <strong>
                             <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
                             您搜索信息暂未找到
                         </strong>
-                        <li style="margin-left: 174px;">你可以继续去<a style="color: #f46;" href="/">首页</a>随便逛逛，浏览其他信息</li>
+                        <li>你可以继续去<a style="color: #f46;" href="/">首页</a>随便逛逛，浏览其他信息</li>
                     </ul>
+                </div>
                 </div>
             </div>
         </div>
     </c:if>
     <div style="margin-top: 50px;">
         <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <c:if test="${SearchBusinessvO.intellectualTaskList.size()>0}">
             <c:forEach items="${SearchBusinessvO.intellectualTaskList}" var="u">
                 <div class="product">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                            <div class="media" style="width: 1150px;">
+                            <div class="media">
                                 <div class="media-left">
-                                    <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="intellimg${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt=""></a>
+                                    <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}"><img  id="intellimg${u.id}" src="" class="media-object" alt=""></a>
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
@@ -93,8 +101,6 @@
                                         img1.src="${pageContext.request.contextPath}"+url11[0];
                                 </script>
                             </div>
-                        </div>
-                    </div>
                     <div class="warp">
                         <c:if test="${u.hasCollectedState==0}">
                             <a id="abc" href="javascript:void(0);" onclick="addcollect(1,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
@@ -109,11 +115,9 @@
             <c:if test="${SearchBusinessvO.authorizeCompanyList.size()>0}">
             <c:forEach items="${SearchBusinessvO.authorizeCompanyList}" var="u">
                 <div class="product">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                            <div class="media" style="width: 1150px;">
+                            <div class="media">
                                 <div class="media-left">
-                                    <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}"><img  id="authimg${u.id}" style="width:250px;height: 170px;" src="" class="media-object" alt=""></a>
+                                    <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}"><img  id="authimg${u.id}"  src="" class="media-object" alt=""></a>
                                 </div>
                                 <div class="media-body" id="caps">
                                     <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
@@ -127,8 +131,6 @@
                                         img1.src="${pageContext.request.contextPath}"+url11[0];
                                 </script>
                             </div>
-                        </div>
-                    </div>
                     <div class="warp">
                         <c:if test="${u.hasCollectedState==0}">
                             <a id="abc" href="javascript:void(0);" onclick="addcollect(2,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
@@ -143,15 +145,14 @@
             <c:if test="${SearchBusinessvO.taskReleaseList.size()>0}">
             <c:forEach items="${SearchBusinessvO.taskReleaseList}" var="u">
                 <div class="product">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
-                            <div class="media" style="width: 1150px;">
+
+                            <div class="media">
                                 <div class="media-left">
                                     <c:if test="${u.taskCategory==1}">
-                                        <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="width:250px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
+                                        <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img src="${pageContext.request.contextPath}/img/tab1-1.png" class="media-object" alt=""></a>
                                     </c:if>
                                     <c:if test="${u.taskCategory==2}">
-                                        <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img style="width:250px;height: 170px;" src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
+                                        <a href="/taskRelease/getTaskReleaseById?id=${u.id}"><img src="${pageContext.request.contextPath}/img/tab1-2.jpg" class="media-object" alt=""></a>
                                     </c:if>
                                 </div>
                                 <div class="media-body" id="caps">
@@ -161,8 +162,6 @@
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
                     <div class="warp">
                         <c:if test="${u.hasCollectedState==0}">
                             <a id="abc" href="javascript:void(0);" onclick="addcollect(3,${u.id});" class="label label-primary bstreedit">收藏<span id="addcollect" class="glyphicon glyphicon-heart-empty"></span></a>
@@ -174,10 +173,11 @@
                 </div>
             </c:forEach>
             </c:if>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 <script>
     var d_url=document.location.href.substr(21);
     //填加收藏

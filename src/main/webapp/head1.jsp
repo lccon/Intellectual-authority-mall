@@ -23,7 +23,13 @@
         <ul style="margin:0;">
             <li>
                 <c:if test="${userRealName!=null}">
-                    <a href="/userCenter"><span class="glyphicon glyphicon-user"></span>${userRealName}</a>
+                    <a href="/userCenter"><img src="" class="layui-nav-img" id="headimg">${userRealName}</a>
+                    <img src="${pageContext.request.contextPath}/img/daban.png">
+                    <script>
+                        var url11="${HeadPortrait}".split(",");
+                        var headimg=document.getElementById("headimg");
+                        headimg.src="${pageContext.request.contextPath}"+url11[0];
+                    </script>
                     <a class="quit" href="/admin/userlogout">退出</a>
                 </c:if>
                 <c:if test="${userRealName==null}">

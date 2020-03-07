@@ -4,7 +4,6 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-    <jsp:include page="jsinclude.jsp"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
 </head>
@@ -13,7 +12,9 @@
     .state {
         text-align: right;
         color: #ff6709;
-        font-size: 14px;
+        font-size: 20px;
+        float: right;
+        margin-right: 250px;
     }
     .zd{
         float: right;
@@ -39,53 +40,51 @@
 </div>
 <c:if test="${gridPageintellectualTask.rows.size() == 0}">
 <div class="info">
-    <ul style="margin-left: 30px;">
-        <strong style="margin-left: 150px;">
+    <ul>
+        <strong>
             <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
             您还没有发布信息
         </strong>
-        <li style="margin-left: 174px;">1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
-        <li style="margin-left: 174px;">2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
+        <li>1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
+        <li>2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
     </ul>
 
 </div>
 </c:if>
     <c:if test="${gridPageauthorizeCompany.rows.size() == 0}">
         <div class="info">
-            <ul style="margin-left: 30px;">
-                <strong style="margin-left: 150px;">
+            <ul>
+                <strong>
                     <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
                     您还没有发布信息
                 </strong>
-                <li style="margin-left: 174px;">1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
-                <li style="margin-left: 174px;">2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
+                <li>1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
+                <li>2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
             </ul>
 
         </div>
     </c:if>
     <c:if test="${gridPagetaskRelease.rows.size() == 0}">
         <div class="info">
-            <ul style="margin-left: 30px;">
-                <strong style="margin-left: 150px;">
+            <ul>
+                <strong>
                     <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
                     您还没有发布信息
                 </strong>
-                <li style="margin-left: 174px;">1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
-                <li style="margin-left: 174px;">2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
+                <li>1.您可以<a style="color: #f46;" href="/post-message">点击这里免费发布</a></li>
+                <li>2.去<a style="color: #f46;" href="/">首页</a>随便逛逛，看看大家都在发些什么信息</li>
             </ul>
 
         </div>
     </c:if>
 <c:if test="${gridPageintellectualTask.rows.size()>0}">
     <div style="margin-top: 50px;">
-        <div class="container">
+        <div style="margin-left: 30px;">
             <c:forEach items="${gridPageintellectualTask.rows}" var="u">
                 <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
-                    <div class="row">
-                        <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
-                                    <div class="media-body" id="caps">
-                                        <a style="width:300px;" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
-                                        <p class="desc">${u.productBrief }</p>
+                                    <div class="collectcap">
+                                        <a href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a>
+                                        <p>${u.productBrief }</p>
                                         <c:if test="${u.state==1}">
                                             <p class="state">待审核</p>
                                         </c:if>
@@ -95,11 +94,9 @@
                                         <c:if test="${u.state==0}">
                                             <p class="state">待审核</p>
                                         </c:if>
-                                        <p class="desc">浏览量：${u.browseVolume}</p>
+                                        <p class="desc" style="margin-top:30px;">浏览量：${u.browseVolume}</p>
                                     </div>
                         </div>
-                    </div>
-                </div>
             </c:forEach>
         </div>
     </div>
@@ -139,14 +136,12 @@
 </c:if>
 <c:if test="${gridPageauthorizeCompany.rows.size()>0}">
     <div style="margin-top: 50px;">
-        <div class="container">
+        <div style="margin-left: 30px;">
             <c:forEach items="${gridPageauthorizeCompany.rows}" var="u">
                 <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
-                    <div class="row">
-                        <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
-                            <div class="media-body" id="caps">
+                            <div class="collectcap">
                                 <a href="/authorizeCompany/getAuthorizeCompanyById?id=${u.id}">${u.companyName }</a>
-                                <p class="desc">${u.companyDescribe }</p>
+                                <p>${u.companyDescribe }</p>
                                 <c:if test="${u.state==1}">
                                     <p class="state">待审核</p>
                                 </c:if>
@@ -156,11 +151,8 @@
                                 <c:if test="${u.state==0}">
                                     <p class="state">已驳回</p>
                                 </c:if>
-                                <p class="desc">浏览量：${u.browseVolume}</p>
+                                <p class="desc" style="margin-top:30px;">浏览量：${u.browseVolume}</p>
                             </div>
-                        </div>
-
-                    </div>
                 </div>
             </c:forEach>
         </div>
@@ -200,14 +192,12 @@
 </c:if>
 <c:if test="${gridPagetaskRelease.rows.size()>0}">
     <div style="margin-top: 30px;">
-        <div class="container">
+        <div style="margin-left: 30px;">
             <c:forEach items="${gridPagetaskRelease.rows}" var="u">
                 <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
-                    <div class="row">
-                        <div class="col-xs-10 col-sm-5 col-md-4 col-lg-10">
-                            <div class="media-body" id="caps">
+                            <div class="collectcap">
                                 <a href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a>
-                                <p class="desc">${u.detailedDesc }</p>
+                                <p>${u.detailedDesc }</p>
                                 <c:if test="${u.state==1}">
                                     <p class="state">待审核</p>
                                 </c:if>
@@ -217,11 +207,8 @@
                                 <c:if test="${u.state==0}">
                                     <p class="state">已驳回</p>
                                 </c:if>
-                                <p class="desc">浏览量：${u.browseVolume}</p>
+                                <p class="desc" style="margin-top:30px;">浏览量：${u.browseVolume}</p>
                             </div>
-                        </div>
-
-                    </div>
                 </div>
             </c:forEach>
         </div>

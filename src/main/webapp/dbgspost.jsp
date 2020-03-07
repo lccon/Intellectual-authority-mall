@@ -29,6 +29,7 @@
 <body style="background-color: #e5e5e5e5;">
 <div class="suofang">
 <jsp:include page="head1.jsp"/>
+    <jsp:include page="advertising.jsp"/>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">

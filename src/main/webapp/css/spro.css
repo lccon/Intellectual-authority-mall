@@ -104,7 +104,10 @@
     margin-left: 20px;
     }
 }
-
+.media-object{
+    width:250px;
+    height: 170px;
+}
 /* 中等屏幕（桌面显示器，大于等于992px） */
 @media (min-width: 992px) {
     #caps a{
@@ -140,18 +143,23 @@
 	}
 }
 /*超小屏幕 小于等于768px*/
-@media (max-width: 768px) {
+@media (max-width: 500px) {
 	#caps a{
-		width:50px;
+        margin-top:0px;
+		width:150px;
 		font-size: xx-small;
 		margin-left: 20px;
 	}
 	#caps p{
-		width:50px;
+		width:150px;
 		font-size: xx-small;
 		margin-left: 20px;
     }
     #kind ul li+li{
         margin-left: 20px;
         }
+    .media-object{
+        width:100px;
+        height:160px;
+    }
 }

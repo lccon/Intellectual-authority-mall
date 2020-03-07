@@ -9,6 +9,7 @@ request.setAttribute("currentSession","");
         request.setAttribute("UserId", ThreadVariable.getSession().getUserId());
         request.setAttribute("FreeMessageNum", ThreadVariable.getSession().getFreeMessageNum());
         request.setAttribute("HeadPortrait", ThreadVariable.getSession().getHeadPortrait());
+        request.setAttribute("authorizeType", ThreadVariable.getSession().getAuthorizeType());
     }
 %>
 
@@ -19,4 +20,5 @@ var userRealName='${userRealName}';
 var UserId='${UserId}';
 var FreeMessageNum='${FreeMessageNum}'
     var HeadPortrait='${HeadPortrait}'
+    var authorizeType='${authorizeType}'
 </script>

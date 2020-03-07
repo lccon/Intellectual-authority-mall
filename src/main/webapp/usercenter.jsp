@@ -77,7 +77,7 @@
         </div>
     </div>
     <!--中央显示区域-->
-    <div class="container" id="center">
+    <div class="container" id="center" style="width:1000px;">
         <div class="row">
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-10">
                 <div id="content"></div>
@@ -121,7 +121,6 @@
             $('#userMenu').on('click','li', function() {
                 var $elmLink = $(this);
                 var link = $elmLink.data('url');
-                console.log($elmLink,link)
                 if(!link || link == ''){
                     return;
                 }

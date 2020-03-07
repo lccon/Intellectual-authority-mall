@@ -1,5 +1,5 @@
 .model {
-    height: 500px;
+    height: 507px;
     background-color: #fff;
 }
 
@@ -20,15 +20,24 @@
 }
 
 .tubiao {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 .bt {
     line-height: 30px;
     font-size: 14px;
-    display: inline-block;
     color: #0E8ED8;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bt1{
+    line-height: 30px;
+    font-size: 14px;
+    color: #0E8ED8;
+    display: inline-block;
 }
 
 .shu {
@@ -83,6 +92,23 @@
 }
 .rightguanggao{
     float: right;
-    width: 6%;
     z-index: 999;
+}
+
+@media (max-width: 1900px) {
+    .rightguanggao{
+        width:6%;
+    }
+    .leftguanggao{
+        width:10%;
+    }
+}
+@media (min-width: 1700px) {
+    .rightguanggao{
+        width:200px;
+        margin-right:90px;
+    }
+    .leftguanggao{
+        width:200px;
+    }
 }

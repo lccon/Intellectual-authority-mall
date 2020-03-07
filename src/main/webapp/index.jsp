@@ -91,9 +91,9 @@ pageEncoding="UTF-8"%>
 
 	<!--中心显示区域-->
 	<div class="leftguanggao">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-				<c:forEach items="${leftAuthllist}" var="u">
-				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+				<c:forEach items="${leftAuthllist}" var="u" begin="0" end="4" step="1">
+				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
 					<img src="" id="leftimg${u.id}">
 					<script>
                         var leftimg1="${u.sitePictureUrl}".split(",");
@@ -108,8 +108,8 @@ pageEncoding="UTF-8"%>
 	<div class="rightguanggao">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-				<c:forEach items="${rightAuthllist}" var="u">
-					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
+				<c:forEach items="${rightAuthllist}" var="u" begin="0" end="14" step="1">
+					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
 						<img src="" id="rightimg${u.id}">
 						<script>
                             var rightimg1="${u.sitePictureUrl}".split(",");
@@ -122,89 +122,108 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container" style="margin-top:30px;height:520px;">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
 				<div class="board">
 					<h2>
-						<a href="#">知识产权商城</a>
+						<a href="/intellectualTask/findpageIntellectualTaskForList">知识产权商城</a>
 					</h2>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<a href="#" class="thumbnail">
-					<img src="img/zhuanli.png">
-				</a>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=1" class="thumbnail" >
+						<img src="img/zhuanli.png" style="height: 60px;width: 100%;" alt="发明">
+					</a>
+					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=2" class="thumbnail" >
+						<img src="img/shiyong.png" style="height: 60px;width: 100%;" alt="实用新型">
+					</a>
+					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=3" class="thumbnail" >
+						<img src="img/waiguan.png" style="height: 60px;width: 100%;" alt="外观">
+					</a>
+					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=4" class="thumbnail" >
+						<img src="img/shangbiao.png" style="height: 60px;width: 100%;" alt="商标">
+					</a>
+					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=5" class="thumbnail" >
+						<img src="img/banquan.png" style="height: 60px;width: 100%;" alt="版权">
+					</a>
 				</div>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">实用新型</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">外观</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">商标</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">版权</a></span>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
 				<div class="board">
 					<h2>
-						<a href="#">代办机构</a>
+						<a href="/authorizeCompany/findpageauthorizeCompanyForList">代办机构</a>
 					</h2>
 				</div>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">申请服务</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">证书交易</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">技术成果转移</a></span><br>
-				<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">法律咨询</a></span><br>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=1" class="thumbnail" >
+						<img src="img/shenqingfuwu.png" style="height: 75px;width: 100%;" alt="申请服务">
+					</a>
+					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=2" class="thumbnail" >
+						<img src="img/zhengshu.png" style="height: 75px;width: 100%;" alt="证书交易">
+					</a>
+					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=3" class="thumbnail" >
+						<img src="img/jishuchengguo.png" style="height: 75px;width: 100%;" alt="技术成果转移">
+					</a>
+					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=4" class="thumbnail" >
+						<img src="img/falu.png" style="height: 75px;width: 100%;" alt="法律咨询">
+					</a>
+
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
 				<div class="board">
 					<h2>
-						<a href="#">最新发布卖</a>
+						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1">最新发布</a>
 					</h2>
 				</div>
-				<div class="shu"><a href="javascript:void(0);">今日最新</a></div>
+				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test1" style="float: right;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${daytaskReleases1}" var="u" begin="0" end="2" step="1">
+							<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${daytaskReleases1}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本周最新</a></div>
+				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test2" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${weektaskReleases1}" var="u" begin="0" end="2" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${weektaskReleases1}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本月最新</a></div>
+				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test3" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${monthtaskReleases1}" var="u" begin="0" end="2" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${monthtaskReleases1}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -254,53 +273,53 @@ pageEncoding="UTF-8"%>
 			<div class="model">
 				<div class="board">
 					<h2>
-						<a href="#">最新需求买</a>
+						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2">最新需求</a>
 					</h2>
 				</div>
-				<div class="shu"><a href="javascript:void(0);">今日最新</a></div>
+				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test4" style="float: right;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${daytaskReleases2}" var="u" begin="0" end="2" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${daytaskReleases2}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本周最新</a></div>
+				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test5" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${weektaskReleases2}" var="u" begin="0" end="2" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${weektaskReleases2}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="javascript:void(0);">本月最新</a></div>
+				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test6" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${monthtaskReleases2}" var="u" begin="0" end="2" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 						<div>
-							<span><a class="bt" href="#">申请服务</a></span><br>
-							<span><a class="bt" href="#">证书交易</a></span><br>
-							<span><a class="bt" href="#">技术成果转移</a></span><br>
+							<c:forEach items="${monthtaskReleases2}" var="u" begin="3" end="5" step="1">
+								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -348,28 +367,11 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 
-	<!--右侧广告位-->
-	<div class="rightguanggao">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-				<c:forEach items="${rightAuthllist}" var="u">
-					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
-						<img src="" id="zrightimg${u.id}">
-						<script>
-                            var rightimg1="${u.sitePictureUrl}".split(",");
-                            var rightimg2=document.getElementById("zrightimg${u.id}");
-                            rightimg2.src="${pageContext.request.contextPath}"+rightimg1[0];
-						</script>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
 
 
-	<div class="container" style="margin-top: 20px">
+	<div class="container" style="margin-top: 20px;height:170px;">
 		<div class="row">
-			<c:forEach items="${centerAuthllist}" var="u">
+			<c:forEach items="${centerAuthllist}" var="u" begin="0" end="3" step="1">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
 					<img src="" id="centerimg${u.id}"/>
@@ -389,21 +391,19 @@ pageEncoding="UTF-8"%>
 				<div class="model">
 					<div class="tit">
 						<h2>
-							<a href="#"><strong>新闻资讯</strong></a>
+							<a href="/policyAdvice/findpagepolicyAdviceForList"><strong>新闻资讯</strong></a>
 						</h2>
 					</div>
-					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">发明</a></span><br>
-					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">实用新型</a></span><br>
-					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">外观</a></span><br>
-					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">商标</a></span><br>
-					<span><img src="img/tubiao.png" class="tubiao"><a class="bt" href="#">版权</a></span>
+					<c:forEach items="${PolicyAdvice}" var="u" begin="0" end="8" step="1">
+						<span><img src="img/xinwen.png" class="tubiao"><a class="bt1" href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle}</a></span><br>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="model">
 					<div class="tit" style="background-color: #5367af;">
 						<h2>
-							<a href="#"><strong>关于我们</strong></a>
+							<a href="/about.jsp"><strong>关于我们</strong></a>
 						</h2>
 					</div>
 					<div>
@@ -429,7 +429,21 @@ pageEncoding="UTF-8"%>
 			</span>
 		</div>
 		<div class="row">
-			<c:forEach items="${yqAuthlist}" var="u">
+			<c:forEach items="${yqAuthlist}" var="u" begin="0" end="5" step="1">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
+						<img src="" id="yqimg${u.id}">
+						<script>
+                            var yqimg1="${u.sitePictureUrl}".split(",");
+                            var yqimg2=document.getElementById("yqimg${u.id}");
+                            yqimg2.src="${pageContext.request.contextPath}"+yqimg1[0];
+						</script>
+					</a>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="row">
+			<c:forEach items="${yqAuthlist}" var="u" begin="6" end="11" step="1">
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
 					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
 						<img src="" id="yqimg${u.id}">
@@ -469,20 +483,20 @@ pageEncoding="UTF-8"%>
 		<li>	
 			<label class="w3ls-opt">您的姓名<span class="w3ls-star"> * </span></label>
 			<div class="w3ls-name">	
-				<input type="text" name="username"  placeholder="请输入您的姓名" required=" "/>
+				<input type="text" name="realName"  placeholder="请输入您的姓名" required=" "/>
 			</div>
 		</li>
 		<li>
 			<label class="w3ls-opt">您的联系方式<span class="w3ls-star"> * </span></label>	
 				<span class="w3ls-text w3ls-name">
-					<input type="text" name="phone number" placeholder="请输入您的联系方式" required=""/>
+					<input type="text" name="mobile" placeholder="请输入您的联系方式" required=""/>
 				</span>
 		</li>
 		<li>
 			<div class="mail">
 				<label class="w3ls-opt">您的邮箱地址<span class="w3ls-star"> * </span></label>
 				<span class="w3ls-text w3ls-name">
-					<input type="email" name="email" placeholder="请输入您的邮箱地址" required=""/>
+					<input type="email" name="mailAddress" placeholder="请输入您的邮箱地址" required=""/>
 				</span>
 			</div>
 		</li>

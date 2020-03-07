@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
-<jsp:include page="jsinclude.jsp"/>
 </head>
 <style>
     .collect{
@@ -40,7 +39,7 @@
     <c:if test="${meSeeWhoVO.intellectualTaskList.size() > 0}">
 
         <div style="margin-top: 30px;margin-left: 0;">
-            <div class="container">
+            <div style="margin-left: 20px;">
                 <c:forEach items="${meSeeWhoVO.intellectualTaskList}" var="u">
                     <div id="product1" class="product" style="height: 200px;width: 960px;margin-top:20px;">
                         <div class="row">

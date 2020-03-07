@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="jsinclude.jsp"/>
 </head>
 <body>
 <table class="layui-hide" id="test"></table>

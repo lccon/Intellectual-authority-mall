@@ -1,5 +1,7 @@
 package com.mall.controller;
 
+import com.mall.domain.AuthorizeSite;
+import com.mall.service.AuthorizeSiteService;
 import com.mall.service.SearchService;
 import com.mall.vo.SearchBusinessVO;
 import org.apache.ibatis.annotations.Param;
@@ -22,6 +24,8 @@ public class SearchController {
 
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
 
     @RequestMapping("/getSearchBusinessData")
     public String getSearchBusinessData(@RequestParam(value = "page") int page,
@@ -30,6 +34,10 @@ public class SearchController {
                                         @RequestParam(value = "productBrief", required = false) String productBrief, ModelMap map) {
 
         SearchBusinessVO SearchBusinessvO=searchService.getSearchBusinessData(page, rows, productName, productBrief);
+        List<AuthorizeSite> leftAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        List<AuthorizeSite> rightAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        map.put("leftAuthllist",leftAuthllist);
+        map.put("rightAuthllist",rightAuthllist);
         map.put("SearchBusinessvO",SearchBusinessvO);
         return "/findpage";
     }
