@@ -51,8 +51,12 @@
 
         function authorizeTypeFormatter(el, options, rowData) {
             if(rowData.authorizeType == 1) {
-                return "企业认证";
-            } else if (rowData.authorizeType == 2) {
+                return "驳回(企业认证)";
+            } else if(rowData.authorizeType == 2) {
+                return "代办公司";
+            } else if(rowData.authorizeType == 3) {
+                return "普通公司";
+            } else if (rowData.authorizeType == 4) {
                 return "个人认证";
             }
             return "";

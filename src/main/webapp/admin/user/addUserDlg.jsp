@@ -53,8 +53,10 @@
         </div>
         <div class="grid_10">
             <select name="authorizeType">
-                <option value="1">企业认证</option>
-                <option value="2">个人认证</option>
+                <option value="1">驳回(企业认证)</option>
+                <option value="2">代办公司</option>
+                <option value="3">普通公司</option>
+                <option value="4">个人认证</option>
             </select>
         </div>
         <div class="clearLine"></div>

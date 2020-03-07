@@ -27,6 +27,9 @@ import java.util.List;
 @Service("tradeAuthorizeService")
 public class TradeAuthorizeServiceImpl implements TradeAuthorizeService {
 
+    private static final Integer PERSON_AUTHORIZE = 4;
+    private static final Integer REGISTERED_COMPANY = 5;
+
     @Autowired
     private TradeAuthorizeMapper tradeAuthorizeMapper;
     @Autowired
@@ -40,7 +43,11 @@ public class TradeAuthorizeServiceImpl implements TradeAuthorizeService {
         try {
             if (tradeAuthorize.getAuthorizeStyle() != null) {
                 User user=userService.findUserById(userId);
-                user.setAuthorizeType(tradeAuthorize.getAuthorizeStyle());
+                if (tradeAuthorize.getAuthorizeStyle() == 1) {
+                    user.setAuthorizeType(REGISTERED_COMPANY);
+                } else if (tradeAuthorize.getAuthorizeStyle() == 2) {
+                    user.setAuthorizeType(PERSON_AUTHORIZE);
+                }
                 userService.updateUser(user);
             }
             tradeAuthorizeMapper.addTradeAuthorize(tradeAuthorize);
@@ -70,7 +77,7 @@ public class TradeAuthorizeServiceImpl implements TradeAuthorizeService {
         try {
             if (tradeAuthorize.getAuthorizeResult() != 0 && tradeAuthorize.getUserId() != null) {
                 User user=userService.findUserById(tradeAuthorize.getUserId());
-                user.setAuthorizeType(tradeAuthorize.getAuthorizeStyle());
+                user.setAuthorizeType(tradeAuthorize.getAuthorizeResult());
                 userService.updateUser(user);
             }
             tradeAuthorizeMapper.updateTradeAuthorize(tradeAuthorize);

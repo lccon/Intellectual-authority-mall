@@ -45,10 +45,10 @@
         </div>
         <div class="grid_11">
             <select name="authorizeResult">
-                <option value="0" <c:if test="${intellectualTask.authorizeResult == 0}">selected</c:if>>待认证</option>
-                <option value="1" <c:if test="${intellectualTask.authorizeResult == 1}">selected</c:if>>驳回</option>
-                <option value="2" <c:if test="${intellectualTask.authorizeResult == 2}">selected</c:if>>代办公司</option>
-                <option value="3" <c:if test="${intellectualTask.authorizeResult == 3}">selected</c:if>>普通公司</option>
+                <option value="0" <c:if test="${tradeAuthorize.authorizeResult == 0}">selected</c:if>>待认证</option>
+                <option value="1" <c:if test="${tradeAuthorize.authorizeResult == 1}">selected</c:if>>驳回</option>
+                <option value="2" <c:if test="${tradeAuthorize.authorizeResult == 2}">selected</c:if>>代办公司</option>
+                <option value="3" <c:if test="${tradeAuthorize.authorizeResult == 3}">selected</c:if>>普通公司</option>
             </select>
         </div>
     </div>

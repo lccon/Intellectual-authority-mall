@@ -80,7 +80,7 @@ public class TradeAuthorizeController {
 
     @RequestMapping("/deleteTradeAuthorize")
     @ResponseBody
-    public Boolean deleteTradeAuthorize(Long[] ids) {
+    public Boolean deleteTradeAuthorize(@RequestParam(value = "ids[]", required = true) Long[] ids) {
         return tradeAuthorizeService.deleteTradeAuthorize(ids);
     }
 

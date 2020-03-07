@@ -47,8 +47,10 @@
         </div>
         <div class="grid_10">
             <select name="authorizeType">
-                <option value="1" <c:if test="${user.authorizeType == 1}">selected</c:if>>企业认证</option>
-                <option value="2" <c:if test="${user.authorizeType == 2}">selected</c:if>>个人认证</option>
+                <option value="1" <c:if test="${user.authorizeType == 1}">selected</c:if>>驳回(企业认证)</option>
+                <option value="2" <c:if test="${user.authorizeType == 2}">selected</c:if>>代办公司</option>
+                <option value="3" <c:if test="${user.authorizeType == 3}">selected</c:if>>普通公司</option>
+                <option value="4" <c:if test="${user.authorizeType == 4}">selected</c:if>>个人认证</option>
             </select>
         </div>
         <div class="clearLine"></div>
