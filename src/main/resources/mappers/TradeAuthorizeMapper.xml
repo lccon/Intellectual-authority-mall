@@ -11,6 +11,7 @@
         <result property="businessLicense" column="business_license"/>
         <result property="idCard" column="id_card"/>
         <result property="licensePicture" column="license_picture"/>
+        <result property="userId" column="user_id"/>
         <result property="createUser" column="create_user"/>
         <result property="createDate" column="create_date"/>
         <result property="updateUser" column="update_user"/>
@@ -19,7 +20,7 @@
 
     <sql id="columns">
         id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
-        license_picture, create_user, create_date
+        license_picture, user_id, create_user, create_date
     </sql>
 
     <insert id="addTradeAuthorize" parameterType="com.mall.domain.TradeAuthorize">
@@ -28,9 +29,57 @@
         </selectKey>
         INSERT INTO trade_authorize
         (id, authorize_style, authorize_result, name, company_name, company_person, business_license, id_card,
-        license_picture, create_user, create_date)
+        license_picture, user_id, create_user, create_date)
         VALUES
         (#{id}, #{authorizeStyle}, #{authorizeResult}, #{name}, #{companyName}, #{companyPerson}, #{businessLicense}, #{idCard},
-        #{licensePicture}, #{createUser}, #{createDate})
+        #{licensePicture}, #{userId}, #{createUser}, #{createDate})
     </insert>
+
+    <select id="findTradeAuthorizeForList" resultMap="tradeAuthorizeMap">
+        SELECT <include refid="columns"/>
+        FROM trade_authorize
+        WHERE authorize_style = 1
+    </select>
+
+    <update id="updateTradeAuthorize" parameterType="com.mall.domain.TradeAuthorize">
+        UPDATE trade_authorize
+        <set>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="companyPerson != null and companyPerson != ''">
+                company_person = #{companyPerson},
+            </if>
+            <if test="businessLicense != null and businessLicense != ''">
+                business_license = #{businessLicense},
+            </if>
+            <if test="licensePicture != null and licensePicture != ''">
+                license_picture = #{licensePicture},
+            </if>
+            <if test="authorizeResult != null">
+                authorize_result = #{authorizeResult},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTradeAuthorize">
+        DELETE FROM trade_authorize
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getTradeAuthorizeById" parameterType="java.lang.Long" resultMap="tradeAuthorizeMap">
+        SELECT <include refid="columns"/>
+        FROM trade_authorize
+        WHERE id = #{id}
+    </select>
 </mapper>

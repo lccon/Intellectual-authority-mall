@@ -36,3 +36,7 @@ ALTER TABLE policy_advice ADD COLUMN user_id int(11) DEFAULT 0 COMMENT '用户id
 -- 轮播图结束时间
 ALTER TABLE authorize_site ADD COLUMN end_time datetime DEFAULT NULL COMMENT '结束时间' after site_picture_url;
 ALTER TABLE authorize_site ADD COLUMN site_type tinyint(1) DEFAULT NULL COMMENT '站点类型' after end_time;
+
+-- 认证添加用户id和公司性质
+ALTER TABLE trade_authorize ADD COLUMN user_id bigint(20) DEFAULT NULL COMMENT '用户id' after license_picture;
+ALTER TABLE trade_authorize ADD COLUMN company_nature bigint(20) DEFAULT NULL COMMENT '公司性质' after license_picture;

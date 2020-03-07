@@ -54,9 +54,14 @@ li {
 							<span class="menu-name">用户管理模块</span>
 						</div>
 					</li>
+					<li class="system-item sys-mneu-name load" data-url="/tradeAuthorize/listPage">
+						<div class="item-inner sys-menuChild-name">
+							<span class="menu-name">企业认证审核</span>
+						</div>
+					</li>
 					<li class="system-item sys-mneu-name load" data-url="/authorizeSite/listPage">
 						<div class="item-inner sys-menuChild-name">
-							<span class="menu-name">轮播图广告位</span>
+							<span class="menu-name">图片广告位</span>
 						</div>
 					</li>
 					<li class="system-item sys-mneu-name load" data-url="/policyAdvice/listPage">

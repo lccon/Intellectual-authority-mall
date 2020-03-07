@@ -13,7 +13,7 @@ public class TradeAuthorize extends BaseDomain {
     private Long id;
     /** 认证样式 0，不认证 1，企业认证 2，个人认证 */
     private Integer authorizeStyle;
-    /** 认证结果 0，未认证  1，已认证 */
+    /** 认证结果 0，待认证  1:驳回 2:代办公司 3:普通公司 */
     private Integer authorizeResult;
     /** 姓名 */
     private String name;
@@ -27,6 +27,8 @@ public class TradeAuthorize extends BaseDomain {
     private String idCard;
     /** 联系方式 */
     private String licensePicture;
+    /** 用户id */
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -98,5 +100,13 @@ public class TradeAuthorize extends BaseDomain {
 
     public void setLicensePicture(String licensePicture) {
         this.licensePicture = licensePicture;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
