@@ -25,6 +25,7 @@ public class Session implements Serializable {
     private String mobile;
     private Integer freeMessageNum;
     private String headPortrait;
+    private Integer authorizeType;
 
     public Long getId() {
         return id;
@@ -128,5 +129,13 @@ public class Session implements Serializable {
 
     public void setHeadPortrait(String headPortrait) {
         this.headPortrait = headPortrait;
+    }
+
+    public Integer getAuthorizeType() {
+        return authorizeType;
+    }
+
+    public void setAuthorizeType(Integer authorizeType) {
+        this.authorizeType = authorizeType;
     }
 }
