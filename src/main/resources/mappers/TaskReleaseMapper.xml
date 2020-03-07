@@ -180,10 +180,10 @@
                 and industry_belongs = #{taskReleaseVO.industryBelongs}
             </if>
             <if test="startTime != null">
-                and create_date <![CDATA[>=]]> #{startTime}
+                and r.create_date <![CDATA[>=]]> #{startTime}
             </if>
             <if test="endTime != null">
-                and create_date <![CDATA[<=]]> #{endTime}
+                and r.create_date <![CDATA[<=]]> #{endTime}
             </if>
             and state = 2
         </where>
