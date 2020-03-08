@@ -245,6 +245,22 @@
         margin-right:300px;
     }
 }
+@media (max-width: 1200px) {
+    .collect{
+        margin-right:220px;
+    }
+    .state{
+        margin-right:250px;
+    }
+}
+@media (min-width: 1200px) {
+    .collect{
+        margin-right:50px;
+    }
+    .state{
+        margin-rigth:60px;
+    }
+}
 @media (max-width: 1700px) {
     #center{
         margin-left:150px;
@@ -252,10 +268,10 @@
 }
 @media (min-width: 1700px) {
     #leftnav{
-        margin-left: 100px;
+        margin-left: 230px;
     }
     #center{
-        margin-left:230px;
+        margin-left:360px;
     }
 }
 

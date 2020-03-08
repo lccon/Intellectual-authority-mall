@@ -14,7 +14,6 @@
         color: #ff6709;
         font-size: 20px;
         float: right;
-        margin-right: 250px;
     }
     .zd{
         float: right;

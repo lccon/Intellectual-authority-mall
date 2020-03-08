@@ -26,7 +26,7 @@
                     <div class="preview">
                         <div class="preview-box">
                             <a href="#">
-                                <img id="bigimg" class="media-object" alt="" src="${pageContext.request.contextPath}${authorizeCompany.companyPictureUrl}" />
+                                <img id="bigimg" class="media-object" alt="" src="" />
                             </a>
                         </div>
                     </div>
@@ -53,11 +53,20 @@
                             </dd>
                         </dl>
                     </div>
-                    <c:if test="${authorizeType==2}">
-                        <span style="float: right;">
+                    <script>
+                        $.ajax({
+                            type:"POST",
+                            url: "/getauthorizeType?userid=${authorizeCompany.userId}",
+                            success: function(result) {
+                                if(result==2){
+                                    document.getElementById("yz").style.display="block";
+                                }
+                            },
+                        })
+                    </script>
+                    <span class="yz" id="yz">
                             <img src="${pageContext.request.contextPath}/img/yinzhang.png" style="width:130px;height:130px;">
-                        </span>
-                    </c:if>
+                    </span>
                 </div>
             </div>
         </div>
@@ -101,7 +110,6 @@
             async : false,
             data:{type:1},
             success: function(result) {
-                console.log(result);
             },
         })
     }

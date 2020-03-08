@@ -84,6 +84,10 @@
     color: #ff6709;
     font-size: 14px;
 }
+.yz{
+    float: left;
+    display: none;
+}
 /*大于768px的屏幕*/
 @media (min-width: 768px) {
 	#caps a{

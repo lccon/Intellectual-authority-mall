@@ -24,7 +24,9 @@
             <li>
                 <c:if test="${userRealName!=null}">
                     <a href="/userCenter"><img src="" class="layui-nav-img" id="headimg">${userRealName}</a>
-                    <img src="${pageContext.request.contextPath}/img/daban.png">
+                    <c:if test="${authorizeType==2}">
+                        <img src="${pageContext.request.contextPath}/img/daban.png">
+                    </c:if>
                     <script>
                         var url11="${HeadPortrait}".split(",");
                         var headimg=document.getElementById("headimg");

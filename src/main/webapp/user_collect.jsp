@@ -16,7 +16,6 @@
         text-decoration: none;
         -webkit-transition: all 217ms ease;
         transition: all 217ms ease;
-        margin-right:220px;
     }
 
 </style>

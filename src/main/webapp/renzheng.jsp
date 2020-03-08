@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
         <li id="title">我的认证</li>
     </ul>
 </div>
-<c:if test="${user.authorizeType==1}">
+<c:if test="${user.authorizeType==3}">
     <div class="info">
         <ul style="margin-left: 30px;">
             <strong style="margin-left: 150px;">
@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
         </ul>
     </div>
 </c:if>
-<c:if test="${user.authorizeType==2}">
+<c:if test="${user.authorizeType==4}">
     <div class="info">
         <ul style="margin-left: 30px;">
             <strong style="margin-left: 150px;">
@@ -34,11 +34,21 @@ pageEncoding="UTF-8"%>
         </ul>
     </div>
 </c:if>
+<c:if test="${user.authorizeType==2}">
+    <div class="info">
+        <ul style="margin-left: 30px;">
+            <strong style="margin-left: 150px;">
+                <i style="margin:0;" id="icon" class="glyphicon glyphicon-info-sign"></i>
+                您已经进行过代办公司认证了，不可以再进行其他认证了
+            </strong>
+        </ul>
+    </div>
+</c:if>
 <c:if test="${user.authorizeType==0}">
    <div style="background-color: #fff;">
        <div style="margin-left: 50px;">
     <div class="titleline1">
-        <div class="title">
+        <div class="title"  style="width:500px;">
             请进入个人认证或企业认证
             <hr>
         </div>
@@ -148,6 +158,93 @@ pageEncoding="UTF-8"%>
            </form>
        </div>
    </div>
+</c:if>
+<c:if test="${user.authorizeType==1}">
+    <div style="background-color: #fff;">
+        <div style="margin-left: 50px;">
+            <div class="titleline1">
+                <div class="title" style="width:500px;">
+                    你的企业认证信息被驳回，请重新上传企业认证信息
+                    <hr>
+                </div>
+            </div>
+            <form class="layui-form" method="post" action="/tradeAuthorize/addTradeAuthorize">
+                <div class="container" id="qymodel" style="display: block;">
+                    <div class="into" style="margin-top: 20px;">
+                        <p>
+                            请您如实添写以下营业执照信息
+                        </p>
+                    </div>
+                    <div class="lab">
+                        <label>
+                            <span>工商注册号</span>
+                            <input name="authorizeStyle" value="1" type="hidden"/>
+                            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="businessLicense">
+                        </label>
+
+                    </div>
+                    <div class="lab">
+                        <label>
+                            <span>公司名称&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="companyName">
+                        </label>
+                    </div>
+                    <div class="lab">
+                        <label>
+                            <span>企业联系人&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <input style="margin-left: 20px; margin-top: 20px;" type="text" name="companyPerson">
+                        </label>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <label>
+                            <span>上传营业执照：</span>
+                        </label>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <div class="chuans">
+                                <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
+                                <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
+                                <span class="delx glyphicon glyphicon-remove"></span>
+                            </div>
+                            <div class="chuans">
+                                <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
+                                <input class="uploadImg file1" type="file"onchange="uploadImage(this);" name="file1" >
+                                <span class="delx glyphicon glyphicon-remove"></span>
+                            </div>
+                            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <br>
+                        <br>
+                        <br>
+                        以下证件可以通过营业执照的验证：
+                        <br>
+                        1.营业执照条件（正副本皆可）；
+                        <br>
+                        2.营业执照正本复印件加盖公司彩章；
+                        <br>
+                        3.营业执照副本复印件加盖公司彩章；
+                        <br>
+                        详见下方样图，图片需清晰无水印
+                    </div>
+                    <div class="licence" style="width: 256px; float: left;">
+                        <img src="img/yingyezhizhangzheng.png"/>
+                        <p style="margin-left: 40px;">营业执照正本原件图样</p>
+
+                    </div>
+                    <div class="licence" style="width: 256px; float: left;margin-top: 30px;">
+                        <img src="img/yingyezhizhangfu.png"/>
+                        <p style="margin-left: 15px;">加盖公司彩章的执照复印件图样</p>
+                    </div>
+                    <div style="margin-top: 400px; margin-bottom: 100px;">
+                        <button type="submit" id="button2">提交绑定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </c:if>
 <script src="${pageContext.request.contextPath}/js/post-message.js"></script>
 

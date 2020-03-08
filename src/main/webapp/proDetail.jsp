@@ -139,11 +139,20 @@
                                 </dd>
                             </dl>
                         </div>
-                        <c:if test="${authorizeType==2}">
-                        <span style="float: right;">
+                        <script>
+                            $.ajax({
+                                type:"POST",
+                                url: "/getauthorizeType?userid=${intellectualTask.userId}",
+                                success: function(result) {
+                                   if(result==2){
+                                       document.getElementById("yz").style.display="block";
+                                   }
+                                },
+                            })
+                        </script>
+                        <span class="yz" id="yz">
                             <img src="${pageContext.request.contextPath}/img/yinzhang.png" style="width:130px;height:130px;">
                         </span>
-                        </c:if>
                     </div>
                 </div>
             </div>

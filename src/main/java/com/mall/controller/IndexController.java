@@ -97,4 +97,10 @@ public class IndexController {
     public List<AuthorizeSite> advertising(Integer siteType){
         return authorizeSiteService.findAuthorizeSiteBysiteType(siteType);
     }
+    @RequestMapping("/getauthorizeType")
+    @ResponseBody
+    public Integer getauthorizeType(Long userid){
+        User user=userService.findUserById(userid);
+        return user.getAuthorizeType();
+    }
 }
