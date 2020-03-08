@@ -17,6 +17,6 @@ public class CommonConstants {
     public static final Integer ONE_PERIOD = 1;
     public static final Integer SEVEN_PERIOD = 2;
     public static final Integer MONTH_PERIOD = 3;
-    public static final Integer SEVEN = 7;
-    public static final Integer MONTH = 30;
+    public static final Integer EIGHT = 7;
+    public static final Integer MONTH_EIGHT = 38;
 }

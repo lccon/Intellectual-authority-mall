@@ -174,14 +174,18 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         }
         try {
             Date startTime = null;
+            Date endTime = null;
             if (CommonConstants.ONE_PERIOD.equals(periodType)) {
                 startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+                endTime = new Date();
             } else if (CommonConstants.SEVEN_PERIOD.equals(periodType)) {
-                startTime = DateUtil.getLastPeriodDay(CommonConstants.SEVEN);
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
             } else if (CommonConstants.MONTH_PERIOD.equals(periodType)) {
-                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH);
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH_EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
             }
-            return taskReleaseMapper.findTaskPeriodDataForList(taskCategory, startTime, new Date());
+            return taskReleaseMapper.findTaskPeriodDataForList(taskCategory, startTime, endTime);
         } catch (Exception e) {
             throw new ServiceValidationException("获取任务发布列表出错!", e);
         }
@@ -215,12 +219,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
         if (taskReleaseVO.getPeriodType() != null) {
             if (CommonConstants.ONE_PERIOD.equals(taskReleaseVO.getPeriodType())) {
                 startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+                endTime = new Date();
             } else if (CommonConstants.SEVEN_PERIOD.equals(taskReleaseVO.getPeriodType())) {
-                startTime = DateUtil.getLastPeriodDay(CommonConstants.SEVEN);
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
             } else if (CommonConstants.MONTH_PERIOD.equals(taskReleaseVO.getPeriodType())) {
-                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH);
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH_EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
             }
-            endTime = new Date();
         }
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<TaskRelease> pageBean = new pagebean<TaskRelease>();
