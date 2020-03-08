@@ -10,6 +10,7 @@ import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.AuthorizeCompanyMapper;
 import com.mall.service.AuthorizeCompanyService;
+import com.mall.service.BusinessBrowseService;
 import com.mall.service.BusinessCollectedService;
 import com.mall.service.RoofPlaceService;
 import com.mall.utils.StringUtil;
@@ -37,6 +38,8 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
     private RoofPlaceService roofPlaceService;
     @Autowired
     private BusinessCollectedService businessCollectedService;
+    @Autowired
+    private BusinessBrowseService businessBrowseService;
 
     @Override
     public AuthorizeCompany addAuthorizeCompany(AuthorizeCompany authorizeCompany) {
@@ -143,9 +146,17 @@ public class AuthorizeCompanyServiceImpl implements AuthorizeCompanyService {
                     }
                 }
                 RoofPlace roofPlace = new RoofPlace();
-                roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                roofPlace.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
                 roofPlace.setModuleTypeId(id);
                 roofPlaceService.deleteRoofPlace(roofPlace);
+                BusinessCollected businessCollected = new BusinessCollected();
+                businessCollected.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+                businessCollected.setModuleTypeId(id);
+                businessCollectedService.deleteUserCollected(businessCollected);
+                BusinessBrowse businessBrowse = new BusinessBrowse();
+                businessBrowse.setModuleType(ModuleTypeEnum.AUTHORIZE_COMPANY.getModuleCode());
+                businessBrowse.setModuleTypeId(id);
+                businessBrowseService.deleteUserBrowse(businessBrowse);
             }
             Integer count = authorizeCompanyMapper.deleteAuthorizeCompany(ids);
             return count > 0;

@@ -37,4 +37,11 @@ public interface BusinessCollectedMapper {
      * @return
      */
     BusinessCollected getBusinessCollected(BusinessCollected businessCollected);
+
+    /**
+     * 删除用户收藏
+     * @param businessCollected
+     * @return
+     */
+    Integer deleteUserCollected(BusinessCollected businessCollected);
 }

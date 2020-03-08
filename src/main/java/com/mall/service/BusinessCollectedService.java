@@ -35,4 +35,11 @@ public interface BusinessCollectedService {
      * @return
      */
     BusinessCollected getBusinessCollected(BusinessCollected businessCollected);
+
+    /**
+     * 删除用户收藏
+     * @param businessCollected
+     * @return
+     */
+    Boolean deleteUserCollected(BusinessCollected businessCollected);
 }

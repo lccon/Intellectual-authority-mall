@@ -9,6 +9,7 @@ import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.TaskReleaseMapper;
+import com.mall.service.BusinessBrowseService;
 import com.mall.service.BusinessCollectedService;
 import com.mall.service.RoofPlaceService;
 import com.mall.service.TaskReleaseService;
@@ -34,6 +35,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     private RoofPlaceService roofPlaceService;
     @Autowired
     private BusinessCollectedService businessCollectedService;
+    @Autowired
+    private BusinessBrowseService businessBrowseService;
 
     @Override
     public TaskRelease addTaskRelease(TaskRelease taskRelease) {
@@ -98,6 +101,14 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
                 roofPlace.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
                 roofPlace.setModuleTypeId(id);
                 roofPlaceService.deleteRoofPlace(roofPlace);
+                BusinessCollected businessCollected = new BusinessCollected();
+                businessCollected.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+                businessCollected.setModuleTypeId(id);
+                businessCollectedService.deleteUserCollected(businessCollected);
+                BusinessBrowse businessBrowse = new BusinessBrowse();
+                businessBrowse.setModuleType(ModuleTypeEnum.TASK_RELEASE.getModuleCode());
+                businessBrowse.setModuleTypeId(id);
+                businessBrowseService.deleteUserBrowse(businessBrowse);
             }
 
             return count > 0;

@@ -44,4 +44,10 @@
         SELECT <include refid="columns"/> FROM business_browse
         WHERE publisher_id = #{publisherId}
     </select>
+
+    <delete id="deleteUserBrowse" parameterType="com.mall.domain.BusinessBrowse">
+        DELETE FROM business_browse
+        WHERE module_type = #{moduleType}
+        and module_type_id = #{moduleTypeId}
+    </delete>
 </mapper>

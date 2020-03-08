@@ -19,4 +19,6 @@ public interface BusinessBrowseMapper {
     List<BusinessBrowse> findMeSeeWhoForList(Long visitorId);
 
     List<BusinessBrowse> findWhoSeeMeForList(Long userId);
+
+    Integer deleteUserBrowse(BusinessBrowse businessBrowse);
 }

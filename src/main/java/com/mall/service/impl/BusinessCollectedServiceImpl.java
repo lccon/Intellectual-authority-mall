@@ -107,4 +107,17 @@ public class BusinessCollectedServiceImpl implements BusinessCollectedService {
             throw new ServiceValidationException("获取收藏信息出错!", e);
         }
     }
+
+    @Override
+    public Boolean deleteUserCollected(BusinessCollected businessCollected) {
+        if (businessCollected == null) {
+            throw new BusinessValidationException("参数不能为空!");
+        }
+        try {
+            Integer count = businessCollectedMapper.deleteUserCollected(businessCollected);
+            return count > 0;
+        } catch (Exception e) {
+            throw new ServiceValidationException("删除用户收藏失败!", e);
+        }
+    }
 }

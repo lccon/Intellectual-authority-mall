@@ -9,6 +9,7 @@ import com.mall.enums.ModuleTypeEnum;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
 import com.mall.mapper.IntellectualTaskMapper;
+import com.mall.service.BusinessBrowseService;
 import com.mall.service.BusinessCollectedService;
 import com.mall.service.IntellectualTaskService;
 import com.mall.service.RoofPlaceService;
@@ -37,6 +38,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
     private RoofPlaceService roofPlaceService;
     @Autowired
     private BusinessCollectedService businessCollectedService;
+    @Autowired
+    private BusinessBrowseService businessBrowseService;
 
     @Override
     public IntellectualTask addIntellectualTask(IntellectualTask intellectualTask) {
@@ -116,6 +119,14 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
                 roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
                 roofPlace.setModuleTypeId(id);
                 roofPlaceService.deleteRoofPlace(roofPlace);
+                BusinessCollected businessCollected = new BusinessCollected();
+                businessCollected.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                businessCollected.setModuleTypeId(id);
+                businessCollectedService.deleteUserCollected(businessCollected);
+                BusinessBrowse businessBrowse = new BusinessBrowse();
+                businessBrowse.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+                businessBrowse.setModuleTypeId(id);
+                businessBrowseService.deleteUserBrowse(businessBrowse);
             }
             Integer count = intellectualTaskMapper.deleteIntellectualTask(ids);
             return count > 0;

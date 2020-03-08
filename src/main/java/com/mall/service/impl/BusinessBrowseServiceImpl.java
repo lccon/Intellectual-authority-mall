@@ -141,4 +141,17 @@ public class BusinessBrowseServiceImpl implements BusinessBrowseService {
             throw new ServiceValidationException("查询谁看过我出错!", e);
         }
     }
+
+    @Override
+    public Boolean deleteUserBrowse(BusinessBrowse businessBrowse) {
+        if(businessBrowse == null) {
+            throw new BusinessValidationException("参数不能为空!");
+        }
+        try {
+            Integer count = businessBrowseMapper.deleteUserBrowse(businessBrowse);
+            return count > 0;
+        } catch (Exception e) {
+            throw new ServiceValidationException("删除用户浏览出错", e);
+        }
+    }
 }

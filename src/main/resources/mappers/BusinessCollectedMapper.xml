@@ -44,4 +44,10 @@
         AND module_type = #{moduleType}
         AND module_type_id = #{moduleTypeId}
     </select>
+
+    <delete id="deleteUserCollected" parameterType="com.mall.domain.BusinessCollected">
+        DELETE FROM business_collected
+        WHERE module_type = #{moduleType}
+        AND module_type_id = #{moduleTypeId}
+    </delete>
 </mapper>

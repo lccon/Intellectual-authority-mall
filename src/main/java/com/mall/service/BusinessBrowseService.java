@@ -22,4 +22,6 @@ public interface BusinessBrowseService {
     MeSeeWhoVO getMeSeeWho(Long userId);
 
     List<WhoSeeMeVO> getWhoSeeMe(Long userId);
+
+    Boolean deleteUserBrowse(BusinessBrowse businessBrowse);
 }
