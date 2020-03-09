@@ -19,7 +19,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="login">
 <c:if test="${userRealName!=null}">
-        <ul>
+        <ul class="grzx">
             <li>
                 <a href="/userCenter">个人中心</a>
             </li>
@@ -51,9 +51,7 @@
         <div class="navbar-header">
             <a href="/" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span>导航</span>
             </button>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -61,6 +59,7 @@
                 <li id="li1"><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                 <li id="li1"><a href="/intellectualTask/findpageIntellectualTaskForList"> 知识产权商城</a></li>
                 <li id="li1"><a href="/authorizeCompany/findpageauthorizeCompanyForList"> 代办公司</a></li>
+                <li id="li1"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1"> 最新发布</a></li>
                 <li id="li1"><a href="/post-message"> 任务发布</a></li>
                 <li id="li1"><a href="/policyAdvice/findpagepolicyAdviceForList"> 政策资讯</a></li>
                 <li id="li1"><a href="/about.jsp"><span class="glyphicon glyphicon-question-sign"></span> 关于我们</a></li>

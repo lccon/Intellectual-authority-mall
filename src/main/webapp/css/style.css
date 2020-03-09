@@ -1,8 +1,19 @@
 @charset "utf-8";
+html {
+	overflow-y: scroll;
+}
+
+:root {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
 body {
 	font-family: "Hiragino Sans GB", "Microsoft YaHei", 黑体, sans-serif;
 	color: #333;
 	background-color: #eeeff1;
+	overflow: hidden;
+
 }
 body a{
 	color: #666;
@@ -143,7 +154,7 @@ body a:hover{
 }
 /*输入框*/
 #input1{
-	height: 39px;
+	height: 40px;
     border: 1px solid #f46;
     font-size: 12px;
 }
@@ -642,10 +653,6 @@ footer a{
 	.w3ls-main {
 		width: 480px;
 	}
-footer {
-	font-size: 15px;
-	letter-spacing: 1px;
-	}
 }
 @media(max-width:600px){
 	h1{
@@ -662,14 +669,6 @@ footer {
 	.w3ls-main {
 		width: 440px;
 	}
-	footer {
-		font-size: 13px;
-		letter-spacing: 1px;
-	}
-	footer {
-		font-size: 14px;
-		letter-spacing: 1px;
-	}
 }
 @media(max-width:480px){
 	.w3ls-main {
@@ -680,9 +679,6 @@ footer {
 		padding: 0px 0px;
 		display: inline-block;
 		float: left;
-	}
-	input[type="text"]{
-	    margin: 3px 0;
 	}
 	.w3ls-name {
 		display: inline-block;
@@ -705,9 +701,6 @@ footer {
 @media(max-width:414px){
 	.w3ls-main {
 		width: 300px;
-	}
-	input[type="text"]{
-		margin: 3px 0 10px;
 	}
 	label.w3ls-opt {
 		padding: 0px 0;
@@ -783,7 +776,7 @@ footer {
 		display: none;
 	}
 	#login {
-		height: 25px;
+		height: 40px;
 		line-height: 20px;
 		font-size: xx-small;
 		background: #efefef;
@@ -791,5 +784,21 @@ footer {
 	}
 	.rightguanggao{
 		display: none;
+	}
+	.input-group .form-control {
+		margin-bottom: 10px;
+	}
+	#myCarousel{
+		height:130px;
+	}
+	#myCarousel img{
+		height: 130px;
+	}
+	.grzx{
+		margin-top:5px;
+	}
+	.model{
+		width:343px;
+		margin-bottom:10px;
 	}
 }

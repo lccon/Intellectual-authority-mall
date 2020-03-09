@@ -2,6 +2,10 @@
     height: 507px;
     background-color: #fff;
 }
+.model1 {
+    height: 507px;
+    background-color: #fff;
+}
 
 .board h2 {
     border-bottom: 1px solid #f3f3f3;
@@ -48,7 +52,7 @@
 
 .shu a {
     color: #f46;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
 }
 
@@ -110,5 +114,8 @@
     }
     .leftguanggao{
         width:200px;
+    }
+    .container{
+        width:1560px;
     }
 }

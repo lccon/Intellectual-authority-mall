@@ -1,59 +1,49 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<!--title  -->
-<title>登录</title>
+<head>
 
-<!--href  -->
-<link rel="shortcut icon" href=${data["loginTabImage"].configName} type="image/x-icon"/>
-<link rel="stylesheet" href="/resource/css/login/reset.css">
-<link rel="stylesheet" href="/resource/css/login/login.css">
-	<jsp:include page="jsinclude.jsp"/>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/supersized.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login1.css">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
 </head>
-<body id="t-beauty-v1">
 
-	<div class="login-wrapper" id="loginBg">
-	
-	    <!--登陆框背景  -->
-		<div class="login-enter" id="loginEnterBg">
-			<div class="login-box">
-				<form action="/api/login" method="post" id="loginform-inner"
-					novalidate="novalidate">
-					<div class="login-title">
-					
-						<!--登录页标题图标，loginTitle  -->
-                        <i class="login-icon" id="loginTitleIcon"></i>
-                        <span class="login-name" id="loginTitle" style="font-size:${data["loginTitle"].wordSize}px">
-							公司LOGO
-						</span>
-                    </div>
-					<p class="user-input">
-						<input id="username" type="text" placeholder="邮箱地址" name="username">
-					</p>
-					<p class="password-input">
-						<input id="password" type="password" placeholder="密码" name="password">
-					</p>
-					<div id="loginInfo"></div>
-					<div class="btn-bar">
-						<label class="iv-checkbox"> <input type="checkbox" name=""
-							id=""><span class="iv-checkbox-inner"></span>记住密码
-						</label>
-						<input type="submit" id="loginButton" class="login-btn" value="登录" />
-                    </div>
-                    <div style="margin-top: 40px;">
-						<a href="/">返回首页</a>
-						<a href="/register" style="float: right">没有帐号？去注册</a>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
+<body>
+
+<div class="page-container">
+    <h1>登录</h1>
+    <form action="/api/login" method="post" id="loginform-inner"
+          novalidate="novalidate">
+        <input type="text" name="username" class="username" placeholder="用户名">
+        <input type="password" name="password" class="password" placeholder="密码">
+        <div style="margin-top: 40px;">
+            <a href="/" style="float: left;">返回首页</a>
+            <a href="/register" style="float: right">没有帐号？去注册</a>
+        </div>
+        <button type="submit">登录</button>
+        <div id="loginInfo"></div>
+    </form>
+</div>
 
 </body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/supersized.3.2.7.min.js"></script>
+<script src="/js/supersized-init.js"></script>
+<script src="/js/scripts.js"></script>
 <script src="/resource/js/jquery.base.js"></script>
 <script src="/resource/js/jQuery.md5.js"></script>
 <script src="/resource/js/validate.js"></script>

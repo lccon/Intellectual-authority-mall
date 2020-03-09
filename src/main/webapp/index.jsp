@@ -90,47 +90,16 @@ pageEncoding="UTF-8"%>
 	</div>
 
 	<!--中心显示区域-->
-	<div class="leftguanggao">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-				<c:forEach items="${leftAuthllist}" var="u" begin="0" end="4" step="1">
-				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
-					<img src="" id="leftimg${u.id}">
-					<script>
-                        var leftimg1="${u.sitePictureUrl}".split(",");
-                        var leftimg2=document.getElementById("leftimg${u.id}");
-                        leftimg2.src="${pageContext.request.contextPath}"+leftimg1[0];
-					</script>
-				</a>
-				</c:forEach>
-			</div>
-	</div>
-	<!--右侧广告位-->
-	<div class="rightguanggao">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-				<c:forEach items="${rightAuthllist}" var="u" begin="0" end="14" step="1">
-					<a href="http://${u.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
-						<img src="" id="rightimg${u.id}">
-						<script>
-                            var rightimg1="${u.sitePictureUrl}".split(",");
-                            var rightimg2=document.getElementById("rightimg${u.id}");
-                            rightimg2.src="${pageContext.request.contextPath}"+rightimg1[0];
-						</script>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
-
 	<div class="container" style="margin-top:30px;height:520px;">
+		<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="board">
+				<div class="tit" style="background-color:#1E9FFF;">
 					<h2>
-						<a href="/intellectualTask/findpageIntellectualTaskForList">知识产权商城</a>
+						<a href="/intellectualTask/findpageIntellectualTaskForList"><strong>知识产权商城</strong></a>
 					</h2>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12" style="margin-top:10px;">
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=1" class="thumbnail" >
 						<img src="img/zhuanli.png" style="height: 60px;width: 100%;" alt="发明">
 					</a>
@@ -151,12 +120,12 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="board">
+				<div class="tit" style="background-color:#FFB800;">
 					<h2>
-						<a href="/authorizeCompany/findpageauthorizeCompanyForList">代办机构</a>
+						<a href="/authorizeCompany/findpageauthorizeCompanyForList"><strong>代办机构</strong></a>
 					</h2>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12" style="margin-top:10px;">
 					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=1" class="thumbnail" >
 						<img src="img/shenqingfuwu.png" style="height: 75px;width: 100%;" alt="申请服务">
 					</a>
@@ -175,9 +144,9 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="board">
+				<div class="tit" style="background-color:#e66147;margin-bottom: 10px;">
 					<h2>
-						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1">最新发布</a>
+						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1"><strong>最新发布</strong></a>
 					</h2>
 				</div>
 				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=1">今日最新</a></div>
@@ -271,9 +240,9 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="board">
+				<div class="tit" style="background-color:#e66147;margin-bottom:10px;">
 					<h2>
-						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2">最新需求</a>
+						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2"><strong>最新需求</strong></a>
 					</h2>
 				</div>
 				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=1">今日最新</a></div>
@@ -365,6 +334,7 @@ pageEncoding="UTF-8"%>
 				</script>
 			</div>
 		</div>
+		</div>
 	</div>
 
 
@@ -388,7 +358,7 @@ pageEncoding="UTF-8"%>
 	<div class="container" style="margin-top:30px;">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="model">
+				<div class="model1">
 					<div class="tit">
 						<h2>
 							<a href="/policyAdvice/findpagepolicyAdviceForList"><strong>新闻资讯</strong></a>
@@ -400,7 +370,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="model">
+				<div class="model1">
 					<div class="tit" style="background-color: #5367af;">
 						<h2>
 							<a href="/about.jsp"><strong>关于我们</strong></a>
