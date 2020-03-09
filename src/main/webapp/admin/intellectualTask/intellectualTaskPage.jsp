@@ -28,6 +28,8 @@
                 {name : "patentNumber", index:"patentNumber", label:"专利号", align:'center', sortable:false, width:'170'},
                 {name : "productCategory", index:"productCategory", label:"商品分类", align:'center', sortable:false, width:'90', formatter:productCategoryFormatter},
                 {name : "industryCategory", index:"industryCategory", label:"行业分类", align:'center', sortable:false, width:'100', formatter:industryCategoryFormatter},
+                {name : "realName", index:"realName", label:"真实姓名", align:'center', sortable:false, width:'90'},
+                {name : "mobile", index:"mobile", label:"手机号", align:'center', sortable:false, width:'110'},
                 {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
                 {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
                 {name : "state", index:"state", label:"发布状态", align:'center', sortable:false, width:'100', formatter:stateFormatter},

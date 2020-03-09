@@ -102,6 +102,22 @@
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
             <em class="form-red">*</em>
+            <label class="form-lb1">真实姓名：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="realName" id="realName" value=""/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">手机号：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="mobile" id="mobile" value=""/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <em class="form-red">*</em>
             <label class="form-lb1">置顶状态：</label>
         </div>
         <div class="grid_7">
@@ -173,6 +189,7 @@
                 },
                 "patentNumber":{
                     required:true,
+                    isDigitAndStr:true,
                     minlength:1,
                     maxlength:200
                 },
@@ -181,8 +198,19 @@
                     positiveInteger:true,
                     minlength:1,
                     maxlength:10
-                }/*,
-                "myFile": {
+                },
+                "realName" : {
+                    required:true,
+                    minlength:1,
+                    maxlength:10
+                },
+                "mobile" : {
+                    required:true,
+                    isMobile:true,
+                    minlength:1,
+                    maxlength:11
+                },
+                /*"myFile": {
                     required:true,
                 }*/
             },
@@ -204,6 +232,7 @@
                 },
                 "patentNumber":{
                     required:"请输入专利号",
+                    isDigitAndStr:"只能输入字母或数字",
                     minlength:$.format("专利号至少需要输入{0}个字符"),
                     minlength:$.format("专利号最多需要输入{0}个字符"),
                 },
@@ -212,8 +241,19 @@
                     positiveInteger:"请输入正整数",
                     minlength:$.format("置顶天数至少需要输入{0}个字符"),
                     minlength:$.format("置顶天数最多需要输入{0}个字符"),
-                }/*,
-                "myFile": {
+                },
+                "realName" : {
+                    required:"请输入真实姓名",
+                    minlength:$.format("真实姓名至少需要输入{0}个字符"),
+                    minlength:$.format("真实姓名最多需要输入{0}个字符"),
+                },
+                "mobile" : {
+                    required:"请输入手机号",
+                    isMobile:"输入的手机号格式不正确",
+                    minlength:$.format("手机号至少需要输入{0}个字符"),
+                    minlength:$.format("手机号最多需要输入{0}个字符"),
+                },
+                /*"myFile": {
                     required:"请上传图片",
                 }*/
             },
@@ -337,5 +377,18 @@
     jQuery.validator.addMethod("positiveInteger", function(value, element) {
         var positiveInteger = /^[0-9]*[1-9][0-9]*$/;
         return this.optional(element) || (positiveInteger.test(value));
+    });
+
+    jQuery.validator.addMethod("isMobile", function(value, element) {
+        var length = value.length;
+        var mobile = /^1[3|4|5|7|8]\d{9}$/;
+        return this.optional(element) || (length == 11 && mobile.test(value));
+    });
+
+    jQuery.validator.addMethod("isDigitAndStr", function(value, element){
+        if(value==null||value==undefined||value=="" ){return true};
+        var patrn=/^[A-Za-z0-9]+$/;
+        if (!patrn.exec(value.replace(/[ ]/g,""))) return false
+        return true
     });
 </script>
