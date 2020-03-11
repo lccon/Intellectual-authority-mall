@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body >
+<div id="center11">
 <div style="width:80px;">
     <ul>
         <li id="title">我的认证</li>
@@ -114,12 +115,12 @@ pageEncoding="UTF-8"%>
             <span>上传营业执照：</span>
         </label>
         <div class="btn-group" role="group" aria-label="...">
-            <div class="chuans">
+            <div class="chuans" style="margin-left: 0px;">
                 <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
                 <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
                 <span class="delx glyphicon glyphicon-remove"></span>
             </div>
-            <div class="chuans">
+            <div class="chuans"  style="margin-left: 0px;">
                 <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
                 <input class="uploadImg file1" type="file"onchange="uploadImage(this);" name="file1" >
                 <span class="delx glyphicon glyphicon-remove"></span>
@@ -169,7 +170,7 @@ pageEncoding="UTF-8"%>
                 </div>
             </div>
             <form class="layui-form" method="post" action="/tradeAuthorize/addTradeAuthorize">
-                <div class="container" id="qymodel" style="display: block;">
+                <div class="container" id="qymodel1" style="display: block;">
                     <div class="into" style="margin-top: 20px;">
                         <p>
                             请您如实添写以下营业执照信息
@@ -196,17 +197,17 @@ pageEncoding="UTF-8"%>
                         </label>
                     </div>
 
-                    <div style="margin-top: 20px;">
+                    <div class="zz" style="margin-top: 20px; height: 440px;width:700px;">
                         <label>
                             <span>上传营业执照：</span>
                         </label>
                         <div class="btn-group" role="group" aria-label="...">
-                            <div class="chuans">
+                            <div class="chuans"  style="margin-left: 0px;">
                                 <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
                                 <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
                                 <span class="delx glyphicon glyphicon-remove"></span>
                             </div>
-                            <div class="chuans">
+                            <div class="chuans"  style="margin-left: 0px;">
                                 <img src="${pageContext.request.contextPath}/img/file.png" alt="" data-imgsrc="img/file.png">
                                 <input class="uploadImg file1" type="file"onchange="uploadImage(this);" name="file1" >
                                 <span class="delx glyphicon glyphicon-remove"></span>
@@ -300,7 +301,7 @@ pageEncoding="UTF-8"%>
         })
     }
 </script>
-
+</div>
 </body>
 
 </html>

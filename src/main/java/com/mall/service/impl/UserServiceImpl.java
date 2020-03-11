@@ -1,10 +1,8 @@
 package com.mall.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.JsonObject;
 import com.mall.component.ThreadVariable;
 import com.mall.mapper.UserMapper;
 import com.mall.domain.Session;
@@ -16,19 +14,21 @@ import com.mall.redis.template.RedisTemplate;
 import com.mall.service.SessionService;
 import com.mall.service.UserService;
 import com.mall.utils.HttpUtil;
+import com.mall.utils.HttpUtils;
 import com.mall.utils.PasswordUtil;
 import com.mall.utils.StringUtil;
 import com.mall.vo.UserVO;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 
 import java.net.URLEncoder;
-import java.util.Calendar;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -165,6 +165,30 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+
+	@Override
+	public String Aliyunmobile(String mobile) {
+		try {
+			String host = "https://feginesms.market.alicloudapi.com";
+			String path = "/codeNotice";
+			String method = "GET";
+			String appcode = "09dc266f587846e582668ef9215093f7";
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("Authorization", "APPCODE " + appcode);
+			Map<String, String> querys = new HashMap<String, String>();
+			String code=smsCode();
+			querys.put("param",code);
+			querys.put("phone", mobile);
+			querys.put("sign", "1");
+			querys.put("skin", "1");
+			HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
+			JSONObject jsonObject=JSONObject.parseObject(EntityUtils.toString(response.getEntity()));
+			jsonObject.put("code",code);
+			return jsonObject.toString();
+		} catch (Exception e) {
+			throw new ServiceValidationException("用户手机号登录校验失败！", e);
+		}
+	}
 	@Override
 	public List<User> getUserByIds(List<Long> userIdList) {
 		if (userIdList == null || userIdList.size() <= 0) {

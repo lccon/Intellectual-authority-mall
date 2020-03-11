@@ -205,13 +205,13 @@ $('.code-btn').on('click', function () {
         time_inter();//按钮倒计时
         $.ajax({
             type:"POST",
-            url: "/api/userMobileLogin?mobile="+tel_num,
+            url: "/api/Aliyunmobile?mobile="+tel_num,
             datatype:"JSON",
             success: function(result) {
                 if(result){
                     var d = $.parseJSON(result);
                     code1=d.code;
-                    result1=d.result;
+                    result1=d.Code;
                 }
                 else {
 
@@ -255,7 +255,7 @@ function LXDHonfocu(){
 function YZMonblus() {
     var code_num=document.getElementById("code_num");
     var code_numerr=document.getElementById("tip_code_num");
-    if(code_num.value==code1 && result1){
+    if(code_num.value==code1 && result1=="OK"){
         code_numerr.className="success";
     }
     else{

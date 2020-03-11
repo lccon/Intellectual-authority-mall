@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>注册信息</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon" />
     <link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="layui/css/layui.css">
@@ -34,8 +35,7 @@ pageEncoding="UTF-8"%>
 </head>
 <!--logo s-->
 <div class="logo-wrap clearfix">
-    <div class="gj-logo"><a target="_self" href="/"><img width="155" height="62" alt="公司名称logo" src=""></a></div>
-    <div class="logo-title"><span class="logo-tit user-reg">免费注册</span></div>
+    <div class="kt-logo"><a target="_self" href="/"><img alt="公司名称logo" src="${pageContext.request.contextPath}/img/login1.ico" ></a></div>
 </div>
 <!--logo e-->
 <!--wrapper s-->
@@ -321,13 +321,13 @@ pageEncoding="UTF-8"%>
             time_inter();//按钮倒计时
             $.ajax({
                 type:"POST",
-                url: "/api/userMobileLogin?mobile="+tel_num,
+                url: "/api/Aliyunmobile?mobile="+tel_num,
                 datatype:"JSON",
                 success: function(result) {
                     if(result){
                         var d = $.parseJSON(result);
                         code1=d.code;
-                        result1=d.result;
+                        result1=d.Code;
                     }
                     else {
 
@@ -430,7 +430,7 @@ pageEncoding="UTF-8"%>
     function YZMonblus() {
         var code_num=document.getElementById("code_num");
         var code_numerr=document.getElementById("tip_code_num");
-        if(code_num.value==code1 && result1){
+        if(code_num.value==code1 && result1=="OK"){
             code_numerr.className="success";
         }
         else{

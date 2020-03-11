@@ -14,15 +14,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="login">
         <c:if test="${userRealName!=null}">
-            <ul>
+            <ul class="grzx">
                 <li>
                     <a href="/userCenter">个人中心</a>
                 </li>
             </ul>
         </c:if>
+        <c:if test="${userRealName!=null}">
         <ul style="margin:0;">
             <li>
-                <c:if test="${userRealName!=null}">
                     <a href="/userCenter"><img src="" class="layui-nav-img" id="headimg">${userRealName}</a>
                     <c:if test="${authorizeType==2}">
                         <img src="${pageContext.request.contextPath}/img/daban.png">
@@ -33,18 +33,21 @@
                         headimg.src="${pageContext.request.contextPath}"+url11[0];
                     </script>
                     <a class="quit" href="/admin/userlogout">退出</a>
-                </c:if>
-                <c:if test="${userRealName==null}">
+            </li>
+        </ul>
+        </c:if>
+        <c:if test="${userRealName==null}">
+            <ul class="dl">
+                <li>
                     <a href="/login"><span class="glyphicon glyphicon-user"></span>登录</a>/
                     <a href="/register">注册</a>
-                </c:if>
-            </li>
-
-        </ul>
+                </li>
+            </ul>
+        </c:if>
     </div>
     <div class="container">
         <div class="navbar-header">
-            <a href="index.jsp" class="navbar-brand logo"><img src="#" alt="公司logo"></a>
+            <a href="/" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/img/login1.ico" alt="公司logo"></a>
         </div>
     </div>
 </nav>

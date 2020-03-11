@@ -6,7 +6,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>项目实战</title>
+    <title>科天行</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/spro.css">
@@ -30,6 +31,13 @@
 </head>
 
 <body style="background-color: #e5e5e5e5;">
+<style>
+    @media (max-width: 1200px) {
+        #center11{
+            margin-left: -80px;
+        }
+    }
+</style>
 <div class="suofang">
 <jsp:include page="head1.jsp"/>
 

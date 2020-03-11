@@ -47,12 +47,16 @@ public class LoginController {
 		return newSession;
 	}
 
-	@RequestMapping("/userMobileLogin")
+/*	@RequestMapping("/userMobileLogin")
 	@ResponseBody
 	public String userMobileLoginCheck(@RequestParam(value = "mobile") String mobile) {
 		return userService.getUserMobileLoginCheckInfo(mobile);
+	}*/
+	@RequestMapping("/Aliyunmobile")
+	@ResponseBody
+	public String Aliyunmobile(@RequestParam(value = "mobile") String mobile) {
+		return userService.Aliyunmobile(mobile);
 	}
-
 	@RequestMapping (value = "/logout", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean logout(String token, HttpServletRequest request, HttpServletResponse response) {

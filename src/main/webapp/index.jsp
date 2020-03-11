@@ -149,7 +149,7 @@ pageEncoding="UTF-8"%>
 						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1"><strong>最新发布</strong></a>
 					</h2>
 				</div>
-				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=1">今日最新</a></div>
+				<div class="shu" style="margin-top:40px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test1" style="float: right;">
 					<div carousel-item>
 						<div>
@@ -165,7 +165,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=2">本周最新</a></div>
+				<div class="shu" style="margin-top:80px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test2" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
@@ -181,7 +181,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=3">本月最新</a></div>
+				<div class="shu" style="margin-top:85px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test3" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
@@ -204,7 +204,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test1'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式
@@ -216,7 +216,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test2'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式
@@ -229,7 +229,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test3'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式
@@ -245,7 +245,7 @@ pageEncoding="UTF-8"%>
 						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2"><strong>最新需求</strong></a>
 					</h2>
 				</div>
-				<div class="shu"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=1">今日最新</a></div>
+				<div class="shu" style="margin-top:40px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test4" style="float: right;">
 					<div carousel-item>
 						<div>
@@ -261,7 +261,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=2">本周最新</a></div>
+				<div class="shu" style="margin-top:80px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test5" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
@@ -277,7 +277,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:30px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=3">本月最新</a></div>
+				<div class="shu" style="margin-top:85px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test6" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
@@ -300,7 +300,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test4'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式
@@ -312,7 +312,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test5'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式
@@ -325,7 +325,7 @@ pageEncoding="UTF-8"%>
                         //建造实例
                         carousel.render({
                             elem: '#test6'
-                            , width: '90%'
+                            , width: '70%'
                             , height: '130px'
                             , arrow: 'none' //始终显示箭头
                             , anim: 'updown' //切换动画方式

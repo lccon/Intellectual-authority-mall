@@ -45,9 +45,9 @@
 }
 
 .shu {
-    width: 20px;
-    height: 120px;
+    width: 50px;
     float: left;
+    text-align: center;
 }
 
 .shu a {
