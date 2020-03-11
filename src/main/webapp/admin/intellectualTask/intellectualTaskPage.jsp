@@ -22,9 +22,8 @@
             datatype : "local",
             colModel : [
                 {name : "id",index : "id", sortable : false,hidden : true, frozen : true},
-                {name : "productName",index : "productName", label:'商品名称', align:'center', sortable : false, width:'170'},
-                {name : "productBrief", index:"productBrief", label:"商品简介", align:'center', sortable:false, width:'170'},
-                {name : "productDetails", index:"productDetails", label:"商品详情", align:'center', sortable:false, width:'170'},
+                {name : "productName",index : "productName", label:'名称', align:'center', sortable : false, width:'170'},
+                {name : "productDetails", index:"productDetails", label:"文字详情", align:'center', sortable:false, width:'170'},
                 {name : "patentNumber", index:"patentNumber", label:"专利号", align:'center', sortable:false, width:'170'},
                 {name : "productCategory", index:"productCategory", label:"商品分类", align:'center', sortable:false, width:'90', formatter:productCategoryFormatter},
                 {name : "industryCategory", index:"industryCategory", label:"行业分类", align:'center', sortable:false, width:'100', formatter:industryCategoryFormatter},

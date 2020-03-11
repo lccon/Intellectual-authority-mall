@@ -17,7 +17,7 @@
     <div class="container_24 cf">
         <div class="grid_3 label-right">
             <em class="form-red">*</em>
-            <label class="form-lb1">商品名称：</label>
+            <label class="form-lb1">名称：</label>
         </div>
         <div class="grid_7">
             <input type="text" name="productName" id="productName" value="${intellectualTask.productName}"/>
@@ -33,17 +33,9 @@
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
             <em class="form-red">*</em>
-            <label class="form-lb1">商品简介：</label>
+            <label class="form-lb1">文字详情：</label>
         </div>
-        <div class="grid_7">
-            <textarea name="productBrief" id="productBrief" style="width:541px;height:108px">${intellectualTask.productBrief}</textarea>
-        </div>
-        <div class="clearLine"></div>
-        <div class="grid_3 label-right" style="margin-top: 80px;">
-            <em class="form-red">*</em>
-            <label class="form-lb1">商品详情：</label>
-        </div>
-        <div class="grid_1" style="margin-top: 80px;">
+        <div class="grid_1">
             <script id="container" name="productDetails" type="text/plain">
                 ${intellectualTask.productDetails}
             </script>
@@ -185,11 +177,6 @@
                     minlength:1,
                     maxlength:200
                 },
-                "productBrief":{
-                    required:true,
-                    minlength:1,
-                    maxlength:1000
-                },
                 "productDetails":{
                     required:true,
                     minlength:1,
@@ -224,11 +211,6 @@
                     required:"请输入商品名称",
                     minlength:$.format("商品名称至少需要输入{0}个字符"),
                     minlength:$.format("商品名称最多需要输入{0}个字符"),
-                },
-                "productBrief":{
-                    required:"请输入商品简介",
-                    minlength:$.format("商品简介至少需要输入{0}个字符"),
-                    minlength:$.format("商品简介最多需要输入{0}个字符"),
                 },
                 "productDetails":{
                     required:"请输入商品详情",
@@ -398,7 +380,7 @@
 
     jQuery.validator.addMethod("isDigitAndStr", function(value, element){
         if(value==null||value==undefined||value=="" ){return true};
-        var patrn=/^[A-Za-z0-9]+$/;
+        var patrn= /^[0-9a-zA-Z.]{0,}$/;
         if (!patrn.exec(value.replace(/[ ]/g,""))) return false
         return true
     });

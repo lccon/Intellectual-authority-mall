@@ -40,3 +40,6 @@ ALTER TABLE authorize_site ADD COLUMN site_type tinyint(1) DEFAULT NULL COMMENT 
 -- 认证添加用户id和公司性质
 ALTER TABLE trade_authorize ADD COLUMN user_id bigint(20) DEFAULT NULL COMMENT '用户id' after license_picture;
 ALTER TABLE trade_authorize ADD COLUMN company_nature bigint(20) DEFAULT NULL COMMENT '公司性质' after license_picture;
+
+-- 知识产权商品简介置空
+ALTER TABLE intellectual_task modify product_brief varchar(100) DEFAULT NULL;
