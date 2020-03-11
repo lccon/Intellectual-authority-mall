@@ -27,7 +27,7 @@
 						<!--登录页标题图标，loginTitle  -->
                         <i class="login-icon" id="loginTitleIcon"></i>
                         <span class="login-name" id="loginTitle" style="font-size:${data["loginTitle"].wordSize}px">
-							**后台登录
+							科天行后台登录
 						</span>
                     </div>
 					<p class="user-input">
