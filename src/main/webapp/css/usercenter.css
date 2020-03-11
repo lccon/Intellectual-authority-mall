@@ -129,7 +129,6 @@
     font-size: 20px;
     font-weight: bold;
     border-bottom: 4px solid #f46;
-    width:120px;
 }
 #title2{
     background-color: #fff;
@@ -244,6 +243,7 @@
     .state{
         margin-right:300px;
     }
+
 }
 @media (max-width: 1200px) {
     .collect{
@@ -251,6 +251,13 @@
     }
     .state{
         margin-right:250px;
+    }
+
+    #test{
+        margin-left:-80px;
+    }
+    #title{
+        border-bottom: 4px solid #e5e5e5e5;
     }
 }
 @media (min-width: 1200px) {
@@ -265,6 +272,7 @@
     #center{
         margin-left:150px;
     }
+
 }
 @media (min-width: 1700px) {
     #leftnav{
@@ -273,5 +281,6 @@
     #center{
         margin-left:360px;
     }
+
 }
 

@@ -184,6 +184,15 @@ span.delx:hover{
     padding-left: 36px;
     vertical-align: middle;
 }
+.success1{
+    background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
 #zdmode{
     display:none;
 }
@@ -197,5 +206,8 @@ span.delx:hover{
         margin-left:0px;
         background-color: #e5e5e5e5;
     }
-
+    .leftguanggao{
+        display: none;
+    }
 }
+

@@ -11,7 +11,7 @@
 <div id="center11">
     <div class="agil-info-calendar">
         <!-- //calendar -->
-        <div class="col-xs-12 w3agile-notifications">
+        <div class="col-xs-8 w3agile-notifications">
             <div class="notifications">
                 <!--notification start-->
 

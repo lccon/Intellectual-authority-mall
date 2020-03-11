@@ -26,4 +26,5 @@ public interface UserService {
     String getUserMobileLoginCheckInfo(String mobile);
 
 	List<User> getUserByIds(List<Long> userIdList);
+	String Aliyunmobile(String mobile);
 }

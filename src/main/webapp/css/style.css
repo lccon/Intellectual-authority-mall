@@ -25,6 +25,13 @@ body a:hover{
 .logo {
 	padding:0;
 }
+.logo a{
+	float: left;
+}
+.logo img{
+	height: 50px;
+	margin-left: -50px;
+}
 #login {
 		height: 40px;
 		line-height: 35px;
@@ -746,6 +753,11 @@ footer a{
 		display: none;
 	}
 }
+@media (min-width: 500px) {
+	.shu{
+		margin-left: 10px;
+	}
+}
 /*超小屏幕 小于等于500px*/
 @media (max-width: 500px) {
 	#button1 {
@@ -798,7 +810,15 @@ footer a{
 		margin-top:5px;
 	}
 	.model{
-		width:343px;
 		margin-bottom:10px;
+	}
+	.shu{
+		margin-left: 30px;
+	}
+	.dl{
+		margin-top:10px;
+	}
+	.layui-nav-img{
+		margin-top:5px;
 	}
 }

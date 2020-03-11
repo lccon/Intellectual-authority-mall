@@ -13,6 +13,9 @@
                     </a>|&nbsp;
                     <a href='http://www.beian.miit.gov.cn' rel='nofollow'>京ICP证B0-000000000&nbsp;</a>|
                     京公网安备00000000号</span></div>
+        <div>
+            <span>客服电话：1234567890000</span>
+        </div>
     </div>
 </footer>
 </body>

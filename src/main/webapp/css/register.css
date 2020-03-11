@@ -11,21 +11,11 @@
 .li_fr a {
     color: #60af00;
 }
-.gj-logo {
+.kt-logo {
     float: left;
     padding-right: 14px
 }
-.logo-title {
-    border-left: 1px solid #cdcdcd;
-    color: #a04101;
-    float: left;
-    font-size: 24px;
-    font-family: 'Microsoft Yahei', 'Simsun';
-    height: 40px;
-    line-height: 34px;
-    margin-top: 12px;
-    padding-left: 14px
-}
+
 .logo-tit {
     background-repeat: no-repeat;
     float: left;
