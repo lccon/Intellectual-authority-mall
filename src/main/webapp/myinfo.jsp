@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
             <div class="form-group" style="height: 60px;">
                 <label for="inputPassword3" class="col-sm-2 control-label">手机号：</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" name="mobile" id="mobile" value="${user.mobile}">
+                    <p class="help-block" style="float: left;">${user.mobile}</p>
                 </div>
             </div>
             <div class="form-group" style="height: 60px;">

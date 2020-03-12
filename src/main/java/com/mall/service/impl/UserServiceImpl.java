@@ -179,8 +179,8 @@ public class UserServiceImpl implements UserService {
 			String code=smsCode();
 			querys.put("param",code);
 			querys.put("phone", mobile);
-			querys.put("sign", "1");
-			querys.put("skin", "1");
+			querys.put("sign", "500420");
+			querys.put("skin", "900620");
 			HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
 			JSONObject jsonObject=JSONObject.parseObject(EntityUtils.toString(response.getEntity()));
 			jsonObject.put("code",code);

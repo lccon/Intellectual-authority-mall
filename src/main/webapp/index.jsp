@@ -8,6 +8,13 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
+<style>
+	@media (min-width: 1700px) {
+		.container {
+			width: 1560px;
+		}
+	}
+</style>
     <jsp:include page="head.jsp"/>
 	<div class="container">
 	<div id="myCarousel" class="carousel slide">

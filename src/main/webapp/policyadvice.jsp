@@ -10,6 +10,13 @@
 </head>
 
 <body>
+<style>
+    @media (min-width: 1326px){
+        .container {
+            width: 1000px;
+        }
+    }
+</style>
 <div id="center11">
 <!--网页头部-->
 <jsp:include page="head.jsp" />
@@ -38,6 +45,9 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <c:forEach items="${requestScope.pagemsg.lists}" var="u">
             <div class="product">
+                <c:if test="${u.roofPlaceState==2}">
+                    <div class="new-item-badge">置顶信息</div>
+                </c:if>
                         <div class="media" style="width: 1150px;height: 200px;">
                             <div class="media-left" style="width: 250px;">
                                 <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">
@@ -54,6 +64,7 @@
                                 <p class="desc1" style="height: 20px;">${u.adviceSubtitle }</p>
                                 <p class="desc">浏览量：${u.browseVolume}</p>
                             </div>
+
                         </div>
                     </div>
         </c:forEach>

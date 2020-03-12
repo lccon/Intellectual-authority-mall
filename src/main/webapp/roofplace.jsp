@@ -41,7 +41,7 @@
                     <ul class="ui-choose am-form-group" id="uc_01">
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 10天
+                                <input type="radio"  value="" name="docVlGender"  data-validation-message="请选择一项充值额度"> 10天
                             </label>
                         </li>
                         <li>
@@ -81,7 +81,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
 <script type="text/javascript">
-    //页面层-自定义
     function zzz() {
         console.log("zzz");
         var price=document.getElementById("price");
@@ -91,7 +90,7 @@
         if(accountyue>accountyue1){
             console.log(accountyue,accountyue1);
             layer.msg('您的余额不足请先进行充值', {
-                time: 5000, //5s后自动关闭
+                time: 5000, //20s后自动关闭
             });
         }
         else{
@@ -99,15 +98,19 @@
                 type:"POST",
                 url: "/roofPlace/roofplaceconsume?consume="+accountyue,
                 success: function(result) {
+                    document.getElementById("zdsuccess").style.display="inline-block";
+                    document.getElementById("zdmode").style.display="none";
+                    document.getElementById("bzd").style.display="none";
+                    document.getElementById("bzdname").style.display="none";
+                    document.getElementById("checkroof").value="1";
+                    document.getElementById("tip_zd").className="msg-box";
+                    document.getElementById("tip_zd").innerText="";
                     console.log(result);
                 },
             })
 
         }
     }
-
-
-
 
 
     window.onload=function () {

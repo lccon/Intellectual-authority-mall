@@ -137,14 +137,15 @@ pageEncoding="UTF-8"%>
                             <input id="check" type="checkbox" class="chk-vm" onclick="XY()" style="display: block;margin: 8px 5px 0 0;" checked/>
                             <label style="float: left;">
                             我已阅读并同意
-                                <a target="_blank" href="#">&lt;&lt;服务条款&gt;&gt;</a>
+                                <a target="_blank" href="/about.jsp#5">&lt;&lt;科天行服务协议&gt;&gt;</a>
                                 &nbsp;和&nbsp;
-                                <a target="_blank" href="#">&lt;&lt;隐私政策&gt;&gt;</a></label>
+                                <a target="_blank" href="/about.jsp#4">&lt;&lt;科天行隐私协议&gt;&gt;</a></label>
                             <span class="msg-box" id="tip_phone_affirm"><span id="tip_phone_affirm1"></span></span>
                         </div>
                 </div>
                     <div class="submit-box">
                         <input type="submit" value="立即注册" data-role="reg_submit" class="btn-org">
+                        <span class="msg-box" id="tip_form"><span id="tip_form1"></span></span>
                     </div>
             </form>
         </div>
@@ -465,10 +466,15 @@ pageEncoding="UTF-8"%>
         var phoneerr=document.getElementById('tip_phone');
         var code_numerr=document.getElementById("tip_code_num");
         var cerr=document.getElementById("tip_phone_affirm");
+        var formerr=document.getElementById("tip_form");
         if(usernameerr.className!="success" || pictureerr.className!="success" || passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
         {
+            formerr.className="error2";
+            formerr.innerText="请先按错误提示修改表单中的信息再进行提交";
             return false;
         }else {
+            formerr.className="success";
+            formerr.innerText="正在提交...";
             return true;
         }
 

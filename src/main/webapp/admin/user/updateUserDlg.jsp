@@ -68,7 +68,7 @@
             <label class="form-lb1">账户余额：</label>
         </div>
         <div class="grid_10">
-            <input type="text" name="accountYue" id="accountYue" value="${user.freeMessageNum}"/>
+            <input type="text" name="accountYue" id="accountYue" value="${user.accountYue}"/>
         </div>
         <div class="clearLine"></div>
         <div class="grid_6 label-right">
@@ -76,7 +76,7 @@
             <label class="form-lb1">虚拟币数量：</label>
         </div>
         <div class="grid_10">
-            <input type="text" name="virtualCoin" id="virtualCoin" value="${user.freeMessageNum}"/>
+            <input type="text" name="virtualCoin" id="virtualCoin" value="${user.virtualCoin}"/>
         </div>
         <div class="clearLine"></div>
         <div class="grid_6 label-right">

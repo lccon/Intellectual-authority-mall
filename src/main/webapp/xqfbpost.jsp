@@ -56,7 +56,7 @@
                        <div class="cap1">
                            <span>基本信息</span>
                        </div>
-                        <form id="maintainForm" method="post" action="/taskRelease/useraddTaskRelease">
+                        <form id="maintainForm" method="post" action="/taskRelease/useraddTaskRelease" onsubmit="return checkform1();">
                         <div class="p-zd">
                             <label class="p-lab" style="margin-left: 176px;">
                                 <em class="form-req">*</em>
@@ -71,7 +71,6 @@
                                    知识产权类型：
                                </label>
                                <select name="intellectualProperty">
-                                   <option value></option>
                                    <option value="1">发明</option>
                                    <option value="2">实用新型</option>
                                    <option value="3">外观</option>
@@ -85,7 +84,6 @@
                                 选择行业分类：
                             </label>
                                <select name="industryBelongs">
-                                   <option value></option>
                                    <option value="1">生活需要</option>
                                    <option value="2">交通运输</option>
                                    <option value="3">化学化工</option>
@@ -120,7 +118,8 @@
                                 </label>
                             </div>
                             <div style="margin-left: 266px;">
-                                <textarea class="input" name="purpose"  maxlength="5000" size="5" style="overflow:hidden;resize:horizontal; width:390px;height: 115px;"></textarea>
+                                <textarea class="input" name="purpose"  maxlength="5000" size="5" style="overflow:hidden;resize:horizontal; width:390px;height: 115px;" onblur="purposeonblur()" onfocus="purposeonfocu()" id="purpose"></textarea>
+                                &nbsp;<span id="tip_purpose" class="msg-box"></span>
                             </div>
                             <div class="p-wzxq">
                                 <label class="p-lab"style="margin-left: 160px;">
@@ -140,10 +139,11 @@
                                     <em class="form-req">*</em>
                                     是否置顶：
                                 </label>
-                                <input type="hidden" id="acountyue" />
-                                <input type="radio" style="margin-left: 20px;" name="roofPlaceState" value="0" class="checkbox-radio" id="zd"><span>置顶</span>
+                                <input type="hidden" id="checkroof" value="2"/>
+                                <input type="radio" style="margin-left: 20px;" name="roofPlaceState" value="1" class="checkbox-radio" id="zd"><span>置顶</span>
                                 <input type="radio"  style="margin-left: 20px;" name="roofPlaceState" value="2" class="checkbox-radio" id="bzd"><span id="bzdname">不置顶</span>
                                 <span class="success" id="zdsuccess">购买置顶天数成功</span>
+                                &nbsp;<span id="tip_zd" class="msg-box"><span id="tip_zd1"></span></span>
                                 <div id="zdmode">
                                     <jsp:include page="roofplace.jsp"/>
                                 </div>
@@ -153,7 +153,7 @@
                                     <em class="form-req">*</em>
                                     发布人姓名：
                                 </label>
-                                <input type="text" name="realName" id="realName" maxlength="25" class="input-60 input"/>
+                                <input type="text" name="realName" id="realName" maxlength="25" class="input-60 input" onfocus="nameonfocu()" onblur="nameonblus()"/>
                                 <span class="msg-box" id="tip_realName"></span>
                             </div>
                             <div class="p-cap">
@@ -175,7 +175,8 @@
                             </div>
                             <input type="hidden" value="1" name="state"/>
                             <input type="hidden" value="0" name="hasCollectedState"/>
-                            <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;">提交</button>
+                            <button class="btn btn-default" id="button2" style="margin-left: 250px;margin-top: 50px; margin-bottom: 20px;" type="submit">提交</button>
+                            &nbsp;<span id="tip_form" class="msg-box"><span id="tip_form1"></span></span>
                         </form>
                     </div>
                 </div>
@@ -195,196 +196,26 @@
 
     $('#zd').on('click',function () {
         document.getElementById("zdmode").style.display="block";
+        document.getElementById("checkroof").value="2";
     })
     $('#bzd').on('click',function () {
         document.getElementById("zdmode").style.display="none";
         document.getElementById("zdsuccess").style.display="none";
+        document.getElementById("checkroof").value="1";
+        document.getElementById("tip_zd").className="msg-box";
+        document.getElementById("tip_zd").innerText="";
     })
-    window.onload=function () {
-        $.ajax({
-            type:"POST",
-            url: "/roofPlace/getUseraccountYue",
-            success: function(result) {
-                document.getElementById("acountyue").value=result*10+"虚拟币";
-                document.getElementById("AccountYue").innerText=result*10+"虚拟币";
-            },
-        })
-    }
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-choose.js"></script>
-<script type="text/javascript">
-    //页面层-自定义
-    function zzz() {
-        console.log("zzz");
-        var price=document.getElementById("price");
-        var accountyue=parseFloat(price.innerText);
-        var accountyue1=parseFloat(document.getElementById("AccountYue").innerText);
-        console.log(accountyue<accountyue1);
-        if(accountyue>accountyue1){
-            console.log(accountyue,accountyue1);
-            layer.msg('您的余额不足请先进行充值', {
-                time: 5000, //20s后自动关闭
-            });
-        }
-        else{
-            $.ajax({
-                type:"POST",
-                url: "/roofPlace/roofplaceconsume?consume="+accountyue,
-                success: function(result) {
-                    document.getElementById("zdsuccess").style.display="inline-block";
-                    document.getElementById("zdmode").style.display="none";
-                    document.getElementById("bzd").style.display="none";
-                    document.getElementById("bzdname").style.display="none";
-                    console.log(result);
-                },
-            })
-
-        }
-    }
-
-
-
-
-
-    window.onload=function () {
-        $.ajax({
-            type:"POST",
-            url: "/roofPlace/getUseraccountYue",
-            success: function(result) {
-                document.getElementById("AccountYue").innerText=result*10+"虚拟币";
-            },
-        })
-    }
-    // 将所有.ui-choose实例化
-    $('.ui-choose').ui_choose();
-    // uc_01 ul 单选
-    var uc_01 = $('#uc_01').data('ui-choose'); // 取回已实例化的对象
-    uc_01.click = function(index, item) {
-        console.log('click', index, item.text())
-    }
-    uc_01.change = function(index, item) {
-        console.log('change', index, item.text())
-    }
-    $(function() {
-        $('#uc_01 li:eq(3)').click(function() {
-            $('.tr_rechoth').show();
-            $('.tr_rechoth').find("input").attr('required', 'true')
-            $('.rechnum').text('1000.00');
-            document.getElementById("topDuration").value="10";
-        })
-        $('#uc_01 li:eq(0)').click(function() {
-            $('.tr_rechoth').hide();
-            $('.rechnum').text('1000.00');
-            $('.othbox').val('');
-            document.getElementById("topDuration").value="10";
-        })
-        $('#uc_01 li:eq(1)').click(function() {
-            $('.tr_rechoth').hide();
-            $('.rechnum').text('2000.00');
-            $('.othbox').val('');
-            document.getElementById("topDuration").value="20";
-        })
-        $('#uc_01 li:eq(2)').click(function() {
-            $('.tr_rechoth').hide();
-            $('.rechnum').text('5000.00');
-            $('.othbox').val('');
-            document.getElementById("topDuration").value="50";
-        })
-        $(document).ready(function() {
-            $('.othbox').on('input propertychange', function() {
-                var num = $(this).val();
-                $('.rechnum').html(num + "00.00");
-                document.getElementById("topDuration").value=num;
-            });
-        });
-    })
-
-    $(function() {
-        $('#doc-vld-msg').validator({
-            onValid: function(validity) {
-                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
-            },
-            onInValid: function(validity) {
-                var $field = $(validity.field);
-                var $group = $field.closest('.am-form-group');
-                var $alert = $group.find('.am-alert');
-                // 使用自定义的提示信息 或 插件内置的提示信息
-                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
-
-                if(!$alert.length) {
-                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
-                    appendTo($group);
-                }
-                $alert.html(msg).show();
-            }
-        });
-    });
-</script>
 <script>
-    $('#test1').on('click', function () {
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0, //不显示关闭按钮
-            shade: [0],
-            area: ['340px', '215px'],
-            offset: 'rb', //右下角弹出
-            time: 2000, //2秒后自动关闭
-            anim: 2,
-            content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
-            end: function () { //此处用于演示
-                layer.open({
-                    type: 2,
-                    title: '充值中心',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/vouchercenter.jsp'
-                });
-            }
-        });
 
-    });
 
     //发布表单验证
     var code1;
     var result1;
-    function productNameonblus() {
-        var productName=document.getElementById("productName").value;
-        var productNameerr=document.getElementById("tip_productName");
-        if(productName==""){
-            productNameerr.className="error1";
-            productNameerr.innerText="名称不能为空！";
-        }
-        else {
-            productNameerr.className="success1";
-            console.log(111);
-        }
-    }
-    function productNamonfocu() {
-        document.getElementById("tip_productName").className="msg-box";
-        document.getElementById("tip_productName").innerText="";
-    }
-
-    function productBriefonblus() {
-        var productBrief=document.getElementById("productBrief").value;
-        var productBrieferr=document.getElementById("tip_productBrief");
-        if(productBrief!=""){
-            productBrieferr.className="success1";
-        }
-        else{
-            productBrieferr.className="error1";
-            productBrieferr.innerText="简介不能为空！";
-        }
-    }
-    function productBriefonfocu() {
-        document.getElementById("tip_productBrief").className="msg-box";
-        document.getElementById("tip_productBrief").innerText="";
-    }
     function uploadImage(obj) {
         var f = $(obj).val();
         if(f == null || f == undefined || f == '') {
@@ -417,42 +248,6 @@
                         $("#productPictureUrl").val(result.resultStr);
                     }
                 } else {
-                    $(obj).val('');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("上传失败，请检查网络后重试");
-            }
-        })
-    }
-
-    function uploadVideo(obj) {
-        var f = $(obj).val();
-        if(f == null || f == undefined || f == '') {
-            return false;
-        }
-        if (!/\.(?:mp4)$/.test(f)) {;
-            $(obj).val('');
-            return false;
-        }
-        var data = new FormData();
-        $.each($(obj)[0].files, function(i, file) {
-            data.append('video', file);
-        })
-        $.ajax({
-            type:"POST",
-            url: "/upload/uploadVideo",
-            data: data,
-            cache:false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function(result) {
-                if (result.flag == true) {
-                    $("#productVideoUrl").val(result.resultStr);
-                    console.log("上传成功");
-                } else {
-                    console.log({message:result.resultStr});
                     $(obj).val('');
                 }
             },
@@ -513,6 +308,41 @@
         }
     })
 
+
+    function purposeonblur() {
+        var productName=document.getElementById("purpose").value;
+        var productNameerr=document.getElementById("tip_purpose");
+        if(productName==""){
+            productNameerr.className="error1";
+            productNameerr.innerText="用途不能为空！";
+        }
+        else {
+            productNameerr.className="success1";
+            console.log(111);
+        }
+    }
+    function purposeonfocu() {
+        document.getElementById("tip_purpose").className="msg-box";
+        document.getElementById("tip_purpose").innerText="";
+    }
+
+    //真实姓名
+    function nameonblus() {
+        var name=document.getElementById("realName").value;
+        var nameerr=document.getElementById("tip_realName");
+        if(name==""){
+            nameerr.className="error1";
+            nameerr.innerText="真实姓名不能为空";
+        }
+        else{
+            nameerr.className="success1";
+        }
+    }
+    function nameonfocu() {
+        document.getElementById("tip_realName").className="msg-box";
+        document.getElementById("tip_realName").innerText="";
+    }
+
     //    联系电话
     function LXDHonblus(){
         var phone=document.getElementById("tel_num");
@@ -555,6 +385,37 @@
         var code_numerr=document.getElementById("tip_code_num");
         code_numerr.className="msg-box";
         code_numerr.innerText="";
+    }
+
+    function checkform1() {
+        var checkroof=document.getElementById("checkroof").value;
+        var purposeerr=document.getElementById("tip_purpose");
+        var checkrooferr=document.getElementById("tip_zd");
+        var phoneerr=document.getElementById("tip_phone");
+        var code_numerr=document.getElementById("tip_code_num");
+        var nameerr=document.getElementById("tip_realName");
+        var formerr=document.getElementById("tip_form");
+        if(checkroof=="2"){
+            checkrooferr.className="error1";
+            checkrooferr.innerText="请先支付置顶金额或选择不置顶。";
+            formerr.className="error2";
+            formerr.innerText="请先按错误提示修改表单中的信息再进行提交";
+            return false;
+        }
+        else{
+            checkrooferr.className="msg-box";
+            checkrooferr.innerText="";
+            if(purposeerr.className!="success1" || phoneerr.className!="success1" || code_numerr.className!="success1" || nameerr.className!="success1"){
+                formerr.className="error2";
+                formerr.innerText="请先按错误提示修改表单中的信息再进行提交";
+                return false;
+            }
+            else{
+                formerr.className="success1";
+                formerr.innerText="正在提交...";
+                return true;
+            }
+        }
     }
 </script>
 </body>
