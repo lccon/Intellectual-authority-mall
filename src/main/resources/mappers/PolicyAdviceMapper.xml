@@ -101,13 +101,13 @@
         WHERE id = #{id}
     </select>
 
-    <select id="countnum" resultType="int">
+    <select id="countnum" parameterType="java.lang.Integer" resultType="int">
         SELECT
         count(*)
         FROM policy_advice
         <where>
-            <if test="adviceCategory != null">
-                advice_category = #{adviceCategory}
+            <if test="value != null">
+                advice_category = #{value}
             </if>
         </where>
     </select>
@@ -120,7 +120,7 @@
         (
         select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
         from roof_place p
-        where p.module_type = 3
+        where p.module_type = 4
         and p.authorize_state = 2
         and p.top_end_time <![CDATA[>]]> now()
         )t

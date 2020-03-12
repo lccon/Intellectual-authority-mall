@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!--title  -->
-<title>后台登录</title>
+<title>科天行后台登录</title>
 
 <!--href  -->
 <link rel="shortcut icon" href=${data["loginTabImage"].configName} type="image/x-icon"/>
@@ -26,7 +26,7 @@
 					
 						<!--登录页标题图标，loginTitle  -->
                         <i class="login-icon" id="loginTitleIcon"></i>
-                        <span class="login-name" id="loginTitle" style="font-size:${data["loginTitle"].wordSize}px">
+                        <span class="login-name" id="loginTitle" style="margin-top:16px;">
 							科天行后台登录
 						</span>
                     </div>
