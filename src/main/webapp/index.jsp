@@ -108,19 +108,19 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12" style="margin-top:10px;">
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=1" class="thumbnail" >
-						<img src="img/zhuanli.png" style="height: 60px;width: 100%;" alt="发明">
+						<img src="img/zhanli.jpg" style="height: 60px;width: 100%;" alt="发明">
 					</a>
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=2" class="thumbnail" >
-						<img src="img/shiyong.png" style="height: 60px;width: 100%;" alt="实用新型">
+						<img src="img/shiyong.jpg" style="height: 60px;width: 100%;" alt="实用新型">
 					</a>
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=3" class="thumbnail" >
-						<img src="img/waiguan.png" style="height: 60px;width: 100%;" alt="外观">
+						<img src="img/waiguan.jpg" style="height: 60px;width: 100%;" alt="外观">
 					</a>
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=4" class="thumbnail" >
-						<img src="img/shangbiao.png" style="height: 60px;width: 100%;" alt="商标">
+						<img src="img/shangbiao.jpg" style="height: 60px;width: 100%;" alt="商标">
 					</a>
 					<a href="/intellectualTask/findpageIntellectualTaskForList?productCategory=5" class="thumbnail" >
-						<img src="img/banquan.png" style="height: 60px;width: 100%;" alt="版权">
+						<img src="img/banquan.jpg" style="height: 60px;width: 100%;" alt="版权">
 					</a>
 				</div>
 			</div>
@@ -134,16 +134,16 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12" style="margin-top:10px;">
 					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=1" class="thumbnail" >
-						<img src="img/shenqingfuwu.png" style="height: 75px;width: 100%;" alt="申请服务">
+						<img src="img/shenqingfuwu.jpg" style="height: 75px;width: 100%;" alt="申请服务">
 					</a>
 					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=2" class="thumbnail" >
-						<img src="img/zhengshu.png" style="height: 75px;width: 100%;" alt="证书交易">
+						<img src="img/zhengshu.jpg" style="height: 75px;width: 100%;" alt="证书交易">
 					</a>
 					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=3" class="thumbnail" >
-						<img src="img/jishuchengguo.png" style="height: 75px;width: 100%;" alt="技术成果转移">
+						<img src="img/jishu.jpg" style="height: 75px;width: 100%;" alt="技术成果转移">
 					</a>
 					<a href="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=4" class="thumbnail" >
-						<img src="img/falu.png" style="height: 75px;width: 100%;" alt="法律咨询">
+						<img src="img/falu.jpg" style="height: 75px;width: 100%;" alt="法律咨询">
 					</a>
 
 				</div>

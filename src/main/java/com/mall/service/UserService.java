@@ -40,4 +40,6 @@ public interface UserService {
 	 * @return
 	 */
 	User updatePassword(User user);
+
+	Boolean getUserByMobile(String mobile);
 }

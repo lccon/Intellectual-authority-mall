@@ -79,7 +79,7 @@ public class LoginSessionFilter implements Filter {
 
     private boolean isNotLoginValidate(String uri) {
         if("/".equals(uri) || "/api/login".equals(uri) || "/admin/login".equals(uri)
-                || "/api/Aliyunmobile".equals(uri)
+                || "/api/Aliyunmobile".equals(uri)|| "/updatepassword.jsp".equals(uri)
                 || "/intellectualTask/findIntellectualTaskForList".equals(uri)
                 || "/about.jsp".equals(uri) || "/login".equals(uri)
                 || "/taskRelease/findpageTaskReleaseForList".equals(uri)
@@ -88,7 +88,7 @@ public class LoginSessionFilter implements Filter {
                 || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
                 || "/upload/uploadImg".equals(uri) || "/register".equals(uri)
                 || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)
-                || "/user/updatePassword".equals(uri)
+                || "/user/updatePassword".equals(uri)|| "/user/getUserByMobile".equals(uri)
                 || "/api/userMobileLogin".equals(uri)) {
             return true;
         }

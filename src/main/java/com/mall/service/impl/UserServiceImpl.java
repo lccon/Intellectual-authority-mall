@@ -16,6 +16,7 @@ import com.mall.utils.HttpUtils;
 import com.mall.utils.PasswordUtil;
 import com.mall.utils.StringUtil;
 import com.mall.vo.UserVO;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -130,6 +131,17 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			throw new ServiceValidationException("修改用户密码出错!", e);
 		}
+	}
+
+
+	@Override
+	public Boolean getUserByMobile(String mobile) {
+		User user=userMapper.getUserByMobile(mobile);
+		if(user!=null){
+		    return false;
+        }else{
+		    return true;
+        }
 	}
 
 	@Override

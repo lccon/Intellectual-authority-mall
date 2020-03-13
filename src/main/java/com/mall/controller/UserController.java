@@ -53,11 +53,11 @@ public class UserController {
 	}
 
 	@RequestMapping (value = "/updatePassword")
-	@ResponseBody
-	public User updatePassword(User user, HttpServletRequest request, HttpServletResponse response) {
+	public String updatePassword(User user, HttpServletRequest request, HttpServletResponse response) {
 		CookieUtil.clearSessionsFromCookies(request, response);
 		ThreadVariable.setSession(null);
-		return userService.updatePassword(user);
+		userService.updatePassword(user);
+		return "/login";
 	}
 
 	@RequestMapping (value = "/deleteUser")
@@ -90,5 +90,11 @@ public class UserController {
 	public String addusertologin(User user) {
 		userService.addUser(user);
         return "login";
+	}
+
+	@RequestMapping (value = "/getUserByMobile")
+	@ResponseBody
+	public Boolean getUserByMobile(String mobile){
+		return userService.getUserByMobile(mobile);
 	}
 }

@@ -116,4 +116,10 @@
     update user set pass_word = #{password} where mobile = #{mobile}
   </update>
 
+  <select id="getUserByMobile" resultMap="userMap">
+    SELECT
+    <include refid="column"/>
+    from user
+    WHERE mobile = #{mobile}
+  </select>
 </mapper>

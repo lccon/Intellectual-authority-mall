@@ -27,10 +27,11 @@
 
 <div class="page-container">
     <h1>登录</h1>
-    <form action="/api/login" method="post" id="loginform-inner"
+    <form action="/api/userMobileLogin" method="post" id="loginform-inner"
           novalidate="novalidate">
-        <input type="text" name="username" class="username" placeholder="用户名">
-        <input type="password" name="password" class="password" placeholder="密码">
+        <input type="text" name="mobile" class="username" placeholder="请输入手机号">
+        <input type="password" name="password" class="password" placeholder="请输入密码">
+        <a href="/updatepassword.jsp" style="float: right;">忘记密码?</a>
         <div style="margin-top: 40px;">
             <a href="/" style="float: left;">返回首页</a>
             <a href="/register" style="float: right">没有帐号？去注册</a>
@@ -94,7 +95,7 @@
 				},
 				messages : {
 					userName : {
-						required : "用户名不能为空！"
+						required : "手机号不能为空！"
 					},
 					password : {
 						required : "密码不能为空！"

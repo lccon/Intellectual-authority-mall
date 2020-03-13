@@ -24,4 +24,6 @@ public interface UserMapper {
     User getUserByMobilePassword(@Param("mobile") String mobile, @Param("password") String password);
 
     void updatePassword(User user);
+
+    User getUserByMobile(@Param("mobile") String mobile);
 }

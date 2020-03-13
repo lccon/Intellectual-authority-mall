@@ -408,6 +408,7 @@ pageEncoding="UTF-8"%>
         var phone=document.getElementById("tel_num");
         var phoneerr=document.getElementById('tip_phone');
         var re =/^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+
         if(phone.value==""){
             phoneerr.className="error1";
             phoneerr.innerText="请输入手机号";
@@ -418,8 +419,20 @@ pageEncoding="UTF-8"%>
             phoneerr.innerText="电话格式输入错误";
         }
         else {
-            phoneerr.className="success";
-            phoneerr.innerText ="";
+
+            $.ajax({
+                type:"POST",
+                url: "/user/getUserByMobile?mobile="+phone.value,
+                success: function(result) {
+                    if(result){
+                        phoneerr.className="success";
+                        phoneerr.innerText ="";
+                    }else{
+                        phoneerr.className="error2";
+                        phoneerr.innerText="手机号已经注册，请前往登录页面";
+                    }
+                },
+            })
         }
     }
     function LXDHonfocu(){
