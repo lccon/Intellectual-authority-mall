@@ -87,7 +87,9 @@ public class LoginSessionFilter implements Filter {
                 || "/authorizeCompany/findpageauthorizeCompanyForList".equals(uri)
                 || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
                 || "/upload/uploadImg".equals(uri) || "/register".equals(uri)
-                || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)) {
+                || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)
+                || "/user/updatePassword".equals(uri)
+                || "/api/userMobileLogin".equals(uri)) {
             return true;
         }
         return false;

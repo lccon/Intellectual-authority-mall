@@ -21,5 +21,7 @@ public interface UserMapper {
 
     Integer deleteUser(Long[] ids);
 
-    List<User> getUserByIds(@Param("userIdList") List<Long> userIdList);
+    User getUserByMobilePassword(@Param("mobile") String mobile, @Param("password") String password);
+
+    void updatePassword(User user);
 }

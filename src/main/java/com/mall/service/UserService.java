@@ -23,8 +23,21 @@ public interface UserService {
 
 	Boolean deleteUser(Long[] ids);
 
-    String getUserMobileLoginCheckInfo(String mobile);
-
-	List<User> getUserByIds(List<Long> userIdList);
 	String Aliyunmobile(String mobile);
+
+	/**
+	 * 用户手机号密码登录
+	 * @param mobile
+	 * @param password
+	 * @param session
+	 * @return
+	 */
+	Session getUserByMobilePassword(String mobile, String password, Session session);
+
+	/**
+	 * 修改密码
+	 * @param user
+	 * @return
+	 */
+	User updatePassword(User user);
 }

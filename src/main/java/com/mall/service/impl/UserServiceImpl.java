@@ -9,11 +9,9 @@ import com.mall.domain.Session;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;
-import com.mall.properties.GridProperties;
 import com.mall.redis.template.RedisTemplate;
 import com.mall.service.SessionService;
 import com.mall.service.UserService;
-import com.mall.utils.HttpUtil;
 import com.mall.utils.HttpUtils;
 import com.mall.utils.PasswordUtil;
 import com.mall.utils.StringUtil;
@@ -24,10 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-
-import java.net.URLEncoder;
 import java.util.*;
 
 @Service("userService")
@@ -103,6 +98,41 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public Session getUserByMobilePassword(String mobile, String password, Session session) {
+		if(StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password)) {
+			throw new BusinessValidationException("手机号或密码不能为空！");
+		}
+		password = PasswordUtil.getHashedPassword(password);
+		User user = userMapper.getUserByMobilePassword(mobile, password);
+		logger.error("用户信息[{}]", user);
+		if (user == null) {
+			throw new BusinessValidationException("手机号或密码错误！");
+		}
+		try {
+			// 删除登录过的session
+			sessionService.deleteSessionBySessionId(session.getSessionId());
+			Session newSession = proccessLoginSuccess(user, session);
+			return newSession;
+		} catch (Exception e) {
+			throw new ServiceValidationException("获取令牌认证失败！", e);
+		}
+	}
+
+	@Override
+	public User updatePassword(User user) {
+		if (user == null || StringUtils.isEmpty(user.getMobile()) || StringUtils.isEmpty(user.getPassword())) {
+			throw new BusinessValidationException("参数不能为空!");
+		}
+		try {
+			user.setPassword(PasswordUtil.getHashedPassword(user.getPassword()));
+			userMapper.updatePassword(user);
+			return user;
+		} catch (Exception e) {
+			throw new ServiceValidationException("修改用户密码出错!", e);
+		}
+	}
+
+	@Override
 	public User findUserBySessionId(String sessionId) {
 		if (StringUtils.isEmpty(sessionId)) {
 			return new User();
@@ -142,31 +172,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String getUserMobileLoginCheckInfo(String mobile) {
-		try {
-			String code = smsCode();
-			StringBuilder sb = new StringBuilder();
-			sb.append("accountSid=").append(GridProperties.ACCOUNT_SID);
-			sb.append("&to=").append(mobile);
-			sb.append("&smsContent=").append( URLEncoder.encode("【世通服务】亲爱的用户，您的短信验证码为" + code + "，,2分钟内有效，若非本人操作请忽略。","UTF-8"));
-			String body = sb.toString() + HttpUtil.createCommonParam(GridProperties.ACCOUNT_SID, GridProperties.AUTH_TOKEN);
-			String result = HttpUtil.post(GridProperties.MIAODI_URL, body);
-			JSONObject jsonObject = JSONObject.parseObject(result);
-			List list = JSONObject.parseArray(jsonObject.getString("failList"));
-			if (list.size() > 0) {
-				jsonObject.put("result", false);
-			} else {
-				jsonObject.put("result", true);
-			}
-			jsonObject.put("code", code);
-			return jsonObject.toString();
-		} catch (Exception e) {
-			throw new ServiceValidationException("用户手机号登录校验失败！", e);
-		}
-	}
-
-
-	@Override
 	public String Aliyunmobile(String mobile) {
 		try {
 			String host = "https://feginesms.market.alicloudapi.com";
@@ -187,17 +192,6 @@ public class UserServiceImpl implements UserService {
 			return jsonObject.toString();
 		} catch (Exception e) {
 			throw new ServiceValidationException("用户手机号登录校验失败！", e);
-		}
-	}
-	@Override
-	public List<User> getUserByIds(List<Long> userIdList) {
-		if (userIdList == null || userIdList.size() <= 0) {
-			throw new BusinessValidationException("参数不能为空!");
-		}
-		try {
-			return userMapper.getUserByIds(userIdList);
-		} catch (Exception e) {
-			throw new ServiceValidationException("获取用户信息失败", e);
 		}
 	}
 

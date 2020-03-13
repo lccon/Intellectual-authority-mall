@@ -85,6 +85,14 @@
     and pass_word = #{password}
   </select>
 
+  <select id="getUserByMobilePassword" resultMap="userMap">
+    SELECT
+    <include refid="column"/>
+    from user
+    WHERE mobile = #{mobile}
+    and pass_word = #{password}
+  </select>
+
   <select id="findUserForList" parameterType="com.mall.vo.UserVO" resultMap="userMap">
     SELECT
     <include refid="column"/>
@@ -104,11 +112,8 @@
     </foreach>
   </delete>
 
-  <select id="getUserByIds" resultMap="userMap">
-    SELECT <include refid="column"/> FROM user
-    WHERE id IN
-    <foreach collection="userIdList" index="ids" item="id" open="(" separator="," close=")">
-      #{id}
-    </foreach>
-  </select>
+  <update id="updatePassword" parameterType="com.mall.domain.User">
+    update user set pass_word = #{password} where mobile = #{mobile}
+  </update>
+
 </mapper>

@@ -2,8 +2,10 @@ package com.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
+import com.mall.component.ThreadVariable;
 import com.mall.domain.User;
 import com.mall.service.impl.UserServiceImpl;
+import com.mall.utils.CookieUtil;
 import com.mall.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping ("/user")
@@ -45,6 +50,14 @@ public class UserController {
 	@ResponseBody
 	public User updateUser(User user) {
 		return userService.updateUser(user);
+	}
+
+	@RequestMapping (value = "/updatePassword")
+	@ResponseBody
+	public User updatePassword(User user, HttpServletRequest request, HttpServletResponse response) {
+		CookieUtil.clearSessionsFromCookies(request, response);
+		ThreadVariable.setSession(null);
+		return userService.updatePassword(user);
 	}
 
 	@RequestMapping (value = "/deleteUser")
