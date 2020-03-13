@@ -3,9 +3,6 @@ package com.mall.controller;
 import com.mall.component.ThreadVariable;
 import com.mall.constant.PermissionConstant;
 import com.mall.domain.Session;
-import com.mall.domain.User;
-import com.mall.exception.base.BusinessValidationException;
-import com.mall.exception.base.ServiceValidationException;
 import com.mall.service.SessionService;
 import com.mall.service.impl.UserServiceImpl;
 import com.mall.utils.CookieUtil;
@@ -76,31 +73,5 @@ public class LoginController {
 		ThreadVariable.setSession(null);
 		return true;
 	}
-	
-	@RequestMapping (value = "/now", method = RequestMethod.POST)
-	@ResponseBody
-	public User now(String token) {
-		try {
-			return userService.findUserBySessionId(token);
-		} catch (BusinessValidationException e) {
-			throw new BusinessValidationException(e.getMessage());
-		} catch (Exception e) {
-			throw new ServiceValidationException("通过令牌获取用户信息失败！", e);
-		}
-	}
-	
-	@RequestMapping (value = "/apply", method = RequestMethod.POST)
-	@ResponseBody
-	public Session apply(String token, String ussage) {
-		Session session = ThreadVariable.getSession();
-		if(session == null) {
-			throw new BusinessValidationException("请重新登录!");
-		}
-		User user = userService.findUserById(session.getUserId());
-		if (user == null) {
-			throw new BusinessValidationException("用户不存在");
-		}
-		return session;
-	}
-	
+
 }
