@@ -153,7 +153,7 @@ public class VoucherCenterController {
         return isOrderPaid;
     }
 
-    @RequestMapping(value = "/notify")
+    @RequestMapping(value = "/weixinnotify")
     public void notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         PayResult payResult = wxOrderService.getWxPayResult(request);

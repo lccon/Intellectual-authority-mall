@@ -12,9 +12,9 @@ public class AlipayConfig {
         // 支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
         public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5ZBukPNjkDXJyPOMWAUok45jVeRVuiZEFXk0+Q39W6PiJmHEwfBXGrgT4yIwUopJP4WUttM4y3aWJ1mOJeEVrjv05XUAj+iEnyiACo80RIDNhiqStYcfWcJX/5kOvj2IUc0lbKtrlfwXWjfhnBXHGmjhyF4mP9UAWgipVbC5X9n1s6YGlkOc2H96P0iNAHud4uKtDcLYtSNBFsbce/x8otwmJ7B3MbgkE+7SkC1qhLvZ+hybYuYBXiuZs4T3hxqnLvzE8VrY9PmL4XMelTmNFSvz0R7O0NC3+U81bWWRhzkf6TxIVkhhwcwHRvV9wdSFdhzUYLTLMvoxda/cShn9PQIDAQAB";
         // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        public static String notify_url = "http://wangzhanzhifu.free.idcfengye.com/goAlipayNotifyNotice";
+        public static String notify_url = "http://www.ktxip.com/goAlipayNotifyNotice";
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        public static String return_url = "http://wangzhanzhifu.free.idcfengye.com/goAlipayReturnNotice";
+        public static String return_url = "http://www.ktxip.com/goAlipayReturnNotice";
         // 签名方式
         public static String sign_type = "RSA2";
         // 字符编码格式
