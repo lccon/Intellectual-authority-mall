@@ -79,25 +79,6 @@ pageEncoding="UTF-8"%>
                         <div class="layui-input-block">
                         <div class="layui-upload-list">
                             <input type="file" id="test1" onchange="uploadImage(this)"/>
-                            <img class="layui-upload-img" id="demo1" style="background-color: #eeeeee;width:100px;height:100px;">
-                            <script>
-                                layui.use('upload', function(){
-                                    var $ = layui.jquery
-                                        ,upload = layui.upload;
-
-                                    //普通图片上传
-                                    var uploadInst = upload.render({
-                                        elem: '#test1'
-                                        ,url: '/upload/uploadImg'
-                                        ,before: function(obj){
-                                            //预读本地文件示例，不支持ie8
-                                            obj.preview(function(index, file, result){
-                                                $('#demo1').attr('src', result); //图片链接（base64）
-                                            });
-                                        },
-                                    });
-                                    })
-                            </script>
                             <span id="demoText"></span>
                             <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
                         </div>
@@ -190,7 +171,7 @@ pageEncoding="UTF-8"%>
                     document.getElementById("demoText").innerText="上传成功";
                     console.log("上传成功");
                 } else {
-                    $.messageBox({message:result.resultStr});
+                     console.log(result.resultStr);
                     $(obj).val('');
                 }
             },
@@ -480,7 +461,7 @@ pageEncoding="UTF-8"%>
         var code_numerr=document.getElementById("tip_code_num");
         var cerr=document.getElementById("tip_phone_affirm");
         var formerr=document.getElementById("tip_form");
-        if(usernameerr.className!="success" || pictureerr.className!="success" || passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
+        if(usernameerr.className!="success" ||/* pictureerr.className!="success" ||*/ passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
         {
             formerr.className="error2";
             formerr.innerText="请先按错误提示修改表单中的信息再进行提交";

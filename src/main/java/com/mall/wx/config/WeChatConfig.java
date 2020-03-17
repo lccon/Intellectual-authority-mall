@@ -21,7 +21,7 @@ public class WeChatConfig {
 	// APP和网页支付提交用户端ip, Native支付填调用微信支付API的机器IP, 即：服务器ip地址
 	public static final String SPBILL_CREATE_IP = "123.56.93.179";
 	// 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。（需要配置）
-	public static final String NOTIFY_URL = "http://www.ktxip.com/weixinnotify";
+	public static final String NOTIFY_URL = "https://www.ktxip.com/weixinnotify";
 	// 支付方式，取值如下：JSAPI，NATIVE，APP
 	public static final String TRADE_TYPE = "NATIVE";
 	

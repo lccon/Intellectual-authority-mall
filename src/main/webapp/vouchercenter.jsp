@@ -22,7 +22,7 @@
             <!--订单编号-->
                 <input id="WIDout_trade_no" name="orderid" type="hidden"/>
             <!--订单名称-->
-                <input id="WIDsubject" name="ordername" type="hidden" value="测试"/>
+                <input id="WIDsubject" name="ordername" type="hidden" value="虚拟币充值"/>
             <!--订单金额-->
                 <input id="orderprice" name="orderprice" type="hidden"/>
             <!--用户id-->
