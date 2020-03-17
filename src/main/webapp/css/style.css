@@ -144,7 +144,7 @@ body a:hover{
 /*搜索按钮*/
 #button1 {
 	height: 40px;
-    background: #f46;
+    background:RGB(234,18,31);
     color: #fff;
 	font-size: 16px;
 	margin-top: 10px;
@@ -159,7 +159,7 @@ body a:hover{
 /*输入框*/
 #input1{
 	height: 40px;
-    border: 1px solid #f46;
+    border: 1px solid RGB(234,18,31);
     font-size: 12px;
 }
 #myCarousel {
@@ -760,8 +760,6 @@ footer a{
 	#button1 {
 		height: 40px;
 		width: 50px;
-		background: #f46;
-		color: #fff;
 		font-size: xx-small;
 		margin-top: 0px;
 	}

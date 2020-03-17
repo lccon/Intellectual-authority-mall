@@ -107,7 +107,7 @@ pageEncoding="UTF-8"%>
 		<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="tit" style="background-color:#1E9FFF;">
+				<div class="tit" style="background-color:RGB(15,68,136);">
 					<h2>
 						<a href="/intellectualTask/findpageIntellectualTaskForList"><strong>知识产权商城</strong></a>
 					</h2>
@@ -133,7 +133,7 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="tit" style="background-color:#FFB800;">
+				<div class="tit" style="background-color:RGB(248,172,27);">
 					<h2>
 						<a href="/authorizeCompany/findpageauthorizeCompanyForList"><strong>代办机构</strong></a>
 					</h2>
@@ -157,7 +157,7 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="tit" style="background-color:#e66147;margin-bottom: 10px;">
+				<div class="tit" style="background-color:RGB(234,18,31);margin-bottom: 10px;">
 					<h2>
 						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1"><strong>最新发布</strong></a>
 					</h2>
@@ -253,7 +253,7 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			<div class="model">
-				<div class="tit" style="background-color:#e66147;margin-bottom:10px;">
+				<div class="tit" style="background-color:RGB(234,18,31);margin-bottom:10px;">
 					<h2>
 						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2"><strong>最新需求</strong></a>
 					</h2>
