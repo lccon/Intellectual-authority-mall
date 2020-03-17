@@ -52,11 +52,13 @@ public class VoucherCenterController {
         //订单名称，必填
         String subject =ordername;
         Long id=userid;
+        String qr_pay_mode="1";
         //商品描述，可空
-        String body ="测试";
+        String body ="虚拟币充值";
         alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                 + "\"total_amount\":\""+ total_amount +"\","
                 + "\"subject\":\""+ subject +"\","
+                + "\"qr_pay_mode\":\""+ qr_pay_mode +"\","
                 + "\"body\":\""+ body +"\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 
