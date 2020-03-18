@@ -12,6 +12,16 @@ pageEncoding="UTF-8"%>
         var url11="${user.headPortrait}".split(",");
         var img1=document.getElementById("img1");
         img1.src="${pageContext.request.contextPath}"+url11[0];
+
+        if(window.screen.width<1300){
+            alert(window.screen.width);
+            document.getElementById("voucher").style.display="block";
+            document.getElementById("voucher1").style.display="none";
+        }
+        else {
+           document.getElementById("voucher").style.display="none";
+           document.getElementById("voucher1").style.display="block";
+        }
 </script>
 <div style="width:80px;">
     <ul>
@@ -40,7 +50,8 @@ pageEncoding="UTF-8"%>
                 <div class="col-sm-6">
                     <p class="help-block" style="float: left;">${user.accountYue}</p>
                     <p class="help-block">
-                        <a href="javascript:void(0);" id="voucher" style="margin-left: 20px;margin-top:10px; color: #FF5722;" role="button" >充值</a>
+                        <a href="javascript:void(0);" id="voucher" style="margin-left: 20px;margin-top:10px; color: #FF5722;display: none;" role="button" >充值</a>
+                        <a href="/vouchercenter.jsp" target="_blank" id="voucher1" style="margin-left: 20px;margin-top:10px; color: #FF5722;" role="button" >充值</a>
                     </p>
                 </div>
             </div>

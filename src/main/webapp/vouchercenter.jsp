@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>充值中心</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
 <jsp:include page="admin/baseInclude.jsp"/>
@@ -130,7 +131,7 @@
             $('.tr_rechoth').hide();
             $('.rechnum').text('20.00元');
             $('.othbox').val('');
-            document.getElementById("orderprice").value="20.00";
+            document.getElementById("orderprice").value="0.01";
         })
         $('#uc_01 li:eq(1)').click(function() {
             $('.tr_rechoth').hide();

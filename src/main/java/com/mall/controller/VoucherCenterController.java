@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.RechargeRecord;
@@ -15,6 +16,7 @@ import com.mall.wx.entity.PreOrderResult;
 import com.mall.wx.service.WxOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,13 +54,11 @@ public class VoucherCenterController {
         //订单名称，必填
         String subject =ordername;
         Long id=userid;
-        String qr_pay_mode="1";
         //商品描述，可空
         String body ="虚拟币充值";
         alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                 + "\"total_amount\":\""+ total_amount +"\","
                 + "\"subject\":\""+ subject +"\","
-                + "\"qr_pay_mode\":\""+ qr_pay_mode +"\","
                 + "\"body\":\""+ body +"\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 
@@ -69,7 +69,7 @@ public class VoucherCenterController {
 
     //同步通知接口
     @RequestMapping(value = "/goAlipayReturnNotice")
-    public String goAlipayReturnNotice(HttpServletRequest request, HttpServletResponse response)throws Exception{
+    public String goAlipayReturnNotice(HttpServletRequest request, HttpServletResponse response,ModelMap map)throws Exception{
         Map<String,String> params = new HashMap<String,String>();
         Map<String,String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -107,6 +107,9 @@ public class VoucherCenterController {
             rechargeRecord.setAlipayTradeNum(trade_no);
             rechargeRecord.setAccountYue(newAccountyue*10);
             rechargeRecordService.addRechargeRecord(rechargeRecord);
+            map.put("out_trade_no",out_trade_no);
+            map.put("trade_no",trade_no);
+            map.put("total_amount",total_amount);
         return"/return_url";
     }
 
