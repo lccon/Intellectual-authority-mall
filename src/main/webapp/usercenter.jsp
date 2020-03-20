@@ -43,7 +43,7 @@
 <jsp:include page="head1.jsp"/>
 
     <!--用户中心头部信息-->
-    <div class="container" id="nav-head">
+    <div class="container" id="nav-head" style="margin-top:130px;">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="media">
@@ -86,7 +86,7 @@
         </div>
     </div>
     <!--中央显示区域-->
-    <div class="container" id="center" style="width:1000px;">
+    <div class="container" id="center">
         <div class="row">
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-10">
                 <div id="content"></div>

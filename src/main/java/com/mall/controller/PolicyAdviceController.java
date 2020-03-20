@@ -3,8 +3,10 @@ package com.mall.controller;
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
+import com.mall.domain.AuthorizeSite;
 import com.mall.domain.PolicyAdvice;
 import com.mall.exception.base.BusinessValidationException;
+import com.mall.service.AuthorizeSiteService;
 import com.mall.service.PolicyAdviceService;
 import com.mall.vo.PolicyAdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Description:
@@ -29,6 +32,8 @@ public class PolicyAdviceController {
 
     @Autowired
     private PolicyAdviceService policyAdviceService;
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -93,8 +98,12 @@ public class PolicyAdviceController {
     @RequestMapping("/findpagepolicyAdviceForList")
     public String  main(@RequestParam(value="currentPage", defaultValue="1", required=false) int currentPage,
                         @RequestParam(value = "adviceCategory", required = false) Integer adviceCategory,
-                        Model model){
+                        Model model,ModelMap map){
         model.addAttribute("pagemsg", policyAdviceService.findByPage(currentPage, adviceCategory));//回显分页数据
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/policyadvice";
     }
 }

@@ -166,7 +166,7 @@ body a:hover{
 	margin: 80px 0 0 0;
 }
 #navbar-collapse ul {
-	margin-top:0;
+	margin-top:7px;
 }
 #li1 a{
 	font-size: 16px;
@@ -754,6 +754,10 @@ footer a{
 	.shu{
 		margin-left: 10px;
 	}
+	.model1 {
+		height: 540px;
+		background-color: #fff;
+	}
 }
 /*超小屏幕 小于等于500px*/
 @media (max-width: 500px) {
@@ -796,13 +800,13 @@ footer a{
 		margin-bottom: 10px;
 	}
 	#myCarousel{
-		height:130px;
+		height:160px;
 	}
 	#myCarousel img{
-		height: 130px;
+		height: 160px;
 	}
 	.grzx{
-		margin-top:5px;
+		margin-top:7px;
 	}
 	.model{
 		margin-bottom:10px;
@@ -815,6 +819,10 @@ footer a{
 	}
 	.layui-nav-img{
 		margin-top:5px;
+	}
+	.model1{
+		height:760px;
+		background-color: #fff;
 	}
 }
 

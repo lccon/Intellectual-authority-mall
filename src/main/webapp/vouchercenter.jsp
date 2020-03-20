@@ -16,14 +16,14 @@
     <div class="tr_recharge">
         <div class="tr_rechtext">
             <p class="te_retit"><img src="images/coin.png" alt="" />充值中心</p>
-            <p>1.提示信息。</p>
-            <p>2.提示信息。</p>
+            <p>1.本平台仅支持用“科豆”进行交易支付，兑换比例为1:10，例：“1元=10科豆”。</p>
+            <p>2.“科豆”兑换仅限于本平台交易支付使用，一旦兑换成功，概不能提现退款，请您谨慎充值。</p>
         </div>
         <form action="/goAlipay" class="am-form" id="payform">
             <!--订单编号-->
                 <input id="WIDout_trade_no" name="orderid" type="hidden"/>
             <!--订单名称-->
-                <input id="WIDsubject" name="ordername" type="hidden" value="虚拟币充值"/>
+                <input id="WIDsubject" name="ordername" type="hidden" value="科豆充值"/>
             <!--订单金额-->
                 <input id="orderprice" name="orderprice" type="hidden"/>
             <!--用户id-->
@@ -84,7 +84,7 @@
             </div>
             <div class="tr_paybox">
                 <input type="submit" value="确认支付" class="tr_pay am-btn"/>
-                <span>温馨提示：。</span>
+                <span>温馨提示：一旦发生账户安全及各类充值问题，如：充值失败、兑换比例错误等，可联系本平台客服为您解决。</span>
             </div>
         </form>
     </div>
@@ -105,7 +105,7 @@
             type:"POST",
             url: "/roofPlace/getUseraccountYue",
             success: function(result) {
-                document.getElementById("AccountYue").innerText=result*10+"虚拟币";
+                document.getElementById("AccountYue").innerText=result+"科豆";
             },
         })
     }

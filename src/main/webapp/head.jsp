@@ -35,7 +35,7 @@
                     <script>
                         var url11="${HeadPortrait}".split(",");
                         var headimg=document.getElementById("headimg");
-                        headimg.src="${pageContext.request.contextPath}"+url11[0];
+                        headimg.src="${pageContext.request.contextPath}/"+url11[0];
                     </script>
                         <a class="quit" href="/admin/userlogout">退出</a>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="container">
         <div class="navbar-header">
-            <a href="/" class="navbar-brand logo"><img src="${pageContext.request.contextPath}/img/login1.ico" alt="公司logo"></a>
+            <a href="/" class="navbar-brand logo" style="margin-top:7px;margin-bottom: 7px;"><img src="${pageContext.request.contextPath}/img/login1.ico" alt="公司logo"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                 <span>导航</span>
             </button>

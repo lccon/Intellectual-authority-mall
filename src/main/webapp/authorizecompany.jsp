@@ -21,10 +21,10 @@
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
-<div class="container" id="kind" style="margin-top:100px;">
+<div class="container" id="kind" style="margin-top:115px;">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-            <ul class="list-inline">
+            <ul class="list-inline" style="width:500px;">
                 <li>主办业务分类：</li>
                 <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=1"><a href="javascript:void(0);">申请专利</a></li>
                 <li data-url="/authorizeCompany/findpageauthorizeCompanyForList?businessCategory=2"><a href="javascript:void(0);">证书买卖</a></li>
@@ -58,14 +58,6 @@
                 </script>
             </div>
         </div>
-
-        <div class="container" id="newline">
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-        </div>
     </div>
 </div>
 
@@ -77,7 +69,7 @@
 <jsp:include page="advertising.jsp"/>
 <!--需求列表-->
     <c:if test="${requestScope.pagemsg.lists.size() == 0}">
-    <div style="margin-top: 50px;">
+    <div>
     <div class="container" >
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div class="info">
@@ -94,7 +86,7 @@
     </div>
     </c:if>
     <c:if test="${requestScope.pagemsg.lists.size()>0}">
-<div style="margin-top: 50px;">
+<div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

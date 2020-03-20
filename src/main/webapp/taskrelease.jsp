@@ -21,7 +21,7 @@
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
-<div class="container" id="kind" style="margin-top:100px;">
+<div class="container" id="kind" style="margin-top:114px;">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
@@ -59,7 +59,7 @@
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=9"><a href="javascript:void(0)">武器爆破</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=10"><a href="javascript:void(0)" >农林牧业</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=11"><a href="javascript:void(0)">食品饮料</a></li>
-                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=12"><a href="javascript:void(0)" style="margin-left: 82px;">家居用品</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=12"><a href="javascript:void(0)" >家居用品</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=13"><a href="javascript:void(0)">教育休闲</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=14"><a href="javascript:void(0)">医药医疗</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=15"><a href="javascript:void(0)">电子信息源</a></li>
@@ -70,7 +70,7 @@
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=20"><a href="javascript:void(0)">航空航天</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=21"><a href="javascript:void(0)">采矿冶金</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=22"><a href="javascript:void(0)">橡胶塑料</a></li>
-                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=23"><a href="javascript:void(0)" style="margin-left: 82px;">安全防护</a></li>
+                <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=23"><a href="javascript:void(0)">安全防护</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=24"><a href="javascript:void(0)">节能环保</a></li>
                 <li data-url="/taskRelease/findpageTaskReleaseForList?industryBelongs=25"><a href="javascript:void(0)">其他</a></li>
             </ul>
@@ -103,14 +103,6 @@
                 </script>
             </div>
         </div>
-
-        <div class="container" id="newline">
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-            <a href="javascript:void(0)">关键词</a>
-        </div>
     </div>
 </div>
 
@@ -122,7 +114,7 @@
 <jsp:include page="advertising.jsp"/>
 <!--需求列表-->
     <c:if test="${requestScope.pagemsg.lists.size() == 0}">
-        <div style="margin-top: 50px;">
+        <div>
             <div class="container" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="info">
@@ -139,7 +131,7 @@
         </div>
     </c:if>
     <c:if test="${requestScope.pagemsg.lists.size()>0}">
-<div style="margin-top: 50px;">
+<div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

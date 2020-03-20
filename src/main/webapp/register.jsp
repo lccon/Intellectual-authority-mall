@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 </head>
 <!--logo s-->
 <div class="logo-wrap clearfix">
-    <div class="kt-logo"><a target="_self" href="/"><img alt="公司名称logo" src="${pageContext.request.contextPath}/img/login1.ico" ></a></div>
+    <div class="kt-logo"><a target="_self" href="/"><img  src="${pageContext.request.contextPath}/img/login1.ico" ></a></div>
 </div>
 <!--logo e-->
 <!--wrapper s-->
@@ -51,17 +51,11 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="tab-con2">
             <form id="maintainForm" class="layui-form" method="post" action="/user/addcommonuser" onsubmit="return checkform();">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">用户名：</label>
-                        <div class="layui-input-block">
-                            <input  type="text" name="username" id="username" placeholder="请填写用户名" lay-verify="title" autocomplete="off" class="layui-input" onblur="YHMonblus()" onfocus="YHMonfocu">
+                            <input  type="hidden" name="username" id="username">
                             <input value="2" type="hidden" name="identity"/>
                             <input value="5" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
                             <input value="0" type="hidden" name="authorizeType" id="authorizeType" />
                             <input type="hidden" name="accountYue" id="accountYue" value="0"/>
-                            &nbsp;<span class="msg-box" id="tip_username"><span id="tip_username1" class="msg-box1"></span></span>
-                        </div>
-                    </div>
                     <div class="layui-form-item">
                             <label class="layui-form-label">手机号：</label>
                             <div class="layui-input-block" >
@@ -74,16 +68,7 @@ pageEncoding="UTF-8"%>
                             &nbsp;<span style="margin-top:17px; width:200px;" id="tip_code_num" class="msg-box"><span id="tip_code_num1"></span></span>
                             </div>
                     </div>
-                    <div class="layui-upload">
-                        <label class="layui-form-label">上传头像：</label>
-                        <div class="layui-input-block">
-                        <div class="layui-upload-list">
-                            <input type="file" id="test1" onchange="uploadImage(this)"/>
-                            <span id="demoText"></span>
-                            <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
-                        </div>
-                        </div>
-                    </div>
+                            <input type="hidden" name="headPortrait" id="headPortrait" value="img/userimg.png"/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码：</label>
                     <div class="layui-input-block">
@@ -141,48 +126,6 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript">
     var code1;
     var result1;
-
-    function uploadImage(obj) {
-        var f = $(obj).val();
-        if(f == null || f == undefined || f == '') {
-            return false;
-        }
-        if (!/\.(?:png|jpg|PNG|JPG)$/.test(f)) {
-            $.messageBox({message:"类型必须是图片(.png|jpg|PNG|JPG)"});
-            $(obj).val('');
-            return false;
-        }
-        var data = new FormData();
-        $.each($(obj)[0].files, function(i, file) {
-            data.append('img', file);
-        })
-        $.ajax({
-            type:"POST",
-            url: "/upload/uploadImg",
-            data: data,
-            cache:false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function(result) {
-                if (result.flag == true) {
-                    $("#headPortrait").val(result.resultStr);
-                    document.getElementById("demoText").className="success";
-                    document.getElementById("demoText").innerText="上传成功";
-                    console.log("上传成功");
-                } else {
-                     console.log(result.resultStr);
-                    $(obj).val('');
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                document.getElementById("demoText").className="error2";
-                document.getElementById("demoText").innerText="上传失败，请检查网络后重试";
-            }
-        })
-    }
-
-
     //判断输入密码的类型
     function CharMode(iN){
         if (iN>=48 && iN <=57) //数字
@@ -324,35 +267,6 @@ pageEncoding="UTF-8"%>
         }
     })
 
-    //    用户名
-    function YHMonblus(){
-        var username=document.getElementById("username");
-        var usernameerr=document.getElementById('tip_username');
-        // var reN =/^\d{6,18}$/;
-        var re = /^[a-zA-Z0-9_]*$/;
-        if(username.value==""){
-            usernameerr.className="error1";
-            usernameerr.innerText="请输入用户名";
-        }
-        else if(username.value.length < 6 ||username.value.length > 18){
-            console.log(username.value);
-            usernameerr.className="error2";
-            usernameerr.innerText="格式错误,长度应为6-18个字符";
-        }
-        else if(!re.test(username.value)){
-            usernameerr.className="error2";
-            usernameerr.innerText="格式错误,只能包含英文字母和下划线";
-        }
-        else {
-            usernameerr.className="success";
-            usernameerr.innerText ="";
-        }
-    }
-    function YHMonfocu(){
-        var usernameerr=document.getElementById('tip_username');
-        usernameerr.className="msg-box";
-        usernameerr.innerText ="";
-    }
     //   密码
     function MMonfocu(){
         var passworderr=document.getElementById("tip_phone_password");
@@ -461,7 +375,7 @@ pageEncoding="UTF-8"%>
         var code_numerr=document.getElementById("tip_code_num");
         var cerr=document.getElementById("tip_phone_affirm");
         var formerr=document.getElementById("tip_form");
-        if(usernameerr.className!="success" ||/* pictureerr.className!="success" ||*/ passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
+        if(passworderr.className!="success" || password2err.className!="success" || phoneerr.className!="success"  || cerr.className =="error2" || code_numerr.className!="success")
         {
             formerr.className="error2";
             formerr.innerText="请先按错误提示修改表单中的信息再进行提交";
@@ -471,10 +385,25 @@ pageEncoding="UTF-8"%>
             formerr.innerText="正在提交...";
             return true;
         }
-
     }
 </script>
+<script>
+    function GetDateNow() {
+        var vNow = new Date();
+        var sNow = "";
+        sNow += String(vNow.getFullYear());
+        sNow += String(vNow.getMonth() + 1);
+        sNow += String(vNow.getDate());
+        sNow += String(vNow.getHours());
+        sNow += String(vNow.getMinutes());
+        sNow += String(vNow.getSeconds());
+        sNow += String(vNow.getMilliseconds());
+        document.getElementById("username").value="科天行"+sNow.substring(6);
+    }
+    GetDateNow();
 
+
+</script>
 </body>
 
 </html>

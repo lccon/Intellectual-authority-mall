@@ -121,7 +121,7 @@
         if ($(this).hasClass('code-btn-gray')) {
             return false;
         }
-        var tel_num = $('#tel_num').val();
+        var tel_num = $('#mobile').val();
         if (tel_num && tel_num.length == 11) {
             time_inter();//按钮倒计时
             $.ajax({

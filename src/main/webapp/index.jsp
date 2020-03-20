@@ -14,15 +14,10 @@ pageEncoding="UTF-8"%>
 			width: 1560px;
 		}
 	}
-    .gsjs p{
-        color: #666666;
-        line-height: 1.8em;
-        padding-bottom: 5px;
-        text-indent:2em;
-    }
+
 </style>
     <jsp:include page="head.jsp"/>
-	<div class="container">
+	<div class="container" style="margin-top:14px;">
 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -85,14 +80,6 @@ pageEncoding="UTF-8"%>
 					</script>
 					<a href="/post-message" class="btn btn-default" id="button2">免费发布信息</a>
 				</div>
-			</div>
-
-			<div class="container" id="newline">
-				<a href="javascript:void(0);">关键词</a>
-				<a href="javascript:void(0);">关键词</a>
-				<a href="javascript:void(0);">关键词</a>
-				<a href="javascript:void(0);">关键词</a>
-				<a href="javascript:void(0);">关键词</a>
 			</div>
 			<script>
                 $("#newline").on("click","a",function () {
@@ -354,7 +341,7 @@ pageEncoding="UTF-8"%>
 
 	<div class="container" style="margin-top: 20px;height:170px;">
 		<div class="row">
-			<c:forEach items="${centerAuthllist}" var="u" begin="0" end="3" step="1">
+			<c:forEach items="${centerAuthllist}" var="u" begin="0" end="19" step="1">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 				<a href="http://${u.addressUrl}" target="_blank" class="thumbnail">
 					<img src="" id="centerimg${u.id}"/>
@@ -371,7 +358,7 @@ pageEncoding="UTF-8"%>
 	<div class="container" style="margin-top:30px;">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="model1">
+				<div class="model2">
 					<div class="tit">
 						<h2>
 							<a href="/policyAdvice/findpagepolicyAdviceForList"><strong>新闻资讯</strong></a>
@@ -390,7 +377,7 @@ pageEncoding="UTF-8"%>
 						</h2>
 					</div>
 					<div class="gsjs">
-						<h3 style="text-align: center;margin-top:27px;margin-bottom: 27px;height:45px;">了解科天行</h3>
+						<h3 style="text-align: center;margin-top:20px;margin-bottom: 20px;height:45px;">了解科天行</h3>
 						<p>科天行知产致力于打造集知识产权服务、资本对接、人才对接、技术转移和成果转化等在内的全链条一站式科技服务平台，拥有知识产权服务领域所需的战略远见、市场前沿的丰富经验。在搭建信息交互平台的基础上，挖掘知识产权领域所被低估的巨大价值，为隐藏着的具有巨大潜能的项目赋予更多的灵魂和生命力。</p>
 						<p >业务范畴：</p>
 						<p>科天行知产致力于打造知识产权信息服务全产业链，公司下设知识产权管理中心、信息运营中心、市场运营中心、营销中心、客服中心五大中心体系。科天行知产作为覆盖全领域的知识产权信息服务平台，所整合信息行业涉及生活需要、交通运输、化学化工、轻工纺织、新能源、节能环保、航空航天、教育休闲、医药医疗、农林牧业、采矿冶金、安全防护等多个领域，形成了从资源整合、信息推广、项目开发、资本对接、营销策划、直至知识产权成果最大化的全产业链完整服务体系。</p>
@@ -403,9 +390,11 @@ pageEncoding="UTF-8"%>
 
 	<div class="container" style="margin-top:30px;">
 		<div class="com-title">
-			<span>
-				<em>友情链接</em>
-			</span>
+			<h2>
+				<span></span>
+				<strong>友情链接</strong>
+				<span></span>
+			</h2>
 		</div>
 		<div class="row">
 			<c:forEach items="${yqAuthlist}" var="u" begin="0" end="5" step="1">

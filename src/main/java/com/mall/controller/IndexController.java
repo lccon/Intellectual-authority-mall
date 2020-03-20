@@ -92,11 +92,6 @@ public class IndexController {
     public String login(){
         return "login";
     }
-    @RequestMapping("/advertising")
-    @ResponseBody
-    public List<AuthorizeSite> advertising(Integer siteType){
-        return authorizeSiteService.findAuthorizeSiteBysiteType(siteType);
-    }
     @RequestMapping("/getauthorizeType")
     @ResponseBody
     public Integer getauthorizeType(Long userid){

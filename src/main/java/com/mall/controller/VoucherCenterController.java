@@ -99,7 +99,7 @@ public class VoucherCenterController {
             Long RechargeAmount=Long.parseLong(strs[0]);
             RechargeRecord rechargeRecord=new RechargeRecord();
             Long newAccountyue=AccountYue+RechargeAmount;
-            user.setAccountYue(newAccountyue);
+            user.setAccountYue(newAccountyue*10);
             userService.updateUser(user);
             rechargeRecord.setUserId(userId);
             rechargeRecord.setRechargeAmount(RechargeAmount);

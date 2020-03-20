@@ -36,8 +36,8 @@ public class SearchController {
         SearchBusinessVO SearchBusinessvO=searchService.getSearchBusinessData(page, rows, productName, productBrief);
         List<AuthorizeSite> leftAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(3);
         List<AuthorizeSite> rightAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(4);
-        map.put("leftAuthllist",leftAuthllist);
-        map.put("rightAuthllist",rightAuthllist);
+        map.put("leftadv",leftAuthllist);
+        map.put("rightadv",rightAuthllist);
         map.put("SearchBusinessvO",SearchBusinessvO);
         return "/findpage";
     }

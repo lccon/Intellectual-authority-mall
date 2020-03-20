@@ -118,7 +118,7 @@
             type:"POST",
             url: "/roofPlace/getUseraccountYue",
             success: function(result) {
-                document.getElementById("AccountYue").innerText=result+"虚拟币";
+                document.getElementById("AccountYue").innerText=result+"科豆";
             },
         })
     }

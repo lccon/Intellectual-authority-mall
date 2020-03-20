@@ -6,42 +6,17 @@
 <head>
 </head>
 <body>
-<script>
-    $.ajax({
-        type:"POST",
-        url: "/advertising?siteType=4",
-        datatype:"JSON",
-        success: function(data) {
-            for(var i=0;i<=14;i++){
-                document.getElementById(i+"righta").href="http://"+data[i].addressUrl;
-                document.getElementById(i+"rightimg").src=data[i].sitePictureUrl.split(",")[0]
-            }
-        },
-    })
-    $.ajax({
-        type:"POST",
-        url: "/advertising?siteType=3",
-        datatype:"JSON",
-        success: function(data) {
-            for(var i=0;i<=4;i++){
-                document.getElementById(i+"lefta").href="http://"+data[i].addressUrl;
-                document.getElementById(i+"leftimg").src=data[i].sitePictureUrl.split(",")[0]
-            }
-        },
-    })
-
-</script>
 <div class="rightguanggao" style="margin-top:130px;">
-        <c:forEach begin="0" end="14" step="1" var="i">
-                <a href="" target="_blank" class="thumbnail" id="${i}righta" style="margin-bottom: 0;">
-                    <img src="" id="${i}rightimg">
+        <c:forEach items="${rightadv}" begin="0" end="14" step="1" var="i">
+                <a href="http://${i.addressUrl}" target="_blank" class="thumbnail" style="margin-bottom: 0;">
+                    <img src="${i.sitePictureUrl.split(",")[0]}">
                 </a>
         </c:forEach>
 </div>
 <div class="leftguanggao">
-        <c:forEach var="i" begin="0" end="4" step="1">
-            <a href="" target="_blank" class="thumbnail" id="${i}lefta" style="margin-bottom: 0;">
-                <img src="" id="${i}leftimg">
+        <c:forEach items="${leftadv}" var="i" begin="0" end="4" step="1">
+            <a href="http://${i.addressUrl}" target="_blank" class="thumbnail"  style="margin-bottom: 0;">
+                <img src="${i.sitePictureUrl.split(",")[0]}" >
             </a>
         </c:forEach>
 </div>

@@ -27,7 +27,7 @@
     }
 </style>
 <div id="center11">
-<div style="width:80px;margin-left: 10px;">
+<div>
     <ul>
         <li id="title">我的发布</li>
     </ul>

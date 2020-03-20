@@ -17,7 +17,7 @@
 
 <jsp:include page="advertising.jsp"/>
     <!--商品详情-->
-    <div class="container" style="margin-top: 80px;background-color: #fff;">
+    <div class="container" style="margin-top: 94px;background-color: #fff;">
         <div class="row">
             <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                 <div class="detail">
@@ -134,7 +134,7 @@
                                         <cite style="font-size: xx-small">温馨提示：如果想要查看完整的付费方式需要支付50虚拟币</cite>
                                         <cite  style="font-size: xx-small" id="accountYue1">你当前的虚拟币余额为：</cite>
                                         <cite  style="font-size: xx-small">如果余额不足请先
-                                        <a id="test1" href="javascript:void(0)" style="color:#f46;">充值</a>。
+                                        <a href="/vouchercenter.jsp" target="_blank" style="color:#f46;">充值</a>。
                                         </cite>
                                 </dd>
                             </dl>
@@ -279,27 +279,12 @@
         $('#test1').on('click', function () {
             layer.open({
                 type: 2,
-                title: false,
-                closeBtn: 0, //不显示关闭按钮
-                shade: [0],
-                area: ['340px', '215px'],
-                offset: 'rb', //右下角弹出
-                time: 2000, //2秒后自动关闭
-                anim: 2,
-                content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
-                end: function () { //此处用于演示
-                    layer.open({
-                        type: 2,
-                        title: '充值中心',
-                        shadeClose: true,
-                        shade: false,
-                        maxmin: true, //开启最大化最小化按钮
-                        area: ['893px', '600px'],
-                        content: '/vouchercenter.jsp'
-                    });
-                }
+                title: '充值中心',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['893px', '600px'],
+                content: '/vouchercenter.jsp'//iframe的url
             });
-
         });
     </script>
     <!--网页底部-->

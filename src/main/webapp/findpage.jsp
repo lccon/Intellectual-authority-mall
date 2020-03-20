@@ -20,7 +20,7 @@
     <!--网页头部-->
     <jsp:include page="head.jsp" />
     <!--商品行业分类-->
-    <div class="container" id="kind1" style="margin-top:100px;">
+    <div class="container" id="kind1" style="margin-top:114px;">
 
     </div>
 
@@ -40,14 +40,6 @@
                     </script>
                 </div>
             </div>
-
-            <div class="container" id="newline">
-                <a href="javascript:void(0);">关键词</a>
-                <a href="javascript:void(0);">关键词</a>
-                <a href="javascript:void(0);">关键词</a>
-                <a href="javascript:void(0);">关键词</a>
-                <a href="javascript:void(0);">关键词</a>
-            </div>
             <script>
                 $("#newline").on("click","a",function () {
                     window.location.href="${pageContext.request.contextPath }/api/getSearchBusinessData?page=1&rows=40&productName="+$(this).text()+"&productBrief="+$(this).text();
@@ -62,7 +54,7 @@
 <jsp:include page="advertising.jsp"/>
     <!--需求列表-->
     <c:if test="${SearchBusinessvO.intellectualTaskList.size()==0 && SearchBusinessvO.authorizeCompanyList.size()==0 && SearchBusinessvO.taskReleaseList.size()==0}">
-        <div style="margin-top: 50px;">
+        <div>
             <div class="container" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="info">

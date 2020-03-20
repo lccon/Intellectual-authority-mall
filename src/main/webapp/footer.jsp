@@ -6,11 +6,11 @@
 <body>
 <footer id="footer" style="margin-top: 50px;">
     <div class="container">
-        <div><span><span class='copy-icon'>&copy;</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></div>
+        <div><span><span class='copy-icon'>&copy;</span>邯郸市丛台区亿翔网络科技有限责任公司</span></div>
         <div><span>
-                    <a href='http://www.beian.miit.gov.cn' rel='nofollow'>
-                        京ICP备0000000号&nbsp;
-                    </a>|&nbsp;
+                    <p rel='nofollow'>
+                        冀ICP备20004186号&nbsp;
+                    </p>|&nbsp;
                     <a href='http://www.beian.miit.gov.cn' rel='nofollow'>京ICP证B0-000000000&nbsp;</a>|
                     京公网安备00000000号</span></div>
         <div>

@@ -33,7 +33,7 @@
 <div class="suofang">
 <jsp:include page="head1.jsp"/>
     <jsp:include page="advertising.jsp"/>
-    <div class="container">
+    <div class="container" style="margin-top:130px;">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-6 col-lg-12">
                 <div class="top-title" style="width:1040px;">
@@ -90,7 +90,6 @@
                            </div>
                         <div class="p-zl" style="margin-top:80px;">
                             <label class="p-lab" style="margin-left: 160px;">
-                                <em class="form-req">*</em>
                                 友情链接：
                             </label>
                             <input type="text" name="title" maxlength="25" class="input-60 input"/>
@@ -105,6 +104,12 @@
                                    <span class="delx glyphicon glyphicon-remove"></span>
                                </div>
                                <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value=""/>
+                               <span class="cite">
+                                <cite >
+                                    请上传一张商品详情图片（建议图片格式：jpg/jpeg/png,建议尺寸：375X375px）
+                                    <br>
+                                </cite>
+                            </span>
                            </div>
                             <div class="p-zd">
                                 <label class="p-lab" style="margin-left: 144px;">

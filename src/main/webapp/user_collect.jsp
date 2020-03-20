@@ -21,7 +21,7 @@
 </style>
 <body>
 <div id="center11">
-<div style="width:80px;">
+<div>
     <ul>
         <li id="title">我的收藏</li>
     </ul>

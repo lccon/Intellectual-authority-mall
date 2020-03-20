@@ -3,9 +3,11 @@ package com.mall.controller;
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
+import com.mall.domain.AuthorizeSite;
 import com.mall.domain.TaskRelease;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
+import com.mall.service.AuthorizeSiteService;
 import com.mall.service.TaskReleaseService;
 import com.mall.service.UserService;
 import com.mall.vo.TaskReleaseVO;
@@ -33,6 +35,8 @@ public class TaskReleaseController {
     private TaskReleaseService taskReleaseService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -85,6 +89,10 @@ public class TaskReleaseController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         TaskReleaseVO taskReleaseVO, ModelMap map){
         model.addAttribute("pagemsg", taskReleaseService.findByPage(currentPage, taskReleaseVO));//回显分页数据
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/taskrelease";
     }
     @RequestMapping("/getTaskReleaseById")
@@ -96,6 +104,10 @@ public class TaskReleaseController {
         }
         Long userId = ThreadVariable.getSession().getUserId();
         taskReleaseService.updateBrowseVolume(id, userId);
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/taskrelease_Detail";
     }
 
@@ -118,7 +130,11 @@ public class TaskReleaseController {
         return "/findpage";
     }
     @RequestMapping("/TaskReleasePost")
-    public String TaskReleasePost(){
+    public String TaskReleasePost(ModelMap map){
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/xqfbpost";
     }
     @RequestMapping("/useraddTaskRelease")

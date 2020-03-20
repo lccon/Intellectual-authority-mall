@@ -17,7 +17,7 @@
 
 <jsp:include page="advertising.jsp"/>
 <!--商品详情-->
-<div class="container" style="margin-top: 100px;background-color: #fff;">
+<div class="container" style="margin-top: 114px;background-color: #fff;">
     <div class="row">
         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
             <div class="detail">

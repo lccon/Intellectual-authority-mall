@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 
 <body >
 <div id="center11">
-<div style="width:80px;">
+<div>
     <ul>
         <li id="title">我的认证</li>
     </ul>
@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
        <div style="margin-left: 50px;">
     <div class="titleline1">
         <div class="title"  style="width:500px;">
-            请进入个人认证或企业认证
+            请选择个人认证或企业认证
             <hr>
         </div>
     </div>
@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
         <input name="authorizeStyle" value="2" type="hidden"/>
         <div class="into" style="margin-top: 20px;">
             <p>
-                请输入真实姓名和身份证号，并上传证明图片，我们不会泄露您的个人信息。
+                请输入真实姓名和身份证号，我们不会泄露您的个人信息。
             </p>
         </div>
         <div class="lab">

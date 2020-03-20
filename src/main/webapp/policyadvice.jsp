@@ -21,7 +21,7 @@
 <!--网页头部-->
 <jsp:include page="head.jsp" />
 <!--商品行业分类-->
-<div class="container" id="kind" style="margin-top:100px;">
+<div class="container" id="kind" style="margin-top:114px;">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
             <ul class="list-inline">
@@ -39,7 +39,25 @@
 </div>
 <jsp:include page="advertising.jsp"/>
 <!--需求列表-->
-<div style="margin-top: 50px;">
+    <c:if test="${requestScope.pagemsg.lists.size() == 0}">
+        <div>
+            <div class="container" >
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="info">
+                        <ul style="margin-left: 30px;">
+                            <strong>
+                                <i  id="icon" class="glyphicon glyphicon-info-sign"></i>
+                                您搜索信息暂未找到
+                            </strong>
+                            <li>你可以继续去<a style="color: #f46;" href="/authorizeCompany/findpageauthorizeCompanyForList">首页</a>随便逛逛，浏览其他信息</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
+    <c:if test="${requestScope.pagemsg.lists.size()>0}">
+<div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -86,6 +104,7 @@
         </div>
     </div>
 </div>
+    </c:if>
 <script>
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage

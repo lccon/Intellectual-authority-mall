@@ -3,9 +3,11 @@ package com.mall.controller;
 import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
+import com.mall.domain.AuthorizeSite;
 import com.mall.domain.IntellectualTask;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
+import com.mall.service.AuthorizeSiteService;
 import com.mall.service.IntellectualTaskService;
 import com.mall.service.UserService;
 import com.mall.vo.IntellectualTaskVO;
@@ -36,6 +38,9 @@ public class IntellectualTaskController {
     private IntellectualTaskService intellectualTaskService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
+
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -89,6 +94,10 @@ public class IntellectualTaskController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage,Model model,
                         IntellectualTaskVO intellectualTaskVO, ModelMap map){
         model.addAttribute("pagemsg", intellectualTaskService.findByPage(currentPage, intellectualTaskVO));//回显分页数据
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/zscqsc";
     }
 
@@ -113,6 +122,10 @@ public class IntellectualTaskController {
         }
         Long userId = ThreadVariable.getSession().getUserId();
         intellectualTaskService.updateBrowseVolume(id, userId);
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/proDetail";
     }
 
@@ -124,6 +137,10 @@ public class IntellectualTaskController {
     }
     @RequestMapping("/IntellectualTaskPost")
     public String IntellectualTaskPost(ModelMap map){
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "zxcqpost";
     }
 

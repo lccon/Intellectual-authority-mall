@@ -17,7 +17,7 @@
     margin-left: 40px;
 }
 #head-text p{
-    margin-top: 60px;
+    margin-top: 84px;
     margin-left: 40px;
     font-size: 20px;
     color:#fff;
@@ -129,6 +129,7 @@
     font-size: 20px;
     font-weight: bold;
     border-bottom: 4px solid #f46;
+    width:80px;
 }
 #title2{
     background-color: #fff;
@@ -136,7 +137,6 @@
     width:980px;
     list-style: none;
     text-align: center;
-    margin-left: 10px;
 
 }
 #title2 li{
@@ -153,7 +153,6 @@
     height: 290px;
     width:960px;
     margin-top:50px;
-    margin-left: 10px;
 }
 .info strong{
     font-size: 24px;
@@ -258,6 +257,7 @@
     }
     #title{
         border-bottom: 4px solid #e5e5e5e5;
+        width:200px;
     }
 }
 @media (min-width: 1200px) {
@@ -271,15 +271,27 @@
 @media (max-width: 1700px) {
     #center{
         margin-left:150px;
+        width:1130px;
     }
 
 }
 @media (min-width: 1700px) {
     #leftnav{
-        margin-left: 230px;
+        margin-left: 183px;
     }
     #center{
-        margin-left:360px;
+        margin-left:308px;
+        width:1205px;
+    }
+
+}
+@media (min-width: 1900px) {
+    #leftnav{
+        margin-left: 260px;
+    }
+    #center{
+        margin-left:390px;
+        width:1205px;
     }
 
 }

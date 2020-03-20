@@ -14,7 +14,6 @@ pageEncoding="UTF-8"%>
         img1.src="${pageContext.request.contextPath}"+url11[0];
 
         if(window.screen.width<1300){
-            alert(window.screen.width);
             document.getElementById("voucher").style.display="block";
             document.getElementById("voucher1").style.display="none";
         }
@@ -23,7 +22,7 @@ pageEncoding="UTF-8"%>
            document.getElementById("voucher1").style.display="block";
         }
 </script>
-<div style="width:80px;">
+<div>
     <ul>
         <li id="title">我的资料</li>
     </ul>
@@ -50,12 +49,12 @@ pageEncoding="UTF-8"%>
                 <div class="col-sm-6">
                     <p class="help-block" style="float: left;">${user.accountYue}</p>
                     <p class="help-block">
-                        <a href="javascript:void(0);" id="voucher" style="margin-left: 20px;margin-top:10px; color: #FF5722;display: none;" role="button" >充值</a>
-                        <a href="/vouchercenter.jsp" target="_blank" id="voucher1" style="margin-left: 20px;margin-top:10px; color: #FF5722;" role="button" >充值</a>
+                        <a href="javascript:void(0);" id="voucher" style="margin-left: 60px;color: #FF5722;display: none;" role="button" >充值</a>
+                        <a href="/vouchercenter.jsp" target="_blank" id="voucher1" style="margin-left: 60px;color: #FF5722;" role="button" >充值</a>
                     </p>
                 </div>
             </div>
-            <p class="help-block" style="margin-left: 70px;">温馨提示：虚拟币比例为1：10，若想使用虚拟币请先充值。</p>
+            <p class="help-block" style="margin-left: 70px;">温馨提示：科豆比例为1：10，若想使用虚拟币请先充值。</p>
             <div class="form-group" style="height: 60px;">
                 <label for="inputPassword3" class="col-sm-2 control-label">可发布信息数量：</label>
                 <div class="col-sm-7">
@@ -74,7 +73,8 @@ pageEncoding="UTF-8"%>
                     <input type="hidden" name="headPortrait" id="headPortrait" value=""/>
                 </div>
             </div>
-            <div class="form-group" style="height: 120px;">
+        <p class="help-block" style="margin-left: 70px;">温馨提示：上传头像的最佳尺寸为：84*90像素。</p>
+        <div class="form-group" style="height: 120px;">
                 <label for="inputPassword3" class="col-sm-2 control-label">认证类型：</label>
                 <div class="col-sm-7">
                     <c:if test="${user.authorizeType==0}">
@@ -95,12 +95,14 @@ pageEncoding="UTF-8"%>
                     <c:if test="${user.authorizeType==4}">
                         <img style="width:60px;height: 60px;" src="${pageContext.request.contextPath}/img/geren.png" class="img-circle">
                     </c:if>
+                    <p class="help-block">个人认证后可免费发布20条信息</p>
+                    <p class="help-block">企业认证后可免费发布30条信息</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" id="button2">确认保存</button>
+                    <button type="submit" class="btn btn-default" id="button2" style="margin-bottom: 50px;">确认保存</button>
                 </div>
             </div>
         </form>
@@ -149,51 +151,22 @@ pageEncoding="UTF-8"%>
     $("#voucher").on("click",function () {
         layer.open({
             type: 2,
-            title: false,
-            closeBtn: 0, //不显示关闭按钮
-            shade: [0],
-            area: ['340px', '215px'],
-            offset: 'rb', //右下角弹出
-            time: 2000, //2秒后自动关闭
-            anim: 2,
-            content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
-            end: function () { //此处用于演示
-                layer.open({
-                    type: 2,
-                    title: '充值中心',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/vouchercenter.jsp'
-                });
-            }
+            title: '充值中心',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['893px', '600px'],
+            content: '/vouchercenter.jsp'//iframe的url
         });
     })
     $("#consume").on("click",function () {
         layer.open({
             type: 2,
-            title: false,
-            closeBtn: 0, //不显示关闭按钮
-            shade: [0],
-            area: ['340px', '215px'],
-            offset: 'rb', //右下角弹出
-            time: 2000, //2秒后自动关闭
-            anim: 2,
-            content: ['/consumemessage.jsp', 'no'], //iframe的url，no代表不显示滚动条
-            end: function () { //此处用于演示
-                layer.open({
-                    type: 2,
-                    title: '购买发布信息数量',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/consumemessage.jsp'
-                });
-            }
+            title: '购买发布信息数量',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['893px', '600px'],
+            content: '/consumemessage.jsp'//iframe的url
         });
-
     })
 </script>
 </body>

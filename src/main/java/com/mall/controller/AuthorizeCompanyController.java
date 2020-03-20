@@ -4,9 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.mall.base.GridPage;
 import com.mall.component.ThreadVariable;
 import com.mall.domain.AuthorizeCompany;
+import com.mall.domain.AuthorizeSite;
 import com.mall.domain.User;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.service.AuthorizeCompanyService;
+import com.mall.service.AuthorizeSiteService;
 import com.mall.service.UserService;
 import com.mall.vo.AuthorizeCompanyVO;
 import jdk.nashorn.internal.ir.annotations.Reference;
@@ -35,6 +37,8 @@ public class AuthorizeCompanyController {
     private AuthorizeCompanyService authorizeCompanyService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthorizeSiteService authorizeSiteService;
 
     @RequestMapping("/listPage")
     public String listPage() {
@@ -93,6 +97,10 @@ public class AuthorizeCompanyController {
         }
         Long userId = ThreadVariable.getSession().getUserId();
         authorizeCompanyService.updateBrowseVolume(id, userId);
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/authorizecompany_Detail";
     }
 
@@ -112,6 +120,10 @@ public class AuthorizeCompanyController {
     public String  main(@RequestParam(value="currentPage",defaultValue="1",required=false)int currentPage, Model model,
                         AuthorizeCompanyVO authorizeCompanyVO, ModelMap map){
         model.addAttribute("pagemsg", authorizeCompanyService.findByPage(currentPage, authorizeCompanyVO));//回显分页数据
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/authorizecompany";
     }
 
@@ -124,6 +136,10 @@ public class AuthorizeCompanyController {
     }
     @RequestMapping("/AuthorizeCompanyPost")
     public String AuthorizeCompanypost(ModelMap map){
+        List<AuthorizeSite> rightadv=authorizeSiteService.findAuthorizeSiteBysiteType(4);
+        List<AuthorizeSite> leftadv=authorizeSiteService.findAuthorizeSiteBysiteType(3);
+        map.put("rightadv",rightadv);
+        map.put("leftadv",leftadv);
         return "/dbgspost";
     }
 
