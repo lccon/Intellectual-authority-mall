@@ -172,8 +172,8 @@
         <include refid="columns" />
         FROM authorize_company
         WHERE state = 2
-        AND (company_name LIKE concat(#{companyName},'%')
-        OR company_describe LIKE concat(#{companyDescribe},'%'))
+        AND (company_name LIKE concat('%',#{companyName},'%')
+        OR company_describe LIKE concat('%',#{companyDescribe},'%'))
     </select>
 
     <select id="findAuthorizeCompanyByIds" resultMap="authorizeCompanyMap">

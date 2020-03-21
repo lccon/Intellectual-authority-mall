@@ -198,8 +198,8 @@
         <include refid="columns" />
         FROM task_release
         WHERE state = 2
-        AND (purpose LIKE concat(#{purpose},'%')
-        OR detailed_desc LIKE concat(#{detailedDesc},'%'))
+        AND (purpose LIKE concat('%',#{purpose},'%')
+        OR detailed_desc LIKE concat('%',#{detailedDesc},'%'))
     </select>
 
     <select id="findTaskReleaseByIds" resultMap="taskReleaseMap">

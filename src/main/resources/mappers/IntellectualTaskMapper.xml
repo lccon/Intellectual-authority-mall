@@ -202,8 +202,8 @@
         <include refid="columns" />
         FROM intellectual_task
         WHERE state = 2
-        AND (product_name LIKE concat(#{productName},'%')
-        OR product_brief LIKE concat(#{productBrief},'%'))
+        AND (product_name LIKE concat('%',#{productName},'%')
+        OR product_brief LIKE concat('%',#{productBrief},'%'))
     </select>
 
     <select id="findIntellectualTaskByIds" resultMap="intellectualTaskMap">
