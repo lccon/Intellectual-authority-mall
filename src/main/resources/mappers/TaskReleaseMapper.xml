@@ -135,8 +135,8 @@
         FROM task_release
         <where>
             <if test="purpose != null and purpose != '' and detailedDesc != null and detailedDesc != ''">
-                (purpose LIKE concat(#{purpose},'%')
-                OR detailed_desc LIKE concat(#{detailedDesc},'%'))
+                (purpose LIKE concat('%',#{purpose},'%')
+                OR detailed_desc LIKE concat('%',#{detailedDesc},'%'))
             </if>
             <if test="taskCategory != null">
                 and task_category = #{taskCategory}
@@ -167,8 +167,8 @@
         <where>
             <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''
                 and taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
-                (purpose LIKE concat(#{taskReleaseVO.purpose},'%')
-                OR detailed_desc LIKE concat(#{taskReleaseVO.detailedDesc},'%'))
+                (purpose LIKE concat('%',#{taskReleaseVO.purpose},'%')
+                OR detailed_desc LIKE concat('%',#{taskReleaseVO.detailedDesc},'%'))
             </if>
             <if test="taskReleaseVO.taskCategory != null">
                 and task_category = #{taskReleaseVO.taskCategory}

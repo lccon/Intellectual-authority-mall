@@ -151,8 +151,8 @@
         FROM intellectual_task
         <where>
             <if test="productName != null and productName != '' and productBrief != null and productBrief != ''">
-                (product_name LIKE concat(#{productName},'%')
-                OR product_brief LIKE concat(#{productBrief},'%'))
+                (product_name LIKE concat('%',#{productName},'%')
+                OR product_brief LIKE concat('%',#{productBrief},'%'))
             </if>
             <if test="productCategory != null">
                 and product_category = #{productCategory}
@@ -180,8 +180,8 @@
         <where>
             <if test="intellectualTaskVO.productName != null and intellectualTaskVO.productName != ''
                 and intellectualTaskVO.productBrief != null and intellectualTaskVO.productBrief != ''">
-                (product_name LIKE concat(#{intellectualTaskVO.productName},'%')
-                OR product_brief LIKE concat(#{intellectualTaskVO.productBrief},'%'))
+                (product_name LIKE concat('%',#{intellectualTaskVO.productName},'%')
+                OR product_brief LIKE concat('%',#{intellectualTaskVO.productBrief},'%'))
             </if>
             <if test="intellectualTaskVO.productCategory != null">
                 and product_category = #{intellectualTaskVO.productCategory}

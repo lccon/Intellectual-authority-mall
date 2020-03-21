@@ -126,8 +126,8 @@
         FROM authorize_company
         <where>
             <if test="companyName != null and companyName != '' and companyDescribe != null and companyDescribe != ''">
-                (company_name LIKE concat(#{companyName},'%')
-                OR company_describe LIKE concat(#{companyDescribe},'%'))
+                (company_name LIKE concat('%',#{companyName},'%')
+                OR company_describe LIKE concat('%',#{companyDescribe},'%'))
             </if>
             <if test="businessCategory != null">
                 and business_category = #{businessCategory}
@@ -152,8 +152,8 @@
         <where>
             <if test="authorizeCompanyVO.companyName != null and authorizeCompanyVO.companyName != ''
             and authorizeCompanyVO.companyDescribe != null and authorizeCompanyVO.companyDescribe != ''">
-                (company_name LIKE concat(#{authorizeCompanyVO.companyName},'%')
-                OR company_describe LIKE concat(#{authorizeCompanyVO.companyDescribe},'%'))
+                (company_name LIKE concat('%',#{authorizeCompanyVO.companyName},'%')
+                OR company_describe LIKE concat('%',#{authorizeCompanyVO.companyDescribe},'%'))
             </if>
             <if test="authorizeCompanyVO.businessCategory != null">
                 and business_category = #{authorizeCompanyVO.businessCategory}
