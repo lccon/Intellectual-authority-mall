@@ -248,6 +248,20 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
 
     @Override
     public pagebean<IntellectualTask> findByPage(int currentPage, IntellectualTaskVO intellectualTaskVO) {
+        Date startTime = null;
+        Date endTime = null;
+        if (intellectualTaskVO.getPeriodType() != null) {
+            if (CommonConstants.ONE_PERIOD.equals(intellectualTaskVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+                endTime = new Date();
+            } else if (CommonConstants.SEVEN_PERIOD.equals(intellectualTaskVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+            } else if (CommonConstants.MONTH_PERIOD.equals(intellectualTaskVO.getPeriodType())) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH_EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+            }
+        }
         HashMap<String,Object> map = new HashMap<String,Object>();
         pagebean<IntellectualTask> pageBean = new pagebean<IntellectualTask>();
 
@@ -270,6 +284,8 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", pageBean.getPageSize());
         map.put("intellectualTaskVO", intellectualTaskVO);
+        map.put("startTime", startTime);
+        map.put("endTime", endTime);
         //封装每页显示的数据
         List<IntellectualTask> lists = intellectualTaskMapper.findByPage(map);
         handleIntellectualTask(lists);

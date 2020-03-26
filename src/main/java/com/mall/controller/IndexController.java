@@ -47,8 +47,8 @@ public class IndexController {
         List<AuthorizeSite> rightAuthllist=authorizeSiteService.findAuthorizeSiteBysiteType(4);
         List<AuthorizeSite> yqAuthlist=authorizeSiteService.findAuthorizeSiteBysiteType(5);
         List<IntellectualTask> dayIntellectualTask = intellectualTaskService.findTaskPeriodDataForList(1);
-        List<IntellectualTask> weekIntellectualTask = intellectualTaskService.findTaskPeriodDataForList(1);
-        List<IntellectualTask> monthIntellectualTask = intellectualTaskService.findTaskPeriodDataForList(1);
+        List<IntellectualTask> weekIntellectualTask = intellectualTaskService.findTaskPeriodDataForList(2);
+        List<IntellectualTask> monthIntellectualTask = intellectualTaskService.findTaskPeriodDataForList(3);
         List<TaskRelease> daytaskReleases2 = taskReleaseService.findTaskPeriodDataForList(1);
         List<TaskRelease> weektaskReleases2 = taskReleaseService.findTaskPeriodDataForList( 2);
         List<TaskRelease> monthtaskReleases2 = taskReleaseService.findTaskPeriodDataForList(3);

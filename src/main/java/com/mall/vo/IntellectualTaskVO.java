@@ -23,6 +23,8 @@ public class IntellectualTaskVO extends BaseVO {
 
     private Integer state;
 
+    private Integer periodType;
+
     public Integer getProductCategory() {
         return productCategory;
     }
@@ -69,5 +71,13 @@ public class IntellectualTaskVO extends BaseVO {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public Integer getPeriodType() {
+        return periodType;
+    }
+
+    public void setPeriodType(Integer periodType) {
+        this.periodType = periodType;
     }
 }

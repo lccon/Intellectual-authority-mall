@@ -146,52 +146,52 @@ pageEncoding="UTF-8"%>
 			<div class="model">
 				<div class="tit" style="background-color:RGB(234,18,31);margin-bottom: 10px;">
 					<h2>
-						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1"><strong>最新发布</strong></a>
+						<a href="/intellectualTask/findpageIntellectualTaskForList"><strong>最新发布</strong></a>
 					</h2>
 				</div>
-				<div class="shu" style="margin-top:40px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=1">今日最新</a></div>
+				<div class="shu" style="margin-top:40px;"><a href="/intellectualTask/findpageIntellectualTaskForList?periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test1" style="float: right;">
 					<div carousel-item>
 						<div>
 							<c:forEach items="${daytaskReleases1}" var="u" begin="0" end="2" step="1">
-							<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+							<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 						<div>
 							<c:forEach items="${daytaskReleases1}" var="u" begin="3" end="5" step="1">
-								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+								<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:80px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=2">本周最新</a></div>
+				<div class="shu" style="margin-top:80px;"><a href="/intellectualTask/findpageIntellectualTaskForList?periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test2" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
 							<c:forEach items="${weektaskReleases1}" var="u" begin="0" end="2" step="1">
-								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+								<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 						<div>
 							<c:forEach items="${weektaskReleases1}" var="u" begin="3" end="5" step="1">
-								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+								<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:85px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=1&periodType=3">本月最新</a></div>
+				<div class="shu" style="margin-top:85px;"><a href="/intellectualTask/findpageIntellectualTaskForList?periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test3" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
 							<c:forEach items="${monthtaskReleases1}" var="u" begin="0" end="2" step="1">
-								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+								<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 						<div>
 							<c:forEach items="${monthtaskReleases1}" var="u" begin="3" end="5" step="1">
-								<span><a class="bt" href="/taskRelease/getTaskReleaseById?id=${u.id}">${u.purpose }</a></span><br>
+								<span><a class="bt" href="/intellectualTask/getIntellectualTaskById?id=${u.id}">${u.productName }</a></span><br>
 							</c:forEach>
 						</div>
 					</div>
@@ -242,10 +242,10 @@ pageEncoding="UTF-8"%>
 			<div class="model">
 				<div class="tit" style="background-color:RGB(234,18,31);margin-bottom:10px;">
 					<h2>
-						<a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2"><strong>最新需求</strong></a>
+						<a href="/taskRelease/findpageTaskReleaseForList"><strong>最新需求</strong></a>
 					</h2>
 				</div>
-				<div class="shu" style="margin-top:40px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=1">今日最新</a></div>
+				<div class="shu" style="margin-top:40px;"><a href="/taskRelease/findpageTaskReleaseForList?periodType=1">今日最新</a></div>
 				<div class="layui-carousel" id="test4" style="float: right;">
 					<div carousel-item>
 						<div>
@@ -261,7 +261,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:80px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=2">本周最新</a></div>
+				<div class="shu" style="margin-top:80px;"><a href="/taskRelease/findpageTaskReleaseForList?periodType=2">本周最新</a></div>
 				<div class="layui-carousel" id="test5" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>
@@ -277,7 +277,7 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 				<!-- 条目中可以是任意内容，如：<img src=""> -->
-				<div class="shu" style="margin-top:85px;"><a href="/taskRelease/findpageTaskReleaseForList?taskCategory=2&periodType=3">本月最新</a></div>
+				<div class="shu" style="margin-top:85px;"><a href="/taskRelease/findpageTaskReleaseForList?periodType=3">本月最新</a></div>
 				<div class="layui-carousel" id="test6" style="float: right;margin-top: 20px;">
 					<div carousel-item>
 						<div>

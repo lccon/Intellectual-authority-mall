@@ -189,6 +189,12 @@
             <if test="intellectualTaskVO.industryCategory != null">
                 and industry_category = #{intellectualTaskVO.industryCategory}
             </if>
+            <if test="startTime != null">
+                and it.create_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                and it.create_date <![CDATA[<=]]> #{endTime}
+            </if>
             and state = 2
         </where>
         order by t.create_date desc, it.create_date desc
