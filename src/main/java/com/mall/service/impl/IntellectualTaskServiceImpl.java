@@ -154,6 +154,7 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
         }
         try {
             IntellectualTask intellectualTask = intellectualTaskMapper.getIntellectualTaskById(id);
+            // 置顶
             RoofPlace roofPlace = new RoofPlace();
             roofPlace.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
             roofPlace.setModuleTypeId(intellectualTask.getId());
@@ -161,6 +162,19 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
             if (roofPlaceInfo != null) {
                 intellectualTask.setRoofPlaceState(roofPlaceInfo.getAuthorizeState());
                 intellectualTask.setTopDuration(roofPlaceInfo.getTopDuration());
+            }
+            // 收藏
+            BusinessCollected businessCollected = new BusinessCollected();
+            businessCollected.setModuleType(ModuleTypeEnum.INTELLECTUAL_TASK.getModuleCode());
+            businessCollected.setModuleTypeId(intellectualTask.getId());
+            if(ThreadVariable.getSession() != null && ThreadVariable.getSession().getUserId() != null) {
+                businessCollected.setUserId(ThreadVariable.getSession().getUserId());
+                BusinessCollected businessCollectedInfo = businessCollectedService.getBusinessCollected(businessCollected);
+                if (businessCollectedInfo != null) {
+                    intellectualTask.setHasCollectedState(CommonConstants.IS_COLLECTED);
+                } else {
+                    intellectualTask.setHasCollectedState(CommonConstants.NOT_IS_COLLECTED);
+                }
             }
             return intellectualTask;
         } catch (Exception e) {
