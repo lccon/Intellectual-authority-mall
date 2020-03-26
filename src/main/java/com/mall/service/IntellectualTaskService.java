@@ -56,4 +56,6 @@ public interface IntellectualTaskService {
     List<IntellectualTask> findIntellectualTaskByIds(List<Long> taskIds);
 
     void updateBrowseVolume(Long id, Long userId);
+
+    List<IntellectualTask> findTaskPeriodDataForList(Integer periodType);
 }

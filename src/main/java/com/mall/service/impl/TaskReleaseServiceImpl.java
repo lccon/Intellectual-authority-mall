@@ -165,10 +165,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
     }
 
     @Override
-    public List<TaskRelease> findTaskPeriodDataForList(Integer taskCategory, Integer periodType) {
-        if (taskCategory == null) {
-            throw new BusinessValidationException("任务分类不能为空!");
-        }
+    public List<TaskRelease> findTaskPeriodDataForList(Integer periodType) {
         if (periodType == null) {
             throw new BusinessValidationException("时间区间类型不能为空!");
         }
@@ -185,7 +182,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseService {
                 startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH_EIGHT);
                 endTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
             }
-            return taskReleaseMapper.findTaskPeriodDataForList(taskCategory, startTime, endTime);
+            return taskReleaseMapper.findTaskPeriodDataForList(startTime, endTime);
         } catch (Exception e) {
             throw new ServiceValidationException("获取任务发布列表出错!", e);
         }

@@ -220,4 +220,19 @@
         UPDATE intellectual_task SET browse_volume = browse_volume+1 where id = #{id}
     </update>
 
+    <select id="findTaskPeriodDataForList" resultMap="intellectualTaskMap">
+        select
+        <include refid="columns" />
+        from intellectual_task
+        <where>
+            state = 2
+            <if test="startTime != null">
+                and create_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                and create_date <![CDATA[<=]]> #{endTime}
+            </if>
+        </where>
+    </select>
+
 </mapper>

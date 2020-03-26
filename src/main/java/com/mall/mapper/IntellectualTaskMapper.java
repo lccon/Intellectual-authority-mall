@@ -4,6 +4,7 @@ import com.mall.domain.IntellectualTask;
 import com.mall.vo.IntellectualTaskVO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,4 +59,6 @@ public interface IntellectualTaskMapper {
     List<IntellectualTask> findIntellectualTaskByIds(@Param("taskIds") List<Long> taskIds);
 
     void updateBrowseVolume(Long id);
+
+    List<IntellectualTask> findTaskPeriodDataForList(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 }

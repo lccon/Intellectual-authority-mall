@@ -13,6 +13,7 @@ import com.mall.service.BusinessBrowseService;
 import com.mall.service.BusinessCollectedService;
 import com.mall.service.IntellectualTaskService;
 import com.mall.service.RoofPlaceService;
+import com.mall.utils.DateUtil;
 import com.mall.utils.StringUtil;
 import com.mall.vo.IntellectualTaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -218,6 +219,30 @@ public class IntellectualTaskServiceImpl implements IntellectualTaskService {
             }
         } catch (Exception e) {
             throw new ServiceValidationException("修改浏览量出错!", e);
+        }
+    }
+
+    @Override
+    public List<IntellectualTask> findTaskPeriodDataForList(Integer periodType) {
+        if (periodType == null) {
+            throw new BusinessValidationException("时间区间类型不能为空!");
+        }
+        try {
+            Date startTime = null;
+            Date endTime = null;
+            if (CommonConstants.ONE_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+                endTime = new Date();
+            } else if (CommonConstants.SEVEN_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.ONE_PERIOD);
+            } else if (CommonConstants.MONTH_PERIOD.equals(periodType)) {
+                startTime = DateUtil.getLastPeriodDay(CommonConstants.MONTH_EIGHT);
+                endTime = DateUtil.getLastPeriodDay(CommonConstants.EIGHT);
+            }
+            return intellectualTaskMapper.findTaskPeriodDataForList(startTime, endTime);
+        } catch (Exception e) {
+            throw new ServiceValidationException("获取知识产权列表出错!", e);
         }
     }
 

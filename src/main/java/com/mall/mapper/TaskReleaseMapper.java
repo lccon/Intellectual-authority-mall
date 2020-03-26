@@ -60,5 +60,5 @@ public interface TaskReleaseMapper {
 
     void updateBrowseVolume(Long id);
 
-    List<TaskRelease> findTaskPeriodDataForList(@Param("taskCategory") Integer taskCategory, @Param("startTime") Date startTime, @Param("endTime") Date endTime);
+    List<TaskRelease> findTaskPeriodDataForList(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 }

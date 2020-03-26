@@ -222,9 +222,6 @@
         from task_release r
         <where>
             state = 2
-            <if test="taskCategory != null">
-                and task_category = #{taskCategory}
-            </if>
             <if test="startTime != null">
                 and create_date <![CDATA[>=]]> #{startTime}
             </if>
