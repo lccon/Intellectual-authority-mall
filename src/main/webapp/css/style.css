@@ -765,6 +765,9 @@ footer a{
 	.kfph{
 		font-size: 25px;
 	}
+	.pro-detail-head .pro-hd h1{
+		width:1170px;
+	}
 }
 /*超小屏幕 小于等于500px*/
 @media (max-width: 500px) {
@@ -837,6 +840,9 @@ footer a{
 	}
 	.kfph{
 		font-size: 15px;
+	}
+	.pro-detail-head .pro-hd h1{
+		width:300px;
 	}
 }
 

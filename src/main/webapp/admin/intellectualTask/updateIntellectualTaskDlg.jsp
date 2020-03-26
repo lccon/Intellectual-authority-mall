@@ -24,7 +24,6 @@
         </div>
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
-            <em class="form-red">*</em>
             <label class="form-lb1">专利号：</label>
         </div>
         <div class="grid_7">
@@ -181,12 +180,6 @@
                     required:true,
                     minlength:1,
                     maxlength:5000
-                },
-                "patentNumber":{
-                    required:true,
-                    isDigitAndStr:true,
-                    minlength:1,
-                    maxlength:200
                 },
                 "topDuration" : {
                     required:true,

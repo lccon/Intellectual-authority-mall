@@ -445,8 +445,10 @@ pageEncoding="UTF-8"%>
 	<div class="close1" style="float: right">
 		<a href="javascript:void(0);" id="close1" ><span class="glyphicon glyphicon-remove"></span></a>
 	</div>
+
 	<div class="w3ls-form">
 		<h1>意见反馈</h1>
+		<form  id="maintainForm" class="layui-form" method="post" action="/leaveMessage/addLeaveMessage">
 			<ul class="fields">
 		<li>	
 			<label class="w3ls-opt">您的姓名<span class="w3ls-star"> * </span></label>
@@ -471,41 +473,20 @@ pageEncoding="UTF-8"%>
 		<div class="input">
 			<label class="w3ls-opt1">您的问题或建议<span> ?</span></label>
 			<span class="w3ls-input"><textarea name="message" id="message" placeholder="请输入您的问题或建议"></textarea></span>
+			<input type="hidden" id="messageState" name="messageState" value="0"/>
 		</div>
 	</ul>
 	<div class="clear"></div>
 		<div class="w3ls-btn">
-			<input type="submit" value="提交" onclick="addLevemessage()">
+			<input type="submit" value="提交">
 		</div>
+		</form>
 	</div>
+
 	</div>
 
 <!--页面底部-->
 	<jsp:include page="footer.jsp"/>
-    <script type="text/javascript">
-        function addLevemessage(){
-            var message=document.getElementById("message").value;
-            var box = document.getElementById("ll");
-            $.ajax({
-                type:"POST",
-                url: "/addLeaveMessage?message="+message,
-                async : false,
-                data:{type:1},
-                timeout:1000,
-                success: function(data) {
-                    if(data != null && !data.id){
-                        console.log("新增失败");
-                        box.style.display="none";
-                    }
-                    else{
-                        console.log("新增成功");
-                        box.style.display="none";
-                    }
-
-                },
-            })
-        }
-    </script>
 	<script type="text/javascript">
 		//轮播自动播放
 		$('#myCarousel').carousel({

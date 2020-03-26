@@ -132,8 +132,8 @@
                                     </span>
                                 </dd>
                                 <dd>
-                                    <p class="help-block" style="letter-spacing:0px;font-size: xx-small;">
-                                        温馨提示:查看完整联系方式需要支付280科豆，您当前账户余额为<span id="accountYue1"></span>科豆，如余额不足请点击上方充值按钮。
+                                    <p class="help-block" style="margin-left:20px;margin-top:60px;letter-spacing:0px;font-size: xx-small;">
+                                        温馨提示:查看完整联系方式需要支付280科豆，您当前账户余额为<span id="accountYue1" style="font-size: xx-small;margin-left:-20px;"></span>科豆，如余额不足请点击上方充值按钮。
                                     </p>
                                 </dd>
                             </dl>

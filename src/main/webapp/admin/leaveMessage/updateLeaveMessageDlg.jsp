@@ -31,6 +31,30 @@
                 </select>
             </div>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_6 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">姓名：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="realName" id="realName" value="${leaveMessage.realName}"/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_6 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">联系电话：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="mobile" id="mobile" value="${leaveMessage.mobile}"/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_6 label-right">
+            <em class="form-red">*</em>
+            <label class="form-lb1">邮箱地址：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="mailAddress" id="mailAddress" value="${leaveMessage.mailAddress}"/>
+        </div>
     </div>
 </form>
 <script type="text/javascript">

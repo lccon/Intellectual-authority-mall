@@ -118,6 +118,20 @@
                 <option value="0" <c:if test="${taskRelease.state == 0}">selected</c:if>>驳回</option>
             </select>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_4 label-right">
+            <label class="form-lb1">真实姓名：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="realName" id="realName" value="${taskRelease.realName}"/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_4 label-right">
+            <label class="form-lb1">联系电话：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="mobile" id="mobile" value="${taskRelease.mobile}"/>
+        </div>
     </div>
 </form>
 

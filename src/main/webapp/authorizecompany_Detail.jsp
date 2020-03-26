@@ -25,7 +25,7 @@
                 <div class="detail-box">
                     <div class="preview">
                         <div class="preview-box">
-                            <a href="#">
+                            <a href="http://${authorizeCompany.friendshipLink}" target="_blank">
                                 <img id="bigimg" class="media-object" alt="" src="" />
                             </a>
                         </div>
@@ -46,10 +46,8 @@
                                     </span>
                             </dd>
                             <dd>
-                                <span>友情链接: </span>
-                                <span>
-                                   ${authorizeCompany.friendshipLink}
-                                </span>
+                                <span>联系方式: </span>
+                                <span>${authorizeCompany.mobile}</span>
                             </dd>
                         </dl>
                     </div>

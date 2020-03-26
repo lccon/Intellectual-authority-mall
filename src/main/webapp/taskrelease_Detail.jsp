@@ -34,7 +34,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="pro-service" >
+                    <div class="pro-service" style="width: 450px;float: left;">
                         <dl class="clearfix" style="margin-top:40px;">
                             <dd>
                                 <span>任务类型: </span>
@@ -82,6 +82,28 @@
                                         <c:if test="${taskRelease.industryBelongs==24}">节能环保</c:if>
                                         <c:if test="${taskRelease.industryBelongs==25}">其他</c:if>
                                     </span>
+                            </dd>
+                            <dd>
+                                <span>发明人&nbsp;&nbsp;: </span><span>${taskRelease.realName}</span>
+                            </dd>
+                            <dd>
+                                <span>联系方式: </span>
+                                <span id="mobile"></span>
+                                <br>
+                            </dd>
+                            <dd>
+                                    <span style="margin-left:120px;">
+                                        <input type="hidden" id="accountYue"/>
+                                        <a href="javascript:;" class="addcart" id="info">
+                                        查看完整联系方式
+                                        </a>
+                                        <a href="/vouchercenter.jsp" target="_blank" class="addcart" style="width:70px;">充值</a>
+                                    </span>
+                            </dd>
+                            <dd>
+                                <p class="help-block" style="margin-left:20px;margin-top:60px;letter-spacing:0px;font-size: xx-small;">
+                                    温馨提示:查看完整联系方式需要支付280科豆，您当前账户余额为<span id="accountYue1" style="font-size: xx-small;margin-left:-20px;"></span>科豆，如余额不足请点击上方充值按钮。
+                                </p>
                             </dd>
                         </dl>
                     </div>
@@ -148,6 +170,47 @@
 <!--网页底部-->
 <jsp:include page="footer.jsp"/>
 <script>
+    $('#info').on('click',function () {
+        if(document.getElementById("accountYue").value <50){
+            layer.msg('您的余额不足请先进行充值', {
+                time: 5000, //5s后自动关闭
+            });
+        }else {
+            layer.confirm('是否确定付费查看联系方式？', {
+                btn: ['确定', '取消'] //可以无限个按钮
+                ,btn3: function(index, layero){
+                    //按钮【按钮三】的回调
+                }
+            }, function(index, layero){
+                $.ajax({
+                    type:"POST",
+                    url: "/roofPlace/roofplaceconsume?consume=50",
+                    success: function(result) {
+                        console.log("111");
+                        //eg2
+                        layer.open({
+                            content: '提示：为确保用户信息安全，此条信息设定为一次性展示。刷新或重新登陆后需要您再次付费查看，请您及时自主保存信息。联系电话为：${intellectualTask.mobile}'
+                            ,btn: ['确定']
+                            ,yes: function(index, layero){
+                                document.getElementById("mobile").innerText="${taskRelease.mobile}";
+                                layer.closeAll();
+                            }
+                            ,cancel: function(){
+                                //右上角关闭回调
+                                //return false //开启该代码可禁止点击该按钮关闭
+                            }
+                        });
+                    },
+                })//按钮【按钮一】的回调
+            }, function(index){
+                layer.close(); //按钮【按钮二】的回调
+            });
+
+
+        }
+    })
+</script>
+<script>
     window.onload=function () {
         $.ajax({
             type:"POST",
@@ -157,7 +220,30 @@
             success: function(result) {
             },
         })
+
+        $.ajax({
+            type:"POST",
+            url: "/roofPlace/getUseraccountYue",
+            success: function(result) {
+                document.getElementById("accountYue").value=result;
+                document.getElementById("accountYue1").innerText=result;
+            },
+        })
+        var phNum="${taskRelease.mobile}";
+        var phnumAfter = phNum.substring(0,3) + "****" + phNum.substring(7);
+        document.getElementById("mobile").innerText=phnumAfter;
     }
+
+    $('#test1').on('click', function () {
+        layer.open({
+            type: 2,
+            title: '充值中心',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['893px', '600px'],
+            content: '/vouchercenter.jsp'//iframe的url
+        });
+    });
 </script>
 
 

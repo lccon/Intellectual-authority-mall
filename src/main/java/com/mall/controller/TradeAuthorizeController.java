@@ -58,7 +58,7 @@ public class TradeAuthorizeController {
         }
         else {
             User user=userService.findUserById(userId);
-            user.setFreeMessageNum(10);
+            user.setFreeMessageNum(20);
             userService.updateUser(user);
         }
         return "usercenter";

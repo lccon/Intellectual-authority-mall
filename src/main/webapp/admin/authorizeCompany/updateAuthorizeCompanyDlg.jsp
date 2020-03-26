@@ -79,6 +79,27 @@
             <input type="file" onchange="uploadImage(this);" class="text-input">
             <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value=""/>
         </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <label class="form-lb1">友情链接：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="friendshipLink" id="friendshipLink" value="${authorizeCompany.friendshipLink}"/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <label class="form-lb1">真实姓名：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="realName" id="realName" value="${authorizeCompany.realName}"/>
+        </div>
+        <div class="clearLine"></div>
+        <div class="grid_3 label-right">
+            <label class="form-lb1">联系电话：</label>
+        </div>
+        <div class="grid_7">
+            <input type="text" name="mobile" id="mobile" value="${authorizeCompany.mobile}"/>
+        </div>
     </div>
 </form>
 

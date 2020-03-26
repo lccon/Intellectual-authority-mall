@@ -43,9 +43,9 @@ public class LeaveMessageController {
     }
 
     @RequestMapping("/addLeaveMessage")
-    @ResponseBody
-    public LeaveMessage addLeaveMessage(LeaveMessage leaveMessage) {
-        return leaveMessageService.addLeaveMessage(leaveMessage);
+    public String addLeaveMessage(LeaveMessage leaveMessage) {
+        leaveMessageService.addLeaveMessage(leaveMessage);
+        return "/index";
     }
 
     @RequestMapping("/updateLeaveMessage")
