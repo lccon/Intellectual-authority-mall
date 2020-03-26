@@ -25,7 +25,7 @@
             <!--订单名称-->
                 <input id="WIDsubject" name="ordername" type="hidden" value="科豆充值"/>
             <!--订单金额-->
-                <input id="orderprice" name="orderprice" type="hidden"/>
+                <input id="orderprice" name="orderprice" type="hidden" value="20.00"/>
             <!--用户id-->
                 <input id="userid" name="userid" type="hidden" value="${UserId}"/>
             <div class="tr_rechbox">
@@ -43,7 +43,7 @@
                     <ul class="ui-choose am-form-group" id="uc_01">
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 20￥
+                                <input type="radio"  value="" name="docVlGender" data-validation-message="请选择一项充值额度"> 20￥
                             </label>
                         </li>
                         <li>
@@ -131,7 +131,7 @@
             $('.tr_rechoth').hide();
             $('.rechnum').text('20.00元');
             $('.othbox').val('');
-            document.getElementById("orderprice").value="0.01";
+            document.getElementById("orderprice").value="20.00";
         })
         $('#uc_01 li:eq(1)').click(function() {
             $('.tr_rechoth').hide();

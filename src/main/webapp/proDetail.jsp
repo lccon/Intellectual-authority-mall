@@ -9,6 +9,7 @@
 </head>
 
 <body onload="aaa();">
+<div id="cc1">
     <div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
    
     </div>
@@ -35,10 +36,10 @@
                                 <dl>
                                     <dd>
                                         <span>
-                                            ￥
+                                            专利售价：
                                         </span>
                                         <span>
-                                            价格面议
+                                            ￥面议
                                         </span>
                                     </dd>
                                 </dl>
@@ -125,17 +126,15 @@
                                     <span style="margin-left:120px;">
                                         <input type="hidden" id="accountYue"/>
                                         <a href="javascript:;" class="addcart" id="info">
-                                        付费查看完整联系方式
+                                        查看完整联系方式
                                         </a>
+                                        <a href="/vouchercenter.jsp" target="_blank" class="addcart" style="width:70px;">充值</a>
                                     </span>
                                 </dd>
                                 <dd>
-
-                                        <cite style="font-size: xx-small">温馨提示：如果想要查看完整的付费方式需要支付50虚拟币</cite>
-                                        <cite  style="font-size: xx-small" id="accountYue1">你当前的虚拟币余额为：</cite>
-                                        <cite  style="font-size: xx-small">如果余额不足请先
-                                        <a href="/vouchercenter.jsp" target="_blank" style="color:#f46;">充值</a>。
-                                        </cite>
+                                    <p class="help-block" style="letter-spacing:0px;font-size: xx-small;">
+                                        温馨提示:查看完整联系方式需要支付280科豆，您当前账户余额为<span id="accountYue1"></span>科豆，如余额不足请点击上方充值按钮。
+                                    </p>
                                 </dd>
                             </dl>
                         </div>
@@ -170,7 +169,13 @@
                         商品详情         
                     </span>
                 </div>
-                  <!-- 商品详情图 -->
+                <c:if test="${intellectualTask.hasCollectedState==0}">
+                    <span style="float: right;margin-top:20px;"><a class="cole" href="" onclick="addcollect(${intellectualTask.id});"><span class="glyphicon glyphicon-star-empty" style="margin-top: 8px;">收藏</span></a></span>
+                </c:if>
+                <c:if test="${intellectualTask.hasCollectedState==1}">
+                    <span style="float: right;margin-top:20px;"><a class="cole" href="" onclick="deletecollect(${UserId},1,${intellectualTask.id});"><span class="glyphicon glyphicon-star" style="margin-top: 8px;">已收藏</span></a></span>
+                </c:if>
+                <!-- 商品详情图 -->
                   <div class="text">
                       <p>
                           ${intellectualTask.productDetails}
@@ -202,25 +207,36 @@
                     time: 5000, //5s后自动关闭
                 });
             }else {
-                $.ajax({
-                    type:"POST",
-                    url: "/roofPlace/roofplaceconsume?consume=50",
-                    success: function(result) {
-                        console.log("111");
-                        //eg2
-                        layer.open({
-                            content: '${intellectualTask.mobile}'
-                            ,btn: ['确定']
-                            ,yes: function(index, layero){
-                                document.getElementById("mobile").innerText="${intellectualTask.mobile}";
-                            }
-                            ,cancel: function(){
-                                //右上角关闭回调
-                                //return false //开启该代码可禁止点击该按钮关闭
-                            }
-                        });
-                    },
-                })
+                layer.confirm('是否确定付费查看联系方式？', {
+                    btn: ['确定', '取消'] //可以无限个按钮
+                    ,btn3: function(index, layero){
+                        //按钮【按钮三】的回调
+                    }
+                }, function(index, layero){
+                    $.ajax({
+                        type:"POST",
+                        url: "/roofPlace/roofplaceconsume?consume=50",
+                        success: function(result) {
+                            console.log("111");
+                            //eg2
+                            layer.open({
+                                content: '提示：为确保用户信息安全，此条信息设定为一次性展示。刷新或重新登陆后需要您再次付费查看，请您及时自主保存信息。联系电话为：${intellectualTask.mobile}'
+                                ,btn: ['确定']
+                                ,yes: function(index, layero){
+                                    document.getElementById("mobile").innerText="${intellectualTask.mobile}";
+                                    layer.closeAll();
+                                }
+                                ,cancel: function(){
+                                    //右上角关闭回调
+                                    //return false //开启该代码可禁止点击该按钮关闭
+                                }
+                            });
+                        },
+                    })//按钮【按钮一】的回调
+                }, function(index){
+                    layer.close(); //按钮【按钮二】的回调
+                });
+
 
             }
         })
@@ -257,7 +273,7 @@
                 url: "/roofPlace/getUseraccountYue",
                 success: function(result) {
                     document.getElementById("accountYue").value=result;
-                    document.getElementById("accountYue1").innerText+=result;
+                    document.getElementById("accountYue1").innerText=result;
                 },
             })
                 var phNum="${intellectualTask.mobile}";
@@ -286,12 +302,63 @@
                 content: '/vouchercenter.jsp'//iframe的url
             });
         });
+
+        function bbb(id) {
+            var $contentWrapper = $('#cc1');
+            $.ajax({
+                url : "${pageContext.request.contextPath }/intellectualTask/getIntellectualTaskById?id="+id,
+                success : function(rst) {
+                    $contentWrapper.html(rst);
+                }
+            })
+        }
+
+        //填加收藏
+        function addcollect(id) {
+            $.ajax({
+                type:"POST",
+                url: "/businessCollected/addBusinessCollected?moduleType=1&moduleTypeId="+id,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    if(result){
+                        bbb(id);
+                    }
+                    else {
+                        console.log("新增失败");
+                    }
+
+                },
+            })
+        }
+
+        //删除收藏
+        function deletecollect(userid,moduletype,moduletypeid) {
+            $.ajax({
+                type:"POST",
+                url: "/businessCollected/deleteBusinessCollected?userId="+userid+"&moduleType="+moduletype+"&moduleTypeId="+moduletypeid,
+                async : false,
+                data:{type:1},
+                timeout:1000,
+                success: function(result) {
+                    if(result){
+                        console.log("删除成功");
+                        bbb(id);
+                    }
+                    else {
+                        console.log("删除失败");
+                    }
+
+                },
+            })
+        }
     </script>
     <!--网页底部-->
     <jsp:include page="footer.jsp"/>
 
 
-
+</div>
 </body>
 
 </html>

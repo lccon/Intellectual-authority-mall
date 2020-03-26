@@ -98,14 +98,14 @@ public class VoucherCenterController {
             String [] strs = total_amount.split("[.]");
             Long RechargeAmount=Long.parseLong(strs[0]);
             RechargeRecord rechargeRecord=new RechargeRecord();
-            Long newAccountyue=AccountYue+RechargeAmount;
-            user.setAccountYue(newAccountyue*10);
+            Long newAccountyue=AccountYue+RechargeAmount*10;
+            user.setAccountYue(newAccountyue);
             userService.updateUser(user);
             rechargeRecord.setUserId(userId);
             rechargeRecord.setRechargeAmount(RechargeAmount);
             rechargeRecord.setAlipayOrderNum(out_trade_no);
             rechargeRecord.setAlipayTradeNum(trade_no);
-            rechargeRecord.setAccountYue(newAccountyue*10);
+            rechargeRecord.setAccountYue(newAccountyue);
             rechargeRecordService.addRechargeRecord(rechargeRecord);
             map.put("out_trade_no",out_trade_no);
             map.put("trade_no",trade_no);
@@ -129,7 +129,7 @@ public class VoucherCenterController {
     public static boolean isOrderPaid = false;
 
     @RequestMapping(value = "/goweixinpay")
-    public ModelAndView createPreOrder(String orderid, String orderprice,String ordername,Long userid, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView createPreOrder(String orderid, String orderprice,String ordername,Long userid, HttpServletRequest request, HttpServletResponse response,ModelMap map) throws Exception {
         int num1 =Double.valueOf(orderprice).intValue();
         Integer num2=num1*100;
         String str1=String.valueOf(num2);
@@ -146,7 +146,8 @@ public class VoucherCenterController {
 
         ModelAndView mv = new ModelAndView("payQrCode");
         mv.addObject("qrCodeUrl", preOrderResult.getCode_url());
-
+        map.put("out_trade_no",out_trade_no);
+        map.put("total_fee",orderprice);
         return mv;
     }
 
@@ -159,7 +160,7 @@ public class VoucherCenterController {
     }
 
     @RequestMapping(value = "/weixinnotify")
-    public void notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String notify(HttpServletRequest request, HttpServletResponse response,ModelMap map) throws Exception {
 
         PayResult payResult = wxOrderService.getWxPayResult(request);
 
@@ -169,8 +170,6 @@ public class VoucherCenterController {
         // 支付成功，商户处理后同步返回给微信参数
         PrintWriter writer = response.getWriter();
         if (isPaid) {
-            System.out.println("================================= 支付成功 =================================");
-
             // ====================== 操作商户自己的业务，比如修改订单状态，生成支付流水等 start ==========================
             // TODO
             this.isOrderPaid = true;
@@ -180,6 +179,7 @@ public class VoucherCenterController {
             String noticeStr = setXML("SUCCESS", "");
             writer.write(noticeStr);
             writer.flush();
+            map.put("noticeStr",noticeStr);
 
         } else {
             System.out.println("================================= 支付失败 =================================");
@@ -188,8 +188,10 @@ public class VoucherCenterController {
             String noticeStr = setXML("FAIL", "");
             writer.write(noticeStr);
             writer.flush();
+            map.put("noticeStr",noticeStr);
         }
 
+        return "paySuccess";
     }
 
     /**

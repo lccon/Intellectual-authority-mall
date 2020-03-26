@@ -14,9 +14,9 @@ package com.mall.wx.config;
  */
 public class WeChatConfig {
 	
-	public static final String APPID = "xxxxxxxxxxxxxxxx";						// 公众账号ID
-	public static final String MCH_ID = "yyyyyyyyyyyyyyy";						// 商户号
-	public static final String KEY = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";		// 商户密钥
+	public static final String APPID = "wx6444d1835cd12c12";						// 公众账号ID
+	public static final String MCH_ID = "1579472681";						// 商户号
+	public static final String KEY = "QEFAAOCAQ8AMIIBCgKCAQEAxcWaBriaz";		// 商户密钥
 	
 	// APP和网页支付提交用户端ip, Native支付填调用微信支付API的机器IP, 即：服务器ip地址
 	public static final String SPBILL_CREATE_IP = "123.56.93.179";

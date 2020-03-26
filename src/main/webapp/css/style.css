@@ -758,6 +758,13 @@ footer a{
 		height: 540px;
 		background-color: #fff;
 	}
+	.fot{
+		margin:0 auto;
+		width:700px;
+	}
+	.kfph{
+		font-size: 25px;
+	}
 }
 /*超小屏幕 小于等于500px*/
 @media (max-width: 500px) {
@@ -823,6 +830,13 @@ footer a{
 	.model1{
 		height:760px;
 		background-color: #fff;
+	}
+	.fot{
+		margin:0 auto;
+		width:200px;
+	}
+	.kfph{
+		font-size: 15px;
 	}
 }
 

@@ -11,7 +11,7 @@
 <div class="shortcut">
 	<div class="w">
 		<a class="s-logo" href="#" target="_blank" psa="PCashier_jd">
-			<img width="170" height="28" alt="LOGO收银台" src="">
+			<img width="170" height="28" src="${pageContext.request.contextPath}/img/login1.ico">
 		</a>
 		<span class="clr"></span>
 	</div>
@@ -22,7 +22,7 @@
 			<!-- order 订单信息 -->
 			<div class="order clearfix order-init order-init-oldUser-noQrcode">
 				<!-- 订单信息 -->
-				<div class="o-left"><h3 class="o-title">订单提交成功，请尽快付款！订单号：110332733554</h3>
+				<div class="o-left"><h3 class="o-title">订单提交成功，请尽快付款！订单号：${out_trade_no}</h3>
 
 					<p class="o-tips">
 
@@ -30,7 +30,7 @@
 				</div>
 				<!-- 订单信息 end --><!-- 订单金额 -->
 				<div class="o-right">
-					<div class="o-price"><em>应付金额</em><strong>78.50</strong><em>元</em></div>
+					<div class="o-price"><em>应付金额</em><strong>${total_fee}</strong><em>元</em></div>
 				</div>
 				<!-- 订单金额 end -->
 				<div class="o-list j_orderList" id="listPayOrderInfo"><!-- 单笔订单 -->
@@ -59,8 +59,8 @@
 	</div>
 
 
-	<input type="text" id="qrCodeUrl" value="${qrCodeUrl }"/>
-	
+	<input type="hidden" id="qrCodeUrl" value="${qrCodeUrl}"/>
+
 
 	
 	<script src="<%=request.getContextPath() %>/js/jquery.min.js?v=1.0.1" type="text/javascript"></script>

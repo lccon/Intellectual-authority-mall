@@ -6,15 +6,15 @@
 <body>
 <footer id="footer" style="margin-top: 50px;">
     <div class="container">
-        <div><span><span class='copy-icon'>&copy;</span>邯郸市丛台区亿翔网络科技有限责任公司</span></div>
-        <div><span>
-                    <p rel='nofollow'>
+        <div class="fot">
+            <span style="float: left">
+                <span class='copy-icon'>&copy;</span>
+                邯郸市丛台区亿翔网络科技有限责任公司
+                <p rel='nofollow'>
                         冀ICP备20004186号&nbsp;
-                    </p>|&nbsp;
-                    <a href='http://www.beian.miit.gov.cn' rel='nofollow'>京ICP证B0-000000000&nbsp;</a>|
-                    京公网安备00000000号</span></div>
-        <div>
-            <span>客服电话：15613013012</span>
+                </p>
+            </span>
+            <span class="kfph">|客服电话：15613013012</span>
         </div>
     </div>
 </footer>

@@ -117,19 +117,7 @@
                     maxlength:11,
                     isMobile:true
                 },
-                "idCard":{
-                    required:true,
-                    minlength:1,
-                    maxlength:18,
-                    isIdCard:true
-                },
                 "accountYue":{
-                    required:true,
-                    minlength:1,
-                    maxlength:5,
-                    isNumber:true
-                },
-                "virtualCoin":{
                     required:true,
                     minlength:1,
                     maxlength:5,
@@ -159,12 +147,6 @@
                     isMobile:"手机号格式不正确",
                     minlength:$.format("手机号至少需要输入{0}个字符"),
                     minlength:$.format("手机号最多需要输入{0}个字符"),
-                },
-                "idCard":{
-                    required:"请输入身份证号",
-                    isIdCard:"身份证号格式不正确",
-                    minlength:$.format("身份证号至少需要输入{0}个字符"),
-                    minlength:$.format("身份证号最多需要输入{0}个字符"),
                 },
                 "accountYue":{
                     required:"请输入账户余额",
@@ -257,13 +239,6 @@
         var mobile = /^1[3|4|5|7|8]\d{9}$/;
         return this.optional(element) || (length == 11 && mobile.test(value));
     });
-
-    jQuery.validator.addMethod("isIdCard", function(value, element){
-        var length = value.length;
-        var idCard = /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-        return this.optional(element) || (length == 18 && idCard.test(value));
-    });
-
     jQuery.validator.addMethod("notChinese", function(value, element) {
         if(value==null||value==undefined||value=="" ){return true};
         var patrn=/[^\u4e00-\u9fa5]+$/;

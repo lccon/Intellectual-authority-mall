@@ -89,7 +89,8 @@ public class LoginSessionFilter implements Filter {
                 || "/upload/uploadImg".equals(uri) || "/register".equals(uri)
                 || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)
                 || "/user/updatePassword".equals(uri)|| "/user/getUserByMobile".equals(uri)
-                || "/api/userMobileLogin".equals(uri)) {
+                || "/api/userMobileLogin".equals(uri)|| "/goAlipayReturnNotice".equals(uri)
+                || "/weixinnotify".equals(uri)) {
             return true;
         }
         return false;
