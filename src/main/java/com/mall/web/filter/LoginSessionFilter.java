@@ -90,7 +90,7 @@ public class LoginSessionFilter implements Filter {
                 || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)
                 || "/user/updatePassword".equals(uri)|| "/user/getUserByMobile".equals(uri)
                 || "/api/userMobileLogin".equals(uri)|| "/goAlipayReturnNotice".equals(uri)
-                || "/weixinnotify".equals(uri)) {
+                || "/weixinnotify".equals(uri) || "/vouchercenter.jsp".equals(uri)) {
             return true;
         }
         return false;

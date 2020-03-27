@@ -8,6 +8,17 @@
         <button id="deleteUser" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
+    <div style="width:85px; margin-left:433px; margin-top: -27px;">
+        <select id="userCall" class="form-txt">
+            <option value="1">用户名</option>
+            <option value="2">手机号</option>
+        </select>
+    </div>
+    <div style="margin-left:525px;margin-top:-28px">
+        <input id="searchText" data-input="" class="searchText"
+               placeholder="请输入用户名" />
+        <button id="searchUser" data-search="" class="serachBtn">搜索</button>
+    </div>
     <div id="manage-area-inner">
         <table id="userList"> </table>
         <div id="userListPager"></div>
@@ -76,6 +87,8 @@
 
         function onLoad(){
             var initParam = {
+                "searchType": $("#userCall").val(),
+                "searchContent": $("#searchText").val()
             }
             $("#userList").setGridParam({
                 url:"/user/findUserForPage",
@@ -158,7 +171,13 @@
             });
         });
 
+        $("#searchUser").click(function() {
+
+            onLoad();
+        })
+
         $("#reload").click(function(){
+            $("#searchText").val("");
             onLoad();
         })
 
@@ -168,5 +187,15 @@
             }
             return false;
         }
+
+        $("#userCall").change(function() {
+            $("#searchText").val("");
+            var num = this.options[this.options.selectedIndex].value;
+            if (num == 1) {
+                $("#searchText").attr('placeholder', "请输入用户名");
+            } else if (num == 2) {
+                $("#searchText").attr('placeholder', "请输入手机号");
+            }
+        })
     });
 </script>

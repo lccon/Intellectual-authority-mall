@@ -101,6 +101,14 @@
       <if test="identity != null">
         identity = #{identity}
       </if>
+      <if test="searchType != null and searchContent != null and searchContent != ''">
+        <if test="searchType == 1">
+          and user_name like concat('%', #{searchContent}, '%')
+        </if>
+        <if test="searchType == 2">
+          and mobile like concat('%', #{searchContent}, '%')
+        </if>
+      </if>
     </where>
   </select>
 
