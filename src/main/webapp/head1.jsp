@@ -30,7 +30,7 @@
                     <script>
                         var url11="${HeadPortrait}".split(",");
                         var headimg=document.getElementById("headimg");
-                        headimg.src="${pageContext.request.contextPath}/"+url11[0];
+                        headimg.src="${pageContext.request.contextPath}"+url11[0];
                     </script>
                     <a class="quit" href="/admin/userlogout">退出</a>
             </li>

@@ -154,7 +154,7 @@
                                      <span class="delx glyphicon glyphicon-remove"></span>
                                 </div>
                             <span class="msg-box" id="tip_picture"></span>
-                            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
+                            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value="/img/tab1-1.png"/>
                             <span class="cite">
                                 <cite >
                                     请上传三张商品详情图片（建议图片格式：jpg/jpeg/png,建议尺寸：1245X645px）

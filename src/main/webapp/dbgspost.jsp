@@ -103,7 +103,7 @@
                                    <input class="uploadImg file1" type="file" onchange="uploadImage(this);" name="file1" >
                                    <span class="delx glyphicon glyphicon-remove"></span>
                                </div>
-                               <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value=""/>
+                               <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value="/img/tab1-1.png"/>
                                <span class="cite">
                                 <cite >
                                     请上传一张商品详情图片（建议图片格式：jpg/jpeg/png,建议尺寸：375X375px）

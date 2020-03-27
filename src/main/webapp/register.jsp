@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
                             &nbsp;<span style="margin-top:17px; width:200px;" id="tip_code_num" class="msg-box"><span id="tip_code_num1"></span></span>
                             </div>
                     </div>
-                            <input type="hidden" name="headPortrait" id="headPortrait" value="img/userimg.png"/>
+                            <input type="hidden" name="headPortrait" id="headPortrait" value="/img/userimg.png"/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码：</label>
                     <div class="layui-input-block">

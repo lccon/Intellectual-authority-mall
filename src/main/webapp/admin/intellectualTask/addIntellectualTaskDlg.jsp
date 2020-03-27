@@ -23,7 +23,6 @@
         </div>
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
-            <em class="form-red">*</em>
             <label class="form-lb1">专利号：</label>
         </div>
         <div class="grid_7">
@@ -139,7 +138,7 @@
         </div>
         <div class="grid_1">
             <input type="file" multiple="multiple" name="myFile" onchange="uploadImage(this);" class="text-input">
-            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value=""/>
+            <input type="hidden" name="productPictureUrl" id="productPictureUrl" value="/img/tab1-1.png"/>
         </div>
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
@@ -173,12 +172,6 @@
                     required:true,
                     minlength:1,
                     maxlength:5000
-                },
-                "patentNumber":{
-                    required:true,
-                    isDigitAndStr:true,
-                    minlength:1,
-                    maxlength:200
                 },
                 "topDuration" : {
                     required:true,

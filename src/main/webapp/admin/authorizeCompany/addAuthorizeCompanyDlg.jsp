@@ -76,7 +76,7 @@
         </div>
         <div class="grid_1">
             <input type="file" onchange="uploadImage(this);" class="text-input">
-            <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value=""/>
+            <input type="hidden" name="companyPictureUrl" id="companyPictureUrl" value="/img/tab1-1.png"/>
         </div>
         <div class="clearLine"></div>
         <div class="grid_3 label-right">
