@@ -84,7 +84,7 @@
                                     </span>
                             </dd>
                             <dd>
-                                <span>发明人&nbsp;&nbsp;: </span><span>${taskRelease.realName}</span>
+                                <span>发布人&nbsp;&nbsp;: </span><span>${taskRelease.realName}</span>
                             </dd>
                             <dd>
                                 <span>联系方式: </span>
