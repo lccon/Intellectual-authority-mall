@@ -8,7 +8,8 @@
 </head>
 <body>
 <div style="text-align: center">
-    <p>${noticeStr}</p>
+    <p>订单号：${ddh1}</p>
+    <p>订单金额：${je}</p>
     <p>你的订单支付已经完成，请关闭当前页面返回网站继续操作</p>
 </div>
 

@@ -119,17 +119,16 @@ public class VoucherCenterController {
         return "/notify_url";
     }
 
-    @RequestMapping(value = "/index")
-    public String products() throws Exception {
 
-        return "index";
-    }
 
     // TODO 实际情况需要自己业务订单的状态，此处仅仅用于测试
     public static boolean isOrderPaid = false;
-
+    public static String body1 = "";
+    public static String ddh1 = "";
+    public static String je= "";
     @RequestMapping(value = "/goweixinpay")
     public ModelAndView createPreOrder(String orderid, String orderprice,String ordername,Long userid, HttpServletRequest request, HttpServletResponse response,ModelMap map) throws Exception {
+        isOrderPaid = false;
         int num1 =Double.valueOf(orderprice).intValue();
         Integer num2=num1*100;
         String str1=String.valueOf(num2);
@@ -139,6 +138,9 @@ public class VoucherCenterController {
         String out_trade_no =orderid;
         // 订单总金额，单位为分
         String total_fee = str1;
+        body1=body;
+        ddh1=out_trade_no;
+        je=orderprice;
         //用户id
         Long id=userid;
         // 统一下单
@@ -160,7 +162,7 @@ public class VoucherCenterController {
     }
 
     @RequestMapping(value = "/weixinnotify")
-    public String notify(HttpServletRequest request, HttpServletResponse response,ModelMap map) throws Exception {
+    public void notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         PayResult payResult = wxOrderService.getWxPayResult(request);
 
@@ -179,7 +181,6 @@ public class VoucherCenterController {
             String noticeStr = setXML("SUCCESS", "");
             writer.write(noticeStr);
             writer.flush();
-            map.put("noticeStr",noticeStr);
 
         } else {
             System.out.println("================================= 支付失败 =================================");
@@ -188,10 +189,7 @@ public class VoucherCenterController {
             String noticeStr = setXML("FAIL", "");
             writer.write(noticeStr);
             writer.flush();
-            map.put("noticeStr",noticeStr);
         }
-
-        return "paySuccess";
     }
 
     /**
@@ -204,8 +202,28 @@ public class VoucherCenterController {
      * @date 2017年9月1日 上午9:10:41
      */
     @RequestMapping(value = "/paySuccess")
-    public String paySuccess() throws Exception {
-
+    public String paySuccess(ModelMap map) throws Exception {
+        if(isOrderPaid) {
+            if (ThreadVariable.getSession() == null || ThreadVariable.getSession().getUserId() == null) {
+                throw new BusinessValidationException("请重新登录");
+            }
+            Long userId = ThreadVariable.getSession().getUserId();
+            User user = userService.findUserById(userId);
+            Long AccountYue = user.getAccountYue();
+            String[] strs = je.split("[.]");
+            Long RechargeAmount = Long.parseLong(strs[0]);
+            RechargeRecord rechargeRecord = new RechargeRecord();
+            Long newAccountyue = AccountYue + RechargeAmount * 10;
+            user.setAccountYue(newAccountyue);
+            userService.updateUser(user);
+            rechargeRecord.setUserId(userId);
+            rechargeRecord.setRechargeAmount(RechargeAmount);
+            rechargeRecord.setWechatOrderNum(ddh1);
+            rechargeRecord.setAccountYue(newAccountyue);
+            rechargeRecordService.addRechargeRecord(rechargeRecord);
+            map.put("ddh1",ddh1);
+            map.put("je",je);
+        }
         return "paySuccess";
     }
 
