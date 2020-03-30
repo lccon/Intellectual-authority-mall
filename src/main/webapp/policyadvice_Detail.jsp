@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +28,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/zerogrid.css">
 </head>
 
-<body onload="aaa();">
+<body>
 <div class="suofang">
 
 
@@ -37,6 +38,32 @@
 <!--网页头部-->
 <jsp:include page="head.jsp"/>
 
+    <style>
+        @media (min-width: 1200px){
+            .sub-header{
+                margin-left: 100px;
+            }
+        }
+        @media (min-width: 1400px){
+            .sub-header{
+                margin-left: 300px;
+            }
+        }
+        @media (min-width: 1900px){
+            .sub-header{
+                margin-left: 380px;
+            }
+
+        }
+        .neirong{
+            margin-left:30px;
+        }
+        .neirong p{
+            font-size: 16px;
+            text-indent: 2em;
+            word-wrap:break-word;
+        }
+    </style>
 
 <!--商品详情-->
 <div class="wrap-body">
@@ -45,12 +72,6 @@
         <div class="wrap-container clearfix">
             <div class="sub-header">
                 <div class="zerogrid">
-                    <h1>
-                        <c:if test="${policyAdvice.adviceCategory==1}">政策法规</c:if>
-                        <c:if test="${policyAdvice.adviceCategory==2}">平台动态</c:if>
-                        <c:if test="${policyAdvice.adviceCategory==3}">新闻实事</c:if>
-                        <c:if test="${policyAdvice.adviceCategory==4}">行业知识</c:if>
-                    </h1>
                 </div>
             </div>
             <div class="zerogrid">
@@ -61,15 +82,16 @@
                                 <div class="wrap-content">
                                     <article>
                                         <div class="art-header">
-                                            <h1 class="entry-title">${policyAdvice.adviceTitle}</h1>
+                                            <h1 class="entry-title" style="font-size: 26px;">${policyAdvice.adviceTitle}</h1>
                                         </div>
                                         <div class="img-left">
-                                            <img id="img1" src="" alt="pic"/>
-                                                <h1>${policyAdvice.adviceSubtitle}</h1>
-                                                <p>${policyAdvice.adviceContent}</p>
+                                            <span>发布时间：<fmt:formatDate value="${policyAdvice.createDate}" pattern="yyyy-MM-dd"/></span>
                                             <div  style="clear:both;"></div>
                                         </div>
                                     </article>
+                                    <div class="neirong">
+                                        <p>${policyAdvice.adviceContent}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -82,15 +104,6 @@
 </div>
 <!--网页底部-->
 <jsp:include page="footer.jsp"/>
-<script>
-    function aaa() {
-        var img1=document.getElementById("img1");
-        var url1="${policyAdvice.advicePictureUrl}".split(",");
-        img1.src="${pageContext.request.contextPath}"+url1[0];
-    }
-</script>
-
-
 </body>
 
 </html>

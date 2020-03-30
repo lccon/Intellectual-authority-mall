@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <head>
@@ -15,6 +16,44 @@
         .container {
             width: 1000px;
         }
+    }
+    .policy {
+        width:670px;
+    }
+    .policy span{
+        color: #999;
+        cursor: default;
+        font-size: 18px;
+        margin-top:10px;
+        float: left;
+        width:700px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .policy a{
+        font-size: 26px;
+        color: #333;
+        float: left;
+        margin-top:-9px;
+        width:700px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .fbt{
+        text-indent: 2em;
+        height:90px;
+        font-size: 20px;
+        color: #666;
+        word-wrap:break-word;
+    }
+    .liulan{
+        float: right;
+        color: #666;
+        margin-top:60px;
     }
 </style>
 <div id="center11">
@@ -77,10 +116,13 @@
                                     </script>
                                 </a>
                             </div>
-                            <div class="media-body" id="caps">
-                                <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle }</a>
-                                <p class="desc1" style="height: 20px;">${u.adviceSubtitle }</p>
-                                <p class="desc">浏览量：${u.browseVolume}</p>
+                            <div class="media-body">
+                                <div class="policy">
+                                    <a href="/policyAdvice/getPolicyAdviceById?id=${u.id}">${u.adviceTitle }</a>
+                                    <span>发布时间：<fmt:formatDate value="${u.createDate}" pattern="yyyy-MM-dd"/></span>
+                                    <p class="fbt">${u.adviceSubtitle }</p>
+                                    <p class="liulan">浏览量：${u.browseVolume}</p>
+                                </div>
                             </div>
 
                         </div>
