@@ -97,4 +97,11 @@ public class UserController {
 	public Boolean getUserByMobile(String mobile){
 		return userService.getUserByMobile(mobile);
 	}
+
+	@RequestMapping(value = "/validateMobile")
+	@ResponseBody
+	public Boolean validateMobile(@RequestParam(value = "mobile", required = true) String mobile,
+								  @RequestParam(value = "id", required = false) Long id) {
+		return userService.validateMobile(id, mobile);
+	}
 }

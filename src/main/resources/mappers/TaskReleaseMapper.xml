@@ -103,6 +103,9 @@
             <if test="userId != null">
                 user_id = #{userId}
             </if>
+            <if test="searchText != null and searchText != ''">
+                and create_user like concat('%', #{searchText}, '%')
+            </if>
         </where>
         order by t.authorize_state desc, t.create_date desc, r.create_date desc
     </select>

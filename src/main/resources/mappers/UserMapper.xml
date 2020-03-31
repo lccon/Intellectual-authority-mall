@@ -130,4 +130,15 @@
     from user
     WHERE mobile = #{mobile}
   </select>
+
+  <select id="validateMobile" resultMap="userMap">
+    SELECT
+    <include refid="column"/>
+    from user
+    WHERE mobile = #{mobile}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+    limit 1
+  </select>
 </mapper>

@@ -8,13 +8,13 @@
         <button id="deleteUser" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
-    <div style="width:85px; margin-left:433px; margin-top: -27px;">
+    <div style="width:85px; margin-left:767px; margin-top: -27px;">
         <select id="userCall" class="form-txt">
             <option value="1">用户名</option>
             <option value="2">手机号</option>
         </select>
     </div>
-    <div style="margin-left:525px;margin-top:-28px">
+    <div style="margin-left:858px;margin-top:-28px">
         <input id="searchText" data-input="" class="searchText"
                placeholder="请输入用户名" />
         <button id="searchUser" data-search="" class="serachBtn">搜索</button>

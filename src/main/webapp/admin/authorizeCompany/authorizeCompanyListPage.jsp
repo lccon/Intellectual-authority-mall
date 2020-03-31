@@ -8,6 +8,11 @@
         <button id="deleteAuthorizeCompany" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
+    <div style="margin-left:858px;margin-top:-28px">
+        <input id="searchText" data-input="" class="searchText"
+               placeholder="请输入公司名称" />
+        <button id="searchAuthorizeCompany" data-search="" class="serachBtn">搜索</button>
+    </div>
     <div id="manage-area-inner">
         <table id="authorizeCompanyList"> </table>
         <div id="authorizeCompanyListPager"></div>
@@ -83,6 +88,7 @@
         onLoad();
         function onLoad(){
             var initParam = {
+                "searchText":$("#searchText").val()
             }
             $("#authorizeCompanyList").setGridParam({
                 url:"/authorizeCompany/findAuthorizeCompanyForPage",
@@ -166,6 +172,11 @@
         });
 
         $("#reload").click(function(){
+            $("#searchText").val("");
+            onLoad();
+        })
+
+        $("#searchAuthorizeCompany").click(function() {
             onLoad();
         })
 

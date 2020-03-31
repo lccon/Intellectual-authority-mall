@@ -42,4 +42,6 @@ public interface UserService {
 	User updatePassword(User user);
 
 	Boolean getUserByMobile(String mobile);
+
+    Boolean validateMobile(Long id, String mobile);
 }

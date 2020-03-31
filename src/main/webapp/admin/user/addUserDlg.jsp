@@ -115,7 +115,8 @@
                     required:true,
                     minlength:1,
                     maxlength:11,
-                    isMobile:true
+                    isMobile:true,
+                    ishasSameMobile:true
                 },
                 "accountYue":{
                     required:true,
@@ -145,6 +146,7 @@
                 "mobile":{
                     required:"请输入手机号",
                     isMobile:"手机号格式不正确",
+                    ishasSameMobile:"该手机号已被注册",
                     minlength:$.format("手机号至少需要输入{0}个字符"),
                     minlength:$.format("手机号最多需要输入{0}个字符"),
                 },
@@ -186,6 +188,21 @@
                     }
                 });
             }
+        });
+
+        jQuery.validator.addMethod("ishasSameMobile", function(value, element){
+            var flag=true;
+            $.ajax({
+                async:false,
+                url:"/user/validateMobile",
+                data:{
+                    "mobile": function(){ return $('#mobile').val()}
+                },
+                success:function(responseData){
+                    flag = responseData;
+                }
+            });
+            return flag;
         });
 
     });
@@ -236,7 +253,7 @@
 
     jQuery.validator.addMethod("isMobile", function(value, element) {
         var length = value.length;
-        var mobile = /^1[3|4|5|7|8]\d{9}$/;
+        var mobile = /^1[3|4|5|6|7|8|9]\d{9}$/;
         return this.optional(element) || (length == 11 && mobile.test(value));
     });
     jQuery.validator.addMethod("notChinese", function(value, element) {

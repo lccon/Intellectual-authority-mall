@@ -21,6 +21,8 @@ public class AuthorizeCompanyVO extends BaseVO {
     /** 状态 */
     private Integer state;
 
+    private String searchText;
+
     public Integer getBusinessCategory() {
         return businessCategory;
     }
@@ -59,5 +61,13 @@ public class AuthorizeCompanyVO extends BaseVO {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getSearchText() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
     }
 }
