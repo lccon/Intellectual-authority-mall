@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-	private static final Integer MANAGER = 1;
+	private static final Integer MANAGER = 2;
 
 	@Autowired
 	private UserMapper userMapper;
@@ -86,13 +86,13 @@ public class UserServiceImpl implements UserService {
 		}
 		password = PasswordUtil.getHashedPassword(password);
 		User user = userMapper.getUserByUsernamePassword(username, password);
-		if(!MANAGER.equals(user.getIdentity())) {
-			throw new BusinessValidationException("请使用管理员账号进行登录");
-		}
 		logger.error("用户信息[{}]", user);
 		if (user == null) {
 			throw new BusinessValidationException("用户名或密码错误！");
 		}
+        if(user.getIdentity() == null || !MANAGER.equals(user.getIdentity())) {
+            throw new BusinessValidationException("请使用管理员账号进行登录");
+        }
 		try {
 			// 删除登录过的session
 			sessionService.deleteSessionBySessionId(session.getSessionId());
