@@ -8,6 +8,11 @@
         <button id="deleteTaskRelease" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
+    <div style="margin-left:858px;margin-top:-28px">
+        <input id="searchText" data-input="" class="searchText"
+               placeholder="请输入发布人名称" />
+        <button id="searchTaskRelease" data-search="" class="serachBtn">搜索</button>
+    </div>
     <div id="manage-area-inner">
         <table id="taskReleaseList"> </table>
         <div id="taskReleaseListPager"></div>
@@ -30,6 +35,7 @@
                 {name : "roofPlaceState", index:"roofPlaceState", label:"置顶状态", align:'center', sortable:false, width:'100', formatter:roofPlaceStateFormatter},
                 {name : "topDuration", index:"topDuration", label:"置顶天数", align:'center', sortable:false, width:'100'},
                 {name : "state", index:"state", label:"发布状态", align:'center', sortable:false, width:'100', formatter:stateFormatter},
+                {name : "createUser", index:"createUser", label:"发布人", align:'center', sortable:false, width:'100'},
             ],
             multiselect : true,
             height:"492px",
@@ -140,6 +146,7 @@
         onLoad();
         function onLoad(){
             var initParam = {
+                "searchText":$("#searchText").val()
             }
             $("#taskReleaseList").setGridParam({
                 url:"/taskRelease/findTaskReleaseForPage",
@@ -223,6 +230,11 @@
         });
 
         $("#reload").click(function(){
+            $("#searchText").val("");
+            onLoad();
+        })
+
+        $("#searchTaskRelease").click(function() {
             onLoad();
         })
 

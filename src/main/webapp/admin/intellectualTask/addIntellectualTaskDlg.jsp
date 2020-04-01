@@ -356,7 +356,7 @@
 
     jQuery.validator.addMethod("isMobile", function(value, element) {
         var length = value.length;
-        var mobile = /^1[3|4|5|7|8]\d{9}$/;
+        var mobile = /^1[3|4|5|6|7|8|9]\d{9}$/;
         return this.optional(element) || (length == 11 && mobile.test(value));
     });
 

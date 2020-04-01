@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService {
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+	private static final Integer MANAGER = 2;
+
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
@@ -88,6 +90,9 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			throw new BusinessValidationException("用户名或密码错误！");
 		}
+        if(user.getIdentity() == null || !MANAGER.equals(user.getIdentity())) {
+            throw new BusinessValidationException("请使用管理员账号进行登录");
+        }
 		try {
 			// 删除登录过的session
 			sessionService.deleteSessionBySessionId(session.getSessionId());
@@ -142,6 +147,22 @@ public class UserServiceImpl implements UserService {
         }else{
 		    return true;
         }
+	}
+
+	@Override
+	public Boolean validateMobile(Long id, String mobile) {
+		if (StringUtils.isEmpty(mobile)) {
+			throw new BusinessValidationException("手机号不能为空!");
+		}
+		try {
+			User user = userMapper.validateMobile(id, mobile);
+			if (user != null) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			throw new ServiceValidationException("手机号验证失败", e);
+		}
 	}
 
 	@Override

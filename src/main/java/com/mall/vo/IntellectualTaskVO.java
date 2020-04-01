@@ -25,6 +25,8 @@ public class IntellectualTaskVO extends BaseVO {
 
     private Integer periodType;
 
+    private String searchText;
+
     public Integer getProductCategory() {
         return productCategory;
     }
@@ -79,5 +81,13 @@ public class IntellectualTaskVO extends BaseVO {
 
     public void setPeriodType(Integer periodType) {
         this.periodType = periodType;
+    }
+
+    public String getSearchText() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
     }
 }

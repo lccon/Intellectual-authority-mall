@@ -8,6 +8,11 @@
         <button id="deleteIntellectualTask" type="button" class="tc-15-btn m">删除</button>
         <button id="reload" type="button" class="tc-15-btn m">刷新</button>
     </div>
+    <div style="margin-left:858px;margin-top:-28px">
+        <input id="searchText" data-input="" class="searchText"
+               placeholder="请输入产权名称" />
+        <button id="searchIntellectualTask" data-search="" class="serachBtn">搜索</button>
+    </div>
     <div id="manage-area-inner">
         <table id="intellectualTaskList"> </table>
         <div id="intellectualTaskListPager"></div>
@@ -160,6 +165,7 @@
         onLoad();
         function onLoad(){
             var initParam = {
+                "searchText":$("#searchText").val()
             }
             $("#intellectualTaskList").setGridParam({
                 url:"/intellectualTask/findIntellectualTaskForPage",
@@ -243,6 +249,11 @@
         });
 
         $("#reload").click(function(){
+            $("#searchText").val("");
+            onLoad();
+        })
+
+        $("#searchIntellectualTask").click(function() {
             onLoad();
         })
 

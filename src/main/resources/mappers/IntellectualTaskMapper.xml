@@ -135,6 +135,9 @@
             <if test="state != null">
                 and state = #{state}
             </if>
+            <if test="searchText != null and searchText != ''">
+                and product_name LIKE concat('%', #{searchText},'%')
+            </if>
         </where>
         order by t.authorize_state desc, t.create_date desc, it.create_date desc
     </select>

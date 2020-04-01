@@ -25,6 +25,8 @@ public class TaskReleaseVO extends BaseVO {
 
     private Integer periodType;
 
+    private String searchText;
+
     public Integer getTaskCategory() {
         return taskCategory;
     }
@@ -79,5 +81,13 @@ public class TaskReleaseVO extends BaseVO {
 
     public void setPeriodType(Integer periodType) {
         this.periodType = periodType;
+    }
+
+    public String getSearchText() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
     }
 }
