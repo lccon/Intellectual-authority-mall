@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
         <div class="tab-con2">
             <form id="maintainForm" class="layui-form" method="post" action="/user/addcommonuser" onsubmit="return checkform();">
                             <input  type="hidden" name="username" id="username">
-                            <input value="2" type="hidden" name="identity"/>
+                            <input value="1" type="hidden" name="identity"/>
                             <input value="5" type="hidden" name="freeMessageNum" id="freeMessageNum"/>
                             <input value="0" type="hidden" name="authorizeType" id="authorizeType" />
                             <input type="hidden" name="accountYue" id="accountYue" value="0"/>

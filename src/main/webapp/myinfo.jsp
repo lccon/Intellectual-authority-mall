@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
             <div class="form-group" style="height: 60px;">
                 <label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
                 <div class="col-sm-3">
-                    <input type="email" class="form-control" name="username" id="username"  value="${user.username}">
+                    <input type="text" class="form-control" name="username" id="username"  value="${user.username}">
                 </div>
             </div>
             <div class="form-group" style="height: 60px;">

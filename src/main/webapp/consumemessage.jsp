@@ -67,13 +67,13 @@
                 <input type="number" min="10" max="10000" value="10.00元" class="othbox" data-validation-message="购买条数范围：10-10000条" />
             </div>
             <div class="tr_rechnum">
-                <span>应付虚拟币：</span>
+                <span>应付科豆：</span>
                 <p class="rechnum" id="price">0.00</p>
             </div>
         </div>
         <div class="tr_paybox">
             <a id="pay" class="tr_pay am-btn" onclick="zzz();">确认支付</a>
-            <span>温馨提示：虚拟币比例为1：10，如您虚拟币不够请先进行<a id="test1" href="javascript:void(0)" style="color:#f46;">充值</a>。</span>
+            <span>温馨提示：科豆比例为1：10，如您科豆不够请先进行<a href="/vouchercenter.jsp" style="color:#f46;">充值</a>。</span>
         </div>
     </div>
 </div>
@@ -116,7 +116,7 @@
             type:"POST",
             url: "/roofPlace/getUseraccountYue",
             success: function(result) {
-                document.getElementById("AccountYue").innerText=result+"虚拟币";
+                document.getElementById("AccountYue").innerText=result+"科豆";
             },
         })
     }
@@ -183,33 +183,6 @@
                 $alert.html(msg).show();
             }
         });
-    });
-</script>
-<script>
-    $('#test1').on('click', function () {
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0, //不显示关闭按钮
-            shade: [0],
-            area: ['340px', '215px'],
-            offset: 'rb', //右下角弹出
-            time: 2000, //2秒后自动关闭
-            anim: 2,
-            content: ['/vouchercenter.jsp', 'no'], //iframe的url，no代表不显示滚动条
-            end: function () { //此处用于演示
-                layer.open({
-                    type: 2,
-                    title: '充值中心',
-                    shadeClose: true,
-                    shade: false,
-                    maxmin: true, //开启最大化最小化按钮
-                    area: ['893px', '600px'],
-                    content: '/vouchercenter.jsp'
-                });
-            }
-        });
-
     });
 </script>
 </body>
