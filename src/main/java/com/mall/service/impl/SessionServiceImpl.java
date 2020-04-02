@@ -1,6 +1,6 @@
 package com.mall.service.impl;
 
-import com.mall.dao.SessionMapper;
+import com.mall.mapper.SessionMapper;
 import com.mall.domain.Session;
 import com.mall.exception.base.BusinessValidationException;
 import com.mall.exception.base.ServiceValidationException;

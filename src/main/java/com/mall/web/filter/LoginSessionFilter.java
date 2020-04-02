@@ -46,15 +46,21 @@ public class LoginSessionFilter implements Filter {
             return;
         }
 
-        // 无需登录验证
-        if (isNotLoginValidate(uri)) {
-            chain.doFilter(request, response);
-            ThreadVariable.clearThreadVariable();
-            return;
+        String sid = CookieUtil.getSessionIdFromCookies(request);
+        Boolean login = false;
+        if(sid == null) {
+            login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
+            if(!login) {
+                // 无需登录验证
+                if (isNotLoginValidate(uri)) {
+                    chain.doFilter(request, response);
+                    ThreadVariable.clearThreadVariable();
+                    return;
+                }
+            }
         }
 
-        String sid = CookieUtil.getSessionIdFromCookies(request);
-        Boolean login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
+        login = getLoginService().isLogin(sid, IpAddressUtil.getIpAddr(request), request.getRequestURI());
         if (login) {
             CookieUtil.putSessionIdInCookies(request, response, PermissionConstant.LOGIN_SESSION_ID, sid);
             chain.doFilter(request, response);
@@ -64,14 +70,27 @@ public class LoginSessionFilter implements Filter {
             response.setContentType("text/html");
             response.setCharacterEncoding("utf-8");
             response.getWriter().print("未登录或登录已失效，请登录后查看");
+            CookieUtil.clearSessionsFromCookies(request, response);
             ThreadVariable.clearThreadVariable();
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
             return;
         }
     }
 
     private boolean isNotLoginValidate(String uri) {
-        if("/".equals(uri) || "/api/video/show".equals(uri) || "/api/now".equals(uri)
-                || "/api/login".equals(uri) || "/api//user/add".equals(uri) || "/api/video/find".equals(uri)) {
+        if("/".equals(uri) || "/api/login".equals(uri) || "/admin/login".equals(uri)
+                || "/api/Aliyunmobile".equals(uri)|| "/updatepassword.jsp".equals(uri)
+                || "/intellectualTask/findIntellectualTaskForList".equals(uri)
+                || "/about.jsp".equals(uri) || "/login".equals(uri)
+                || "/taskRelease/findpageTaskReleaseForList".equals(uri)
+                || "/policyAdvice/findpagepolicyAdviceForList".equals(uri)
+                || "/authorizeCompany/findpageauthorizeCompanyForList".equals(uri)
+                || "/intellectualTask/findpageIntellectualTaskForList".equals(uri)
+                || "/upload/uploadImg".equals(uri) || "/register".equals(uri)
+                || "/user/addcommonuser".equals(uri)|| "/advertising".equals(uri)
+                || "/user/updatePassword".equals(uri)|| "/user/getUserByMobile".equals(uri)
+                || "/api/userMobileLogin".equals(uri)|| "/goAlipayReturnNotice".equals(uri)
+                || "/weixinnotify".equals(uri) || "/vouchercenter.jsp".equals(uri)) {
             return true;
         }
         return false;

@@ -15,8 +15,11 @@
 
   <!--视图解析器-->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/"/>
-    <property name="suffix" value=".htm"/>
+      <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+      <property name="prefix" value="/" />
+      <property name="suffix" value=".jsp" />
+      <property name="contentType" value="text/html;charset=UTF-8" />
+      <property name="order" value="1" />
   </bean>
 
   <!--释放静态资源-->

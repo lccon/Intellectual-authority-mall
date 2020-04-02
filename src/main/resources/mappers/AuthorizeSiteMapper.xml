@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.AuthorizeSiteMapper">
+    <resultMap id="authorizeSiteMap" type="com.mall.domain.AuthorizeSite">
+        <id property="id" column="id"/>
+        <result property="sitePictureUrl" column="site_picture_url"/>
+        <result property="addressUrl" column="address_url" />
+        <result property="endTime" column="end_time" />
+        <result property="siteType" column="site_type" />
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, site_picture_url, address_url, end_time, site_type, create_user, create_date, update_user, update_date
+    </sql>
+
+    <insert id="addAuthorizeSite" parameterType="com.mall.domain.AuthorizeSite">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO authorize_site
+        (id, site_picture_url, address_url, end_time, site_type, create_user, create_date)
+        VALUES
+        (#{id}, #{sitePictureUrl}, #{addressUrl}, #{endTime}, #{siteType}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateAuthorizeSite" parameterType="com.mall.domain.AuthorizeSite">
+        UPDATE authorize_site
+        <set>
+            <if test="sitePictureUrl != null and sitePictureUrl != ''">
+                site_picture_url = #{sitePictureUrl},
+            </if>
+            <if test="addressUrl != null and addressUrl != ''">
+                address_url = #{addressUrl},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteAuthorizeSite">
+        DELETE FROM authorize_site
+        WHERE id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteUserAuthorizeSite">
+        DELETE FROM authorize_site
+        WHERE end_time <![CDATA[<=]]> now()
+    </delete>
+
+    <select id="findAuthorizeSiteForList" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+    </select>
+
+    <select id="getAuthorizeSiteById" parameterType="java.lang.Long" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+        WHERE id = #{id}
+    </select>
+
+    <select id="findUserAuthorizeSiteForList" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+        ORDER BY create_date desc
+        limit 6
+    </select>
+
+    <select id="findAuthorizeSiteBysiteType" resultMap="authorizeSiteMap">
+        SELECT <include refid="columns"/> FROM authorize_site
+        WHERE site_type = #{siteType}
+    </select>
+
+</mapper>

@@ -1,0 +1,213 @@
+.title li{
+    font-size: 17px;
+    list-style: none;
+    color:#666;
+}
+.num{
+    width:22px;
+    height:22px;
+    color:#fff;
+    background-color: #f46;
+    margin-right:12px;
+    border-radius:12px;
+    text-align: center;
+    font-size: 14px;
+}
+.top-title span{
+    font-size: 17px;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.choose-lb{
+    background-color: #fff;
+    text-align:center;
+
+}
+.choose-lb span{
+    font-size: 18px;
+    color:#333;
+    line-height: 60px;
+    font-weight: bold;
+}
+.main{
+    height:190px;
+    margin-top:20px;
+    background-color: #fff;
+    text-align: center;
+}
+.main ul{
+    list-style: none;
+}
+.main ul li {
+    font-size: 20px;
+    margin-top: 40px;
+}
+.main1{
+    background-color: #fff;
+    width:1100px;
+}
+
+.cap1{
+    border-bottom: #ff6700 solid 1px;
+    text-align: center;
+}
+.cap1 span{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 80px;
+}
+.p-lab{
+    font-size: 16px;
+    margin-top: 30px;
+}
+.p-cap input{
+    width:390px;
+    height: 40px;
+}
+.fenlei select{
+    width:130px;
+    height:40px;
+}
+.p-zl input{
+    width:390px;
+    height: 40px;
+}
+.p-wzxq textarea{
+    margin-top:30px;
+}
+.cite cite{
+    margin-left: 128px;
+}
+
+/**/
+.inul {
+    min-height:44px;
+    margin:20px 0;
+}
+
+ul.inul>div{
+    float:left;
+}
+div.chuans{
+    position:relative;
+    width:400px;
+    height:220px;
+    border-radius: 3px;
+    border:1px dashed #ccc;
+    margin-right: 44px;
+    overflow: hidden;
+    margin-left: 250px;
+}
+div.chuans img{
+    position:absolute;
+    max-width:384px;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+.uploadImg{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 999;
+}
+span.delx {
+    position:absolute;
+    top:5px;
+    right:5px;
+    z-index: 9999;
+    font-size: 20px;
+    float:right;
+    display:none;
+    border-radius: 50%;
+}
+span.delx:hover{
+    background:#333;
+    color:#fff;
+    cursor:pointer;
+}
+.form-req,.label-req {
+    color: #f00;
+    line-height: 30px;
+    padding:0 5px 0 3px;
+    font-style: normal;
+}
+#container{
+    width:800px;
+    height:300px;
+    margin-left: 266px;
+}
+.code-btn {
+    color: #a07941;
+    margin-left: 10px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #a07941;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.error1{
+    background: url(../img/validatorinit.png) no-repeat 10px 4px;
+    color: #1188d3;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.error2 {
+    background: url(../img/validatorerror.png) no-repeat 10px 4px;
+    color: #f60;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.success{
+    background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    color: #1188d3;
+    font-size: 14px;
+    display: none;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+.success1{
+    background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+#zdmode{
+    display:none;
+}
+#top-title11{
+    margin-left:300px;
+    background-color: #e5e5e5e5;
+}
+/*超小屏幕 小于等于500px*/
+@media (max-width: 500px) {
+    #top-title11{
+        margin-left:0px;
+        background-color: #e5e5e5e5;
+    }
+    .leftguanggao{
+        display: none;
+    }
+}
+

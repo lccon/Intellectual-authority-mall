@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.LeaveMessageMapper">
+    <resultMap id="leaveMessageMap" type="com.mall.domain.LeaveMessage">
+        <id property="id" column="id"/>
+        <result property="message" column="message"/>
+        <result property="messageState" column="message_state"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="mailAddress" column="mail_address"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, message, message_state, real_name, mobile, mail_address,
+        create_user, create_date, update_user, update_date
+    </sql>
+    
+    <insert id="addLeaveMessage" parameterType="com.mall.domain.LeaveMessage">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO leave_message
+        (id, message, message_state, real_name, mobile, mail_address, create_user, create_date)
+        VALUES
+        (#{id}, #{message}, #{messageState}, #{realName}, #{mobile}, #{mailAddress}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateLeaveMessage" parameterType="com.mall.domain.LeaveMessage">
+        UPDATE leave_message
+        <set>
+            <if test="message != null and message != ''">
+                message = #{message},
+            </if>
+            <if test="messageState != null">
+                message_state = #{messageState},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="mailAddress != null and mailAddress != ''">
+                mail_address = #{mailAddress},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="findLeaveMessageForList" resultMap="leaveMessageMap">
+        SELECT <include refid="columns"/> FROM leave_message
+    </select>
+
+    <select id="getLeaveMessageById" parameterType="java.lang.Long" resultMap="leaveMessageMap">
+        SELECT <include refid="columns"/> FROM leave_message
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteLeaveMessage">
+        DELETE FROM leave_message
+        WHERE id IN
+        <foreach collection="array" item="id" index="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateLeaveMessageState">
+        UPDATE leave_message SET message_state = 1 WHERE message_state = 0
+    </update>
+
+</mapper>

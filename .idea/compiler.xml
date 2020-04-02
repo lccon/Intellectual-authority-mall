@@ -6,17 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="apiServer" />
-        <module name="Intellectual-property-mall" />
-        <module name="product-advert" />
-        <module name="product-video" />
+        <module name="Intellectual-authority-mall" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="apiServer" target="1.8" />
-      <module name="Intellectual-property-mall" target="1.8" />
-      <module name="product-advert" target="1.8" />
-      <module name="product-video" target="1.8" />
+      <module name="Intellectual-authority-mall" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

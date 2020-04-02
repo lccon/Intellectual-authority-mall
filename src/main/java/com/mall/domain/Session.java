@@ -2,6 +2,7 @@ package com.mall.domain;
 
 import com.mall.base.BaseDomain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,9 +11,9 @@ import java.util.Date;
  * @Date:2019/12/16
  * @Author:lc
  */
-public class Session extends BaseDomain {
-    private Integer id;
-    private Integer userId;
+public class Session implements Serializable {
+    private Long id;
+    private Long userId;
     private String userName;
     private String sessionId;
     private Boolean isLogin;
@@ -21,20 +22,24 @@ public class Session extends BaseDomain {
     private String loginIp;
     private Date loginDate;
     private String lastUrl;
+    private String mobile;
+    private Integer freeMessageNum;
+    private String headPortrait;
+    private Integer authorizeType;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -102,19 +107,35 @@ public class Session extends BaseDomain {
         this.lastUrl = lastUrl;
     }
 
-    @Override
-    public String toString() {
-        return "Session{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", sessionId='" + sessionId + '\'' +
-                ", isLogin=" + isLogin +
-                ", accessIp='" + accessIp + '\'' +
-                ", accessTime=" + accessTime +
-                ", loginIp='" + loginIp + '\'' +
-                ", loginDate=" + loginDate +
-                ", lastUrl='" + lastUrl + '\'' +
-                '}';
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getFreeMessageNum() {
+        return freeMessageNum;
+    }
+
+    public void setFreeMessageNum(Integer freeMessageNum) {
+        this.freeMessageNum = freeMessageNum;
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
+    public Integer getAuthorizeType() {
+        return authorizeType;
+    }
+
+    public void setAuthorizeType(Integer authorizeType) {
+        this.authorizeType = authorizeType;
     }
 }

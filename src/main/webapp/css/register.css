@@ -1,0 +1,220 @@
+
+.logo-wrap {
+    margin: 10px auto;
+    width: 980px
+}
+.li_fr {
+    float: right;
+    background: none !important;
+    border: none !important;
+}
+.li_fr a {
+    color: #60af00;
+}
+.kt-logo {
+    float: left;
+    padding-right: 14px
+}
+
+.logo-tit {
+    background-repeat: no-repeat;
+    float: left;
+    height: 23px;
+    line-height: 22px;
+    margin-top: 7px;
+    text-indent: -9999px;
+    width: 96px
+}
+.user-reg {
+    background-position: 0 -25px
+}
+
+.clearfix p.desc {
+    font-size: 18px;
+    line-height: 30px;
+    font-family: 'Microsoft YaHei';
+    color: #a9a9a9;
+    margin-left: 30px
+}
+
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden
+}
+
+#wrapper {
+    _position: relative;
+    z-index: 1
+}
+#wrapper {
+    margin: 0 auto;
+    width: 980px
+}
+
+.reg-cont {
+    border: 1px solid #ddd;
+    padding: 40px 0 50px 14px
+}
+
+.reg-cont .cont-box1 {
+    width: 628px
+}
+
+.reg-cont .cont-box2 {
+    height: 190px;
+    padding-top: 100px;
+    width: 305px
+}
+
+.reg-cont .cont-box2 {
+    height: 150px;
+    padding-top: 60px;
+    width: 305px
+}
+
+.reg-cont {
+    padding: 20px 0 20px 14px
+}
+
+.login-tab {
+    margin: 20px 30px 30px;
+    font-size: 14px;
+    line-height: 26px;
+    border-bottom: 2px solid #f60
+}
+.login-tab li {
+    background: #f7f7f7;
+    height: 26px;
+    margin-right: 5px;
+    display: inline-block;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    border-bottom: 0
+}
+
+.login-tab li {
+    *display: inline
+}
+
+.login-tab .active {
+    border: 1px solid #f60;
+    background: #f60
+}
+
+.login-tab a {
+    color: #4b4b4b
+}
+
+.login-tab .active a {
+    color: #fff
+}
+
+.tab-con2 .tab-cont {
+    color: #4b4b4b;
+    margin-left: 51px;
+    margin-left: 25px;
+    padding-top: 0
+}
+
+.tab-con2 .field {
+    margin-bottom: 18px
+}
+
+
+.tab-con2 .btn-org {
+    width: 200px;
+    line-height: 26px
+}
+.tab-con2 .btn-org {
+    margin: 0 0 0 86px;
+}
+
+.tab-con2 .submit-box,
+.tab-con2 .N-txt1 {
+    margin-bottom: 13px;
+    padding-left: 0
+}
+.pw-strength {
+    clear: both;
+    position: relative;
+    left: 106px;
+    top: 8px;
+    width: 180px
+}
+
+.pw-txt {
+    padding-top: 2px;
+    width: 180px;
+    overflow: hidden
+}
+.pw-txt span {
+    color: #707070;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    width: 58px
+}
+
+.btn-org {
+    background: #fd8000;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 200px
+}
+
+.btn-org:hover {
+    background: #e6881a
+}
+.agreement-cont {
+    margin-left: 50px;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+}
+
+.error1{
+    background: url(../img/validatorinit.png) no-repeat 10px 4px;
+    color: #1188d3;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.error2 {
+    background: url(../img/validatorerror.png) no-repeat 10px 4px;
+    color: #f60;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+
+.success{
+    background: url(../img/validatorvalid.png) no-repeat 10px 4px;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 36px;
+    vertical-align: middle;
+}
+.chk-vm {
+    -webkit-appearance: checkbox;
+    float: left;
+    margin: 8px 5px 0 0;
+    vertical-align: middle
+}
+

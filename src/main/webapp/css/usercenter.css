@@ -1,0 +1,298 @@
+#nav-head{
+    height: 172px;
+    width:1400px;
+    background:url(../img/bg-4.jpg) repeat-x 0 30px;
+}
+#picture{
+    width:84px;
+    height:172px;
+    margin-top: 60px;
+    margin-left: 40px;
+    border-radius: 50%;
+}
+#picture img{
+    width:84px;
+    height:90px;
+    margin-top: 60px;
+    margin-left: 40px;
+}
+#head-text p{
+    margin-top: 84px;
+    margin-left: 40px;
+    font-size: 20px;
+    color:#fff;
+    font-weight: bold;
+}
+#head-text span{
+    font-size: 14px;
+}
+#head-text a{
+    font-size: 14px;
+    color:#fff;
+}
+#leftnav{
+    background-color: #fff;
+    position: relative;
+    float: left;
+    top:20px;
+    width:140px;
+}
+#leftnav ul{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#cap2{
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+#center{
+    position: relative;
+    top: 20px;
+    left: 80px;
+}
+#content{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/*我的资料页面样式开始*/
+.username{
+    float: left;
+    width:100px;
+    height:22px;
+}
+.username span{
+    height: 40px;
+    font-size: 16px;
+}
+.inp{
+    float: left;
+    width:169px;
+    height:40px;
+}
+.id_img{
+    float: left;
+}
+.id_img .image{
+    margin-left:100px;
+}
+.renzheng{
+    margin-top:270px;
+}
+.renzheng span{
+    font-size: 16px;
+}
+/*我的资料页面样式结束*/
+
+/*认证页面开始*/
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    height:40px;
+    width:120px;
+}
+/*认证页面结束*/
+
+/*我的收藏页面*/
+.collecttime{
+    height: 18px;
+    margin: 0 20px 12px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #b0b0b0;
+}
+.collectcap a{
+    margin-top: 30px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+    width: 400px;
+}
+.collectcap p{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:400px;
+
+}
+/*我的发布页面开始*/
+#title{
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 4px solid #f46;
+    width:80px;
+}
+#title2{
+    background-color: #fff;
+    height: 60px;
+    width:980px;
+    list-style: none;
+    text-align: center;
+
+}
+#title2 li{
+    display: inline;
+    line-height: 40px;
+    float:left;
+    border-right: 1px #999;
+    padding: 10px 42px;
+    font-size: 16px;
+    color: #999;
+}
+.info{
+    background-color:#fff;
+    height: 290px;
+    width:960px;
+    margin-top:50px;
+}
+.info strong{
+    font-size: 24px;
+    color: #333;
+    font-weight: 400;
+    margin-left: 150px;
+}
+#icon{
+    font-size: 24px;
+    color: #01d1c1;
+
+}
+.info ul{
+    list-style-position: inside;
+    padding: 10px 0 0 36px;
+    font-size: 16px;
+    line-height: 2;
+    color: #666;
+    margin-left: 30px;
+}
+.info ul li{
+    margin-left: 174px;
+}
+.userlist{
+    margin-top: 10px;
+    border-top-width: 1px;
+    border-top-style:solid;
+    border-color: #ff6700;
+    padding-bottom: 100px;
+    background-color:#fff;
+    height:120px;
+    width:960px;
+}
+.userimg img{
+    margin-left: 40px;
+    margin-top:15px;
+    border-radius: 50%;
+    width: 84px;
+    height: 90px;
+    float: left;
+}
+.username{
+    text-align: center;
+}
+.username a{
+    float: left;
+    font-size:20px;
+    width:100px;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 1.42857143;
+}
+#caps p{
+    height: 30px;
+}
+/*我的发布页面结束*/
+
+/*超小屏幕 小于等于768px*/
+@media (max-width: 500px) {
+    #center{
+        width:800px;
+    }
+    .suofang{
+        transform:scaleX(0.5);
+    }
+    .info{
+        height: 200px;
+        width:300px;
+        margin-top:20px;
+        margin-left: 0px;
+    }
+    .info strong{
+        font-size: xx-small;
+        margin-left: 0;
+
+    }
+    .info ul{
+        list-style-position: inside;
+        padding: 0;
+        margin-left: 0px;
+        font-size: xx-small;
+    }
+    .info ul li{
+        margin-left: 0px;
+    }
+    .state{
+        margin-right:300px;
+    }
+
+}
+@media (max-width: 1200px) {
+    .collect{
+        margin-right:220px;
+    }
+    .state{
+        margin-right:250px;
+    }
+
+    #test{
+        margin-left:-80px;
+    }
+    #title{
+        border-bottom: 4px solid #e5e5e5e5;
+        width:200px;
+    }
+}
+@media (min-width: 1200px) {
+    .collect{
+        margin-right:50px;
+    }
+    .state{
+        margin-rigth:60px;
+    }
+}
+@media (max-width: 1700px) {
+    #center{
+        margin-left:150px;
+        width:1130px;
+    }
+
+}
+@media (min-width: 1700px) {
+    #leftnav{
+        margin-left: 183px;
+    }
+    #center{
+        margin-left:308px;
+        width:1205px;
+    }
+
+}
+@media (min-width: 1900px) {
+    #leftnav{
+        margin-left: 260px;
+    }
+    #center{
+        margin-left:390px;
+        width:1205px;
+    }
+
+}
+

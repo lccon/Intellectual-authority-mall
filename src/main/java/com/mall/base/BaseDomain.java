@@ -13,7 +13,11 @@ public class BaseDomain implements Serializable {
 
     private Date createDate;
 
+    private String createUser;
+
     private Date updateDate;
+
+    private String updateUser;
 
     public Date getCreateDate() {
         return createDate;
@@ -29,5 +33,21 @@ public class BaseDomain implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
     }
 }

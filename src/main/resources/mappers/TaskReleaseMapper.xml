@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.TaskReleaseMapper">
+    <resultMap id="taskReleaseMap" type="com.mall.domain.TaskRelease">
+        <id property="id" column="id"/>
+        <result property="taskCategory" column="task_category"/>
+        <result property="intellectualProperty" column="intellectual_property"/>
+        <result property="industryBelongs" column="industry_belongs"/>
+        <result property="purpose" column="purpose"/>
+        <result property="detailedDesc" column="detailed_desc"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="state" column="state"/>
+        <result property="userId" column="user_id"/>
+        <result property="browseVolume" column="browse_volume"/>
+        <result property="roofPlaceState" column="authorize_state"/>
+        <result property="topDuration" column="top_duration"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, state, user_id, browse_volume, create_user, create_date, update_user, update_date
+    </sql>
+
+    <sql id="baseColumns">
+        id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, state, user_id, browse_volume, r.create_user, r.create_date,
+        r.update_user, r.update_date, t.authorize_state, t.top_duration
+    </sql>
+
+    <insert id="addTaskRelease" parameterType="com.mall.domain.TaskRelease">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO task_release
+        (id, task_category, intellectual_property, industry_belongs, purpose, detailed_desc,
+        real_name, mobile, state, user_id, create_user, create_date)
+        VALUES
+        (#{id}, #{taskCategory}, #{intellectualProperty}, #{industryBelongs}, #{purpose}, #{detailedDesc},
+        #{realName}, #{mobile}, #{state}, #{userId}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateTaskRelease" parameterType="com.mall.domain.TaskRelease">
+        UPDATE task_release
+        <set>
+            <if test="taskCategory != null">
+                task_category = #{taskCategory},
+            </if>
+            <if test="intellectualProperty  != null">
+                intellectual_property = #{intellectualProperty},
+            </if>
+            <if test="industryBelongs != null">
+                industry_belongs = #{industryBelongs},
+            </if>
+            <if test="purpose != null and purpose != ''">
+                purpose = #{purpose},
+            </if>
+            <if test="detailedDesc != null and detailedDesc != ''">
+                detailed_desc = #{detailedDesc},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTaskRelease">
+        DELETE FROM task_release
+        WHERE id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findTaskReleaseForList" parameterType="com.mall.vo.TaskReleaseVO" resultMap="taskReleaseMap">
+        select <include refid="baseColumns"/> FROM task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="searchText != null and searchText != ''">
+                and create_user like concat('%', #{searchText}, '%')
+            </if>
+        </where>
+        order by t.authorize_state desc, t.create_date desc, r.create_date desc
+    </select>
+
+    <select id="getTaskReleaseByTask_category" parameterType="Map" resultMap="taskReleaseMap">
+        SELECT <include refid="baseColumns"/> FROM task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
+        where task_category = #{task_category}
+        AND state = 2
+        order by t.create_date desc, r.create_date desc
+    </select>
+
+    <select id="getTaskReleaseById" parameterType="java.lang.Long" resultMap="taskReleaseMap">
+        SELECT <include refid="columns"/> FROM task_release
+        where id = #{id}
+    </select>
+
+
+    <select id="countnum" parameterType="com.mall.vo.TaskReleaseVO" resultType="int">
+        SELECT
+        count(*)
+        FROM task_release
+        <where>
+            <if test="purpose != null and purpose != '' and detailedDesc != null and detailedDesc != ''">
+                (purpose LIKE concat('%',#{purpose},'%')
+                OR detailed_desc LIKE concat('%',#{detailedDesc},'%'))
+            </if>
+            <if test="taskCategory != null">
+                and task_category = #{taskCategory}
+            </if>
+            <if test="intellectualProperty != null">
+                and intellectual_property = #{intellectualProperty}
+            </if>
+            <if test="industryBelongs != null">
+                and industry_belongs = #{industryBelongs}
+            </if>
+            and state = 2
+        </where>
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="taskReleaseMap">
+        select
+        <include refid="baseColumns" />
+        from task_release r
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 3
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on r.id = t.module_type_id
+        <where>
+            <if test="taskReleaseVO.purpose != null and taskReleaseVO.purpose != ''
+                and taskReleaseVO.detailedDesc != null and taskReleaseVO.detailedDesc != ''">
+                (purpose LIKE concat('%',#{taskReleaseVO.purpose},'%')
+                OR detailed_desc LIKE concat('%',#{taskReleaseVO.detailedDesc},'%'))
+            </if>
+            <if test="taskReleaseVO.taskCategory != null">
+                and task_category = #{taskReleaseVO.taskCategory}
+            </if>
+            <if test="taskReleaseVO.intellectualProperty != null">
+                and intellectual_property = #{taskReleaseVO.intellectualProperty}
+            </if>
+            <if test="taskReleaseVO.industryBelongs != null">
+                and industry_belongs = #{taskReleaseVO.industryBelongs}
+            </if>
+            <if test="startTime != null">
+                and r.create_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                and r.create_date <![CDATA[<=]]> #{endTime}
+            </if>
+            and state = 2
+        </where>
+        order by t.create_date desc, r.create_date desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="findBytaskRelease" resultMap="taskReleaseMap">
+        select
+        <include refid="columns" />
+        FROM task_release
+        WHERE state = 2
+        AND (purpose LIKE concat('%',#{purpose},'%')
+        OR detailed_desc LIKE concat('%',#{detailedDesc},'%'))
+    </select>
+
+    <select id="findTaskReleaseByIds" resultMap="taskReleaseMap">
+        SELECT
+        <include refid="columns" />
+        FROM task_release
+        WHERE id IN
+        <foreach collection="releaseIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updateBrowseVolume" parameterType="java.lang.Long">
+        UPDATE task_release SET browse_volume = browse_volume+1 where id = #{id}
+    </update>
+
+    <select id="findTaskPeriodDataForList" resultMap="taskReleaseMap">
+        select
+        <include refid="columns" />
+        from task_release r
+        <where>
+            state = 2
+            <if test="startTime != null">
+                and create_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                and create_date <![CDATA[<=]]> #{endTime}
+            </if>
+        </where>
+    </select>
+</mapper>

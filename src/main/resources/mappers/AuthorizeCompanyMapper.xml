@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.mapper.AuthorizeCompanyMapper">
+    <resultMap id="authorizeCompanyMap" type="com.mall.domain.AuthorizeCompany">
+        <id property="id" column="id"/>
+        <result property="companyName" column="company_name"/>
+        <result property="businessCategory" column="business_category"/>
+        <result property="companyDescribe" column="company_describe"/>
+        <result property="companyPictureUrl" column="company_picture_url"/>
+        <result property="realName" column="real_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="friendshipLink" column="friendship_link"/>
+        <result property="state" column="state"/>
+        <result property="userId" column="user_id"/>
+        <result property="browseVolume" column="browse_volume"/>
+        <result property="roofPlaceState" column="authorize_state"/>
+        <result property="topDuration" column="top_duration"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, state, user_id, browse_volume,
+        create_user, create_date, update_user, update_date
+    </sql>
+
+    <sql id="baseColumns">
+        id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, state, user_id, browse_volume,
+        c.create_user, c.create_date, c.update_user, c.update_date, t.authorize_state, t.top_duration
+    </sql>
+
+    <insert id="addAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO authorize_company
+        (id, company_name, business_category, company_describe, company_picture_url,
+        real_name, mobile, friendship_link, state, user_id, create_user, create_date)
+        VALUES
+        (#{id}, #{companyName}, #{businessCategory}, #{companyDescribe}, #{companyPictureUrl},
+        #{realName}, #{mobile}, #{friendshipLink}, #{userId}, #{state}, #{createUser}, #{createDate})
+    </insert>
+
+    <update id="updateAuthorizeCompany" parameterType="com.mall.domain.AuthorizeCompany">
+        UPDATE authorize_company
+        <set>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="businessCategory  != null">
+                business_category = #{businessCategory},
+            </if>
+            <if test="companyDescribe != null and companyDescribe != ''">
+                company_describe = #{companyDescribe},
+            </if>
+            <if test="companyPictureUrl != null and companyPictureUrl != ''">
+                company_picture_url = #{companyPictureUrl},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="friendshipLink != null and friendshipLink != ''">
+                friendship_link = #{friendshipLink},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateBrowseVolume" parameterType="java.lang.Long">
+        UPDATE authorize_company SET browse_volume = browse_volume+1 where id = #{id}
+    </update>
+
+    <delete id="deleteAuthorizeCompany">
+        DELETE FROM authorize_company
+        WHERE id IN
+        <foreach collection="array" index="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findAuthorizeCompanyForList" parameterType="com.mall.vo.AuthorizeCompanyVO" resultMap="authorizeCompanyMap">
+        select <include refid="baseColumns"/> FROM authorize_company c
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on c.id = t.module_type_id
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+            <if test="searchText != null and searchText != ''">
+                and company_name like concat('%', #{searchText}, '%')
+            </if>
+        </where>
+        order by t.authorize_state desc, t.create_date desc, c.create_date desc
+    </select>
+
+    <select id="getAuthorizeCompanyById" parameterType="java.lang.Long" resultMap="authorizeCompanyMap">
+        SELECT <include refid="columns"/> FROM authorize_company
+        where id = #{id}
+    </select>
+
+    <select id="countnum" resultType="int">
+        SELECT
+        count(*)
+        FROM authorize_company
+        <where>
+            <if test="companyName != null and companyName != '' and companyDescribe != null and companyDescribe != ''">
+                (company_name LIKE concat('%',#{companyName},'%')
+                OR company_describe LIKE concat('%',#{companyDescribe},'%'))
+            </if>
+            <if test="businessCategory != null">
+                and business_category = #{businessCategory}
+            </if>
+            and state = 2
+        </where>
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultMap="authorizeCompanyMap">
+        select
+        <include refid="baseColumns" />
+        from authorize_company c
+        LEFT JOIN
+        (
+        select p.module_type_id, p.authorize_state, p.top_duration, p.create_date
+        from roof_place p
+        where p.module_type = 2
+        and p.authorize_state = 2
+        and p.top_end_time <![CDATA[>]]> now()
+        )t
+        on c.id = t.module_type_id
+        <where>
+            <if test="authorizeCompanyVO.companyName != null and authorizeCompanyVO.companyName != ''
+            and authorizeCompanyVO.companyDescribe != null and authorizeCompanyVO.companyDescribe != ''">
+                (company_name LIKE concat('%',#{authorizeCompanyVO.companyName},'%')
+                OR company_describe LIKE concat('%',#{authorizeCompanyVO.companyDescribe},'%'))
+            </if>
+            <if test="authorizeCompanyVO.businessCategory != null">
+                and business_category = #{authorizeCompanyVO.businessCategory}
+            </if>
+            and state = 2
+        </where>
+        order by t.create_date desc, c.create_date desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+
+    <select id="findByAuthorizeCompany" resultMap="authorizeCompanyMap">
+        select
+        <include refid="columns" />
+        FROM authorize_company
+        WHERE state = 2
+        AND (company_name LIKE concat('%',#{companyName},'%')
+        OR company_describe LIKE concat('%',#{companyDescribe},'%'))
+    </select>
+
+    <select id="findAuthorizeCompanyByIds" resultMap="authorizeCompanyMap">
+        select
+        <include refid="columns" />
+        FROM authorize_company
+        WHERE id IN
+        <foreach collection="companyIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
